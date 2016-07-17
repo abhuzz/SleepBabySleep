@@ -15,7 +15,7 @@ enum PlayState {
     case Playing
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var player: AVAudioPlayer?
     var playState: PlayState = .Paused
@@ -24,19 +24,27 @@ class ViewController: UIViewController {
          SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
          SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia")]
 
+    
     @IBOutlet weak var buttonPlayPause: UIButton!
+    @IBOutlet weak var soundFilePicker: UIPickerView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initializeBackgroundAudioPlayback()
+        
+        self.soundFilePicker.delegate = self
+        self.soundFilePicker.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    // MARK: Actions
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
         if self.playState == .Paused {
@@ -51,6 +59,28 @@ class ViewController: UIViewController {
         
     }
     
+    
+    // MARK: UIPickerViewDataSource
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.soundFiles.count
+    }
+ 
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.soundFiles[row].Name
+    }
+    
+    
+    // MARK: UIPickerViewDelegate
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+    }
+    
+    
+    // MARK: Helper Methods
     func initializeBackgroundAudioPlayback() {
         
         do {

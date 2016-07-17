@@ -41,6 +41,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
+                        <outlet property="soundFilePicker" destination="qL0-DU-aMd" id="ZyC-Hq-5fQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
