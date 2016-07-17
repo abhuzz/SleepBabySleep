@@ -16,11 +16,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
+                                <rect key="frame" x="276" y="276" width="48" height="48"/>
+                                <state key="normal" image="Play"/>
+                                <connections>
+                                    <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tCD-db-LV0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Wl-6a-TZx"/>
+                            <constraint firstItem="tCD-db-LV0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NBe-Oh-aoe"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="Play" width="48" height="48"/>
+    </resources>
 </document>

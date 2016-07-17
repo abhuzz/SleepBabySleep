@@ -10,10 +10,18 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
+enum PlayState {
+    case Paused
+    case Playing
+}
+
 class ViewController: UIViewController {
     
     var player: AVAudioPlayer?
+    var playState: PlayState = .Paused
 
+    @IBOutlet weak var buttonPlayPause: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,9 +37,6 @@ class ViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        
-        playSound()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,11 +44,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func playSound() {
+    @IBAction func actionTappedPlayPause(sender: AnyObject) {
+        
+        if self.playState == .Paused {
+            startPlayingSound()
+            self.buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
+            self.playState = .Playing
+        } else {
+            stopPLayingSound()
+            self.buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
+            self.playState = .Paused
+        }
+        
+    }
+    
+    func startPlayingSound() {
         let url = NSBundle.mainBundle().URLForResource("Shhhh", withExtension: "mp3")!
         
         do {
             player = try AVAudioPlayer(contentsOfURL: url)
+            
             guard let player = player else { return }
             
             player.numberOfLoops = -1
@@ -53,6 +73,12 @@ class ViewController: UIViewController {
             print(error.description)
         }
     }
-
+    
+    func stopPLayingSound() {
+        
+        guard let player = self.player else { return }
+        
+        player.pause()
+    }
 }
 
