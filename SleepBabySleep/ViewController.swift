@@ -29,18 +29,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            print("AVAudioSession Category Playback OK")
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-                print("AVAudioSession is Active")
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        initializeBackgroundAudioPlayback()
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +49,23 @@ class ViewController: UIViewController {
             self.playState = .Paused
         }
         
+    }
+    
+    func initializeBackgroundAudioPlayback() {
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                NSLog("AVAudioSession Category Playback OK")
+            do {
+                try AVAudioSession.sharedInstance().setActive(true)
+                NSLog("AVAudioSession is Active")
+            } catch let error as NSError {
+                NSLog(error.localizedDescription)
+            }
+        } catch let error as NSError {
+            NSLog(error.localizedDescription)
+        }
+
     }
     
     func startPlayingSound() {
