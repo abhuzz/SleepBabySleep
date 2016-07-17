@@ -97,6 +97,11 @@
 					D4DD3DD41D3BF43F00198301 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = VNN46H7VJU;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
