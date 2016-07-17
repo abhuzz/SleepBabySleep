@@ -19,6 +19,10 @@ class ViewController: UIViewController {
     
     var player: AVAudioPlayer?
     var playState: PlayState = .Paused
+    var soundFiles =
+        [SoundFile(Name: "Shhhhh", File: "Shhhh"),
+         SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
+         SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia")]
 
     @IBOutlet weak var buttonPlayPause: UIButton!
     
