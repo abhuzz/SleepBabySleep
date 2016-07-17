@@ -19,11 +19,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var player: AVAudioPlayer?
     var playState: PlayState = .Paused
+    
     var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh"),
          SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
          SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia")]
-
+    var selectedSoundFile: SoundFile?
+    
     
     @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFilePicker: UIPickerView!
@@ -36,6 +38,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         self.soundFilePicker.delegate = self
         self.soundFilePicker.dataSource = self
+        
+        self.selectedSoundFile = self.soundFiles.first
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +80,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // MARK: UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        self.selectedSoundFile = self.soundFiles[row]
     }
     
     
@@ -99,7 +103,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func startPlayingSound() {
-        let url = NSBundle.mainBundle().URLForResource("Shhhh", withExtension: "mp3")!
+        
+        guard let soundFileToPlay = self.selectedSoundFile else { return }
+        
+        let url = NSBundle.mainBundle().URLForResource(soundFileToPlay.File, withExtension: "mp3")!
         
         do {
             player = try AVAudioPlayer(contentsOfURL: url)
