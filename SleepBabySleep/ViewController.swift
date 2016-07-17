@@ -34,7 +34,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initializeBackgroundAudioPlayback()
+        self.initializeBackgroundAudioPlayback()
         
         self.soundFilePicker.delegate = self
         self.soundFilePicker.dataSource = self
@@ -52,11 +52,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
         if self.playState == .Paused {
+            
             startPlayingSound()
             self.buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
             self.playState = .Playing
         } else {
-            stopPLayingSound()
+            
+            stopPlayingSound()
             self.buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
             self.playState = .Paused
         }
@@ -81,6 +83,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // MARK: UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selectedSoundFile = self.soundFiles[row]
+        
+        if playState == .Playing {
+            self.restartPlayingSound()
+        }
     }
     
     
@@ -121,11 +127,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         }
     }
     
-    func stopPLayingSound() {
+    func stopPlayingSound() {
         
         guard let player = self.player else { return }
         
         player.pause()
+    }
+    
+    func restartPlayingSound() {
+        
+        self.stopPlayingSound()
+        self.startPlayingSound()
     }
 }
 
