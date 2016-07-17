@@ -13,6 +13,8 @@
 		D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */; };
 		D4DD3DE31D3BF43F00198301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */; };
 		D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */; };
+		D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */; };
+		D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		D4DD3DE21D3BF43F00198301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4DD3DE41D3BF43F00198301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Shhhh.mp3; path = Audio/Shhhh.mp3; sourceTree = SOURCE_ROOT; };
+		D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HeiaHeia.mp3; path = Audio/HeiaHeia.mp3; sourceTree = SOURCE_ROOT; };
+		D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Mhhhh.mp3; path = Audio/Mhhhh.mp3; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 		D4DD3DEA1D3BF77900198301 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */,
+				D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */,
 				D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */,
 			);
 			name = Audio;
@@ -139,10 +145,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */,
 				D4DD3DE31D3BF43F00198301 /* LaunchScreen.storyboard in Resources */,
 				D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */,
 				D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */,
 				D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */,
+				D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
