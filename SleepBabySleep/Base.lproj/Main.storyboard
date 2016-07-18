@@ -18,6 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-DU-aMd">
+                                <rect key="frame" x="20" y="36" width="560" height="216"/>
+                            </pickerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
+                                <rect key="frame" x="237" y="426" width="127" height="29"/>
+                                <segments>
+                                    <segment title="30"/>
+                                    <segment title="60"/>
+                                    <segment title="90"/>
+                                    <segment title="∞"/>
+                                </segments>
+                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
                                 <rect key="frame" x="20" y="276" width="560" height="48"/>
                                 <state key="normal" image="Play"/>
@@ -25,18 +37,17 @@
                                     <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-DU-aMd">
-                                <rect key="frame" x="20" y="36" width="560" height="216"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tCD-db-LV0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Wl-6a-TZx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qc4-81-rOs" secondAttribute="bottom" constant="146" id="AMD-ff-l64"/>
                             <constraint firstItem="qL0-DU-aMd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="Caa-bb-GyW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qL0-DU-aMd" secondAttribute="trailing" id="DaW-AV-h5w"/>
-                            <constraint firstItem="tCD-db-LV0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NBe-Oh-aoe"/>
-                            <constraint firstItem="qL0-DU-aMd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WJo-9O-oqo"/>
-                            <constraint firstItem="qL0-DU-aMd" firstAttribute="trailing" secondItem="tCD-db-LV0" secondAttribute="trailing" id="ceg-wD-Mmy"/>
+                            <constraint firstItem="qc4-81-rOs" firstAttribute="centerX" secondItem="qL0-DU-aMd" secondAttribute="centerX" id="HN5-48-Kij"/>
+                            <constraint firstItem="tCD-db-LV0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hog-LB-YzP"/>
+                            <constraint firstItem="tCD-db-LV0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IuL-0f-5ta"/>
+                            <constraint firstItem="tCD-db-LV0" firstAttribute="leading" secondItem="qL0-DU-aMd" secondAttribute="leading" id="hWG-FV-AUg"/>
+                            <constraint firstItem="qc4-81-rOs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mHa-5c-CTH"/>
+                            <constraint firstItem="tCD-db-LV0" firstAttribute="trailing" secondItem="qL0-DU-aMd" secondAttribute="trailing" id="zDh-oV-8lf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -46,6 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="340" y="292"/>
         </scene>
     </scenes>
     <resources>
