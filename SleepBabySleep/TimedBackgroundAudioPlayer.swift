@@ -21,11 +21,12 @@ class TimedBackgroundAudioPlayer {
     var selectedSoundFile: SoundFile?
     
     private var audioPlayer: AudioPlayer
-    private var timer = NSTimer()
-
-    init(audioPlayer: AudioPlayer) {
+    private var timer: Timer
+    
+    init(audioPlayer: AudioPlayer, timer: Timer) {
         
         self.audioPlayer = audioPlayer
+        self.timer = timer
     }
     
     
@@ -53,8 +54,7 @@ class TimedBackgroundAudioPlayer {
     
         audioPlayer.play(url)
         
-        timer =
-            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(TimedBackgroundAudioPlayer.playbackTimerExpired), userInfo: nil, repeats: false)
+        timer.start(10.0, callDelegateWhenExpired: self)
         
         playState = .Playing
         
@@ -76,10 +76,13 @@ class TimedBackgroundAudioPlayer {
         
         delegate.playStateChanged(playState)
     }
+}
+
+extension TimedBackgroundAudioPlayer: TimerExpiredDelegate {
     
-    @objc func playbackTimerExpired() {
+    func timerExpired() {
         
-        NSLog("playbackTimerExpired()")
+        NSLog("timerExpired()")
         
         self.stopPlayingSound()
     }
