@@ -13,15 +13,13 @@ enum PlayState {
     case Playing
 }
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController {
     
-    var backgroundAudioPlayer = BackgroundAudioPlayer()
-    
-    var soundFiles =
+    private var backgroundAudioPlayer = BackgroundAudioPlayer()
+    private var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh"),
          SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
          SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia")]
-    
     
     
     @IBOutlet weak var buttonPlayPause: UIButton!
@@ -34,38 +32,47 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         backgroundAudioPlayer.stateDelegate = self
         backgroundAudioPlayer.selectedSoundFile = soundFiles.first
         
-        self.soundFilePicker.delegate = self
-        self.soundFilePicker.dataSource = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        soundFilePicker.delegate = self
+        soundFilePicker.dataSource = self
     }
     
     
-    // MARK: Actions
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
         backgroundAudioPlayer.togglePlayState()
     }
     
     
-    // MARK: UIPickerViewDataSource
+    func setGuiStateStartPlaying() {
+        
+        buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
+
+    }
+    
+    func setGuiStateStopPlayback() {
+        
+        buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
+    }
+    
+}
+
+extension ViewController: UIPickerViewDataSource {
+   
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.soundFiles.count
+        return soundFiles.count
     }
- 
+    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.soundFiles[row].Name
+        return soundFiles[row].Name
     }
+}
+
+extension ViewController: UIPickerViewDelegate {
     
-    
-    // MARK: UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
         
@@ -74,33 +81,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             backgroundAudioPlayer.restartPlayingSound()
         }
     }
-    
-    
-    // MARK: Helper Methods
-        
-    func setGuiStateStartPlaying() {
-        
-        self.buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
-
-    }
-    
-    func setGuiStateStopPlayback() {
-        
-        self.buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
-    }
-    
 }
 
 extension ViewController: BackgroundAudioPlayerStateDelegate {
     
     func playStateChanged(playState: PlayState) {
         
-        if playState == .Paused {
-            
-            setGuiStateStopPlayback()
-        } else {
-            
-            setGuiStateStartPlaying()
+        switch playState {
+        case .Playing:
+                setGuiStateStartPlaying()
+        case .Paused:
+                setGuiStateStopPlayback()
         }
     }
 }
