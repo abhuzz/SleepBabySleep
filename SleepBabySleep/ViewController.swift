@@ -19,6 +19,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var player: AVAudioPlayer?
     var playState: PlayState = .Paused
+    var timer = NSTimer()
     
     var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh"),
@@ -54,13 +55,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         if self.playState == .Paused {
             
             startPlayingSound()
-            self.buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
-            self.playState = .Playing
+            setGuiStateStartPlaying()
         } else {
             
             stopPlayingSound()
-            self.buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
-            self.playState = .Paused
+            setGuiStateStopPlayback()
         }
         
     }
@@ -108,6 +107,21 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     }
     
+    func setGuiStateStartPlaying() {
+        
+        self.buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
+        self.playState = .Playing
+        
+        timer =
+            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(ViewController.playbackTimerExpired), userInfo: nil, repeats: false)
+    }
+    
+    func setGuiStateStopPlayback() {
+        
+        self.buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
+        self.playState = .Paused
+    }
+    
     func startPlayingSound() {
         
         guard let soundFileToPlay = self.selectedSoundFile else { return }
@@ -138,6 +152,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         self.stopPlayingSound()
         self.startPlayingSound()
+    }
+    
+    func playbackTimerExpired() {
+        
+        NSLog("playbackTimerExpired()")
+        
+        self.stopPlayingSound()
+        self.setGuiStateStopPlayback()
     }
 }
 
