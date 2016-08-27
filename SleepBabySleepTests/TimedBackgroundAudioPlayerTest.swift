@@ -10,36 +10,6 @@ import XCTest
 @testable import SleepBabySleep
 
 
-class FakeAudioPlayer: AudioPlayer {
-    
-    var playCalled = false
-    var stopCalled = false
-    var timesPlayCalled = 0
-    
-    func play(withUrl: NSURL) {
-        playCalled = true
-        timesPlayCalled += 1
-    }
-    
-    func stop() {
-        stopCalled = true
-    }
-}
-
-class FakeTimer: Timer {
-    
-    func start(durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
-        
-    }
-}
-
-class FakeAppBundle: AppBundle {
-    
-    func file(withName: String, andExtension: String) -> NSURL {
-        return NSURL()
-    }
-}
-
 class TimedBackgroundAudioPlayerTest: XCTestCase {
     
     var fakeAudioPlayer: FakeAudioPlayer?
@@ -113,6 +83,4 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         XCTAssertTrue(fakeAudioPlayer!.stopCalled)
         XCTAssertEqual(2, fakeAudioPlayer!.timesPlayCalled)
     }
-    
-    
 }
