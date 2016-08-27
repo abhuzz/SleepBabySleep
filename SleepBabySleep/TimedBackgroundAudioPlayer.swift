@@ -72,6 +72,7 @@ class TimedBackgroundAudioPlayer {
     private func stopPlayingSound() {
         
         audioPlayer.stop()
+        timer.stop()
         
         changePlayState(.Paused)
     }
