@@ -12,4 +12,5 @@ struct SoundFile {
     
     var Name: String
     var File: String
+    var Extension: String
 }

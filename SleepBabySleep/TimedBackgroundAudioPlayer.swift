@@ -22,11 +22,13 @@ class TimedBackgroundAudioPlayer {
     
     private var audioPlayer: AudioPlayer
     private var timer: Timer
+    private var appBundle: AppBundle
     
-    init(audioPlayer: AudioPlayer, timer: Timer) {
+    init(audioPlayer: AudioPlayer, timer: Timer, appBundle: AppBundle) {
         
         self.audioPlayer = audioPlayer
         self.timer = timer
+        self.appBundle = appBundle
     }
     
     
@@ -50,9 +52,8 @@ class TimedBackgroundAudioPlayer {
     
         guard let soundFileToPlay = self.selectedSoundFile else { return }
     
-        let url = NSBundle.mainBundle().URLForResource(soundFileToPlay.File, withExtension: "mp3")!
-    
-        audioPlayer.play(url)
+        audioPlayer.play(
+            appBundle.file(soundFileToPlay.File, andExtension: soundFileToPlay.Extension))
         
         timer.start(10.0, callDelegateWhenExpired: self)
         
