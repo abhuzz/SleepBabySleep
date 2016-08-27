@@ -30,6 +30,10 @@ class FakeTimer: Timer {
     func start(durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
         
     }
+    
+    func stop() {
+    
+    }
 }
 
 class FakeAppBundle: AppBundle {

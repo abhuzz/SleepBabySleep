@@ -14,6 +14,7 @@ protocol TimerExpiredDelegate {
 
 protocol Timer {
     func start(durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate)
+    func stop()
 }
 
 class SystemTimer: Timer {
@@ -25,8 +26,14 @@ class SystemTimer: Timer {
         
         expiredDelegate = callDelegateWhenExpired
         
+        stop()
+        
         timer =
             NSTimer.scheduledTimerWithTimeInterval(durationInSeconds, target: self, selector: #selector(SystemTimer.timerExpired), userInfo: nil, repeats: false)
+    }
+    
+    func stop() {
+        timer.invalidate()
     }
     
     @objc func timerExpired() {
