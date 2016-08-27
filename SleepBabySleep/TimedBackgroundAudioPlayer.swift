@@ -27,6 +27,8 @@ class TimedBackgroundAudioPlayer {
         }
     }
     
+    var playbackDuration: PlaybackDuration?
+    
     
     init(audioPlayer: AudioPlayer, timer: Timer, appBundle: AppBundle) {
         
@@ -56,10 +58,13 @@ class TimedBackgroundAudioPlayer {
     private func startPlayingSound() {
     
         guard let soundFileToPlay = self.selectedSoundFile else { return }
+        
+        guard let playbackDuration = self.playbackDuration else { return }
+        
     
         audioPlayer.play(urlForSoundFile(soundFileToPlay))
         
-        timer.start(10.0, callDelegateWhenExpired: self)
+        timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
         
         changePlayState(.Playing)
     }

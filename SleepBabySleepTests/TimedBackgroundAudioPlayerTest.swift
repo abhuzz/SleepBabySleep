@@ -19,6 +19,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     
     var aSoundFile = SoundFile(Name: "test", File: "none", Extension: "mp3")
     var anotherSoundFile = SoundFile(Name: "test2", File: "nothing", Extension: "wav")
+    var defaultPlaybackDuration = PlaybackDuration(durationInMinutes: 1)
     
     
     override func setUp() {
@@ -37,6 +38,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     
     func testToggleStatusWithoutSelectedSoundFileDoesNotCallAudioPlayer() {
         
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         
         XCTAssertFalse(fakeAudioPlayer!.playCalled)
@@ -45,6 +48,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testToggleStateStartsAudioPlayback() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         
         XCTAssertTrue(fakeAudioPlayer!.playCalled)
@@ -53,6 +58,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testToggleStateTiceCallsPlayAndStopAudio() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
         
@@ -63,6 +70,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testToggleStateThreeTimesCallsPlayAudio2Times() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
@@ -74,6 +83,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testStateChangedDelegateCalledForPlaying() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         
         assertLastPlayStateIs(.Playing)
@@ -82,6 +93,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testStateChangeDeledageCalledForStop() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
         
@@ -102,6 +115,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testChangeSoundFileWhenNotPlayingDoesntStartPlaying() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
         
         XCTAssertFalse(fakeAudioPlayer!.playCalled)
     }
@@ -109,6 +123,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testChangeSoundFileWhilePlayingRestartsPlayer() {
         
         testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
         testInstance!.togglePlayState()
         testInstance!.selectedSoundFile = anotherSoundFile
         

@@ -21,8 +21,8 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-DU-aMd">
                                 <rect key="frame" x="20" y="36" width="560" height="216"/>
                             </pickerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
-                                <rect key="frame" x="205" y="426" width="191" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
+                                <rect key="frame" x="171.5" y="426" width="258" height="29"/>
                                 <segments>
                                     <segment title="5"/>
                                     <segment title="15"/>
