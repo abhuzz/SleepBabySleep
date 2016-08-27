@@ -8,14 +8,16 @@
 
 import Foundation
 
-import MediaPlayer
-
 protocol BackgroundAudioPlayerStateDelegate {
     func playStateChanged(playState: PlayState)
 }
 
 class TimedBackgroundAudioPlayer {
 
+    private var audioPlayer: AudioPlayer
+    private var timer: Timer
+    private var appBundle: AppBundle
+    
     var playState: PlayState = .Paused
     var stateDelegate: BackgroundAudioPlayerStateDelegate?
     
@@ -25,9 +27,6 @@ class TimedBackgroundAudioPlayer {
         }
     }
     
-    private var audioPlayer: AudioPlayer
-    private var timer: Timer
-    private var appBundle: AppBundle
     
     init(audioPlayer: AudioPlayer, timer: Timer, appBundle: AppBundle) {
         
@@ -35,7 +34,6 @@ class TimedBackgroundAudioPlayer {
         self.timer = timer
         self.appBundle = appBundle
     }
-    
     
     func togglePlayState() {
         
@@ -46,6 +44,7 @@ class TimedBackgroundAudioPlayer {
         }
     }
     
+    
     private func restartAudioIfIsPlayingSound() {
         
         guard playState == .Playing else { return }
@@ -54,26 +53,32 @@ class TimedBackgroundAudioPlayer {
         startPlayingSound()
     }
     
-    
     private func startPlayingSound() {
     
         guard let soundFileToPlay = self.selectedSoundFile else { return }
     
-        audioPlayer.play(
-            appBundle.file(soundFileToPlay.File, andExtension: soundFileToPlay.Extension))
+        audioPlayer.play(urlForSoundFile(soundFileToPlay))
         
         timer.start(10.0, callDelegateWhenExpired: self)
         
-        playState = .Playing
-        
-        informDelegateOverPlayStateChange()
+        changePlayState(.Playing)
     }
     
     private func stopPlayingSound() {
         
         audioPlayer.stop()
         
-        playState = .Paused
+        changePlayState(.Paused)
+    }
+    
+    private func urlForSoundFile(soundFile: SoundFile) -> NSURL {
+        
+        return appBundle.file(soundFile.File, andExtension: soundFile.Extension)
+    }
+    
+    private func changePlayState(newPlayState: PlayState) {
+        
+        playState = newPlayState
         
         informDelegateOverPlayStateChange()
     }
