@@ -10,6 +10,7 @@
 		D4C280D91D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift */; };
 		D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */; };
 		D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DC1D71AB9A00356ED1 /* Timer.swift */; };
+		D4C280E51D71AE8600356ED1 /* SleepBabySleepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280E41D71AE8600356ED1 /* SleepBabySleepTests.swift */; };
 		D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */; };
 		D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DDA1D3BF43F00198301 /* ViewController.swift */; };
 		D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDC1D3BF43F00198301 /* Main.storyboard */; };
@@ -21,10 +22,23 @@
 		D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DF11D3C01BC00198301 /* SoundFile.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D4C280E71D71AE8600356ED1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4DD3DCD1D3BF43F00198301 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4DD3DD41D3BF43F00198301;
+			remoteInfo = SleepBabySleep;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		D4C280D81D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedBackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DC1D71AB9A00356ED1 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		D4C280E21D71AE8600356ED1 /* SleepBabySleepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepBabySleepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4C280E41D71AE8600356ED1 /* SleepBabySleepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepBabySleepTests.swift; sourceTree = "<group>"; };
+		D4C280E61D71AE8600356ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DD3DD51D3BF43F00198301 /* SleepBabySleep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepBabySleep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DD3DDA1D3BF43F00198301 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +53,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D4C280DF1D71AE8600356ED1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4DD3DD21D3BF43F00198301 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,10 +70,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D4C280E31D71AE8600356ED1 /* SleepBabySleepTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4C280E41D71AE8600356ED1 /* SleepBabySleepTests.swift */,
+				D4C280E61D71AE8600356ED1 /* Info.plist */,
+			);
+			path = SleepBabySleepTests;
+			sourceTree = "<group>";
+		};
 		D4DD3DCC1D3BF43F00198301 = {
 			isa = PBXGroup;
 			children = (
 				D4DD3DD71D3BF43F00198301 /* SleepBabySleep */,
+				D4C280E31D71AE8600356ED1 /* SleepBabySleepTests */,
 				D4DD3DD61D3BF43F00198301 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D4DD3DD51D3BF43F00198301 /* SleepBabySleep.app */,
+				D4C280E21D71AE8600356ED1 /* SleepBabySleepTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +128,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D4C280E11D71AE8600356ED1 /* SleepBabySleepTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4C280E91D71AE8600356ED1 /* Build configuration list for PBXNativeTarget "SleepBabySleepTests" */;
+			buildPhases = (
+				D4C280DE1D71AE8600356ED1 /* Sources */,
+				D4C280DF1D71AE8600356ED1 /* Frameworks */,
+				D4C280E01D71AE8600356ED1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4C280E81D71AE8600356ED1 /* PBXTargetDependency */,
+			);
+			name = SleepBabySleepTests;
+			productName = SleepBabySleepTests;
+			productReference = D4C280E21D71AE8600356ED1 /* SleepBabySleepTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D4DD3DD41D3BF43F00198301 /* SleepBabySleep */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4DD3DE71D3BF43F00198301 /* Build configuration list for PBXNativeTarget "SleepBabySleep" */;
@@ -123,6 +173,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Stefan Mehnert";
 				TargetAttributes = {
+					D4C280E11D71AE8600356ED1 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = D4DD3DD41D3BF43F00198301;
+					};
 					D4DD3DD41D3BF43F00198301 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = Y6U8S5243G;
@@ -148,11 +202,19 @@
 			projectRoot = "";
 			targets = (
 				D4DD3DD41D3BF43F00198301 /* SleepBabySleep */,
+				D4C280E11D71AE8600356ED1 /* SleepBabySleepTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D4C280E01D71AE8600356ED1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4DD3DD31D3BF43F00198301 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -169,6 +231,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D4C280DE1D71AE8600356ED1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C280E51D71AE8600356ED1 /* SleepBabySleepTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4DD3DD11D3BF43F00198301 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +253,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4C280E81D71AE8600356ED1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4DD3DD41D3BF43F00198301 /* SleepBabySleep */;
+			targetProxy = D4C280E71D71AE8600356ED1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D4DD3DDC1D3BF43F00198301 /* Main.storyboard */ = {
@@ -204,6 +282,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D4C280EA1D71AE8600356ED1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SleepBabySleepTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.sme.SleepBabySleepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SleepBabySleep.app/SleepBabySleep";
+			};
+			name = Debug;
+		};
+		D4C280EB1D71AE8600356ED1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SleepBabySleepTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.sme.SleepBabySleepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SleepBabySleep.app/SleepBabySleep";
+			};
+			name = Release;
+		};
 		D4DD3DE51D3BF43F00198301 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -314,6 +416,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D4C280E91D71AE8600356ED1 /* Build configuration list for PBXNativeTarget "SleepBabySleepTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4C280EA1D71AE8600356ED1 /* Debug */,
+				D4C280EB1D71AE8600356ED1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D4DD3DD01D3BF43F00198301 /* Build configuration list for PBXProject "SleepBabySleep" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
