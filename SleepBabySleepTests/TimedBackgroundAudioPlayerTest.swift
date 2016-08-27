@@ -13,13 +13,14 @@ import XCTest
 class FakeAudioPlayer: AudioPlayer {
     
     var playCalled = false
+    var stopCalled = false
     
     func play(withUrl: NSURL) {
         playCalled = true
     }
     
     func stop() {
-        
+        stopCalled = true
     }
 }
 
@@ -72,4 +73,13 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         XCTAssertTrue(fakeAudioPlayer!.playCalled)
     }
     
+    func testToggleStateTiceCallsPlayAndStopAudio() {
+        
+        testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.togglePlayState()
+        testInstance!.togglePlayState()
+        
+        XCTAssertTrue(fakeAudioPlayer!.playCalled)
+        XCTAssertTrue(fakeAudioPlayer!.stopCalled)
+    }
 }
