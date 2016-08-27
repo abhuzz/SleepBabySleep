@@ -17,6 +17,6 @@ class PlaybackDuration {
     }
     
     func totalSeconds() -> Double{
-        return Double(durationInMinutes / 60)
+        return Double(durationInMinutes * 60)
     }
 }

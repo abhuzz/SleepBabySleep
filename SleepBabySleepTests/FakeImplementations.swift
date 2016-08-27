@@ -27,8 +27,13 @@ class FakeAudioPlayer: AudioPlayer {
 
 class FakeTimer: Timer {
     
+    var calledStart = false
+    var calledWithDurationInSeconds = 0.0
+    
     func start(durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
         
+        calledStart = true
+        calledWithDurationInSeconds = durationInSeconds
     }
     
     func stop() {
