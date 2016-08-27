@@ -15,7 +15,8 @@ enum PlayState {
 
 class ViewController: UIViewController {
     
-    private var backgroundAudioPlayer = TimedBackgroundAudioPlayer()
+    private var backgroundAudioPlayer = TimedBackgroundAudioPlayer(audioPlayer: AVAudioPlayerFacade())
+    
     private var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh"),
          SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFilePicker: UIPickerView!
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

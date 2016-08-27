@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AVFoundation
+
 import MediaPlayer
 
 protocol BackgroundAudioPlayerStateDelegate {
@@ -20,30 +20,14 @@ class TimedBackgroundAudioPlayer {
     var stateDelegate: BackgroundAudioPlayerStateDelegate?
     var selectedSoundFile: SoundFile?
     
-    private var player: AVAudioPlayer?
+    private var audioPlayer: AudioPlayer
     private var timer = NSTimer()
 
-    init() {
+    init(audioPlayer: AudioPlayer) {
         
-        initializeBackgroundAudioPlayback()
+        self.audioPlayer = audioPlayer
     }
     
-    func initializeBackgroundAudioPlayback() {
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                NSLog("AVAudioSession Category Playback OK")
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-                NSLog("AVAudioSession is Active")
-            } catch let error as NSError {
-                NSLog(error.localizedDescription)
-            }
-        } catch let error as NSError {
-            NSLog(error.localizedDescription)
-        }
-        
-    }
     
     func togglePlayState() {
         
@@ -67,20 +51,10 @@ class TimedBackgroundAudioPlayer {
     
         let url = NSBundle.mainBundle().URLForResource(soundFileToPlay.File, withExtension: "mp3")!
     
-        do {
-            player = try AVAudioPlayer(contentsOfURL: url)
-    
-            guard let player = player else { return }
-    
-            player.numberOfLoops = -1
-            player.prepareToPlay()
-            player.play()
-        } catch let error as NSError {
-            print(error.description)
-        }
+        audioPlayer.play(url)
         
         timer =
-            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(BackgroundAudioPlayer.playbackTimerExpired), userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(TimedBackgroundAudioPlayer.playbackTimerExpired), userInfo: nil, repeats: false)
         
         playState = .Playing
         
@@ -89,9 +63,7 @@ class TimedBackgroundAudioPlayer {
     
     private func stopPlayingSound() {
         
-        guard let player = self.player else { return }
-        
-        player.pause()
+        audioPlayer.stop()
         
         playState = .Paused
         
