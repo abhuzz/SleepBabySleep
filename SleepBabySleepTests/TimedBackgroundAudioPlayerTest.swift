@@ -15,6 +15,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     var fakeAudioPlayer: FakeAudioPlayer?
     var fakeTimer: FakeTimer?
     var testInstance: TimedBackgroundAudioPlayer?
+    var fakeBackgroundAudioPlayerStateDelegate: FakeBackgroundAudioPlayerStateDelegate?
     
     var aSoundFile = SoundFile(Name: "test", File: "none", Extension: "mp3")
     var anotherSoundFile = SoundFile(Name: "test2", File: "nothing", Extension: "wav")
@@ -25,9 +26,12 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         
         fakeAudioPlayer = FakeAudioPlayer()
         fakeTimer = FakeTimer()
+        fakeBackgroundAudioPlayerStateDelegate = FakeBackgroundAudioPlayerStateDelegate()
         
         testInstance =
             TimedBackgroundAudioPlayer(audioPlayer: fakeAudioPlayer!, timer: fakeTimer!, appBundle: FakeAppBundle())
+        
+        testInstance?.stateDelegate = fakeBackgroundAudioPlayerStateDelegate
     }
 
     
@@ -64,6 +68,34 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         testInstance!.togglePlayState()
         
         XCTAssertEqual(2, fakeAudioPlayer!.timesPlayCalled)
+    }
+    
+    
+    func testStateChangedDelegateCalledForPlaying() {
+        
+        testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.togglePlayState()
+        
+        assertLastPlayStateIs(.Playing)
+    }
+    
+    func testStateChangeDeledageCalledForStop() {
+        
+        testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.togglePlayState()
+        testInstance!.togglePlayState()
+        
+        assertLastPlayStateIs(.Paused)
+
+    }
+    
+    func assertLastPlayStateIs(expectedPlayState: PlayState) {
+        
+        XCTAssertNotNil(fakeBackgroundAudioPlayerStateDelegate?.lastPlayState)
+        
+        guard let lastPlayState = fakeBackgroundAudioPlayerStateDelegate?.lastPlayState else { return }
+        
+        XCTAssertEqual(expectedPlayState, lastPlayState)
     }
     
     

@@ -38,3 +38,12 @@ class FakeAppBundle: AppBundle {
         return NSURL()
     }
 }
+
+class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate {
+    
+    var lastPlayState: PlayState?
+    
+    func playStateChanged(playState: PlayState) {
+        lastPlayState = playState
+    }
+}
