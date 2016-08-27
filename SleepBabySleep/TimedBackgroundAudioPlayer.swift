@@ -18,7 +18,12 @@ class TimedBackgroundAudioPlayer {
 
     var playState: PlayState = .Paused
     var stateDelegate: BackgroundAudioPlayerStateDelegate?
-    var selectedSoundFile: SoundFile?
+    
+    var selectedSoundFile: SoundFile? {
+        didSet {
+            restartAudioIfIsPlayingSound()
+        }
+    }
     
     private var audioPlayer: AudioPlayer
     private var timer: Timer
@@ -41,10 +46,12 @@ class TimedBackgroundAudioPlayer {
         }
     }
     
-    func restartPlayingSound() {
+    private func restartAudioIfIsPlayingSound() {
         
-        self.stopPlayingSound()
-        self.startPlayingSound()
+        guard playState == .Playing else { return }
+        
+        stopPlayingSound()
+        startPlayingSound()
     }
     
     

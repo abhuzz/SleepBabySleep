@@ -47,6 +47,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     var testInstance: TimedBackgroundAudioPlayer?
     
     var aSoundFile = SoundFile(Name: "test", File: "none", Extension: "mp3")
+    var anotherSoundFile = SoundFile(Name: "test2", File: "nothing", Extension: "wav")
     
     
     override func setUp() {
@@ -92,6 +93,26 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
         
-        XCTAssertEqual(2, fakeAudioPlayer?.timesPlayCalled)
+        XCTAssertEqual(2, fakeAudioPlayer!.timesPlayCalled)
     }
+    
+    
+    func testChangeSoundFileWhenNotPlayingDoesntStartPlaying() {
+        
+        testInstance!.selectedSoundFile = aSoundFile
+        
+        XCTAssertFalse(fakeAudioPlayer!.playCalled)
+    }
+    
+    func testChangeSoundFileWhilePlayingRestartsPlayer() {
+        
+        testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.togglePlayState()
+        testInstance!.selectedSoundFile = anotherSoundFile
+        
+        XCTAssertTrue(fakeAudioPlayer!.stopCalled)
+        XCTAssertEqual(2, fakeAudioPlayer!.timesPlayCalled)
+    }
+    
+    
 }

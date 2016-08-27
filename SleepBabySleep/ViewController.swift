@@ -75,12 +75,8 @@ extension ViewController: UIPickerViewDataSource {
 extension ViewController: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
         
-        if backgroundAudioPlayer.playState == .Playing {
-            
-            backgroundAudioPlayer.restartPlayingSound()
-        }
+        backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
     }
 }
 
