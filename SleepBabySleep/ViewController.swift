@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         
         backgroundAudioPlayer.stateDelegate = self
         backgroundAudioPlayer.selectedSoundFile = soundFiles.first
+        backgroundAudioPlayer.playbackDuration = PlaybackDuration(durationInMinutes: 5)
         
         soundFilePicker.delegate = self
         soundFilePicker.dataSource = self

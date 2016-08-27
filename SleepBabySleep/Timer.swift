@@ -26,17 +26,24 @@ class SystemTimer: Timer {
         
         expiredDelegate = callDelegateWhenExpired
         
-        stop()
+        NSLog("SystemTimer.start(\(durationInSeconds), callback)")
+        
+        timer.invalidate()
         
         timer =
             NSTimer.scheduledTimerWithTimeInterval(durationInSeconds, target: self, selector: #selector(SystemTimer.timerExpired), userInfo: nil, repeats: false)
     }
     
     func stop() {
+        
+        NSLog("SystemTimer.stop()")
+        
         timer.invalidate()
     }
     
     @objc func timerExpired() {
+        
+        NSLog("SystemTimer.timerExpired()")
         
         guard let delegate = expiredDelegate else { return }
         
