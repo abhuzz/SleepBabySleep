@@ -14,7 +14,7 @@ protocol BackgroundAudioPlayerStateDelegate {
     func playStateChanged(playState: PlayState)
 }
 
-class BackgroundAudioPlayer {
+class TimedBackgroundAudioPlayer {
 
     var playState: PlayState = .Paused
     var stateDelegate: BackgroundAudioPlayerStateDelegate?

@@ -15,7 +15,7 @@ enum PlayState {
 
 class ViewController: UIViewController {
     
-    private var backgroundAudioPlayer = BackgroundAudioPlayer()
+    private var backgroundAudioPlayer = TimedBackgroundAudioPlayer()
     private var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh"),
          SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
