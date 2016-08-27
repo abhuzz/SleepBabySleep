@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
 		D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */; };
 		D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DDA1D3BF43F00198301 /* ViewController.swift */; };
 		D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDC1D3BF43F00198301 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		D4DD3DD51D3BF43F00198301 /* SleepBabySleep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepBabySleep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DD3DDA1D3BF43F00198301 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				D4DD3DEA1D3BF77900198301 /* Audio */,
 				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
+				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
 				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
 				D4DD3DDA1D3BF43F00198301 /* ViewController.swift */,
 				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */,
+				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
 				D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */,
 				D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */,
 			);

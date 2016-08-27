@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
-import MediaPlayer
 
 enum PlayState {
     case Paused
@@ -17,15 +15,13 @@ enum PlayState {
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var player: AVAudioPlayer?
-    var playState: PlayState = .Paused
-    var timer = NSTimer()
+    var backgroundAudioPlayer = BackgroundAudioPlayer()
     
     var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh"),
          SoundFile(Name: "Mhhhhh", File: "Mhhhh"),
          SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia")]
-    var selectedSoundFile: SoundFile?
+    
     
     
     @IBOutlet weak var buttonPlayPause: UIButton!
@@ -35,12 +31,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.initializeBackgroundAudioPlayback()
+        backgroundAudioPlayer.stateDelegate = self
+        backgroundAudioPlayer.selectedSoundFile = soundFiles.first
         
         self.soundFilePicker.delegate = self
         self.soundFilePicker.dataSource = self
-        
-        self.selectedSoundFile = self.soundFiles.first
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,16 +47,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // MARK: Actions
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
-        if self.playState == .Paused {
-            
-            startPlayingSound()
-            setGuiStateStartPlaying()
-        } else {
-            
-            stopPlayingSound()
-            setGuiStateStopPlayback()
-        }
-        
+        backgroundAudioPlayer.togglePlayState()
     }
     
     
@@ -81,85 +67,41 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // MARK: UIPickerViewDelegate
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectedSoundFile = self.soundFiles[row]
+        backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
         
-        if playState == .Playing {
-            self.restartPlayingSound()
+        if backgroundAudioPlayer.playState == .Playing {
+            
+            backgroundAudioPlayer.restartPlayingSound()
         }
     }
     
     
     // MARK: Helper Methods
-    func initializeBackgroundAudioPlayback() {
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                NSLog("AVAudioSession Category Playback OK")
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-                NSLog("AVAudioSession is Active")
-            } catch let error as NSError {
-                NSLog(error.localizedDescription)
-            }
-        } catch let error as NSError {
-            NSLog(error.localizedDescription)
-        }
-
-    }
-    
     func setGuiStateStartPlaying() {
         
         self.buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
-        self.playState = .Playing
-        
-        timer =
-            NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(ViewController.playbackTimerExpired), userInfo: nil, repeats: false)
+
     }
     
     func setGuiStateStopPlayback() {
         
         self.buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
-        self.playState = .Paused
     }
     
-    func startPlayingSound() {
+}
+
+extension ViewController: BackgroundAudioPlayerStateDelegate {
+    
+    func playStateChanged(playState: PlayState) {
         
-        guard let soundFileToPlay = self.selectedSoundFile else { return }
-        
-        let url = NSBundle.mainBundle().URLForResource(soundFileToPlay.File, withExtension: "mp3")!
-        
-        do {
-            player = try AVAudioPlayer(contentsOfURL: url)
+        if playState == .Paused {
             
-            guard let player = player else { return }
+            setGuiStateStopPlayback()
+        } else {
             
-            player.numberOfLoops = -1
-            player.prepareToPlay()
-            player.play()
-        } catch let error as NSError {
-            print(error.description)
+            setGuiStateStartPlaying()
         }
-    }
-    
-    func stopPlayingSound() {
-        
-        guard let player = self.player else { return }
-        
-        player.pause()
-    }
-    
-    func restartPlayingSound() {
-        
-        self.stopPlayingSound()
-        self.startPlayingSound()
-    }
-    
-    func playbackTimerExpired() {
-        
-        NSLog("playbackTimerExpired()")
-        
-        self.stopPlayingSound()
-        self.setGuiStateStopPlayback()
     }
 }
 
