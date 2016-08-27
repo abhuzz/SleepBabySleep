@@ -13,6 +13,7 @@
 		D4C280E51D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */; };
 		D4C280ED1D71B24E00356ED1 /* AppBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280EC1D71B24E00356ED1 /* AppBundle.swift */; };
 		D4C280EF1D71B97F00356ED1 /* FakeImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */; };
+		D4C280F11D71BE2C00356ED1 /* PlaybackDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */; };
 		D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */; };
 		D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DDA1D3BF43F00198301 /* ViewController.swift */; };
 		D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDC1D3BF43F00198301 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		D4C280E61D71AE8600356ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C280EC1D71B24E00356ED1 /* AppBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppBundle.swift; sourceTree = "<group>"; };
 		D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImplementations.swift; sourceTree = "<group>"; };
+		D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackDuration.swift; sourceTree = "<group>"; };
 		D4DD3DD51D3BF43F00198301 /* SleepBabySleep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepBabySleep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DD3DDA1D3BF43F00198301 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				D4DD3DEA1D3BF77900198301 /* Audio */,
 				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
 				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
+				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
 				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
 				D4C280D81D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift */,
 				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
@@ -256,6 +259,7 @@
 				D4C280ED1D71B24E00356ED1 /* AppBundle.swift in Sources */,
 				D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */,
 				D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */,
+				D4C280F11D71BE2C00356ED1 /* PlaybackDuration.swift in Sources */,
 				D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
