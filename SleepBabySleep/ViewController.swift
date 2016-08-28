@@ -23,13 +23,14 @@ class ViewController: UIViewController {
          SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
          SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3")]
     
-    private var playbackDurationsBySegementIndex =
-        [0 : PlaybackDuration(durationInMinutes: 5),
-         1 : PlaybackDuration(durationInMinutes: 15),
-         2 : PlaybackDuration(durationInMinutes: 30),
-         3 : PlaybackDuration(durationInMinutes: 60),
-         4 : PlaybackDuration(durationInMinutes: 90),
-         5 : PlaybackDuration(durationInMinutes: 120)]
+    private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
+        [0 : PlaybackDurationMinutes(durationInMinutes: 5),
+         1 : PlaybackDurationMinutes(durationInMinutes: 15),
+         2 : PlaybackDurationMinutes(durationInMinutes: 30),
+         3 : PlaybackDurationMinutes(durationInMinutes: 60),
+         4 : PlaybackDurationMinutes(durationInMinutes: 90),
+         5 : PlaybackDurationMinutes(durationInMinutes: 120),
+         6 : PlaybackDurationInifinite()]
     
     
     @IBOutlet weak var buttonPlayPause: UIButton!
@@ -39,12 +40,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundAudioPlayer.stateDelegate = self
-        backgroundAudioPlayer.selectedSoundFile = soundFiles.first
-        backgroundAudioPlayer.playbackDuration = PlaybackDuration(durationInMinutes: 5)
-        
         soundFilePicker.delegate = self
         soundFilePicker.dataSource = self
+        
+        backgroundAudioPlayer.stateDelegate = self
+        backgroundAudioPlayer.selectedSoundFile = soundFiles.first
+        backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
     }
     
     
@@ -57,9 +58,9 @@ class ViewController: UIViewController {
         
         let selectedSegmentIndex = playbackDurationSegements.selectedSegmentIndex
         
-        guard let playbackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
-        
-        backgroundAudioPlayer.playbackDuration = playbackDuration
+        guard let selectedPlaybackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
+
+        backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
     }
     
     func setGuiStateStartPlaying() {

@@ -8,7 +8,13 @@
 
 import Foundation
 
-class PlaybackDuration {
+protocol PlaybackDuration {
+    func infinite() -> Bool
+    func totalSeconds() -> Double
+
+}
+
+class PlaybackDurationMinutes: PlaybackDuration {
     
     private var durationInMinutes: Int
     
@@ -16,7 +22,22 @@ class PlaybackDuration {
         self.durationInMinutes = durationInMinutes
     }
     
-    func totalSeconds() -> Double{
+    func infinite() -> Bool {
+        return false
+    }
+    
+    func totalSeconds() -> Double {
         return Double(durationInMinutes * 60)
+    }
+}
+
+class PlaybackDurationInifinite: PlaybackDuration {
+    
+    func infinite() -> Bool {
+        return true
+    }
+    
+    func totalSeconds() -> Double {
+        return 0.0
     }
 }
