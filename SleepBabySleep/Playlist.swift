@@ -26,6 +26,13 @@ class SoundFilePlaylist {
         }
     }
     
+    var number: Int {
+        get {
+            return currentRow + 1
+        }
+    }
+    
+    
     func byRow(row: Int) -> SoundFile? {
         
         guard ( row >= 0 && row < soundFiles.count ) else { return nil }

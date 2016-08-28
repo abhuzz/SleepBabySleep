@@ -149,9 +149,11 @@ extension ViewController { // MPRemoteCommands
         let nowPlayingCenter = MPNowPlayingInfoCenter.defaultCenter()
         
         nowPlayingCenter.nowPlayingInfo =
-            [MPMediaItemPropertyAlbumTitle: "Baby sleep",
-             MPMediaItemPropertyTitle: backgroundAudioPlayer.selectedSoundFile!.Name,
-             MPNowPlayingInfoPropertyPlaybackRate: NSNumber(float: 1.0)]
+            [MPMediaItemPropertyTitle: backgroundAudioPlayer.selectedSoundFile!.Name,
+             MPMediaItemPropertyAlbumTitle: "Baby sleep",
+             MPMediaItemPropertyAlbumTrackCount: NSNumber(int: Int32(playList.count)),
+             MPMediaItemPropertyAlbumTrackNumber: NSNumber(int: Int32(playList.number)),
+             MPMediaItemPropertyPlaybackDuration: NSNumber(float: Float(backgroundAudioPlayer.playbackDuration!.totalSeconds()))]
     }
     
     func PlayPauseCommand() {
