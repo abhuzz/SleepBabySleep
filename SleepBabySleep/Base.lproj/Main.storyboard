@@ -32,6 +32,9 @@
                                     <segment title="120"/>
                                     <segment title="∞"/>
                                 </segments>
+                                <connections>
+                                    <action selector="playbackDurationValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2n9-89-EhF"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
                                 <rect key="frame" x="20" y="276" width="560" height="48"/>
@@ -55,6 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
+                        <outlet property="playbackDurationSegements" destination="qc4-81-rOs" id="QwP-bV-Z9a"/>
                         <outlet property="soundFilePicker" destination="qL0-DU-aMd" id="ZyC-Hq-5fQ"/>
                     </connections>
                 </viewController>

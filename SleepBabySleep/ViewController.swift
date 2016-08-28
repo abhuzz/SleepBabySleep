@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFilePicker: UIPickerView!
+    @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,8 @@ class ViewController: UIViewController {
         backgroundAudioPlayer.togglePlayState()
     }
     
+    @IBAction func playbackDurationValueChanged(sender: AnyObject) {
+    }
     
     func setGuiStateStartPlaying() {
         
