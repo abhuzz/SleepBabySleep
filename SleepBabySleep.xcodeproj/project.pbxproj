@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4C280D91D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift */; };
+		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
 		D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */; };
 		D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DC1D71AB9A00356ED1 /* Timer.swift */; };
 		D4C280E51D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */; };
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D4C280D81D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedBackgroundAudioPlayer.swift; sourceTree = "<group>"; };
+		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DC1D71AB9A00356ED1 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		D4C280E21D71AE8600356ED1 /* SleepBabySleepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepBabySleepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +112,7 @@
 				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
 				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
 				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
-				D4C280D81D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift */,
+				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
 				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
 				D4DD3DDA1D3BF43F00198301 /* ViewController.swift */,
 				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
@@ -254,7 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */,
-				D4C280D91D7183ED00356ED1 /* TimedBackgroundAudioPlayer.swift in Sources */,
+				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
 				D4C280ED1D71B24E00356ED1 /* AppBundle.swift in Sources */,
 				D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */,

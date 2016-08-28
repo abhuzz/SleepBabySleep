@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var timedBackgroundAudioPlayer: BackgroundAudioPlayer
+    private var backgroundAudioPlayer: BackgroundAudioPlayer
     
     private var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder) {
         
-        timedBackgroundAudioPlayer =
+        backgroundAudioPlayer =
             TimedBackgroundAudioPlayer(
                 audioPlayer: AVAudioPlayerFacade(),
                 timer: SystemTimer(),
@@ -50,15 +50,15 @@ class ViewController: UIViewController {
         soundFilePicker.delegate = self
         soundFilePicker.dataSource = self
         
-        timedBackgroundAudioPlayer.stateDelegate = self
-        timedBackgroundAudioPlayer.selectedSoundFile = soundFiles.first
-        timedBackgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
+        backgroundAudioPlayer.stateDelegate = self
+        backgroundAudioPlayer.selectedSoundFile = soundFiles.first
+        backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
     }
     
     
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
-        timedBackgroundAudioPlayer.togglePlayState()
+        backgroundAudioPlayer.togglePlayState()
     }
     
     @IBAction func playbackDurationValueChanged(sender: AnyObject) {
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         
         guard let selectedPlaybackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
 
-        timedBackgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
+        backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
     }
 }
 
@@ -93,7 +93,7 @@ extension ViewController: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        timedBackgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
+        backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
     }
 }
 
