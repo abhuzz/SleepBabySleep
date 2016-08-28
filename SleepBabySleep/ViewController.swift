@@ -166,6 +166,7 @@ extension ViewController { // MPRemoteCommands
     
     func previousTrackCommand() {
         
+        backgroundAudioPlayer.selectedSoundFile = playList.previous()
     }
 }
 
