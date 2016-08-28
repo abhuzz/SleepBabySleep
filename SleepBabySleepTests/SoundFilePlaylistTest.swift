@@ -24,6 +24,12 @@ class SoundFilePlaylistTest: XCTestCase {
         playlist = SoundFilePlaylist(soundFiles: soundFiles)
     }
     
+    func testNextOnEmptyPlaylistReturnsNil() {
+        
+        let emptyPlaylist = SoundFilePlaylist(soundFiles:[SoundFile]())
+        
+        XCTAssertNil(emptyPlaylist.next())
+    }
     
     func testNextReturnsFirstSoundfile() {
         
