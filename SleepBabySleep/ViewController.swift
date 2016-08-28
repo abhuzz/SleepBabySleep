@@ -23,6 +23,14 @@ class ViewController: UIViewController {
          SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
          SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3")]
     
+    private var playbackDurationsBySegementIndex =
+        [0 : PlaybackDuration(durationInMinutes: 5),
+         1 : PlaybackDuration(durationInMinutes: 15),
+         2 : PlaybackDuration(durationInMinutes: 30),
+         3 : PlaybackDuration(durationInMinutes: 60),
+         4 : PlaybackDuration(durationInMinutes: 90),
+         5 : PlaybackDuration(durationInMinutes: 120)]
+    
     
     @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFilePicker: UIPickerView!
@@ -46,6 +54,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playbackDurationValueChanged(sender: AnyObject) {
+        
+        let selectedSegmentIndex = playbackDurationSegements.selectedSegmentIndex
+        
+        guard let playbackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
+        
+        backgroundAudioPlayer.playbackDuration = playbackDuration
     }
     
     func setGuiStateStartPlaying() {
