@@ -16,6 +16,7 @@ class SoundFilePlaylistTest: XCTestCase {
     let soundFile2 = SoundFile(Name: "2", File: "2", Extension: "")
     
     var playlist: SoundFilePlaylist?
+    let emptyPlaylist = SoundFilePlaylist(soundFiles:[SoundFile]())
     
     override func setUp() {
         
@@ -24,9 +25,8 @@ class SoundFilePlaylistTest: XCTestCase {
         playlist = SoundFilePlaylist(soundFiles: soundFiles)
     }
     
+    
     func testNextOnEmptyPlaylistReturnsNil() {
-        
-        let emptyPlaylist = SoundFilePlaylist(soundFiles:[SoundFile]())
         
         XCTAssertNil(emptyPlaylist.next())
     }
@@ -53,6 +53,19 @@ class SoundFilePlaylistTest: XCTestCase {
         playlist!.next()
         playlist!.next()
         let soundFile = playlist!.next()
+        
+        XCTAssertNotNil(soundFile)
+        XCTAssertEqual(soundFile1, soundFile)
+    }
+    
+    func testFirstOnEmptyPlaylistReturnsNil() {
+        
+        XCTAssertNil(emptyPlaylist.first())
+    }
+    
+    func testFirstReturnsFirstPlaylistItem() {
+        
+        let soundFile = playlist!.first()
         
         XCTAssertNotNil(soundFile)
         XCTAssertEqual(soundFile1, soundFile)

@@ -17,6 +17,10 @@ class SoundFilePlaylist {
         self.soundFiles = soundFiles
     }
     
+    func first() -> SoundFile? {
+        return soundFiles.first
+    }
+    
     func next() -> SoundFile? {
         
         guard soundFiles.count > 0 else { return nil }
