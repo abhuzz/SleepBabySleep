@@ -79,4 +79,30 @@ class SoundFilePlaylistTest: XCTestCase {
         XCTAssertNotNil(soundFile)
         XCTAssertEqual(soundFile2, soundFile)
     }
+    
+    func testPreviousReturnsTheLastItwm() {
+        
+        let soundFile = playlist!.previous()
+        
+        XCTAssertNotNil(soundFile)
+        XCTAssertEqual(soundFile2, soundFile)
+    }
+    
+    func testPreviousTwoTimesReturnsTheFirstItem() {
+        
+        playlist!.previous()
+        let soundFile = playlist!.previous()
+        
+        XCTAssertNotNil(soundFile)
+        XCTAssertEqual(soundFile1, soundFile)
+    }
+    
+    func testPreviousAterFirstReturnsTheLastItem() {
+        
+        playlist!.first()
+        let soundFile = playlist!.previous()
+        
+        XCTAssertNotNil(soundFile)
+        XCTAssertEqual(soundFile2, soundFile)
+    }
 }
