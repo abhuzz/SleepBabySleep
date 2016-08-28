@@ -64,7 +64,9 @@ class TimedBackgroundAudioPlayer {
     
         audioPlayer.play(urlForSoundFile(soundFileToPlay))
         
-        timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
+        if !playbackDuration.infinite() {
+            timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
+        }
         
         changePlayState(.Playing)
     }
