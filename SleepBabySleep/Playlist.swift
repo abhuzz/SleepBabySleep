@@ -8,23 +8,17 @@
 
 import Foundation
 
-protocol Playlist {
-    associatedtype PlaylistItemType
-    
-    func next() -> PlaylistItemType?
-}
-
 class SoundFilePlaylist {
-    typealias PlaylistItemType = SoundFile
     
     private var soundFiles = [SoundFile]()
+    private var currentRow = -1
     
     init(soundFiles: [SoundFile]) {
         self.soundFiles = soundFiles
     }
     
-    func next() -> PlaylistItemType? {
-        
-        return soundFiles.first
+    func next() -> SoundFile? {
+        currentRow += 1
+        return soundFiles[currentRow]
     }
 }

@@ -8,9 +8,15 @@
 
 import Foundation
 
-struct SoundFile {
+struct SoundFile: Equatable {
     
     var Name: String
     var File: String
     var Extension: String
+}
+
+func ==(lhs: SoundFile, rhs: SoundFile) -> Bool {
+    return     lhs.Name == rhs.Name
+            && lhs.File == rhs.File
+            && lhs.Extension == rhs.Extension
 }
