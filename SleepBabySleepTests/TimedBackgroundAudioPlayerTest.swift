@@ -19,7 +19,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     
     var aSoundFile = SoundFile(Name: "test", File: "none", Extension: "mp3")
     var anotherSoundFile = SoundFile(Name: "test2", File: "nothing", Extension: "wav")
-    var defaultPlaybackDuration = PlaybackDuration(durationInMinutes: 1)
+    var defaultPlaybackDuration = PlaybackDurationMinutes(durationInMinutes: 1)
     
     
     override func setUp() {
@@ -136,7 +136,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testCallsTimerWithExpectedDuration() {
         
         testInstance!.selectedSoundFile = aSoundFile
-        testInstance!.playbackDuration = PlaybackDuration(durationInMinutes: 1)
+        testInstance!.playbackDuration = PlaybackDurationMinutes(durationInMinutes: 1)
         
         testInstance!.togglePlayState()
         
@@ -147,7 +147,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     func testStopsTimerWhenPlaybackIsPaused() {
         
         testInstance!.selectedSoundFile = aSoundFile
-        testInstance!.playbackDuration = PlaybackDuration(durationInMinutes: 1)
+        testInstance!.playbackDuration = PlaybackDurationMinutes(durationInMinutes: 1)
         
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
