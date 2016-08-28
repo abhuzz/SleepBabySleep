@@ -154,7 +154,7 @@ extension ViewController { // MPRemoteCommands
     }
     
     func nextTrackCommand() {
-        
+
     }
     
     func previousTrackCommand() {
