@@ -13,10 +13,7 @@ class ViewController: UIViewController {
     
     private var backgroundAudioPlayer: BackgroundAudioPlayer
     
-    private var soundFiles =
-        [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
-         SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
-         SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3")]
+    private var playList: SoundFilePlaylist
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -41,6 +38,9 @@ class ViewController: UIViewController {
                 timer: SystemTimer(),
                 appBundle: MainAppBundle())
         
+        playList =
+            SoundFilePlaylist(soundFiles: ViewController.availableSoundFiles())
+        
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
         super.init(coder: aDecoder)!
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         soundFilePicker.dataSource = self
         
         backgroundAudioPlayer.stateDelegate = self
-        backgroundAudioPlayer.selectedSoundFile = soundFiles.first
+        backgroundAudioPlayer.selectedSoundFile = playList.first()
         backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
         
         initRemoteCommands()
@@ -74,6 +74,12 @@ class ViewController: UIViewController {
 
         backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
     }
+    
+    static func availableSoundFiles() -> [SoundFile] {
+        return [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
+                SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
+                SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3")]
+    }
 }
 
 extension ViewController: UIPickerViewDataSource {
@@ -85,12 +91,12 @@ extension ViewController: UIPickerViewDataSource {
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return soundFiles.count
+        return playList.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return soundFiles[row].Name
+        return playList.byRow(row)?.Name
     }
 }
 
@@ -98,7 +104,7 @@ extension ViewController: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
+        backgroundAudioPlayer.selectedSoundFile = playList.byRow(row)
     }
 }
 

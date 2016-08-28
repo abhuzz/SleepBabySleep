@@ -10,11 +10,27 @@ import Foundation
 
 class SoundFilePlaylist {
     
-    private var soundFiles = [SoundFile]()
     private var currentRow = -1
+    
+    private(set) var soundFiles: [SoundFile]
+    
     
     init(soundFiles: [SoundFile]) {
         self.soundFiles = soundFiles
+    }
+    
+    
+    var count: Int {
+        get {
+            return soundFiles.count
+        }
+    }
+    
+    func byRow(row: Int) -> SoundFile? {
+        
+        guard ( row >= 0 && row < soundFiles.count ) else { return nil }
+        
+        return soundFiles[row]
     }
     
     func first() -> SoundFile? {
