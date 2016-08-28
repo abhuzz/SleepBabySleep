@@ -165,4 +165,17 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         
         XCTAssertFalse(fakeTimer!.calledStart)
     }
+    
+    func testChangePlaybackDurationWhilePlayingRestartsPlayback() {
+        
+        testInstance!.selectedSoundFile = aSoundFile
+        testInstance!.playbackDuration = PlaybackDurationInifinite()
+        testInstance!.togglePlayState()
+        
+        XCTAssertEqual(0, fakeTimer?.calledWithDurationInSeconds)
+        
+        testInstance!.playbackDuration = defaultPlaybackDuration
+        
+        XCTAssertEqual(defaultPlaybackDuration.totalSeconds(), fakeTimer?.calledWithDurationInSeconds)
+    }
 }

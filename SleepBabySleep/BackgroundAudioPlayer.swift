@@ -32,6 +32,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     private var timer: Timer
     private var appBundle: AppBundle
     
+    
     var playState: PlayState = .Paused
     var stateDelegate: BackgroundAudioPlayerStateDelegate?
     
@@ -41,7 +42,11 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         }
     }
     
-    var playbackDuration: PlaybackDuration?
+    var playbackDuration: PlaybackDuration? {
+        didSet {
+            restartAudioIfIsPlayingSound()
+        }
+    }
     
     
     init(audioPlayer: AudioPlayer, timer: Timer, appBundle: AppBundle) {
