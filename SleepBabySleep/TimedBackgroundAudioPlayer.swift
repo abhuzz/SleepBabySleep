@@ -13,11 +13,20 @@ enum PlayState {
     case Playing
 }
 
+protocol BackgroundAudioPlayer {
+    var stateDelegate: BackgroundAudioPlayerStateDelegate? { get set }
+    var playbackDuration: PlaybackDuration? { get set }
+    var selectedSoundFile: SoundFile? { get set }
+    var playState: PlayState { get }
+    
+    func togglePlayState()
+}
+
 protocol BackgroundAudioPlayerStateDelegate {
     func playStateChanged(playState: PlayState)
 }
 
-class TimedBackgroundAudioPlayer {
+class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
 
     private var audioPlayer: AudioPlayer
     private var timer: Timer

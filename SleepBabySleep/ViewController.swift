@@ -10,8 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var timedBackgroundAudioPlayer =
-        TimedBackgroundAudioPlayer(audioPlayer: AVAudioPlayerFacade(), timer: SystemTimer(), appBundle: MainAppBundle())
+    private var timedBackgroundAudioPlayer: BackgroundAudioPlayer
     
     private var soundFiles =
         [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
@@ -31,6 +30,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFilePicker: UIPickerView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
+    
+    
+    required init(coder aDecoder: NSCoder) {
+        
+        timedBackgroundAudioPlayer =
+            TimedBackgroundAudioPlayer(
+                audioPlayer: AVAudioPlayerFacade(),
+                timer: SystemTimer(),
+                appBundle: MainAppBundle())
+        
+        super.init(coder: aDecoder)!
+    }
     
     
     override func viewDidLoad() {
