@@ -18,22 +18,6 @@ class AVAudioPlayerFacade: AudioPlayer {
     
     private var player: AVAudioPlayer?
     
-    init() {
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            NSLog("AVAudioSession Category Playback OK")
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-                NSLog("AVAudioSession is Active")
-            } catch let error as NSError {
-                NSLog(error.localizedDescription)
-            }
-        } catch let error as NSError {
-            NSLog(error.localizedDescription)
-        }
-    }
-    
     func play(withUrl: NSURL) {
         
         do {
