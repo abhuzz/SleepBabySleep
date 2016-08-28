@@ -18,7 +18,13 @@ class SoundFilePlaylist {
     }
     
     func next() -> SoundFile? {
-        currentRow += 1
+        
+        if currentRow == soundFiles.count - 1 {
+            currentRow = 0
+        } else {
+            currentRow += 1
+        }
+        
         return soundFiles[currentRow]
     }
 }
