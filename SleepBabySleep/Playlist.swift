@@ -34,6 +34,9 @@ class SoundFilePlaylist {
     }
     
     func first() -> SoundFile? {
+        
+        currentRow = 0
+        
         return soundFiles.first
     }
     

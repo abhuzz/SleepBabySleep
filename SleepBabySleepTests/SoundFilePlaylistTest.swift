@@ -70,4 +70,13 @@ class SoundFilePlaylistTest: XCTestCase {
         XCTAssertNotNil(soundFile)
         XCTAssertEqual(soundFile1, soundFile)
     }
+    
+    func testNextAfterFirstReturnsTheSecondItem() {
+        
+        playlist!.first()
+        let soundFile = playlist!.next()
+        
+        XCTAssertNotNil(soundFile)
+        XCTAssertEqual(soundFile2, soundFile)
+    }
 }
