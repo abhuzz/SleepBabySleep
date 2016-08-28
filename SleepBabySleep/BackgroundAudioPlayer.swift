@@ -80,7 +80,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         
         guard let playbackDuration = self.playbackDuration else { return }
         
-    
+        audioPlayer.stateDelegate = self
         audioPlayer.play(urlForSoundFile(soundFileToPlay))
         
         if !playbackDuration.infinite() {
@@ -125,5 +125,13 @@ extension TimedBackgroundAudioPlayer: TimerExpiredDelegate {
         NSLog("timerExpired()")
         
         self.stopPlayingSound()
+    }
+}
+
+extension TimedBackgroundAudioPlayer: AudioPlayerStateDelegate {
+    
+    func playbackCancelled() {
+        
+        stopPlayingSound()
     }
 }

@@ -11,6 +11,8 @@ import Foundation
 
 class FakeAudioPlayer: AudioPlayer {
     
+    var stateDelegate: AudioPlayerStateDelegate?
+    
     var playCalled = false
     var stopCalled = false
     var timesPlayCalled = 0
