@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class ViewController: UIViewController {
     
@@ -40,6 +41,8 @@ class ViewController: UIViewController {
                 timer: SystemTimer(),
                 appBundle: MainAppBundle())
         
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        
         super.init(coder: aDecoder)!
     }
     
@@ -53,6 +56,8 @@ class ViewController: UIViewController {
         backgroundAudioPlayer.stateDelegate = self
         backgroundAudioPlayer.selectedSoundFile = soundFiles.first
         backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
+        
+        initRemoteCommands()
     }
     
     
@@ -111,4 +116,21 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         }
     }
 }
+
+extension ViewController { // MPRemoteCommands
+
+    func initRemoteCommands() {
+        
+        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+        
+        commandCenter.pauseCommand.enabled = true
+        commandCenter.pauseCommand.addTarget(self, action: #selector(ViewController.pauseCommand))
+    }
+    
+    func pauseCommand() {
+        
+        backgroundAudioPlayer.togglePlayState()
+    }
+}
+
 
