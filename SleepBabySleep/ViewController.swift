@@ -8,14 +8,9 @@
 
 import UIKit
 
-enum PlayState {
-    case Paused
-    case Playing
-}
-
 class ViewController: UIViewController {
     
-    private var backgroundAudioPlayer =
+    private var timedBackgroundAudioPlayer =
         TimedBackgroundAudioPlayer(audioPlayer: AVAudioPlayerFacade(), timer: SystemTimer(), appBundle: MainAppBundle())
     
     private var soundFiles =
@@ -37,21 +32,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var soundFilePicker: UIPickerView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         soundFilePicker.delegate = self
         soundFilePicker.dataSource = self
         
-        backgroundAudioPlayer.stateDelegate = self
-        backgroundAudioPlayer.selectedSoundFile = soundFiles.first
-        backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
+        timedBackgroundAudioPlayer.stateDelegate = self
+        timedBackgroundAudioPlayer.selectedSoundFile = soundFiles.first
+        timedBackgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
     }
     
     
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
-        backgroundAudioPlayer.togglePlayState()
+        timedBackgroundAudioPlayer.togglePlayState()
     }
     
     @IBAction func playbackDurationValueChanged(sender: AnyObject) {
@@ -60,33 +56,24 @@ class ViewController: UIViewController {
         
         guard let selectedPlaybackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
 
-        backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
+        timedBackgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
     }
-    
-    func setGuiStateStartPlaying() {
-        
-        buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
-
-    }
-    
-    func setGuiStateStopPlayback() {
-        
-        buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
-    }
-    
 }
 
 extension ViewController: UIPickerViewDataSource {
    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+
         return 1
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return soundFiles.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         return soundFiles[row].Name
     }
 }
@@ -95,7 +82,7 @@ extension ViewController: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        backgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
+        timedBackgroundAudioPlayer.selectedSoundFile = self.soundFiles[row]
     }
 }
 
@@ -104,10 +91,12 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
     func playStateChanged(playState: PlayState) {
         
         switch playState {
+            
         case .Playing:
-                setGuiStateStartPlaying()
+            buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
+            
         case .Paused:
-                setGuiStateStopPlayback()
+            buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
         }
     }
 }

@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum PlayState {
+    case Paused
+    case Playing
+}
+
 protocol BackgroundAudioPlayerStateDelegate {
     func playStateChanged(playState: PlayState)
 }
