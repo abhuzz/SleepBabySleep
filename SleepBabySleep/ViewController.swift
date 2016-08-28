@@ -109,6 +109,7 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         switch playState {
             
         case .Playing:
+            updateTrackInfoInRemoteCommandCenter()
             buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
             
         case .Paused:
@@ -123,13 +124,41 @@ extension ViewController { // MPRemoteCommands
         
         let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
         
+        commandCenter.playCommand.enabled = true
+        commandCenter.playCommand.addTarget(self, action: #selector(ViewController.PlayPauseCommand))
+        
         commandCenter.pauseCommand.enabled = true
-        commandCenter.pauseCommand.addTarget(self, action: #selector(ViewController.pauseCommand))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(ViewController.PlayPauseCommand))
+        
+        commandCenter.nextTrackCommand.enabled = true
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(ViewController.nextTrackCommand))
+        
+        commandCenter.previousTrackCommand.enabled = true
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(ViewController.previousTrackCommand))
+        
     }
     
-    func pauseCommand() {
+    func updateTrackInfoInRemoteCommandCenter() {
+        
+        let nowPlayingCenter = MPNowPlayingInfoCenter.defaultCenter()
+        
+        nowPlayingCenter.nowPlayingInfo =
+            [MPMediaItemPropertyAlbumTitle: "Baby sleep",
+             MPMediaItemPropertyTitle: backgroundAudioPlayer.selectedSoundFile!.Name,
+             MPNowPlayingInfoPropertyPlaybackRate: NSNumber(float: 1.0)]
+    }
+    
+    func PlayPauseCommand() {
         
         backgroundAudioPlayer.togglePlayState()
+    }
+    
+    func nextTrackCommand() {
+        
+    }
+    
+    func previousTrackCommand() {
+        
     }
 }
 
