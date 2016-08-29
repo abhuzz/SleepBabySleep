@@ -18,42 +18,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-DU-aMd">
-                                <rect key="frame" x="20" y="36" width="560" height="216"/>
-                            </pickerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
-                                <rect key="frame" x="171" y="426" width="258" height="29"/>
-                                <segments>
-                                    <segment title="5"/>
-                                    <segment title="15"/>
-                                    <segment title="30"/>
-                                    <segment title="60"/>
-                                    <segment title="90"/>
-                                    <segment title="120"/>
-                                    <segment title="∞"/>
-                                </segments>
-                                <connections>
-                                    <action selector="playbackDurationValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2n9-89-EhF"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
-                                <rect key="frame" x="20" y="275" width="560" height="50"/>
-                                <state key="normal" image="Play"/>
-                                <connections>
-                                    <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="H45-Fh-J1n">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-DU-aMd">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="502"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="502" id="5cm-va-Egu"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IFs-Bx-VRf">
+                                        <rect key="frame" x="0.0" y="506" width="560" height="74"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="26"/>
+                                                <segments>
+                                                    <segment title="5"/>
+                                                    <segment title="15"/>
+                                                    <segment title="30"/>
+                                                    <segment title="60"/>
+                                                    <segment title="90"/>
+                                                    <segment title="120"/>
+                                                    <segment title="∞"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="playbackDurationValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2n9-89-EhF"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TaY-SP-gLm">
+                                                <rect key="frame" x="0.0" y="30" width="560" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubl-WS-MKp" userLabel="buttonPrevious">
+                                                        <rect key="frame" x="0.0" y="0.0" width="186.5" height="44"/>
+                                                        <state key="normal" image="Previous"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
+                                                        <rect key="frame" x="186.5" y="0.0" width="187" height="44"/>
+                                                        <state key="normal" image="Play"/>
+                                                        <connections>
+                                                            <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-IN-LZS" userLabel="buttonNext">
+                                                        <rect key="frame" x="373.5" y="0.0" width="186.5" height="44"/>
+                                                        <state key="normal" image="Next"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qc4-81-rOs" secondAttribute="bottom" constant="146" id="AMD-ff-l64"/>
-                            <constraint firstItem="qL0-DU-aMd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="Caa-bb-GyW"/>
-                            <constraint firstItem="qc4-81-rOs" firstAttribute="centerX" secondItem="qL0-DU-aMd" secondAttribute="centerX" id="HN5-48-Kij"/>
-                            <constraint firstItem="tCD-db-LV0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Hog-LB-YzP"/>
-                            <constraint firstItem="tCD-db-LV0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IuL-0f-5ta"/>
-                            <constraint firstItem="tCD-db-LV0" firstAttribute="leading" secondItem="qL0-DU-aMd" secondAttribute="leading" id="hWG-FV-AUg"/>
-                            <constraint firstItem="qc4-81-rOs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mHa-5c-CTH"/>
-                            <constraint firstItem="tCD-db-LV0" firstAttribute="trailing" secondItem="qL0-DU-aMd" secondAttribute="trailing" id="zDh-oV-8lf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="H45-Fh-J1n" secondAttribute="trailing" id="9Oj-w2-bIl"/>
+                            <constraint firstItem="H45-Fh-J1n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="9ZE-Sx-XZL"/>
+                            <constraint firstItem="H45-Fh-J1n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="JO6-Xa-coz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H45-Fh-J1n" secondAttribute="bottom" id="gQ8-wz-aeB"/>
                         </constraints>
                     </view>
                     <connections>
@@ -68,6 +90,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Next" width="50" height="50"/>
         <image name="Play" width="50" height="50"/>
+        <image name="Previous" width="50" height="50"/>
     </resources>
 </document>
