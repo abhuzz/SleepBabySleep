@@ -25,9 +25,9 @@ class ViewController: UIViewController {
          6 : PlaybackDurationInifinite()]
     
     
-    @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFilePicker: UIPickerView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
+    @IBOutlet weak var buttonPlayPause: UIButton!
     
     
     required init(coder aDecoder: NSCoder) {
@@ -64,6 +64,16 @@ class ViewController: UIViewController {
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
         backgroundAudioPlayer.togglePlayState()
+    }
+    
+    @IBAction func actionTappedPrevious(sender: AnyObject) {
+        
+        backgroundAudioPlayer.selectedSoundFile = playList.previous()
+    }
+    
+    @IBAction func actionTappedNext(sender: AnyObject) {
+        
+        backgroundAudioPlayer.selectedSoundFile = playList.next()
     }
     
     @IBAction func playbackDurationValueChanged(sender: AnyObject) {

@@ -51,6 +51,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubl-WS-MKp" userLabel="buttonPrevious">
                                                         <rect key="frame" x="0.0" y="0.0" width="186.5" height="44"/>
                                                         <state key="normal" image="Previous"/>
+                                                        <connections>
+                                                            <action selector="actionTappedPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VAL-DN-tKY"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
                                                         <rect key="frame" x="186.5" y="0.0" width="187" height="44"/>
@@ -62,6 +65,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-IN-LZS" userLabel="buttonNext">
                                                         <rect key="frame" x="373.5" y="0.0" width="186.5" height="44"/>
                                                         <state key="normal" image="Next"/>
+                                                        <connections>
+                                                            <action selector="actionTappedNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J1i-eM-M2C"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
