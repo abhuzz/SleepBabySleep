@@ -101,7 +101,8 @@ class ViewController: UIViewController {
     static func availableSoundFiles() -> [SoundFile] {
         return [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
                 SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
-                SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3")]
+                SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3"),
+                SoundFile(Name: "Vacuum cleaner", File: "VacuumCleaner", Extension: "mp3")]
     }
 }
 
