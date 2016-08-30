@@ -60,6 +60,11 @@ class ViewController: UIViewController {
         initRemoteCommands()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        updateSoundFilePickerSelectionFromPlaylist()
+    }
+    
     
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
@@ -83,6 +88,14 @@ class ViewController: UIViewController {
         guard let selectedPlaybackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
 
         backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
+    }
+    
+    
+    func updateSoundFilePickerSelectionFromPlaylist() {
+        
+        if soundFilePicker.selectedRowInComponent(0) != playList.number - 1 {
+            soundFilePicker.selectRow(playList.number - 1, inComponent: 0, animated: true)
+        }
     }
     
     static func availableSoundFiles() -> [SoundFile] {
@@ -127,10 +140,7 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         case .Playing:
             updateTrackInfoInRemoteCommandCenter()
             buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
-            
-            if soundFilePicker.selectedRowInComponent(0) != playList.number - 1 {
-                soundFilePicker.selectRow(playList.number - 1, inComponent: 0, animated: true)
-            }
+            updateSoundFilePickerSelectionFromPlaylist()
             
         case .Paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
