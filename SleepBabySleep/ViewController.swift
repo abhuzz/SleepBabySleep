@@ -128,6 +128,10 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
             updateTrackInfoInRemoteCommandCenter()
             buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
             
+            if soundFilePicker.selectedRowInComponent(0) != playList.number - 1 {
+                soundFilePicker.selectRow(playList.number - 1, inComponent: 0, animated: true)
+            }
+            
         case .Paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
         }
