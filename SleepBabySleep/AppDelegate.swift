@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var appHasMicAccess = false
+    var microphoneAvailable = false
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -22,16 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let session = AVAudioSession.sharedInstance()
         
         do {
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord,
-                                    withOptions: AVAudioSessionCategoryOptions.DefaultToSpeaker)
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: AVAudioSessionCategoryOptions.DefaultToSpeaker)
+            
             try session.setActive(true)
             
-            // Check for microphone permission...
             session.requestRecordPermission({(granted: Bool)-> Void in
                 if granted {
-                    self.appHasMicAccess = true
+                    self.microphoneAvailable = true
                 } else{
-                    self.appHasMicAccess = false
+                    self.microphoneAvailable = false
                 }
             })
             

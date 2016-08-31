@@ -99,6 +99,13 @@ class ViewController: UIViewController {
     
     @IBAction func recordTouchDown(sender: AnyObject) {
         
+        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        
+        guard appDelegate.microphoneAvailable else {
+            showAlerDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
+            return
+        }
+        
         if backgroundAudioPlayer.playState == .Playing {
             backgroundAudioPlayer.togglePlayState()
         }
@@ -109,7 +116,7 @@ class ViewController: UIViewController {
     @IBAction func recordTouchUp(sender: AnyObject) {
         audioRecorder?.stop()
     }
-
+    
     
     func updateSoundFilePickerSelectionFromPlaylist() {
         
@@ -120,6 +127,13 @@ class ViewController: UIViewController {
     
     func temporaryRecordingURL() -> NSURL {
         return NSURL.fileURLWithPath("\(NSTemporaryDirectory())TmpRecording.caf")
+    }
+    
+    func showAlerDialog(alertMessage: String ) {
+        
+        let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in return } ) )
+        presentViewController(dialog, animated: false, completion: nil)
     }
     
     static func availableSoundFiles() -> [SoundFile] {
