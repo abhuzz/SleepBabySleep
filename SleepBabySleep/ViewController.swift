@@ -176,8 +176,8 @@ extension ViewController: AudioRecorderDelegate {
         soundFiles.append(SoundFile(temporaryURL: recordingFileURL!))
         
         playList = SoundFilePlaylist(soundFiles: soundFiles)
-        
         soundFilePicker.reloadComponent(0)
+        updateSoundFilePickerSelectionFromPlaylist()
     }
 }
 
