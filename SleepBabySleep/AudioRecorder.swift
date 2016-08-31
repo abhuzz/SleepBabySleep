@@ -19,11 +19,13 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
         super.init()
         
         let recordSettings = [
-            AVFormatIDKey: Int(kAudioFormatLinearPCM),
-            AVSampleRateKey: 44100.0,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
-        ]
+                AVFormatIDKey: Int(kAudioFormatLinearPCM),
+                AVSampleRateKey: 44100.0,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
+            ]
+        
+        NSLog("AudioRecorder.init() with URL: \(fileURL.absoluteString)")
         
         do {
             audioRecorder = try AVAudioRecorder(URL: fileURL, settings: recordSettings as! [String : AnyObject])

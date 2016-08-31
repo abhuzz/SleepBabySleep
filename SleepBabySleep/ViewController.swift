@@ -113,7 +113,7 @@ class ViewController: UIViewController {
     }
     
     func temporaryRecordingURL() -> NSURL {
-        return NSURL.fileURLWithPath("\(NSTemporaryDirectory())/TmpRecording.caf")
+        return NSURL.fileURLWithPath("\(NSTemporaryDirectory())TmpRecording.caf")
     }
     
     static func availableSoundFiles() -> [SoundFile] {
