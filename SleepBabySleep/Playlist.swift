@@ -39,11 +39,11 @@ class SoundFilePlaylist {
     }
     
     
-    func byRow(row: Int) -> SoundFile? {
+    func nameForRow(row: Int) -> String{
         
-        guard ( row >= 0 && row < soundFiles.count ) else { return nil }
+        guard let soundFileForRow = byRow(row) else { return String() }
         
-        return soundFiles[row]
+        return soundFileForRow.Name
     }
     
     func first() -> SoundFile? {
@@ -77,5 +77,22 @@ class SoundFilePlaylist {
         }
         
         return soundFiles[currentRow]
+    }
+    
+    func jumptoRow(row: Int) -> SoundFile? {
+        
+        guard let soundFile = byRow(row) else { return nil }
+        
+        currentRow = row
+        
+        return soundFile
+    }
+    
+    
+    private func byRow(row: Int) -> SoundFile? {
+        
+        guard ( row >= 0 && row < soundFiles.count ) else { return nil }
+        
+        return soundFiles[row]
     }
 }

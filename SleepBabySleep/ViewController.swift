@@ -120,7 +120,7 @@ extension ViewController: UIPickerViewDataSource {
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return playList.byRow(row)?.Name
+        return playList.nameForRow(row)
     }
 }
 
@@ -128,7 +128,7 @@ extension ViewController: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        backgroundAudioPlayer.selectedSoundFile = playList.byRow(row)
+        backgroundAudioPlayer.selectedSoundFile = playList.jumptoRow(row)
     }
 }
 
