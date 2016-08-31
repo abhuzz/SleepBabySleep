@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D42FE7451D76075500D99866 /* VacuumCleaner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */; };
+		D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE7461D77223F00D99866 /* AudioRecorder.swift */; };
 		D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE61D72D60100A907D1 /* Playlist.swift */; };
 		D430BAE91D72D86500A907D1 /* SoundFilePlaylistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */; };
 		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VacuumCleaner.mp3; sourceTree = "<group>"; };
+		D42FE7461D77223F00D99866 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		D430BAE61D72D60100A907D1 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFilePlaylistTest.swift; sourceTree = "<group>"; };
 		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */,
 				D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */,
 				D4DD3DE41D3BF43F00198301 /* Info.plist */,
+				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
 			);
 			path = SleepBabySleep;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
 				D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
+				D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */,
 				D4C280ED1D71B24E00356ED1 /* AppBundle.swift in Sources */,
 				D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */,
 				D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */,
