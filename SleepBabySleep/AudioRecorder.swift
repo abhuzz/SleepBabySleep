@@ -16,44 +16,39 @@ protocol AudioRecorderDelegate {
 
 class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
     
-    private var audioRecorder: AVAudioRecorder!
+    private let recordSettings = [
+                        AVFormatIDKey: Int(kAudioFormatLinearPCM),
+                        AVSampleRateKey: 44100.0,
+                        AVNumberOfChannelsKey: 1,
+                        AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
+                    ]
+    
+    private var audioRecorder: AVAudioRecorder?
     
     var delegate: AudioRecorderDelegate?
     
-    init(fileURL: NSURL) {
+    
+    func start(intoURL: NSURL) {
         
-        super.init()
-        
-        let recordSettings = [
-                AVFormatIDKey: Int(kAudioFormatLinearPCM),
-                AVSampleRateKey: 44100.0,
-                AVNumberOfChannelsKey: 1,
-                AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
-            ]
-        
-        NSLog("AudioRecorder.init() with URL: \(fileURL.absoluteString)")
+        NSLog("start() with URL: \(intoURL.absoluteString)")
         
         do {
-            audioRecorder = try AVAudioRecorder(URL: fileURL, settings: recordSettings as! [String : AnyObject])
-            audioRecorder.delegate = self
-            audioRecorder.prepareToRecord()
+            audioRecorder = try AVAudioRecorder(URL: intoURL, settings: recordSettings as! [String : AnyObject])
+            audioRecorder!.delegate = self
+            audioRecorder!.prepareToRecord()
         } catch {
             NSLog("Error creating audioRecorder.")
+            return
         }
-    }
-    
-    func start() {
         
-        NSLog("AudioRecorder.start()")
-        
-        audioRecorder.record()
+        audioRecorder!.record()
     }
     
     func stop() {
         
         NSLog("stop()")
         
-        audioRecorder.stop()
+        audioRecorder!.stop()
     }
 }
 

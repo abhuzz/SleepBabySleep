@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SleepBabySleep/ViewController.swift"
-            timestampString = "494349454.729494"
+            timestampString = "494363697.279666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "playbackDurationValueChanged(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +42,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SleepBabySleep/ViewController.swift"
-            timestampString = "494359511.560856"
+            timestampString = "494364260.693402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "playStateChanged(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SleepBabySleep/ViewController.swift"
+            timestampString = "494363697.279666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SleepBabySleep/ViewController.swift"
+            timestampString = "494364260.693402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "recordingFinished()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

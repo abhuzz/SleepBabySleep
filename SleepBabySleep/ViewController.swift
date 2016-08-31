@@ -11,11 +11,13 @@ import MediaPlayer
 
 class ViewController: UIViewController {
     
-    private var backgroundAudioPlayer: BackgroundAudioPlayer
-    private var audioRecorder: AudioRecorder?
-    private var recordingFileURL: NSURL?
+    private let recordingFileExtension = "caf"
     
-    private var playList: SoundFilePlaylist
+    private var backgroundAudioPlayer: BackgroundAudioPlayer?
+    private var audioRecorder: AudioRecorder?
+    
+    private var recordedSoundFileDirectory: RecordedSoundFileDirectory?
+    private var playList: SoundFilePlaylist?
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -32,7 +34,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonPlayPause: UIButton!
     
     
-    required init(coder aDecoder: NSCoder) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        soundFilePicker.delegate = self
+        soundFilePicker.dataSource = self
+        
+        recordedSoundFileDirectory =
+            RecordedSoundFileDirectory(pathExtensionForRecordings: recordingFileExtension)
+        
+        playList =
+            SoundFilePlaylist(soundFiles: availableSoundFiles())
+    
+        audioRecorder = AudioRecorder()
+        audioRecorder?.delegate = self
         
         backgroundAudioPlayer =
             TimedBackgroundAudioPlayer(
@@ -40,31 +55,13 @@ class ViewController: UIViewController {
                 timer: SystemTimer(),
                 appBundle: MainAppBundle())
         
-        playList =
-            SoundFilePlaylist(soundFiles: ViewController.availableSoundFiles())
+        backgroundAudioPlayer!.stateDelegate = self
+        backgroundAudioPlayer!.selectedSoundFile = playList!.first()
+        backgroundAudioPlayer!.playbackDuration = playbackDurationsBySegementIndex[0]
         
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-        
-        super.init(coder: aDecoder)!
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        soundFilePicker.delegate = self
-        soundFilePicker.dataSource = self
-        
-        backgroundAudioPlayer.stateDelegate = self
-        backgroundAudioPlayer.selectedSoundFile = playList.first()
-        backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
-        
-        recordingFileURL = temporaryRecordingURL()
-        
-        audioRecorder = AudioRecorder(fileURL: temporaryRecordingURL())
-        audioRecorder?.delegate = self
         
         initRemoteCommands()
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,17 +72,17 @@ class ViewController: UIViewController {
     
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
-        backgroundAudioPlayer.togglePlayState()
+        backgroundAudioPlayer!.togglePlayState()
     }
     
     @IBAction func actionTappedPrevious(sender: AnyObject) {
         
-        backgroundAudioPlayer.selectedSoundFile = playList.previous()
+        backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
     }
     
     @IBAction func actionTappedNext(sender: AnyObject) {
         
-        backgroundAudioPlayer.selectedSoundFile = playList.next()
+        backgroundAudioPlayer!.selectedSoundFile = playList!.next()
     }
     
     @IBAction func playbackDurationValueChanged(sender: AnyObject) {
@@ -94,7 +91,7 @@ class ViewController: UIViewController {
         
         guard let selectedPlaybackDuration = playbackDurationsBySegementIndex[selectedSegmentIndex] else { return }
 
-        backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
+        backgroundAudioPlayer!.playbackDuration = selectedPlaybackDuration
     }
     
     @IBAction func recordTouchDown(sender: AnyObject) {
@@ -106,11 +103,14 @@ class ViewController: UIViewController {
             return
         }
         
-        if backgroundAudioPlayer.playState == .Playing {
-            backgroundAudioPlayer.togglePlayState()
+        if backgroundAudioPlayer!.playState == .Playing {
+            backgroundAudioPlayer!.togglePlayState()
         }
         
-        audioRecorder?.start()
+        let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
+        let recordingFile = recordedSoundFileDirectory?.documentsDirectoryUrl.URLByAppendingPathComponent(newFileName)
+
+        audioRecorder?.start(recordingFile!)
     }
     
     @IBAction func recordTouchUp(sender: AnyObject) {
@@ -120,13 +120,9 @@ class ViewController: UIViewController {
     
     func updateSoundFilePickerSelectionFromPlaylist() {
         
-        if soundFilePicker.selectedRowInComponent(0) != playList.index {
-            soundFilePicker.selectRow(playList.index, inComponent: 0, animated: true)
+        if soundFilePicker.selectedRowInComponent(0) != playList!.index {
+            soundFilePicker.selectRow(playList!.index, inComponent: 0, animated: true)
         }
-    }
-    
-    func temporaryRecordingURL() -> NSURL {
-        return NSURL.fileURLWithPath("\(NSTemporaryDirectory())TmpRecording.caf")
     }
     
     func showAlerDialog(alertMessage: String ) {
@@ -136,11 +132,24 @@ class ViewController: UIViewController {
         presentViewController(dialog, animated: false, completion: nil)
     }
     
-    static func availableSoundFiles() -> [SoundFile] {
-        return [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
-                SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
-                SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3"),
-                SoundFile(Name: "Vacuum cleaner", File: "VacuumCleaner", Extension: "mp3")]
+    func availableSoundFiles() -> [SoundFile] {
+        
+        var soundFiles =
+                [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
+                 SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
+                 SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3"),
+                 SoundFile(Name: "Vacuum cleaner", File: "VacuumCleaner", Extension: "mp3")]
+        
+        if let recordedSounds = recordedSoundFileDirectory!.files() {
+            let recordedSoundFiles =
+                recordedSounds.map { url in
+                    SoundFile(temporaryURL: url)
+                }
+            
+            soundFiles.appendContentsOf(recordedSoundFiles)
+        }
+        
+        return soundFiles
     }
 }
 
@@ -153,12 +162,12 @@ extension ViewController: UIPickerViewDataSource {
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return playList.count
+        return playList!.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return playList.nameForRow(row)
+        return playList!.nameForRow(row)
     }
 }
 
@@ -166,7 +175,7 @@ extension ViewController: UIPickerViewDelegate {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        backgroundAudioPlayer.selectedSoundFile = playList.jumptoRow(row)
+        backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow(row)
     }
 }
 
@@ -191,8 +200,14 @@ extension ViewController: AudioRecorderDelegate {
     
     func recordingFinished() {
         
-        var soundFiles = ViewController.availableSoundFiles()
-        soundFiles.append(SoundFile(temporaryURL: recordingFileURL!))
+        var soundFiles = availableSoundFiles()
+        
+        if let recordedSounds = recordedSoundFileDirectory!.files() {
+            soundFiles.appendContentsOf(
+                recordedSounds.map { url in
+                    SoundFile(temporaryURL: url)
+                })
+        }
         
         playList = SoundFilePlaylist(soundFiles: soundFiles)
         soundFilePicker.reloadComponent(0)
@@ -225,26 +240,26 @@ extension ViewController { // MPRemoteCommands
         let nowPlayingCenter = MPNowPlayingInfoCenter.defaultCenter()
         
         nowPlayingCenter.nowPlayingInfo =
-            [MPMediaItemPropertyTitle: backgroundAudioPlayer.selectedSoundFile!.Name,
+            [MPMediaItemPropertyTitle: backgroundAudioPlayer!.selectedSoundFile!.Name,
              MPMediaItemPropertyAlbumTitle: "Baby sleep",
-             MPMediaItemPropertyAlbumTrackCount: NSNumber(int: Int32(playList.count)),
-             MPMediaItemPropertyAlbumTrackNumber: NSNumber(int: Int32(playList.number)),
-             MPMediaItemPropertyPlaybackDuration: NSNumber(float: Float(backgroundAudioPlayer.playbackDuration!.totalSeconds()))]
+             MPMediaItemPropertyAlbumTrackCount: NSNumber(int: Int32(playList!.count)),
+             MPMediaItemPropertyAlbumTrackNumber: NSNumber(int: Int32(playList!.number)),
+             MPMediaItemPropertyPlaybackDuration: NSNumber(float: Float(backgroundAudioPlayer!.playbackDuration!.totalSeconds()))]
     }
     
     func PlayPauseCommand() {
         
-        backgroundAudioPlayer.togglePlayState()
+        backgroundAudioPlayer!.togglePlayState()
     }
     
     func nextTrackCommand() {
         
-        backgroundAudioPlayer.selectedSoundFile = playList.next()
+        backgroundAudioPlayer!.selectedSoundFile = playList!.next()
     }
     
     func previousTrackCommand() {
         
-        backgroundAudioPlayer.selectedSoundFile = playList.previous()
+        backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
     }
 }
 

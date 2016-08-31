@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D42FE7451D76075500D99866 /* VacuumCleaner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */; };
 		D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE7461D77223F00D99866 /* AudioRecorder.swift */; };
+		D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */; };
 		D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE61D72D60100A907D1 /* Playlist.swift */; };
 		D430BAE91D72D86500A907D1 /* SoundFilePlaylistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */; };
 		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VacuumCleaner.mp3; sourceTree = "<group>"; };
 		D42FE7461D77223F00D99866 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedSoundFileDirectory.swift; sourceTree = "<group>"; };
 		D430BAE61D72D60100A907D1 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFilePlaylistTest.swift; sourceTree = "<group>"; };
 		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
@@ -121,9 +123,10 @@
 				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
 				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
 				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
-				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
-				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
 				D430BAE61D72D60100A907D1 /* Playlist.swift */,
+				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
+				D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */,
+				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
 				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
 				D4DD3DDA1D3BF43F00198301 /* ViewController.swift */,
 				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
@@ -269,6 +272,7 @@
 			files = (
 				D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */,
 				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
+				D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */,
 				D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
 				D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */,
