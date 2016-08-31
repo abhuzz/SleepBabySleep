@@ -35,15 +35,17 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
     }
     
     func start() {
+        
+        NSLog("AudioRecorder.start()")
+        
         audioRecorder.record()
     }
     
     func stop() {
+        
+        NSLog("stop()")
+        
         audioRecorder.stop()
-    }
-    
-    func temporaryRecordingURL() -> NSURL {
-        return NSURL.fileURLWithPath("\(NSTemporaryDirectory())/TmpRecording.caf")
     }
 }
 
@@ -51,5 +53,7 @@ extension AudioRecorder: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         
+        
+        NSLog("audioRecorderDidFinishRecording() -> \(flag)")
     }
 }

@@ -49,24 +49,32 @@
                                                 <rect key="frame" x="0.0" y="30" width="560" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubl-WS-MKp" userLabel="buttonPrevious">
-                                                        <rect key="frame" x="0.0" y="0.0" width="186.5" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="44"/>
                                                         <state key="normal" image="Previous"/>
                                                         <connections>
                                                             <action selector="actionTappedPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VAL-DN-tKY"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
-                                                        <rect key="frame" x="186.5" y="0.0" width="187" height="44"/>
+                                                        <rect key="frame" x="140" y="0.0" width="140" height="44"/>
                                                         <state key="normal" image="Play"/>
                                                         <connections>
                                                             <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-IN-LZS" userLabel="buttonNext">
-                                                        <rect key="frame" x="373.5" y="0.0" width="186.5" height="44"/>
+                                                        <rect key="frame" x="280" y="0.0" width="140" height="44"/>
                                                         <state key="normal" image="Next"/>
                                                         <connections>
                                                             <action selector="actionTappedNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J1i-eM-M2C"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znv-Xd-RQp">
+                                                        <rect key="frame" x="420" y="0.0" width="140" height="44"/>
+                                                        <state key="normal" image="Microphone"/>
+                                                        <connections>
+                                                            <action selector="recordTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="8jq-t5-KSe"/>
+                                                            <action selector="recordTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qej-qo-yQf"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -96,6 +104,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Microphone" width="50" height="50"/>
         <image name="Next" width="50" height="50"/>
         <image name="Play" width="50" height="50"/>
         <image name="Previous" width="50" height="50"/>

@@ -119,6 +119,7 @@
 				D4DD3DEA1D3BF77900198301 /* Audio */,
 				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
 				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
+				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
 				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
 				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
 				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
@@ -129,7 +130,6 @@
 				D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */,
 				D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */,
 				D4DD3DE41D3BF43F00198301 /* Info.plist */,
-				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
 			);
 			path = SleepBabySleep;
 			sourceTree = "<group>";

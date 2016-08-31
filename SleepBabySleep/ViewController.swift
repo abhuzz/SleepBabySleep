@@ -12,6 +12,8 @@ import MediaPlayer
 class ViewController: UIViewController {
     
     private var backgroundAudioPlayer: BackgroundAudioPlayer
+    private var audioRecorder: AudioRecorder?
+    private var recordingFileURL: NSURL?
     
     private var playList: SoundFilePlaylist
     
@@ -57,6 +59,10 @@ class ViewController: UIViewController {
         backgroundAudioPlayer.selectedSoundFile = playList.first()
         backgroundAudioPlayer.playbackDuration = playbackDurationsBySegementIndex[0]
         
+        recordingFileURL = temporaryRecordingURL()
+        
+        audioRecorder = AudioRecorder(fileURL: temporaryRecordingURL())
+        
         initRemoteCommands()
     }
     
@@ -90,12 +96,24 @@ class ViewController: UIViewController {
         backgroundAudioPlayer.playbackDuration = selectedPlaybackDuration
     }
     
+    @IBAction func recordTouchDown(sender: AnyObject) {
+        audioRecorder?.start()
+    }
+    
+    @IBAction func recordTouchUp(sender: AnyObject) {
+        audioRecorder?.stop()
+    }
+
     
     func updateSoundFilePickerSelectionFromPlaylist() {
         
         if soundFilePicker.selectedRowInComponent(0) != playList.index {
             soundFilePicker.selectRow(playList.index, inComponent: 0, animated: true)
         }
+    }
+    
+    func temporaryRecordingURL() -> NSURL {
+        return NSURL.fileURLWithPath("\(NSTemporaryDirectory())/TmpRecording.caf")
     }
     
     static func availableSoundFiles() -> [SoundFile] {
