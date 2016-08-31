@@ -93,8 +93,8 @@ class ViewController: UIViewController {
     
     func updateSoundFilePickerSelectionFromPlaylist() {
         
-        if soundFilePicker.selectedRowInComponent(0) != playList.number - 1 {
-            soundFilePicker.selectRow(playList.number - 1, inComponent: 0, animated: true)
+        if soundFilePicker.selectedRowInComponent(0) != playList.index {
+            soundFilePicker.selectRow(playList.index, inComponent: 0, animated: true)
         }
     }
     

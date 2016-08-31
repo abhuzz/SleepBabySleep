@@ -32,6 +32,12 @@ class SoundFilePlaylist {
         }
     }
     
+    var index: Int {
+        get {
+            return currentRow;
+        }
+    }
+    
     
     func byRow(row: Int) -> SoundFile? {
         
