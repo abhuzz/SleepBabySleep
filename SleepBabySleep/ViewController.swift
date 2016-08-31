@@ -98,6 +98,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func recordTouchDown(sender: AnyObject) {
+        
+        if backgroundAudioPlayer.playState == .Playing {
+            backgroundAudioPlayer.togglePlayState()
+        }
+        
         audioRecorder?.start()
     }
     
