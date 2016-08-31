@@ -9,10 +9,16 @@
 import Foundation
 import AVFoundation
 
+protocol AudioRecorderDelegate {
+    
+    func recordingFinished()
+}
+
 class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
     
-    var audioRecorder: AVAudioRecorder!
+    private var audioRecorder: AVAudioRecorder!
     
+    var delegate: AudioRecorderDelegate?
     
     init(fileURL: NSURL) {
         
@@ -55,7 +61,10 @@ extension AudioRecorder: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         
-        
         NSLog("audioRecorderDidFinishRecording() -> \(flag)")
+        
+        guard let delegate = self.delegate else { return }
+        
+        delegate.recordingFinished()
     }
 }

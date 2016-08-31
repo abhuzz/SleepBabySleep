@@ -81,7 +81,12 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         guard let playbackDuration = self.playbackDuration else { return }
         
         audioPlayer.stateDelegate = self
-        audioPlayer.play(urlForSoundFile(soundFileToPlay))
+        
+        if let temporaryURL = soundFileToPlay.temporaryURL {
+            audioPlayer.play(temporaryURL)
+        } else {
+            audioPlayer.play(urlForSoundFile(soundFileToPlay))
+        }
         
         if !playbackDuration.infinite() {
             timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)

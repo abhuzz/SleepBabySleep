@@ -13,6 +13,21 @@ struct SoundFile: Equatable {
     var Name: String
     var File: String
     var Extension: String
+    
+    var temporaryURL: NSURL?
+    
+    init(temporaryURL: NSURL) {
+        self.Name = "Recording"
+        self.temporaryURL = temporaryURL
+        self.File = ""
+        self.Extension = ""
+    }
+    
+    init(Name: String, File: String, Extension:String) {
+        self.Name = Name
+        self.File = File
+        self.Extension = Extension
+    }
 }
 
 func ==(lhs: SoundFile, rhs: SoundFile) -> Bool {

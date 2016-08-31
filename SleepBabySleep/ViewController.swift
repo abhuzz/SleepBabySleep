@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         recordingFileURL = temporaryRecordingURL()
         
         audioRecorder = AudioRecorder(fileURL: temporaryRecordingURL())
+        audioRecorder?.delegate = self
         
         initRemoteCommands()
     }
@@ -164,6 +165,19 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         case .Paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
         }
+    }
+}
+
+extension ViewController: AudioRecorderDelegate {
+    
+    func recordingFinished() {
+        
+        var soundFiles = ViewController.availableSoundFiles()
+        soundFiles.append(SoundFile(temporaryURL: recordingFileURL!))
+        
+        playList = SoundFilePlaylist(soundFiles: soundFiles)
+        
+        soundFilePicker.reloadComponent(0)
     }
 }
 
