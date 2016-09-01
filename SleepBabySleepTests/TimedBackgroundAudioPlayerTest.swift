@@ -30,7 +30,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         fakeBackgroundAudioPlayerStateDelegate = FakeBackgroundAudioPlayerStateDelegate()
         
         testInstance =
-            TimedBackgroundAudioPlayer(audioPlayer: fakeAudioPlayer!, timer: fakeTimer!, appBundle: FakeAppBundle())
+            TimedBackgroundAudioPlayer(audioPlayer: fakeAudioPlayer!, timer: fakeTimer!)
         
         testInstance?.stateDelegate = fakeBackgroundAudioPlayerStateDelegate
     }

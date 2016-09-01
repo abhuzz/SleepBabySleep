@@ -16,7 +16,6 @@
 		D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */; };
 		D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DC1D71AB9A00356ED1 /* Timer.swift */; };
 		D4C280E51D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */; };
-		D4C280ED1D71B24E00356ED1 /* AppBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280EC1D71B24E00356ED1 /* AppBundle.swift */; };
 		D4C280EF1D71B97F00356ED1 /* FakeImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */; };
 		D4C280F11D71BE2C00356ED1 /* PlaybackDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */; };
 		D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */; };
@@ -52,7 +51,6 @@
 		D4C280E21D71AE8600356ED1 /* SleepBabySleepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepBabySleepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedBackgroundAudioPlayerTest.swift; sourceTree = "<group>"; };
 		D4C280E61D71AE8600356ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4C280EC1D71B24E00356ED1 /* AppBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppBundle.swift; sourceTree = "<group>"; };
 		D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImplementations.swift; sourceTree = "<group>"; };
 		D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackDuration.swift; sourceTree = "<group>"; };
 		D4DD3DD51D3BF43F00198301 /* SleepBabySleep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepBabySleep.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +138,6 @@
 		D4DD3DEA1D3BF77900198301 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				D4C280EC1D71B24E00356ED1 /* AppBundle.swift */,
 				D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */,
 				D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */,
 				D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */,
@@ -276,7 +273,6 @@
 				D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
 				D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */,
-				D4C280ED1D71B24E00356ED1 /* AppBundle.swift in Sources */,
 				D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */,
 				D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */,
 				D4C280F11D71BE2C00356ED1 /* PlaybackDuration.swift in Sources */,

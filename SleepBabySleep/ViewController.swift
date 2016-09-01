@@ -52,8 +52,7 @@ class ViewController: UIViewController {
         backgroundAudioPlayer =
             TimedBackgroundAudioPlayer(
                 audioPlayer: AVAudioPlayerFacade(),
-                timer: SystemTimer(),
-                appBundle: MainAppBundle())
+                timer: SystemTimer())
         
         backgroundAudioPlayer!.stateDelegate = self
         backgroundAudioPlayer!.selectedSoundFile = playList!.first()

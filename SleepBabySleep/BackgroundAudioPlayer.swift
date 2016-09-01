@@ -30,7 +30,6 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
 
     private var audioPlayer: AudioPlayer
     private var timer: Timer
-    private var appBundle: AppBundle
     
     
     var playState: PlayState = .Paused
@@ -49,11 +48,10 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     }
     
     
-    init(audioPlayer: AudioPlayer, timer: Timer, appBundle: AppBundle) {
+    init(audioPlayer: AudioPlayer, timer: Timer) {
         
         self.audioPlayer = audioPlayer
         self.timer = timer
-        self.appBundle = appBundle
     }
     
     func togglePlayState() {

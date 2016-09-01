@@ -45,13 +45,6 @@ class FakeTimer: Timer {
     }
 }
 
-class FakeAppBundle: AppBundle {
-    
-    func file(withName: String, andExtension: String) -> NSURL {
-        return NSURL()
-    }
-}
-
 class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate {
     
     var lastPlayState: PlayState?
