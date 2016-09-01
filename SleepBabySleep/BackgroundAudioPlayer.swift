@@ -82,11 +82,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         
         audioPlayer.stateDelegate = self
         
-        if let temporaryURL = soundFileToPlay.temporaryURL {
-            audioPlayer.play(temporaryURL)
-        } else {
-            audioPlayer.play(urlForSoundFile(soundFileToPlay))
-        }
+        audioPlayer.play(soundFileToPlay.URL)
         
         if !playbackDuration.infinite() {
             timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
@@ -101,11 +97,6 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         timer.stop()
         
         changePlayState(.Paused)
-    }
-    
-    private func urlForSoundFile(soundFile: SoundFile) -> NSURL {
-        
-        return appBundle.file(soundFile.File, andExtension: soundFile.Extension)
     }
     
     private func changePlayState(newPlayState: PlayState) {

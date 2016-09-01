@@ -60,3 +60,12 @@ class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate
         lastPlayState = playState
     }
 }
+
+class FakeSoundFile: SoundFile, Equatable {
+    var Name = String()
+    var URL = NSURL()
+}
+
+func ==(lhs: FakeSoundFile, rhs: FakeSoundFile) -> Bool {
+    return lhs.dynamicType.self === rhs.dynamicType.self
+}

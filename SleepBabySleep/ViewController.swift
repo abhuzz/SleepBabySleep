@@ -134,16 +134,23 @@ class ViewController: UIViewController {
     
     func availableSoundFiles() -> [SoundFile] {
         
-        var soundFiles =
-                [SoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
-                 SoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
-                 SoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3"),
-                 SoundFile(Name: "Vacuum cleaner", File: "VacuumCleaner", Extension: "mp3")]
+        var soundFiles = [SoundFile]()
+        
+        let assetSoundFiles =
+                [AssetSoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
+                 AssetSoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
+                 AssetSoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3"),
+                 AssetSoundFile(Name: "Vacuum cleaner", File: "VacuumCleaner", Extension: "mp3")]
+        
+        soundFiles.appendContentsOf(
+            assetSoundFiles.map { assetSoundFile in
+                assetSoundFile as SoundFile
+            })
         
         if let recordedSounds = recordedSoundFileDirectory!.files() {
             let recordedSoundFiles =
                 recordedSounds.map { url in
-                    SoundFile(temporaryURL: url)
+                    RecordedAudioFile(url: url) as SoundFile
                 }
             
             soundFiles.appendContentsOf(recordedSoundFiles)
@@ -205,7 +212,7 @@ extension ViewController: AudioRecorderDelegate {
         if let recordedSounds = recordedSoundFileDirectory!.files() {
             soundFiles.appendContentsOf(
                 recordedSounds.map { url in
-                    SoundFile(temporaryURL: url)
+                    RecordedAudioFile(url: url)
                 })
         }
         

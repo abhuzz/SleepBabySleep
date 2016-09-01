@@ -17,8 +17,8 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     var testInstance: TimedBackgroundAudioPlayer?
     var fakeBackgroundAudioPlayerStateDelegate: FakeBackgroundAudioPlayerStateDelegate?
     
-    var aSoundFile = SoundFile(Name: "test", File: "none", Extension: "mp3")
-    var anotherSoundFile = SoundFile(Name: "test2", File: "nothing", Extension: "wav")
+    var aSoundFile = FakeSoundFile()
+    var anotherSoundFile = FakeSoundFile()
     var defaultPlaybackDuration = PlaybackDurationMinutes(durationInMinutes: 1)
     
     

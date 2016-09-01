@@ -8,30 +8,53 @@
 
 import Foundation
 
-struct SoundFile: Equatable {
+
+protocol SoundFile {
+    var Name: String { get }
+    var URL: NSURL { get }
+}
+
+
+struct AssetSoundFile: SoundFile, Equatable {
     
-    var Name: String
-    var File: String
-    var Extension: String
-    
-    var temporaryURL: NSURL?
-    
-    init(temporaryURL: NSURL) {
-        self.Name = "Recording"
-        self.temporaryURL = temporaryURL
-        self.File = ""
-        self.Extension = ""
-    }
+    private var fileName: String
+    private var fileExtension: String
     
     init(Name: String, File: String, Extension:String) {
         self.Name = Name
-        self.File = File
-        self.Extension = Extension
+        self.fileName = File
+        self.fileExtension = Extension
+    }
+    
+    private(set) var Name: String
+    
+    var URL: NSURL {
+        get {
+            return NSBundle
+                    .mainBundle()
+                    .URLForResource(fileName, withExtension: fileExtension)!
+        }
     }
 }
 
-func ==(lhs: SoundFile, rhs: SoundFile) -> Bool {
-    return     lhs.Name == rhs.Name
-            && lhs.File == rhs.File
-            && lhs.Extension == rhs.Extension
+func ==(lhs: AssetSoundFile, rhs: AssetSoundFile) -> Bool {
+    return lhs.Name == rhs.Name
+        && lhs.URL  == rhs.URL
+}
+
+
+struct RecordedAudioFile: SoundFile, Equatable{
+    
+    init(url: NSURL) {
+        self.URL = url
+        self.Name = url.lastPathComponent ?? "n/a"
+    }
+
+    private(set) var Name: String
+    private(set) var URL: NSURL
+}
+
+func ==(lhs: RecordedAudioFile, rhs: RecordedAudioFile) -> Bool {
+    return lhs.Name == rhs.Name
+        && lhs.URL  == rhs.URL
 }
