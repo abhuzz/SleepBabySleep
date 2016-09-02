@@ -29,6 +29,7 @@ class ViewController: UIViewController {
          6 : PlaybackDurationInifinite()]
     
     
+    @IBOutlet weak var playlistCollectionView: UICollectionView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     @IBOutlet weak var buttonPlayPause: UIButton!
     
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
         backgroundAudioPlayer!.selectedSoundFile = playList!.first()
         backgroundAudioPlayer!.playbackDuration = playbackDurationsBySegementIndex[0]
         
+        playlistCollectionView.dataSource = self
         
         initRemoteCommands()
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
@@ -156,22 +158,20 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UIPickerViewDataSource {
-   
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+extension ViewController: UICollectionViewDataSource {
 
-        return 1
-    }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return playList!.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        return playList!.nameForRow(row)
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PlaylistCollectionViewCell", forIndexPath: indexPath) as! PlaylistCollectionViewCell
+        cell.soundFile = playList!.byRow(indexPath.item)
+        return cell
     }
+
 }
 
 extension ViewController: UIPickerViewDelegate {

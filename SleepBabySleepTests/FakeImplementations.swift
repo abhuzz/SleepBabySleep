@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 @testable import SleepBabySleep
 
 class FakeAudioPlayer: AudioPlayer {
@@ -57,6 +58,7 @@ class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate
 class FakeSoundFile: SoundFile, Equatable {
     var Name = String()
     var URL = NSURL()
+    var Image = UIImage()
 }
 
 func ==(lhs: FakeSoundFile, rhs: FakeSoundFile) -> Bool {

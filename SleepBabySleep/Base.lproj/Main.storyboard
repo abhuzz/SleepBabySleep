@@ -30,7 +30,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaylistCollectionViewCell" id="Fs6-4R-a4n" userLabel="playlistCollectionViewCell" customClass="PlaylistCollectionViewCell">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaylistCollectionViewCell" id="Fs6-4R-a4n" userLabel="playlistCollectionViewCell" customClass="PlaylistCollectionViewCell" customModule="SleepBabySleep" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="215" height="220"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -71,9 +71,9 @@
                                                     <constraint firstAttribute="trailing" secondItem="L1v-xQ-sZD" secondAttribute="trailing" constant="10" id="t9E-k6-d7w"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="imageView" destination="uPQ-Fr-UfX" id="8Ma-hI-6Cw"/>
-                                                    <outlet property="speakerLabel" destination="EkU-3m-0sB" id="t8k-4Q-1rY"/>
-                                                    <outlet property="titleLabel" destination="L1v-xQ-sZD" id="iu5-bF-4pA"/>
+                                                    <outlet property="playlistFile" destination="EkU-3m-0sB" id="Sha-RT-NkZ"/>
+                                                    <outlet property="playlistImage" destination="uPQ-Fr-UfX" id="RcF-ey-wvS"/>
+                                                    <outlet property="playlistTitle" destination="L1v-xQ-sZD" id="T9I-2U-eRa"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -146,6 +146,7 @@
                     <connections>
                         <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
                         <outlet property="playbackDurationSegements" destination="qc4-81-rOs" id="QwP-bV-Z9a"/>
+                        <outlet property="playlistCollectionView" destination="2nk-sy-KnJ" id="fUH-cq-buo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

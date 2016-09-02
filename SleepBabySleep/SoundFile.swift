@@ -7,11 +7,12 @@
 //
 
 import Foundation
-
+import UIKit
 
 protocol SoundFile {
     var Name: String { get }
     var URL: NSURL { get }
+    var Image: UIImage { get }
 }
 
 
@@ -35,6 +36,12 @@ struct AssetSoundFile: SoundFile, Equatable {
                     .URLForResource(fileName, withExtension: fileExtension)!
         }
     }
+    
+    var Image: UIImage {
+        get {
+            return UIImage(named: "Item_1")!
+        }
+    }
 }
 
 func ==(lhs: AssetSoundFile, rhs: AssetSoundFile) -> Bool {
@@ -52,6 +59,12 @@ struct RecordedAudioFile: SoundFile, Equatable{
 
     private(set) var Name: String
     private(set) var URL: NSURL
+    
+    var Image: UIImage {
+        get {
+            return UIImage(named: "Item_1")!
+        }
+    }
 }
 
 func ==(lhs: RecordedAudioFile, rhs: RecordedAudioFile) -> Bool {
