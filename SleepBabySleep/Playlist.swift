@@ -10,7 +10,7 @@ import Foundation
 
 class SoundFilePlaylist {
     
-    private var currentRow = -1
+    private var currentRow = 0
     
     private(set) var soundFiles: [SoundFile]
     
@@ -28,7 +28,7 @@ class SoundFilePlaylist {
     
     var number: Int {
         get {
-            return currentRow + 1
+            return currentRow
         }
     }
     

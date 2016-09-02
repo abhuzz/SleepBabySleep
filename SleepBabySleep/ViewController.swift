@@ -119,7 +119,7 @@ class ViewController: UIViewController {
     func updateSoundFilePickerSelectionFromPlaylist() {
         
         let indexPath = NSIndexPath(forRow: playList!.index, inSection: 0)
-        
+        NSLog("\(playList!.index)")
         playlistCollectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredVertically)
     }
     
@@ -207,7 +207,8 @@ extension ViewController: AudioRecorderDelegate {
         
         playlistCollectionView.reloadData()
         
-        //updateSoundFilePickerSelectionFromPlaylist()
+        backgroundAudioPlayer?.selectedSoundFile = playList?.first()
+        playlistCollectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Bottom)
     }
 }
 
