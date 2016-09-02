@@ -59,6 +59,12 @@ class ViewController: UIViewController {
         playlistCollectionView.dataSource = self
         playlistCollectionView.delegate = self
         
+        
+        playlistCollectionView!.contentInset = UIEdgeInsets(top: 50, left: 200, bottom: 50, right: 0)
+        
+        let layout = playlistCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: CGRectGetWidth(playlistCollectionView!.bounds), height: 120)
+        
         initRemoteCommands()
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }

@@ -15,6 +15,7 @@
 		D49B58731D795D3800744CF3 /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B58721D795D3800744CF3 /* PlaylistCollectionViewCell.swift */; };
 		D49B58761D795EBB00744CF3 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B58751D795EBB00744CF3 /* Math.swift */; };
 		D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49B58771D795FEB00744CF3 /* Playlist.xcassets */; };
+		D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */; };
 		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
 		D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */; };
 		D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DC1D71AB9A00356ED1 /* Timer.swift */; };
@@ -51,6 +52,7 @@
 		D49B58721D795D3800744CF3 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		D49B58751D795EBB00744CF3 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		D49B58771D795FEB00744CF3 /* Playlist.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Playlist.xcassets; sourceTree = "<group>"; };
+		D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DC1D71AB9A00356ED1 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
@@ -120,13 +122,13 @@
 			name = Infrastructure;
 			sourceTree = "<group>";
 		};
-		D42FE74D1D7959C200D99866 /* Layout */ = {
+		D42FE74D1D7959C200D99866 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */,
 				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
 			);
-			name = Layout;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		D49B58711D795D2500744CF3 /* Views */ = {
@@ -143,6 +145,14 @@
 				D49B58751D795EBB00744CF3 /* Math.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		D49B58791D79BAE500744CF3 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */,
+			);
+			name = Layout;
 			sourceTree = "<group>";
 		};
 		D4C280E31D71AE8600356ED1 /* SleepBabySleepTests */ = {
@@ -182,8 +192,9 @@
 				D4DD3DEA1D3BF77900198301 /* AudioFiles */,
 				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
 				D42FE74C1D79599E00D99866 /* Infrastructure */,
-				D42FE74D1D7959C200D99866 /* Layout */,
+				D49B58791D79BAE500744CF3 /* Layout */,
 				D42FE74B1D79596700D99866 /* Model */,
+				D42FE74D1D7959C200D99866 /* Storyboards */,
 				D49B58741D795E9700744CF3 /* Utilities */,
 				D42FE74A1D79594F00D99866 /* ViewControllers */,
 				D49B58711D795D2500744CF3 /* Views */,
@@ -327,6 +338,7 @@
 			files = (
 				D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */,
 				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
+				D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */,
 				D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */,
 				D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
