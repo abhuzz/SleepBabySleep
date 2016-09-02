@@ -181,6 +181,10 @@ extension ViewController: UICollectionViewDelegate {
         backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow(indexPath.row)
         
         playlistCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredVertically, animated: true)
+        
+        if backgroundAudioPlayer?.playState == PlayState.Paused {
+            backgroundAudioPlayer?.togglePlayState()
+        }
     }
 }
 
