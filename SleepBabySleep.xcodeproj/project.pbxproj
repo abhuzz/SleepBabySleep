@@ -84,6 +84,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D42FE74A1D79594F00D99866 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4DD3DDA1D3BF43F00198301 /* ViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D42FE74B1D79596700D99866 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
+				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
+				D430BAE61D72D60100A907D1 /* Playlist.swift */,
+				D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */,
+				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D42FE74C1D79599E00D99866 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
+				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
+				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
+			);
+			name = Infrastructure;
+			sourceTree = "<group>";
+		};
+		D42FE74D1D7959C200D99866 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */,
+				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
 		D4C280E31D71AE8600356ED1 /* SleepBabySleepTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,26 +155,19 @@
 		D4DD3DD71D3BF43F00198301 /* SleepBabySleep */ = {
 			isa = PBXGroup;
 			children = (
-				D4DD3DEA1D3BF77900198301 /* Audio */,
-				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
-				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
-				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
-				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
-				D430BAE61D72D60100A907D1 /* Playlist.swift */,
-				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
-				D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */,
-				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
-				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
-				D4DD3DDA1D3BF43F00198301 /* ViewController.swift */,
-				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
 				D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */,
-				D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */,
+				D4DD3DEA1D3BF77900198301 /* AudioFiles */,
+				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
+				D42FE74C1D79599E00D99866 /* Infrastructure */,
+				D42FE74D1D7959C200D99866 /* Layout */,
+				D42FE74B1D79596700D99866 /* Model */,
+				D42FE74A1D79594F00D99866 /* ViewControllers */,
 				D4DD3DE41D3BF43F00198301 /* Info.plist */,
 			);
 			path = SleepBabySleep;
 			sourceTree = "<group>";
 		};
-		D4DD3DEA1D3BF77900198301 /* Audio */ = {
+		D4DD3DEA1D3BF77900198301 /* AudioFiles */ = {
 			isa = PBXGroup;
 			children = (
 				D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */,
@@ -143,7 +175,7 @@
 				D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */,
 				D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */,
 			);
-			name = Audio;
+			name = AudioFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
