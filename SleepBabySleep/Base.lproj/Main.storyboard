@@ -18,20 +18,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="H45-Fh-J1n">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="H45-Fh-J1n">
                                 <rect key="frame" x="20" y="20" width="560" height="580"/>
                                 <subviews>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qL0-DU-aMd">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="502"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="502" id="5cm-va-Egu"/>
-                                        </constraints>
-                                    </pickerView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IFs-Bx-VRf">
-                                        <rect key="frame" x="0.0" y="506" width="560" height="74"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="753" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2nk-sy-KnJ" userLabel="playlistCollectionView">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="493"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ll-tO-uJd">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="su6-pU-Dby">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IFs-Bx-VRf">
+                                        <rect key="frame" x="0.0" y="497" width="560" height="83"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="26"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="29"/>
                                                 <segments>
                                                     <segment title="5"/>
                                                     <segment title="15"/>
@@ -45,32 +59,32 @@
                                                     <action selector="playbackDurationValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="2n9-89-EhF"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TaY-SP-gLm">
-                                                <rect key="frame" x="0.0" y="30" width="560" height="44"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TaY-SP-gLm">
+                                                <rect key="frame" x="0.0" y="33" width="560" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubl-WS-MKp" userLabel="buttonPrevious">
-                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="44"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubl-WS-MKp" userLabel="buttonPrevious">
+                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="50"/>
                                                         <state key="normal" image="Previous"/>
                                                         <connections>
                                                             <action selector="actionTappedPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VAL-DN-tKY"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
-                                                        <rect key="frame" x="140" y="0.0" width="140" height="44"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
+                                                        <rect key="frame" x="140" y="0.0" width="140" height="50"/>
                                                         <state key="normal" image="Play"/>
                                                         <connections>
                                                             <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-IN-LZS" userLabel="buttonNext">
-                                                        <rect key="frame" x="280" y="0.0" width="140" height="44"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-IN-LZS" userLabel="buttonNext">
+                                                        <rect key="frame" x="280" y="0.0" width="140" height="50"/>
                                                         <state key="normal" image="Next"/>
                                                         <connections>
                                                             <action selector="actionTappedNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J1i-eM-M2C"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znv-Xd-RQp">
-                                                        <rect key="frame" x="420" y="0.0" width="140" height="44"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znv-Xd-RQp">
+                                                        <rect key="frame" x="420" y="0.0" width="140" height="50"/>
                                                         <state key="normal" image="Microphone"/>
                                                         <connections>
                                                             <action selector="recordTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="8jq-t5-KSe"/>
@@ -95,7 +109,6 @@
                     <connections>
                         <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
                         <outlet property="playbackDurationSegements" destination="qc4-81-rOs" id="QwP-bV-Z9a"/>
-                        <outlet property="soundFilePicker" destination="qL0-DU-aMd" id="ZyC-Hq-5fQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

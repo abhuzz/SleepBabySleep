@@ -29,7 +29,6 @@ class ViewController: UIViewController {
          6 : PlaybackDurationInifinite()]
     
     
-    @IBOutlet weak var soundFilePicker: UIPickerView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     @IBOutlet weak var buttonPlayPause: UIButton!
     
@@ -37,8 +36,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        soundFilePicker.delegate = self
-        soundFilePicker.dataSource = self
         
         recordedSoundFileDirectory =
             RecordedSoundFileDirectory(pathExtensionForRecordings: recordingFileExtension)
@@ -119,9 +116,9 @@ class ViewController: UIViewController {
     
     func updateSoundFilePickerSelectionFromPlaylist() {
         
-        if soundFilePicker.selectedRowInComponent(0) != playList!.index {
+        /*if soundFilePicker.selectedRowInComponent(0) != playList!.index {
             soundFilePicker.selectRow(playList!.index, inComponent: 0, animated: true)
-        }
+        }*/
     }
     
     func showAlerDialog(alertMessage: String ) {
@@ -216,7 +213,7 @@ extension ViewController: AudioRecorderDelegate {
         }
         
         playList = SoundFilePlaylist(soundFiles: soundFiles)
-        soundFilePicker.reloadComponent(0)
+        //soundFilePicker.reloadComponent(0)
         updateSoundFilePickerSelectionFromPlaylist()
     }
 }
