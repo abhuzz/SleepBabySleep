@@ -118,9 +118,9 @@ class ViewController: UIViewController {
     
     func updateSoundFilePickerSelectionFromPlaylist() {
         
-        /*if soundFilePicker.selectedRowInComponent(0) != playList!.index {
-            soundFilePicker.selectRow(playList!.index, inComponent: 0, animated: true)
-        }*/
+        let indexPath = NSIndexPath(forRow: playList!.index, inSection: 0)
+        
+        playlistCollectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredVertically)
     }
     
     func showAlerDialog(alertMessage: String ) {
@@ -205,9 +205,9 @@ extension ViewController: AudioRecorderDelegate {
         
         playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
         
-        // ToDo: update collectionView
+        playlistCollectionView.reloadData()
         
-        updateSoundFilePickerSelectionFromPlaylist()
+        //updateSoundFilePickerSelectionFromPlaylist()
     }
 }
 
