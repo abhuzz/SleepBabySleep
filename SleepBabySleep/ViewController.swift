@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         backgroundAudioPlayer!.playbackDuration = playbackDurationsBySegementIndex[0]
         
         playlistCollectionView.dataSource = self
+        playlistCollectionView.delegate = self
         
         initRemoteCommands()
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
@@ -160,7 +161,6 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
 
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return playList!.count
@@ -174,11 +174,13 @@ extension ViewController: UICollectionViewDataSource {
 
 }
 
-extension ViewController: UIPickerViewDelegate {
+extension ViewController: UICollectionViewDelegate {
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow(row)
+        backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow(indexPath.row)
+        
+        playlistCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredVertically, animated: true)
     }
 }
 
