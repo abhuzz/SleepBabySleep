@@ -206,16 +206,7 @@ extension ViewController: AudioRecorderDelegate {
     
     func recordingFinished() {
         
-        var soundFiles = availableSoundFiles()
-        
-        if let recordedSounds = recordedSoundFileDirectory!.files() {
-            soundFiles.appendContentsOf(
-                recordedSounds.map { url in
-                    RecordedAudioFile(url: url)
-                })
-        }
-        
-        playList = SoundFilePlaylist(soundFiles: soundFiles)
+        playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
         soundFilePicker.reloadComponent(0)
         updateSoundFilePickerSelectionFromPlaylist()
     }
