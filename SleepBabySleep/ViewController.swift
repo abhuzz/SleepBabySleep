@@ -69,11 +69,9 @@ class ViewController: UIViewController {
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
+    override func viewDidAppear(animated: Bool) {
         updateSoundFilePickerSelectionFromPlaylist()
     }
-    
     
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
@@ -126,8 +124,21 @@ class ViewController: UIViewController {
     func updateSoundFilePickerSelectionFromPlaylist() {
         
         let indexPath = NSIndexPath(forRow: playList!.index, inSection: 0)
-        NSLog("\(playList!.index)")
-        playlistCollectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredVertically)
+        
+        scrollToCellAndHightlightIt(indexPath)
+    }
+    
+    func scrollToCellAndHightlightIt(indexPath: NSIndexPath) {
+        
+        playlistCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredVertically, animated: true)
+        
+        playlistCollectionView.visibleCells().forEach { cell in
+            (cell as! PlaylistCollectionViewCell).notSelected()
+        }
+        
+        let selectedCell = playlistCollectionView.cellForItemAtIndexPath(indexPath) as! PlaylistCollectionViewCell
+        selectedCell.currentlySelected()
+        
     }
     
     func showAlerDialog(alertMessage: String ) {
@@ -186,7 +197,7 @@ extension ViewController: UICollectionViewDelegate {
         
         backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow(indexPath.row)
         
-        playlistCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredVertically, animated: true)
+        scrollToCellAndHightlightIt(indexPath)
         
         if backgroundAudioPlayer?.playState == PlayState.Paused {
             backgroundAudioPlayer?.togglePlayState()

@@ -15,7 +15,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
     
-    
     var soundFile: SoundFile? {
         didSet {
             guard let soundFile = soundFile else { return }
@@ -35,5 +34,15 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
         playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(10))
+    }
+    
+    func currentlySelected() {
+        
+        playlistTitle.textColor = UIColor.redColor()
+    }
+    
+    func notSelected() {
+        
+        playlistTitle.textColor = UIColor.lightGrayColor()
     }
 }
