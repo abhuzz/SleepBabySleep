@@ -20,11 +20,13 @@ struct AssetSoundFile: SoundFile, Equatable {
     
     private var fileName: String
     private var fileExtension: String
+    private var image: UIImage
     
     init(Name: String, File: String, Extension:String) {
         self.Name = Name
         self.fileName = File
         self.fileExtension = Extension
+        self.image = randomImage()
     }
     
     private(set) var Name: String
@@ -38,16 +40,7 @@ struct AssetSoundFile: SoundFile, Equatable {
     }
     
     var Image: UIImage {
-        get {
-            let name = "Item_\(randomNumber(1, max: 6))"
-            
-            guard let image = UIImage(named: name) else {
-                NSLog("Image not found: \(name)")
-                return UIImage()
-            }
-            
-            return image
-        }
+        get { return image }
     }
 }
 
@@ -62,26 +55,32 @@ struct RecordedAudioFile: SoundFile, Equatable{
     init(url: NSURL) {
         self.URL = url
         self.Name = url.lastPathComponent ?? "n/a"
+        self.image = randomImage()
     }
 
     private(set) var Name: String
     private(set) var URL: NSURL
+    private var image: UIImage
     
     var Image: UIImage {
-        get {
-            let name = "Item_\(randomNumber(1, max: 6))"
-            
-            guard let image = UIImage(named: name) else {
-                NSLog("Image not found: \(name)")
-                return UIImage()
-            }
-            
-            return image
-        }
+        get { return image }
     }
 }
 
 func ==(lhs: RecordedAudioFile, rhs: RecordedAudioFile) -> Bool {
     return lhs.Name == rhs.Name
         && lhs.URL  == rhs.URL
+}
+
+func randomImage() -> UIImage {
+    
+    let name = "Item_\(randomNumber(1, max: 6))"
+    
+    guard let image = UIImage(named: name) else {
+        NSLog("Image not found: \(name)")
+        return UIImage()
+    }
+    
+    return image
+
 }
