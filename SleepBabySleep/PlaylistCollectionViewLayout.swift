@@ -15,13 +15,18 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
         
         guard let layoutAttributes = super.layoutAttributesForElementsInRect(rect) else { return nil }
         
-        for attributes in layoutAttributes {
+        let copiedLayoutAttribtes: [UICollectionViewLayoutAttributes] =
+            layoutAttributes.map { $0.copy() as! UICollectionViewLayoutAttributes }
+        
+        for attributes in copiedLayoutAttribtes {
             let frame = attributes.frame
             attributes.transform = CGAffineTransformMakeRotation(degreesToRadians(-7))
             attributes.frame = CGRectInset(frame, 0, 0)
+            
+            attributes.size.width = collectionView!.bounds.size.width
         }
         
-        return layoutAttributes
+        return copiedLayoutAttribtes
 
     }
     
@@ -29,13 +34,14 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
         
         super.prepareLayout()
         
-        if let collectionView = self.collectionView {
+        /*if let collectionView = self.collectionView {
             
             var resizedItem = itemSize
 
             resizedItem.width = collectionView.bounds.size.width
+            resizedItem.height = 180
             
             itemSize = resizedItem
-        }
+        }*/
     }
 }

@@ -39,7 +39,14 @@ struct AssetSoundFile: SoundFile, Equatable {
     
     var Image: UIImage {
         get {
-            return UIImage(named: "Item_1")!
+            let name = "Item_\(randomNumber(1, max: 6))"
+            
+            guard let image = UIImage(named: name) else {
+                NSLog("Image not found: \(name)")
+                return UIImage()
+            }
+            
+            return image
         }
     }
 }
@@ -62,7 +69,14 @@ struct RecordedAudioFile: SoundFile, Equatable{
     
     var Image: UIImage {
         get {
-            return UIImage(named: "Item_1")!
+            let name = "Item_\(randomNumber(1, max: 6))"
+            
+            guard let image = UIImage(named: name) else {
+                NSLog("Image not found: \(name)")
+                return UIImage()
+            }
+            
+            return image
         }
     }
 }
