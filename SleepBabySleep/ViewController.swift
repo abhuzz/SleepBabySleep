@@ -136,7 +136,7 @@ class ViewController: UIViewController {
             (cell as! PlaylistCollectionViewCell).notSelected()
         }
         
-        let selectedCell = playlistCollectionView.cellForItemAtIndexPath(indexPath) as! PlaylistCollectionViewCell
+        guard let selectedCell = playlistCollectionView.cellForItemAtIndexPath(indexPath) as? PlaylistCollectionViewCell else { return }
         selectedCell.currentlySelected()
         
     }

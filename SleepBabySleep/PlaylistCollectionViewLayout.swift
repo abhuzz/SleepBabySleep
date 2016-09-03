@@ -29,19 +29,5 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
         return copiedLayoutAttribtes
 
     }
-    
-    override func prepareLayout() {
-        
-        super.prepareLayout()
-        
-        /*if let collectionView = self.collectionView {
-            
-            var resizedItem = itemSize
 
-            resizedItem.width = collectionView.bounds.size.width
-            resizedItem.height = 180
-            
-            itemSize = resizedItem
-        }*/
-    }
 }
