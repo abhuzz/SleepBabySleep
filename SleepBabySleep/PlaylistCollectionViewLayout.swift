@@ -17,11 +17,31 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
         
         for attributes in layoutAttributes {
             let frame = attributes.frame
-            attributes.transform = CGAffineTransformMakeRotation(degreesToRadians(-14))
-            attributes.frame = CGRectInset(frame, 12, 0)
+            attributes.transform = CGAffineTransformMakeRotation(degreesToRadians(-10))
+            attributes.frame = CGRectInset(frame, 0, 0)
         }
         
         return layoutAttributes
 
+    }
+    
+    override func prepareLayout() {
+        super.prepareLayout()
+        
+        if let collectionView = self.collectionView {
+            var newItemSize = itemSize
+            
+            
+            newItemSize.width = (collectionView.bounds.size.width)
+            
+            // Use the aspect ratio of the current item size to determine how tall the items should be
+            if itemSize.height > 0 {
+                let itemAspectRatio = itemSize.width / itemSize.height
+                newItemSize.height = newItemSize.width / itemAspectRatio
+            }
+            
+            // Set the new item size
+            itemSize = newItemSize
+        }
     }
 }

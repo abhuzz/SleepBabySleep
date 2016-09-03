@@ -27,8 +27,13 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        clipsToBounds = false
+    }
+    
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
-        playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(14))
+        playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(10))
     }
 }
