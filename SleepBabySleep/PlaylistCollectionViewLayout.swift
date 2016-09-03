@@ -11,6 +11,27 @@ import UIKit
 
 class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
     
+    var collectionViewWidthWithoutInsets: CGFloat {
+        get {
+            guard let collectionView = self.collectionView else { return 0 }
+            let collectionViewSize = collectionView.bounds.size
+            let widthWithoutInsets = collectionViewSize.width
+                - self.sectionInset.left - self.sectionInset.right
+                - collectionView.contentInset.left - collectionView.contentInset.right
+            return widthWithoutInsets
+        }
+    }
+    
+    let cellAspectRatio: CGFloat = 3/1
+    
+    override func prepareLayout() {
+
+        let itemWidth = collectionViewWidthWithoutInsets
+        self.itemSize = CGSize(width: itemWidth, height: itemWidth/cellAspectRatio)
+        
+        super.prepareLayout()
+    }
+    
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         guard let layoutAttributes = super.layoutAttributesForElementsInRect(rect) else { return nil }
