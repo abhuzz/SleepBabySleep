@@ -33,7 +33,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
-        playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(10))
+        playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(7))
     }
     
     func currentlySelected() {

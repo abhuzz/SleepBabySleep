@@ -17,7 +17,7 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
         
         for attributes in layoutAttributes {
             let frame = attributes.frame
-            attributes.transform = CGAffineTransformMakeRotation(degreesToRadians(-10))
+            attributes.transform = CGAffineTransformMakeRotation(degreesToRadians(-7))
             attributes.frame = CGRectInset(frame, 0, 0)
         }
         
