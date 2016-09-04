@@ -127,17 +127,15 @@ class ViewController: UIViewController {
         scrollToCellAndHightlightIt(indexPath)
     }
     
+    var lastSelectedItemIndexPath: NSIndexPath?
+    
     func scrollToCellAndHightlightIt(indexPath: NSIndexPath) {
+        
+        lastSelectedItemIndexPath = indexPath
         
         playlistCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredVertically, animated: true)
         
-        playlistCollectionView.visibleCells().forEach { cell in
-            (cell as! PlaylistCollectionViewCell).notSelected()
-        }
-        
-        guard let selectedCell = playlistCollectionView.cellForItemAtIndexPath(indexPath) as? PlaylistCollectionViewCell else { return }
-        selectedCell.currentlySelected()
-        
+        updateSelectedCellHighlighting()
     }
     
     func showAlerDialog(alertMessage: String ) {
@@ -205,12 +203,30 @@ extension ViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        let cells = playlistCollectionView!.visibleCells() as! [PlaylistCollectionViewCell]
-        let bounds = playlistCollectionView!.bounds
+        updateParallaxEffect()
+        updateSelectedCellHighlighting()
+    }
     
-        for cell in cells {
-            cell.updateParallaxOffset(collectionViewBounds: bounds)
+    func updateParallaxEffect() {
+        
+        let bounds = playlistCollectionView!.bounds
+        
+        playlistCollectionView.visibleCells().forEach { cell in
+            (cell as! PlaylistCollectionViewCell).updateParallaxOffset(collectionViewBounds: bounds)
         }
+    }
+    
+    func updateSelectedCellHighlighting() {
+        
+        playlistCollectionView.visibleCells().forEach { cell in
+            (cell as! PlaylistCollectionViewCell).notSelected()
+        }
+        
+        guard let indexPath = lastSelectedItemIndexPath else { return }
+        
+        guard let selectedCell = playlistCollectionView.cellForItemAtIndexPath(indexPath) as? PlaylistCollectionViewCell else { return }
+        
+        selectedCell.currentlySelected()
     }
 }
 
