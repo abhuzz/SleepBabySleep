@@ -12,6 +12,7 @@ import UIKit
 class PlaylistCollectionViewCell: UICollectionViewCell {
     
     private var optimalTextColor = UIColor.blackColor()
+    private var cellSelected = false
     
     @IBOutlet weak var playlistFile: UILabel!
     @IBOutlet weak var playlistImage: UIImageView!
@@ -68,15 +69,24 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func currentlySelected() {
         
-        playlistTitle.textColor = UIColor.redColor()
+        cellSelected = true
+        
+        setOptimizedTextColor()
     }
     
     func notSelected() {
+        
+        cellSelected = false
         
         setOptimizedTextColor()
     }
     
     private func setOptimizedTextColor() {
+        
+        if cellSelected {
+            playlistTitle.textColor = UIColor.redColor()
+            return
+        }
         
         playlistTitle.textColor = optimalTextColor
         playlistFile.textColor = optimalTextColor
