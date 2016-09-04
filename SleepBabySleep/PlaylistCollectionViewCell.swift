@@ -32,10 +32,17 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             playlistFile.text = soundFile.URL.lastPathComponent ?? "n/a"
             playlistImage.image = soundFile.Image
             
-            if soundFile.Image.averageColor().getBrightnessDifference(UIColor.blackColor()) < 125 {
-                optimalTextColor = UIColor.whiteColor()
-            } else {
-                optimalTextColor = UIColor.blackColor()
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                
+                if soundFile.Image.averageColor().getBrightnessDifference(UIColor.blackColor()) < 125 {
+                    self.optimalTextColor = UIColor.whiteColor()
+                } else {
+                    self.optimalTextColor = UIColor.blackColor()
+                }
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.setOptimizedTextColor()
+                }
             }
         }
     }
@@ -66,6 +73,12 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func notSelected() {
         
+        setOptimizedTextColor()
+    }
+    
+    private func setOptimizedTextColor() {
+        
         playlistTitle.textColor = optimalTextColor
+        playlistFile.textColor = optimalTextColor
     }
 }

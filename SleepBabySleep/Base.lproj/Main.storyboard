@@ -20,7 +20,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="H45-Fh-J1n">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2nk-sy-KnJ" userLabel="playlistCollectionView">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2nk-sy-KnJ" userLabel="playlistCollectionView">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="513"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ll-tO-uJd" customClass="PlaylistCollectionViewLayout" customModule="SleepBabySleep" customModuleProvider="target">
