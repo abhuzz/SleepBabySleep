@@ -32,8 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playlistCollectionView: UICollectionView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     @IBOutlet weak var buttonPlayPause: UIButton!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -201,6 +200,16 @@ extension ViewController: UICollectionViewDelegate {
         
         if backgroundAudioPlayer?.playState == PlayState.Paused {
             backgroundAudioPlayer?.togglePlayState()
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let cells = playlistCollectionView!.visibleCells() as! [PlaylistCollectionViewCell]
+        let bounds = playlistCollectionView!.bounds
+    
+        for cell in cells {
+            cell.updateParallaxOffset(collectionViewBounds: bounds)
         }
     }
 }

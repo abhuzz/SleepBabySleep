@@ -14,6 +14,13 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playlistFile: UILabel!
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
+    @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
+    
+    private var parallaxOffset: CGFloat = 0 {
+        didSet {
+            playListImageViewYCenterConstraint.constant = parallaxOffset
+        }
+    }
     
     var soundFile: SoundFile? {
         didSet {
@@ -34,6 +41,15 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
         playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(7))
+    }
+    
+    func updateParallaxOffset(collectionViewBounds bounds: CGRect) {
+        let center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+        let offsetFromCenter = CGPoint(x: center.x - self.center.x, y: center.y - self.center.y)
+        let maxVerticalOffset = (CGRectGetHeight(bounds) / 2) + (CGRectGetHeight(self.bounds) / 2)
+        let scaleFactor = 40 / maxVerticalOffset
+        
+        parallaxOffset = -offsetFromCenter.y * scaleFactor
     }
     
     func currentlySelected() {
