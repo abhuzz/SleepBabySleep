@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     
     private var backgroundAudioPlayer: BackgroundAudioPlayer?
     private var audioRecorder: AudioRecorder?
-    
     private var recordedSoundFileDirectory: RecordedSoundFileDirectory?
     private var playList: SoundFilePlaylist?
     
@@ -36,12 +35,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        recordedSoundFileDirectory = RecordedSoundFileDirectory(pathExtensionForRecordings: recordingFileExtension)
         
-        recordedSoundFileDirectory =
-            RecordedSoundFileDirectory(pathExtensionForRecordings: recordingFileExtension)
-        
-        playList =
-            SoundFilePlaylist(soundFiles: availableSoundFiles())
+        playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
     
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
@@ -56,7 +52,6 @@ class ViewController: UIViewController {
         playlistCollectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
         
         initRemoteCommands()
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -273,7 +268,8 @@ extension ViewController { // MPRemoteCommands
         
         commandCenter.previousTrackCommand.enabled = true
         commandCenter.previousTrackCommand.addTarget(self, action: #selector(ViewController.previousTrackCommand))
-        
+     
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }
     
     func updateTrackInfoInRemoteCommandCenter() {
