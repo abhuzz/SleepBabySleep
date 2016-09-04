@@ -46,23 +46,14 @@ class ViewController: UIViewController {
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
         
-        backgroundAudioPlayer =
-            TimedBackgroundAudioPlayer(
-                audioPlayer: AVAudioPlayerFacade(),
-                timer: SystemTimer())
-        
+        backgroundAudioPlayer = TimedBackgroundAudioPlayer(audioPlayer: AVAudioPlayerFacade(), timer: SystemTimer())
         backgroundAudioPlayer!.stateDelegate = self
         backgroundAudioPlayer!.selectedSoundFile = playList!.first()
         backgroundAudioPlayer!.playbackDuration = playbackDurationsBySegementIndex[0]
         
         playlistCollectionView.dataSource = self
         playlistCollectionView.delegate = self
-        
-        
-        playlistCollectionView!.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
-        
-        let layout = playlistCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: CGRectGetWidth(playlistCollectionView!.bounds), height: 180)
+        playlistCollectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
         
         initRemoteCommands()
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
@@ -141,7 +132,9 @@ class ViewController: UIViewController {
     func showAlerDialog(alertMessage: String ) {
         
         let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        
         dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in return } ) )
+        
         presentViewController(dialog, animated: false, completion: nil)
     }
     
@@ -181,8 +174,11 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PlaylistCollectionViewCell", forIndexPath: indexPath) as! PlaylistCollectionViewCell
+        
         cell.soundFile = playList!.byRow(indexPath.item)
+        
         return cell
     }
 
