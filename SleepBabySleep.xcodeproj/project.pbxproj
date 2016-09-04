@@ -31,6 +31,8 @@
 		D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */; };
 		D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */; };
 		D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DF11D3C01BC00198301 /* SoundFile.swift */; };
+		D4FB3A171D7CA1CF0050821B /* UIImage+averageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */; };
+		D4FB3A191D7CA33A0050821B /* UIColor+difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HeiaHeia.mp3; path = Audio/HeiaHeia.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Mhhhh.mp3; path = Audio/Mhhhh.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DF11D3C01BC00198301 /* SoundFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFile.swift; sourceTree = "<group>"; };
+		D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+averageColor.swift"; sourceTree = "<group>"; };
+		D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+difference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 				D49B58771D795FEB00744CF3 /* Playlist.xcassets */,
 				D4DD3DEA1D3BF77900198301 /* AudioFiles */,
 				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
+				D4FB3A151D7CA1B70050821B /* Extensions */,
 				D42FE74C1D79599E00D99866 /* Infrastructure */,
 				D49B58791D79BAE500744CF3 /* Layout */,
 				D42FE74B1D79596700D99866 /* Model */,
@@ -212,6 +217,15 @@
 				D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */,
 			);
 			name = AudioFiles;
+			sourceTree = "<group>";
+		};
+		D4FB3A151D7CA1B70050821B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */,
+				D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */,
+				D4FB3A171D7CA1CF0050821B /* UIImage+averageColor.swift in Sources */,
 				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
 				D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */,
 				D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */,
@@ -348,6 +363,7 @@
 				D49B58731D795D3800744CF3 /* PlaylistCollectionViewCell.swift in Sources */,
 				D4C280F11D71BE2C00356ED1 /* PlaybackDuration.swift in Sources */,
 				D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */,
+				D4FB3A191D7CA33A0050821B /* UIColor+difference.swift in Sources */,
 				D49B58761D795EBB00744CF3 /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

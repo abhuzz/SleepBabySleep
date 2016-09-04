@@ -11,6 +11,8 @@ import UIKit
 
 class PlaylistCollectionViewCell: UICollectionViewCell {
     
+    private var optimalTextColor = UIColor.blackColor()
+    
     @IBOutlet weak var playlistFile: UILabel!
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
@@ -30,6 +32,11 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             playlistFile.text = soundFile.URL.lastPathComponent ?? "n/a"
             playlistImage.image = soundFile.Image
             
+            if soundFile.Image.averageColor().getBrightnessDifference(UIColor.blackColor()) < 125 {
+                optimalTextColor = UIColor.whiteColor()
+            } else {
+                optimalTextColor = UIColor.blackColor()
+            }
         }
     }
     
@@ -59,6 +66,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func notSelected() {
         
-        playlistTitle.textColor = UIColor.lightGrayColor()
+        playlistTitle.textColor = optimalTextColor
     }
 }

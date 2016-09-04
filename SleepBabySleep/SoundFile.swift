@@ -54,7 +54,7 @@ struct RecordedAudioFile: SoundFile, Equatable{
     
     init(url: NSURL) {
         self.URL = url
-        self.Name = url.lastPathComponent ?? "n/a"
+        self.Name = "Recorded"
         self.image = randomImage()
     }
 
