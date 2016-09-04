@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     private var audioRecorder: AudioRecorder?
     private var recordedSoundFileDirectory: RecordedSoundFileDirectory?
     private var playList: SoundFilePlaylist?
+    private var lastSelectedItemIndexPath: NSIndexPath?
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -113,8 +114,6 @@ class ViewController: UIViewController {
         scrollToCellAndHightlightIt(indexPath)
     }
     
-    var lastSelectedItemIndexPath: NSIndexPath?
-    
     func scrollToCellAndHightlightIt(indexPath: NSIndexPath) {
         
         lastSelectedItemIndexPath = indexPath
@@ -170,7 +169,8 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PlaylistCollectionViewCell", forIndexPath: indexPath) as! PlaylistCollectionViewCell
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier("PlaylistCollectionViewCell", forIndexPath: indexPath) as! PlaylistCollectionViewCell
         
         cell.soundFile = playList!.byRow(indexPath.item)
         
