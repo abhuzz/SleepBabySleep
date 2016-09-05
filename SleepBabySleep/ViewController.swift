@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var playlistCollectionView: UICollectionView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     @IBOutlet weak var buttonPlayPause: UIButton!
+    @IBOutlet weak var soundFileName: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -282,7 +284,22 @@ extension ViewController: AudioRecorderDelegate {
     
     func recordingFinished() {
         
+        let dialog = UIAlertController(title: "SleepBabySleep", message: "Insert name", preferredStyle: UIAlertControllerStyle.Alert)
+   
+        dialog.addTextFieldWithConfigurationHandler(addTextField)
+        dialog.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        dialog.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nameEntered))
+        presentViewController(dialog, animated: true, completion: nil)
+        
         reload()
+    }
+    
+    func nameEntered(alert: UIAlertAction!){
+        NSLog("\(soundFileName.text)")
+    }
+    func addTextField(textField: UITextField!){
+        textField.placeholder = "Definition"
+        self.soundFileName = textField
     }
 }
 
