@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let session = AVAudioSession.sharedInstance()
         
         do {
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: [.AllowBluetooth])
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: [.DefaultToSpeaker, .AllowBluetooth])
             
             try session.setActive(true)
             
