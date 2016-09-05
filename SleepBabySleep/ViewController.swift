@@ -274,14 +274,22 @@ extension ViewController { // MPRemoteCommands
     
     func updateTrackInfoInRemoteCommandCenter() {
         
+        var albumArtWorkImage = UIImage()
+        
+        if backgroundAudioPlayer!.selectedSoundFile?.Image != nil {
+            albumArtWorkImage = backgroundAudioPlayer!.selectedSoundFile!.Image
+        }
+        
         let nowPlayingCenter = MPNowPlayingInfoCenter.defaultCenter()
         
         nowPlayingCenter.nowPlayingInfo =
             [MPMediaItemPropertyTitle: backgroundAudioPlayer!.selectedSoundFile!.Name,
              MPMediaItemPropertyAlbumTitle: "Baby sleep",
+             MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: albumArtWorkImage),
              MPMediaItemPropertyAlbumTrackCount: NSNumber(int: Int32(playList!.count)),
              MPMediaItemPropertyAlbumTrackNumber: NSNumber(int: Int32(playList!.number)),
              MPMediaItemPropertyPlaybackDuration: NSNumber(float: Float(backgroundAudioPlayer!.playbackDuration!.totalSeconds()))]
+        
     }
     
     func PlayPauseCommand() {
