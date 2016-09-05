@@ -158,6 +158,16 @@ class ViewController: UIViewController {
         
         return soundFiles
     }
+    
+    func reload() {
+        
+        playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
+        
+        playlistCollectionView.reloadData()
+        
+        backgroundAudioPlayer?.selectedSoundFile = playList?.first()
+        playlistCollectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Bottom)
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -199,7 +209,13 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func deleteSoundFile(soundFile: SoundFile) {
-        self.playlistCollectionView.reloadData()
+        
+        do {
+            try recordedSoundFileDirectory!.deleteFile(soundFile.URL)
+            self.reload()
+        } catch let exception as NSError {
+            showAlerDialog(exception.localizedDescription)
+        }
     }
 }
 
@@ -266,12 +282,7 @@ extension ViewController: AudioRecorderDelegate {
     
     func recordingFinished() {
         
-        playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
-        
-        playlistCollectionView.reloadData()
-        
-        backgroundAudioPlayer?.selectedSoundFile = playList?.first()
-        playlistCollectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Bottom)
+        reload()
     }
 }
 

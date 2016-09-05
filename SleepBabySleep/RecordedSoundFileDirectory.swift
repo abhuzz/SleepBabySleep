@@ -39,4 +39,10 @@ class RecordedSoundFileDirectory {
         
         return nil
     }
+    
+    func deleteFile(url: NSURL) throws {
+        try NSFileManager
+            .defaultManager()
+            .removeItemAtURL(url)
+    }
 }
