@@ -13,6 +13,7 @@ protocol SoundFile {
     var Name: String { get }
     var URL: NSURL { get }
     var Image: UIImage { get }
+    var Deletable: Bool { get }
 }
 
 
@@ -42,6 +43,10 @@ struct AssetSoundFile: SoundFile, Equatable {
     var Image: UIImage {
         get { return image }
     }
+    
+    var Deletable: Bool {
+        get { return false }
+    }
 }
 
 func ==(lhs: AssetSoundFile, rhs: AssetSoundFile) -> Bool {
@@ -64,6 +69,10 @@ struct RecordedAudioFile: SoundFile, Equatable{
     
     var Image: UIImage {
         get { return image }
+    }
+    
+    var Deletable: Bool {
+        get { return true }
     }
 }
 

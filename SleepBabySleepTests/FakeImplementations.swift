@@ -59,6 +59,7 @@ class FakeSoundFile: SoundFile, Equatable {
     var Name = String()
     var URL = NSURL()
     var Image = UIImage()
+    var Deletable = false
 }
 
 func ==(lhs: FakeSoundFile, rhs: FakeSoundFile) -> Bool {

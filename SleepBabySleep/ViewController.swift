@@ -188,6 +188,7 @@ extension ViewController: UICollectionViewDataSource {
         let cell = sender.view as! PlaylistCollectionViewCell
         
         guard let soundFile = cell.soundFile else { return }
+        guard soundFile.Deletable else { return }
         
         let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.Alert)
         
