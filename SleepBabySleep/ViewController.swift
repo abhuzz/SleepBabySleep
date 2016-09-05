@@ -174,9 +174,32 @@ extension ViewController: UICollectionViewDataSource {
         
         cell.soundFile = playList!.byRow(indexPath.item)
         
+        
+        let swipeDeleteGesture = UISwipeGestureRecognizer(target: self, action: #selector(collectionViewDeleteCell) )
+        swipeDeleteGesture.direction = UISwipeGestureRecognizerDirection.Right
+        cell.userInteractionEnabled = true
+        cell.addGestureRecognizer(swipeDeleteGesture)
+        
         return cell
     }
-
+    
+    func collectionViewDeleteCell(sender: UISwipeGestureRecognizer) {
+        
+        let cell = sender.view as! PlaylistCollectionViewCell
+        
+        guard let soundFile = cell.soundFile else { return }
+        
+        let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in  self.deleteSoundFile(soundFile) } ) )
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: {(alert: UIAlertAction!) in return } ) )
+        
+        presentViewController(dialog, animated: true, completion: nil)
+    }
+    
+    func deleteSoundFile(soundFile: SoundFile) {
+        self.playlistCollectionView.reloadData()
+    }
 }
 
 extension ViewController: UICollectionViewDelegate {
