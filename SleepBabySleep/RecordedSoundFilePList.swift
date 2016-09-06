@@ -12,14 +12,17 @@ class RecordedSoundFilesPList {
     
     private let fileManager = NSFileManager.defaultManager()
     private var format = NSPropertyListFormat.XMLFormat_v1_0
-    private let documentsDirectory =
-        NSFileManager.defaultManager()
-            .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-            .first!
+    private let documentsDirectory: NSURL
     private let pListUrl: NSURL
     
     
     init() {
+        
+        documentsDirectory =
+            NSFileManager.defaultManager()
+                .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+                .first!
+        
         pListUrl =
             documentsDirectory
                 .URLByAppendingPathComponent("RecordedSoundFiles.plist")
@@ -28,26 +31,22 @@ class RecordedSoundFilesPList {
     
     func recordedSoundFilesInPList() -> [SoundFile] {
         
-        var soundFilesInPList = [SoundFile]()
-        
-        guard let plistData = NSData(contentsOfURL: pListUrl) else { return soundFilesInPList }
+        guard let plistData = NSData(contentsOfURL: pListUrl) else { return [SoundFile]() }
         
         do {
             let items =
                 try NSPropertyListSerialization.propertyListWithData(plistData, options: .Immutable, format: &format) as! [AnyObject]
             
-            soundFilesInPList =
-                items.map { soundFile in
-                        return RecordedAudioFile(identifier: NSUUID(UUIDString: soundFile["Identifier"] as! String)!,
-                                                    name: soundFile["Name"] as! String,
-                                                    url: soundFileUrl(soundFile["URL"] as! String))
-                    }
+            return items.map { soundFile in
+                            return RecordedAudioFile(identifier: NSUUID(UUIDString: soundFile["Identifier"] as! String)!,
+                                                        name: soundFile["Name"] as! String,
+                                                        url: soundFileUrl(soundFile["URL"] as! String))
+                        }
             
         } catch let error as NSError {
             NSLog("Error loading recordedSoundFilePList file: \(error.localizedDescription)")
+            return [SoundFile]()
         }
-        
-        return soundFilesInPList
     }
     
     func saveRecordedSoundFileToPlist(identifier: NSUUID, name: String, URL: NSURL) {
@@ -55,7 +54,10 @@ class RecordedSoundFilesPList {
         do {
             var soundFilesDictionaries = try existingRecordDictionaries()
             
-            soundFilesDictionaries.append(["Identifier": identifier.UUIDString, "Name": name, "URL": URL.lastPathComponent!])
+            soundFilesDictionaries.append(
+                ["Identifier": identifier.UUIDString,
+                    "Name": name,
+                    "URL": URL.lastPathComponent!])
             
             let serializedData =
                 try NSPropertyListSerialization.dataWithPropertyList(soundFilesDictionaries, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
@@ -66,6 +68,7 @@ class RecordedSoundFilesPList {
             NSLog("Error saving recordedSoundFilePList file: \(error.localizedDescription)")
         }
     }
+    
     
     private func existingRecordDictionaries() throws -> [[String: String]] {
         
