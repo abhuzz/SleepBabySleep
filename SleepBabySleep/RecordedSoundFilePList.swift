@@ -11,7 +11,7 @@ import Foundation
 class RecordedSoundFilesPList {
     
     private let fileManager = NSFileManager.defaultManager()
-
+    private var format = NSPropertyListFormat.XMLFormat_v1_0
     private let pListUrl =
         NSFileManager.defaultManager()
             .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -22,8 +22,6 @@ class RecordedSoundFilesPList {
     func recordedSoundFilesInPList() -> [SoundFile] {
         
         var soundFilesInPList = [SoundFile]()
-        
-        var format = NSPropertyListFormat.XMLFormat_v1_0
         
         guard let plistData = NSData(contentsOfURL: pListUrl) else { return soundFilesInPList }
         
@@ -45,21 +43,10 @@ class RecordedSoundFilesPList {
     
     func saveRecordedSoundFileToPlist(name: String, URL: NSURL) {
         
-        var format = NSPropertyListFormat.XMLFormat_v1_0
-        
         do {
-            var soundFilesDictionaries = [[String: NSObject]]()
+            var soundFilesDictionaries = try existingRecordDictionaries()
             
-            if let plistData = NSData(contentsOfURL: pListUrl) {
-             
-                let exitingEntries =
-                    try NSPropertyListSerialization.propertyListWithData(plistData, options: .Immutable, format: &format)
-                
-                soundFilesDictionaries.append(exitingEntries as! [String: String])
-            }
-                
             soundFilesDictionaries.append(["Name": name, "URL": URL.absoluteString])
-            
             
             let serializedData =
                 try NSPropertyListSerialization.dataWithPropertyList(soundFilesDictionaries, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
@@ -71,7 +58,18 @@ class RecordedSoundFilesPList {
         }
     }
     
-    private func pListFileExists() -> Bool {
-        return fileManager.fileExistsAtPath(pListUrl.absoluteString)
+    private func existingRecordDictionaries() throws -> [[String: String]] {
+        
+        var soundFilesDictionaries = [[String: String]]()
+        
+        if let plistData = NSData(contentsOfURL: pListUrl) {
+            
+            let exitingEntries =
+                try NSPropertyListSerialization.propertyListWithData(plistData, options: .Immutable, format: &format)
+            
+            soundFilesDictionaries.append(exitingEntries as! [String: String])
+        }
+     
+        return soundFilesDictionaries
     }
 }
