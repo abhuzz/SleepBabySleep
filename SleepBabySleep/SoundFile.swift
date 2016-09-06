@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol SoundFile {
+    var Identifier: NSUUID { get }
     var Name: String { get }
     var URL: NSURL { get }
     var Image: UIImage { get }
@@ -25,12 +26,14 @@ struct AssetSoundFile: SoundFile, Equatable {
     private var image: UIImage
     
     init(Name: String, File: String, Extension:String) {
+        self.Identifier = NSUUID()
         self.Name = Name
         self.fileName = File
         self.fileExtension = Extension
         self.image = randomImage()
     }
     
+    private(set) var Identifier: NSUUID
     private(set) var Name: String
     
     var URL: NSURL {
@@ -62,18 +65,14 @@ func ==(lhs: AssetSoundFile, rhs: AssetSoundFile) -> Bool {
 
 struct RecordedAudioFile: SoundFile, Equatable{
     
-    init(url: NSURL) {
-        self.URL = url
-        self.Name = "Recorded"
-        self.image = randomImage()
-    }
-    
-    init(name: String, url: NSURL) {
+    init(identifier: NSUUID, name: String, url: NSURL) {
+        self.Identifier = identifier
         self.URL = url
         self.Name = name
         self.image = randomImage()
     }
 
+    private(set) var Identifier: NSUUID
     private(set) var Name: String
     private(set) var URL: NSURL
     private var image: UIImage

@@ -290,7 +290,7 @@ extension ViewController: AudioRecorderDelegate {
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
-        RecordedSoundFilesPList().saveRecordedSoundFileToPlist(soundFileName.text!, URL: recordingURL)
+        RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
     }
     
     func addTextField(textField: UITextField!){

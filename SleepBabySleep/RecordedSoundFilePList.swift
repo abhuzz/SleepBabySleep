@@ -31,8 +31,15 @@ class RecordedSoundFilesPList {
             
             soundFilesInPList =
                 items.map { soundFile in
-                    return RecordedAudioFile(name: soundFile["Name"]!! as! String, url: NSURL(fileURLWithPath: soundFile["URL"]!! as! String))
-            }
+                    let lastPathComponent = soundFile["URL"]!! as! String
+                    
+                    let fileUrl =
+                        RecordedSoundFileDirectory(pathExtensionForRecordings: "caf").documentsDirectoryUrl.URLByAppendingPathComponent(lastPathComponent)
+                    
+                    return RecordedAudioFile(identifier: NSUUID(UUIDString: soundFile["Identifier"]!! as! String)!,
+                                                name: soundFile["Name"]!! as! String,
+                                                url: fileUrl)
+                    }
             
         } catch let error as NSError {
             NSLog("Error loading recordedSoundFilePList file: \(error.localizedDescription)")
@@ -41,12 +48,12 @@ class RecordedSoundFilesPList {
         return soundFilesInPList
     }
     
-    func saveRecordedSoundFileToPlist(name: String, URL: NSURL) {
+    func saveRecordedSoundFileToPlist(identifier: NSUUID, name: String, URL: NSURL) {
         
         do {
             var soundFilesDictionaries = try existingRecordDictionaries()
             
-            soundFilesDictionaries.append(["Name": name, "URL": URL.absoluteString])
+            soundFilesDictionaries.append(["Identifier": identifier.UUIDString, "Name": name, "URL": URL.lastPathComponent!])
             
             let serializedData =
                 try NSPropertyListSerialization.dataWithPropertyList(soundFilesDictionaries, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
@@ -67,7 +74,7 @@ class RecordedSoundFilesPList {
             let exitingEntries =
                 try NSPropertyListSerialization.propertyListWithData(plistData, options: .Immutable, format: &format)
             
-            soundFilesDictionaries.append(exitingEntries as! [String: String])
+            soundFilesDictionaries.appendContentsOf(exitingEntries as! [[String: String]])
         }
      
         return soundFilesDictionaries

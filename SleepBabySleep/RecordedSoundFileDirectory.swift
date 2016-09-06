@@ -23,23 +23,6 @@ class RecordedSoundFileDirectory {
                 .first!
     }
     
-    
-    func files() -> [NSURL]? {
-        
-        do {
-            return
-                try NSFileManager
-                    .defaultManager()
-                    .contentsOfDirectoryAtURL(documentsDirectoryUrl, includingPropertiesForKeys: nil, options: [])
-                    .filter{ $0.pathExtension == pathExtensionForRecordings }
-            
-        } catch let exception as NSError {
-            NSLog(exception.localizedDescription)
-        }
-        
-        return nil
-    }
-    
     func deleteFile(url: NSURL) throws {
         try NSFileManager
             .defaultManager()
