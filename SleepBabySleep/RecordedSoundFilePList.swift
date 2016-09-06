@@ -12,11 +12,18 @@ class RecordedSoundFilesPList {
     
     private let fileManager = NSFileManager.defaultManager()
     private var format = NSPropertyListFormat.XMLFormat_v1_0
-    private let pListUrl =
+    private let documentsDirectory =
         NSFileManager.defaultManager()
             .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
             .first!
-            .URLByAppendingPathComponent("RecordedSoundFiles.plist")
+    private let pListUrl: NSURL
+    
+    
+    init() {
+        pListUrl =
+            documentsDirectory
+                .URLByAppendingPathComponent("RecordedSoundFiles.plist")
+    }
     
     
     func recordedSoundFilesInPList() -> [SoundFile] {
@@ -31,14 +38,9 @@ class RecordedSoundFilesPList {
             
             soundFilesInPList =
                 items.map { soundFile in
-                    let lastPathComponent = soundFile["URL"]!! as! String
-                    
-                    let fileUrl =
-                        RecordedSoundFileDirectory(pathExtensionForRecordings: "caf").documentsDirectoryUrl.URLByAppendingPathComponent(lastPathComponent)
-                    
-                    return RecordedAudioFile(identifier: NSUUID(UUIDString: soundFile["Identifier"]!! as! String)!,
-                                                name: soundFile["Name"]!! as! String,
-                                                url: fileUrl)
+                        return RecordedAudioFile(identifier: NSUUID(UUIDString: soundFile["Identifier"] as! String)!,
+                                                    name: soundFile["Name"] as! String,
+                                                    url: soundFileUrl(soundFile["URL"] as! String))
                     }
             
         } catch let error as NSError {
@@ -78,5 +80,10 @@ class RecordedSoundFilesPList {
         }
      
         return soundFilesDictionaries
+    }
+    
+    private func soundFileUrl(fileName: String) -> NSURL {
+     
+        return documentsDirectory.URLByAppendingPathComponent(fileName)
     }
 }
