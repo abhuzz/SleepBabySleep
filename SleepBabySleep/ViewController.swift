@@ -204,8 +204,9 @@ extension ViewController: UICollectionViewDataSource {
     func deleteSoundFile(soundFile: SoundFile) {
         
         do {
+            try RecordedSoundFilesPList().deleteRecordedSoundFile(soundFile.Identifier)
             try recordedSoundFileDirectory!.deleteFile(soundFile.URL)
-            self.reload()
+            reload()
         } catch let exception as NSError {
             showAlerDialog(exception.localizedDescription)
         }

@@ -69,6 +69,23 @@ class RecordedSoundFilesPList {
         }
     }
     
+    func deleteRecordedSoundFile(identifier: NSUUID) throws {
+        
+        var soundFileDictionariesWithoutDeleted = [[String: String]]()
+        let soundFilesDictionaries = try existingRecordDictionaries()
+            
+        soundFilesDictionaries.forEach{ soundFileDictionary in
+            if soundFileDictionary["Identifier"] != identifier.UUIDString {
+                soundFileDictionariesWithoutDeleted.append(soundFileDictionary)
+            }
+        }
+            
+        let serializedData =
+            try NSPropertyListSerialization.dataWithPropertyList(soundFileDictionariesWithoutDeleted, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
+            
+        serializedData.writeToURL(pListUrl, atomically: true)
+    }
+    
     
     private func existingRecordDictionaries() throws -> [[String: String]] {
         
