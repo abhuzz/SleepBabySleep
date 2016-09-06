@@ -56,6 +56,7 @@ class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate
 }
 
 class FakeSoundFile: SoundFile, Equatable {
+    var Identifier = NSUUID()
     var Name = String()
     var URL = NSURL()
     var Image = UIImage()

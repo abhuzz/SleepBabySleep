@@ -281,16 +281,15 @@ extension ViewController: AudioRecorderDelegate {
         dialog.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         dialog.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nameEntered))
         presentViewController(dialog, animated: true, completion: nil)
-        
-        reload()
     }
     
     func nameEntered(alert: UIAlertAction!){
-        NSLog("\(soundFileName.text)")
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
         RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
+        
+        reload()
     }
     
     func addTextField(textField: UITextField!){
