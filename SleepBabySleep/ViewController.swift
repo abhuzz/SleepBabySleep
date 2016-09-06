@@ -138,11 +138,7 @@ class ViewController: UIViewController {
         
         var soundFiles = [SoundFile]()
         
-        let assetSoundFiles =
-                [AssetSoundFile(Name: "Shhhhh", File: "Shhhh", Extension: "mp3"),
-                 AssetSoundFile(Name: "Mhhhhh", File: "Mhhhh", Extension: "mp3"),
-                 AssetSoundFile(Name: "Heia-Heia-Heia", File: "HeiaHeia", Extension: "mp3"),
-                 AssetSoundFile(Name: "Vacuum cleaner", File: "VacuumCleaner", Extension: "mp3")]
+        let assetSoundFiles = AssetSoundFilePList().assetSoundFilesInPList()
         
         soundFiles.appendContentsOf(
             assetSoundFiles.map { assetSoundFile in

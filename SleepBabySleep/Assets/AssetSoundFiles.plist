@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Extension</key>
+		<string>mp3</string>
+		<key>File</key>
+		<string>Shhhh</string>
+		<key>Name</key>
+		<string>Shhhh</string>
+	</dict>
+	<dict>
+		<key>Extension</key>
+		<string>mp3</string>
+		<key>File</key>
+		<string>HeiaHeia</string>
+		<key>Name</key>
+		<string>Heia Heia</string>
+	</dict>
+	<dict>
+		<key>Extension</key>
+		<string>mp3</string>
+		<key>File</key>
+		<string>VacuumCleaner</string>
+		<key>Name</key>
+		<string>Vacuum cleaner</string>
+	</dict>
+	<dict>
+		<key>Extension</key>
+		<string>mp3</string>
+		<key>File</key>
+		<string>Mhhhh</string>
+		<key>Name</key>
+		<string>Mhhhh</string>
+	</dict>
+</array>
+</plist>
