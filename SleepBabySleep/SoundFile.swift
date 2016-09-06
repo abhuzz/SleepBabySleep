@@ -14,7 +14,6 @@ protocol SoundFile {
     var Name: String { get }
     var URL: NSURL { get }
     var Image: UIImage { get }
-    var Recorded: Bool { get }
     var Deletable: Bool { get }
 }
 
@@ -48,10 +47,6 @@ struct AssetSoundFile: SoundFile, Equatable {
         get { return image }
     }
     
-    var Recorded: Bool {
-        get { return false }
-    }
-    
     var Deletable: Bool {
         get { return false }
     }
@@ -79,10 +74,6 @@ struct RecordedAudioFile: SoundFile, Equatable{
     
     var Image: UIImage {
         get { return image }
-    }
-    
-    var Recorded: Bool {
-        get { return true }
     }
     
     var Deletable: Bool {
