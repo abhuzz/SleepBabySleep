@@ -85,6 +85,7 @@ class ViewController: UIViewController {
         backgroundAudioPlayer!.playbackDuration = selectedPlaybackDuration
     }
     
+    private var lastRecordedFileURL: NSURL?
     @IBAction func recordTouchDown(sender: AnyObject) {
         
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
@@ -100,7 +101,8 @@ class ViewController: UIViewController {
         
         let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
         let recordingFile = recordedSoundFileDirectory?.documentsDirectoryUrl.URLByAppendingPathComponent(newFileName)
-
+        lastRecordedFileURL = recordingFile
+        
         audioRecorder?.start(recordingFile!)
     }
     
@@ -145,14 +147,7 @@ class ViewController: UIViewController {
                 assetSoundFile as SoundFile
             })
         
-        if let recordedSounds = recordedSoundFileDirectory!.files() {
-            let recordedSoundFiles =
-                recordedSounds.map { url in
-                    RecordedAudioFile(url: url) as SoundFile
-                }
-            
-            soundFiles.appendContentsOf(recordedSoundFiles)
-        }
+        soundFiles.appendContentsOf(RecordedSoundFilesPList().recordedSoundFilesInPList())
         
         return soundFiles
     }
@@ -292,7 +287,12 @@ extension ViewController: AudioRecorderDelegate {
     
     func nameEntered(alert: UIAlertAction!){
         NSLog("\(soundFileName.text)")
+        
+        guard let recordingURL = lastRecordedFileURL else { return }
+        
+        RecordedSoundFilesPList().saveRecordedSoundFileToPlist(soundFileName.text!, URL: recordingURL)
     }
+    
     func addTextField(textField: UITextField!){
         textField.placeholder = "Definition"
         self.soundFileName = textField

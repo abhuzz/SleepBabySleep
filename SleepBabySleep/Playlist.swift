@@ -80,7 +80,6 @@ class SoundFilePlaylist {
         return soundFile
     }
     
-    
     func byRow(row: Int) -> SoundFile? {
         
         guard ( row >= 0 && row < soundFiles.count ) else { return nil }
