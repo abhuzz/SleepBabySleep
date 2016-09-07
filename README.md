@@ -1,5 +1,6 @@
 # SleepBabySleep
-iOS App, plays sounds to help baby's fall asleep
+iOS & Swift side/learning project
+Playous sounds for a given duration until the baby sleeps. Can also record own sounds for repeated playback.
 
 **ToDo**
 - [ ] Recording dialog
