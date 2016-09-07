@@ -12,12 +12,14 @@ import MediaPlayer
 class ViewController: UIViewController {
     
     private let recordingFileExtension = "caf"
+    private let cellIdentifier = "PlaylistCollectionViewCell"
     
     private var backgroundAudioPlayer: BackgroundAudioPlayer?
     private var audioRecorder: AudioRecorder?
     private var recordedSoundFileDirectory: RecordedSoundFileDirectory?
     private var playList: SoundFilePlaylist?
     private var lastSelectedItemIndexPath: NSIndexPath?
+    private var lastRecordedFileURL: NSURL?
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -58,7 +60,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        updateSoundFilePickerSelectionFromPlaylist()
+        updateSoundFileSelectionFromPlaylist()
     }
     
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
@@ -85,7 +87,6 @@ class ViewController: UIViewController {
         backgroundAudioPlayer!.playbackDuration = selectedPlaybackDuration
     }
     
-    private var lastRecordedFileURL: NSURL?
     @IBAction func recordTouchDown(sender: AnyObject) {
         
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
@@ -111,11 +112,9 @@ class ViewController: UIViewController {
     }
     
     
-    func updateSoundFilePickerSelectionFromPlaylist() {
+    func updateSoundFileSelectionFromPlaylist() {
         
-        let indexPath = NSIndexPath(forRow: playList!.index, inSection: 0)
-        
-        scrollToCellAndHightlightIt(indexPath)
+        scrollToCellAndHightlightIt(NSIndexPath(forRow: playList!.index, inSection: 0))
     }
     
     func scrollToCellAndHightlightIt(indexPath: NSIndexPath) {
@@ -140,13 +139,7 @@ class ViewController: UIViewController {
         
         var soundFiles = [SoundFile]()
         
-        let assetSoundFiles = AssetSoundFilePList().assetSoundFilesInPList()
-        
-        soundFiles.appendContentsOf(
-            assetSoundFiles.map { assetSoundFile in
-                assetSoundFile as SoundFile
-            })
-        
+        soundFiles.appendContentsOf(AssetSoundFilePList().assetSoundFilesInPList())
         soundFiles.appendContentsOf(RecordedSoundFilesPList().recordedSoundFilesInPList())
         
         return soundFiles
@@ -172,11 +165,9 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell =
-            collectionView.dequeueReusableCellWithReuseIdentifier("PlaylistCollectionViewCell", forIndexPath: indexPath) as! PlaylistCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! PlaylistCollectionViewCell
         
         cell.soundFile = playList!.byRow(indexPath.item)
-        
         
         let swipeDeleteGesture = UISwipeGestureRecognizer(target: self, action: #selector(collectionViewDeleteCell) )
         swipeDeleteGesture.direction = UISwipeGestureRecognizerDirection.Right
@@ -264,7 +255,7 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         case .Playing:
             updateTrackInfoInRemoteCommandCenter()
             buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
-            updateSoundFilePickerSelectionFromPlaylist()
+            updateSoundFileSelectionFromPlaylist()
             
         case .Paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
