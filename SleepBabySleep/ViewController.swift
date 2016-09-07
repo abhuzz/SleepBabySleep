@@ -139,8 +139,12 @@ class ViewController: UIViewController {
         
         var soundFiles = [SoundFile]()
         
-        soundFiles.appendContentsOf(AssetSoundFilePList().assetSoundFilesInPList())
-        soundFiles.appendContentsOf(RecordedSoundFilesPList().recordedSoundFilesInPList())
+        do {
+            try soundFiles.appendContentsOf(AssetSoundFilePList().assetSoundFilesInPList())
+            try soundFiles.appendContentsOf(RecordedSoundFilesPList().recordedSoundFilesInPList())
+        } catch let error as NSError {
+            showAlerDialog(error.localizedDescription)
+        }
         
         return soundFiles
     }
@@ -279,7 +283,11 @@ extension ViewController: AudioRecorderDelegate {
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
-        RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
+        do {
+            try RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
+        } catch let error as NSError {
+            showAlerDialog(error.localizedDescription)
+        }
         
         reload()
     }

@@ -13,7 +13,7 @@ class AssetSoundFilePList {
     private let fileManager = NSFileManager.defaultManager()
     private let plistUrl = NSBundle.mainBundle().URLForResource("AssetSoundFiles", withExtension: "plist")
     
-    func assetSoundFilesInPList() -> [SoundFile] {
+    func assetSoundFilesInPList() throws -> [SoundFile] {
         
         var soundFilesInPList = [SoundFile]()
         
@@ -31,6 +31,7 @@ class AssetSoundFilePList {
             
         } catch let error as NSError {
             NSLog("Error loading staticAssetsPList file: \(error.localizedDescription)")
+            throw error
         }
         
         return soundFilesInPList

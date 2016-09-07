@@ -29,7 +29,7 @@ class RecordedSoundFilesPList {
     }
     
     
-    func recordedSoundFilesInPList() -> [SoundFile] {
+    func recordedSoundFilesInPList() throws -> [SoundFile] {
         
         guard let plistData = NSData(contentsOfURL: pListUrl) else { return [SoundFile]() }
         
@@ -45,11 +45,11 @@ class RecordedSoundFilesPList {
             
         } catch let error as NSError {
             NSLog("Error loading recordedSoundFilePList file: \(error.localizedDescription)")
-            return [SoundFile]()
+            throw error
         }
     }
     
-    func saveRecordedSoundFileToPlist(identifier: NSUUID, name: String, URL: NSURL) {
+    func saveRecordedSoundFileToPlist(identifier: NSUUID, name: String, URL: NSURL) throws {
         
         do {
             var soundFilesDictionaries = try existingRecordDictionaries()
@@ -66,24 +66,31 @@ class RecordedSoundFilesPList {
             
         } catch let error as NSError {
             NSLog("Error saving recordedSoundFilePList file: \(error.localizedDescription)")
+            throw error
         }
     }
     
     func deleteRecordedSoundFile(identifier: NSUUID) throws {
         
-        var soundFileDictionariesWithoutDeleted = [[String: String]]()
-        let soundFilesDictionaries = try existingRecordDictionaries()
+        do {
             
-        soundFilesDictionaries.forEach{ soundFileDictionary in
-            if soundFileDictionary["Identifier"] != identifier.UUIDString {
-                soundFileDictionariesWithoutDeleted.append(soundFileDictionary)
+            var soundFileDictionariesWithoutDeleted = [[String: String]]()
+            let soundFilesDictionaries = try existingRecordDictionaries()
+            
+            soundFilesDictionaries.forEach{ soundFileDictionary in
+                if soundFileDictionary["Identifier"] != identifier.UUIDString {
+                    soundFileDictionariesWithoutDeleted.append(soundFileDictionary)
+                }
             }
+            
+            let serializedData =
+                try NSPropertyListSerialization.dataWithPropertyList(soundFileDictionariesWithoutDeleted, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
+            
+            serializedData.writeToURL(pListUrl, atomically: true)
+        } catch let error as NSError {
+            NSLog("Error deleting a line / save recordedSoundFilePList file: \(error.localizedDescription)")
+            throw error
         }
-            
-        let serializedData =
-            try NSPropertyListSerialization.dataWithPropertyList(soundFileDictionariesWithoutDeleted, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
-            
-        serializedData.writeToURL(pListUrl, atomically: true)
     }
     
     
