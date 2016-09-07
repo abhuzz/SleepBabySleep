@@ -168,6 +168,24 @@
             </objects>
             <point key="canvasLocation" x="340" y="292"/>
         </scene>
+        <!--Recording Viewcontroller-->
+        <scene sceneID="PDY-Ai-jAh">
+            <objects>
+                <viewController id="zJy-Gj-pGc" customClass="RecordingViewcontroller" customModule="SleepBabySleep" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VUe-G5-hlT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sys-3n-2GG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vqx-Uj-ZmS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C51-cb-cCw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="287"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Microphone" width="50" height="50"/>
