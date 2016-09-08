@@ -15,6 +15,7 @@ class RecordingViewcontroller: UIViewController {
             NSFileManager.defaultManager()
                 .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
                 .first!
+    private let temporaryDirectory = NSURL.fileURLWithPath(NSTemporaryDirectory())
     
     private var audioRecorder: AudioRecorder?
     private var lastRecordedFileURL: NSURL?
@@ -27,7 +28,6 @@ class RecordingViewcontroller: UIViewController {
         
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
-        
     }
     
     
@@ -35,35 +35,56 @@ class RecordingViewcontroller: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func actionNavigationSave(sender: AnyObject) {
+        
+        do {
+            
+            try saveRecording()
+            
+            dismissViewControllerAnimated(true, completion: nil)
+        
+        } catch let error as NSError {
+            showAlertDialog(error.localizedDescription)
+        }
+    }
     
     @IBAction func recordingTouchDown(sender: AnyObject) {
+        
         buttonRecording.setImage(UIImage(named: "Record_Active"), forState: .Normal)
         
         let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
-        let recordingFile = documentsDirectoryUrl.URLByAppendingPathComponent(newFileName)
-        lastRecordedFileURL = recordingFile
+        
+        lastRecordedFileURL = temporaryDirectory.URLByAppendingPathComponent(newFileName)
          
-        audioRecorder?.start(recordingFile)
+        audioRecorder?.start(lastRecordedFileURL!)
     }
 
     @IBAction func recordingTouchUp(sender: AnyObject) {
+        
         buttonRecording.setImage(UIImage(named: "Record_Idle"), forState: .Normal)
         
         audioRecorder?.stop()
     }
     
+    func saveRecording() throws {
+        
+        guard let recordingURL = lastRecordedFileURL else { return }
+        
+        let targetURL =
+            documentsDirectoryUrl.URLByAppendingPathComponent(recordingURL.lastPathComponent!)
+        
+        try NSFileManager.defaultManager()
+            .moveItemAtURL(recordingURL, toURL: targetURL)
+            
+        try RecordedSoundFilesPList()
+            .saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
+    }
 }
 
 extension RecordingViewcontroller: AudioRecorderDelegate {
     
     func recordingFinished() {
         
-        guard let recordingURL = lastRecordedFileURL else { return }
         
-        do {
-            try RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
-        } catch let error as NSError {
-            showAlertDialog(error.localizedDescription)
-        }
     }
 }

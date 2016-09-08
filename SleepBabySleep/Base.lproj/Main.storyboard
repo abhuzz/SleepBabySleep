@@ -237,6 +237,11 @@
                                 <action selector="actionNavigationCancelled:" destination="zJy-Gj-pGc" id="L06-sz-VgV"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kMR-Wy-7gy">
+                            <connections>
+                                <action selector="actionNavigationSave:" destination="zJy-Gj-pGc" id="bnM-ko-IKM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonRecording" destination="sfG-lO-My3" id="mb2-qt-tAS"/>
