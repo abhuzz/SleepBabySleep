@@ -89,23 +89,7 @@ class ViewController: UIViewController {
     
     @IBAction func recordTouchDown(sender: AnyObject) {
         
-        /*let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-        
-        guard appDelegate.microphoneAvailable else {
-            showAlerDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
-            return
-        }
-        
-        if backgroundAudioPlayer!.playState == .Playing {
-            backgroundAudioPlayer!.togglePlayState()
-        }
-        
-        let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
-        let recordingFile = recordedSoundFileDirectory?.documentsDirectoryUrl.URLByAppendingPathComponent(newFileName)
-        lastRecordedFileURL = recordingFile
-        
-        audioRecorder?.start(recordingFile!)*/
-    }
+            }
     
     @IBAction func recordTouchUp(sender: AnyObject) {
         //audioRecorder?.stop()
@@ -126,15 +110,6 @@ class ViewController: UIViewController {
         updateSelectedCellHighlighting()
     }
     
-    func showAlerDialog(alertMessage: String ) {
-        
-        let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in return } ) )
-        
-        presentViewController(dialog, animated: false, completion: nil)
-    }
-    
     func availableSoundFiles() -> [SoundFile] {
         
         var soundFiles = [SoundFile]()
@@ -143,7 +118,7 @@ class ViewController: UIViewController {
             try soundFiles.appendContentsOf(AssetSoundFilePList().assetSoundFilesInPList())
             try soundFiles.appendContentsOf(RecordedSoundFilesPList().recordedSoundFilesInPList())
         } catch let error as NSError {
-            showAlerDialog(error.localizedDescription)
+            showAlertDialog(error.localizedDescription)
         }
         
         return soundFiles
@@ -203,7 +178,7 @@ extension ViewController: UICollectionViewDataSource {
             try recordedSoundFileDirectory!.deleteFile(soundFile.URL)
             reload()
         } catch let exception as NSError {
-            showAlerDialog(exception.localizedDescription)
+            showAlertDialog(exception.localizedDescription)
         }
     }
 }
@@ -286,7 +261,7 @@ extension ViewController: AudioRecorderDelegate {
         do {
             try RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
         } catch let error as NSError {
-            showAlerDialog(error.localizedDescription)
+            showAlertDialog(error.localizedDescription)
         }
         
         reload()
