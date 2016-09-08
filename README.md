@@ -4,7 +4,7 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 
 **ToDo**
 - [ ] Recording dialog
-	- [ ] Open dialog and add recording button with the same behaviour than currently in the main view. Push and hold to record. 
+	- [X] Open dialog and add recording button with the same behaviour than currently in the main view. Push and hold to record. 
 	- [ ] Record into temporary file 
 	- [X] Add navigationController (hidden in the main view) 
 	- [ ] Delete temporary recording when user hits back 
