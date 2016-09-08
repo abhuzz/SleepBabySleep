@@ -36,12 +36,14 @@ class RecordingViewcontroller: UIViewController {
         
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     
     @IBAction func actionNavigationCancelled(sender: AnyObject) {
-          
-        navigationController?.popViewControllerAnimated(true)
+        
+        navigateToMainView()
     }
     
     @IBAction func actionNavigationSave(sender: AnyObject) {
@@ -54,7 +56,7 @@ class RecordingViewcontroller: UIViewController {
                 delegate.recordingAdded()
             }
             
-            navigationController?.popViewControllerAnimated(true)
+            navigateToMainView()
         
         } catch let error as NSError {
             showAlertDialog(error.localizedDescription)
@@ -91,6 +93,13 @@ class RecordingViewcontroller: UIViewController {
             
         try RecordedSoundFilesPList()
             .saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
+    }
+    
+    func navigateToMainView() {
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+     
+        navigationController?.popViewControllerAnimated(true)
     }
 }
 
