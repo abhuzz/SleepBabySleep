@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, SegueHandlerType {
     
     private let recordingFileExtension = "caf"
     private let cellIdentifier = "PlaylistCollectionViewCell"
@@ -30,6 +30,9 @@ class ViewController: UIViewController {
          5 : PlaybackDurationMinutes(durationInMinutes: 120),
          6 : PlaybackDurationInifinite()]
     
+    enum SegueIdentifier: String {
+        case ShowSegueToRecordView
+    }
     
     @IBOutlet weak var playlistCollectionView: UICollectionView!
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
@@ -87,12 +90,20 @@ class ViewController: UIViewController {
         backgroundAudioPlayer!.playbackDuration = selectedPlaybackDuration
     }
     
-    @IBAction func recordTouchDown(sender: AnyObject) {
-        
-            }
-    
     @IBAction func recordTouchUp(sender: AnyObject) {
-        //audioRecorder?.stop()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        
+        guard appDelegate.microphoneAvailable else {
+            showAlertDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
+            return
+        }
+        
+        if backgroundAudioPlayer!.playState == .Playing {
+            backgroundAudioPlayer!.togglePlayState()
+        }
+        
+        performSegueWithIdentifier(.ShowSegueToRecordView, sender: self)
     }
     
     

@@ -139,9 +139,7 @@
                                                         <rect key="frame" x="450" y="0.0" width="150" height="50"/>
                                                         <state key="normal" image="Microphone"/>
                                                         <connections>
-                                                            <action selector="recordTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="8jq-t5-KSe"/>
                                                             <action selector="recordTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qej-qo-yQf"/>
-                                                            <segue destination="05r-Y6-Cp1" kind="show" id="nnq-Oy-ams"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -163,6 +161,7 @@
                         <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
                         <outlet property="playbackDurationSegements" destination="qc4-81-rOs" id="QwP-bV-Z9a"/>
                         <outlet property="playlistCollectionView" destination="2nk-sy-KnJ" id="fUH-cq-buo"/>
+                        <segue destination="05r-Y6-Cp1" kind="show" identifier="ShowSegueToRecordView" id="UUH-ca-Vec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
