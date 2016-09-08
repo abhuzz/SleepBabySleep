@@ -89,7 +89,7 @@ class ViewController: UIViewController {
     
     @IBAction func recordTouchDown(sender: AnyObject) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        /*let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
         
         guard appDelegate.microphoneAvailable else {
             showAlerDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
@@ -104,11 +104,11 @@ class ViewController: UIViewController {
         let recordingFile = recordedSoundFileDirectory?.documentsDirectoryUrl.URLByAppendingPathComponent(newFileName)
         lastRecordedFileURL = recordingFile
         
-        audioRecorder?.start(recordingFile!)
+        audioRecorder?.start(recordingFile!)*/
     }
     
     @IBAction func recordTouchUp(sender: AnyObject) {
-        audioRecorder?.stop()
+        //audioRecorder?.stop()
     }
     
     

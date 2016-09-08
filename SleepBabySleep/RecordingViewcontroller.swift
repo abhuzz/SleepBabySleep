@@ -10,4 +10,7 @@ import UIKit
 
 class RecordingViewcontroller: UIViewController {
     
+    @IBAction func actionNavigationCancelled(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
