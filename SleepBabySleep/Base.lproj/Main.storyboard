@@ -180,7 +180,44 @@
                     <view key="view" contentMode="scaleToFill" id="vqx-Uj-ZmS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="R6F-tF-SSM">
+                                <rect key="frame" x="20" y="84" width="560" height="496"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25B-Du-QIr">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p4z-TZ-YZD">
+                                        <rect key="frame" x="0.0" y="50" width="560" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af2-mV-7G0">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <state key="normal" image="Play"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ril-KY-GIj">
+                                                <rect key="frame" x="70" y="0.0" width="490" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfG-lO-My3">
+                                        <rect key="frame" x="0.0" y="120" width="560" height="376"/>
+                                        <state key="normal" image="Record_Idle"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="R6F-tF-SSM" secondAttribute="trailing" constant="20" id="NWn-bc-4O6"/>
+                            <constraint firstItem="R6F-tF-SSM" firstAttribute="leading" secondItem="vqx-Uj-ZmS" secondAttribute="leading" constant="20" id="QGJ-wu-7cr"/>
+                            <constraint firstItem="Sys-3n-2GG" firstAttribute="top" secondItem="R6F-tF-SSM" secondAttribute="bottom" constant="20" id="T9c-3n-DK2"/>
+                            <constraint firstItem="R6F-tF-SSM" firstAttribute="top" secondItem="VUe-G5-hlT" secondAttribute="bottom" constant="20" id="fAX-hu-rFv"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2ko-bH-Ajp">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ayF-Cs-HAZ">
@@ -218,5 +255,6 @@
         <image name="Next" width="50" height="50"/>
         <image name="Play" width="50" height="50"/>
         <image name="Previous" width="50" height="50"/>
+        <image name="Record_Idle" width="100" height="100"/>
     </resources>
 </document>
