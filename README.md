@@ -6,7 +6,7 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 - [ ] Recording dialog
 	- [ ] Open dialog and add recording button with the same behaviour than currently in the main view. Push and hold to record. 
 	- [ ] Record into temporary file 
-	- [ ] Add navigationController (hidden in the main view) 
+	- [X] Add navigationController (hidden in the main view) 
 	- [ ] Delete temporary recording when user hits back 
 	- [ ] When user selects add, move file to the documents directory and store the assignment with the name in the plist file. 
 	- [ ] Show recording duration 
