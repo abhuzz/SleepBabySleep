@@ -11,15 +11,11 @@ import MediaPlayer
 
 class ViewController: UIViewController, SegueHandlerType {
     
-    private let recordingFileExtension = "caf"
     private let cellIdentifier = "PlaylistCollectionViewCell"
     
     private var backgroundAudioPlayer: BackgroundAudioPlayer?
-    private var audioRecorder: AudioRecorder?
-    private var recordedSoundFileDirectory: RecordedSoundFileDirectory?
     private var playList: SoundFilePlaylist?
     private var lastSelectedItemIndexPath: NSIndexPath?
-    private var lastRecordedFileURL: NSURL?
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -43,13 +39,8 @@ class ViewController: UIViewController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recordedSoundFileDirectory = RecordedSoundFileDirectory(pathExtensionForRecordings: recordingFileExtension)
-        
         playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
     
-        audioRecorder = AudioRecorder()
-        audioRecorder?.delegate = self
-        
         backgroundAudioPlayer = TimedBackgroundAudioPlayer(audioPlayer: AVAudioPlayerFacade(), timer: SystemTimer())
         backgroundAudioPlayer!.stateDelegate = self
         backgroundAudioPlayer!.selectedSoundFile = playList!.first()
@@ -186,7 +177,7 @@ extension ViewController: UICollectionViewDataSource {
         
         do {
             try RecordedSoundFilesPList().deleteRecordedSoundFile(soundFile.Identifier)
-            try recordedSoundFileDirectory!.deleteFile(soundFile.URL)
+            try NSFileManager.defaultManager().removeItemAtURL(soundFile.URL)
             reload()
         } catch let exception as NSError {
             showAlertDialog(exception.localizedDescription)
@@ -250,37 +241,6 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         case .Paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
         }
-    }
-}
-
-extension ViewController: AudioRecorderDelegate {
-    
-    func recordingFinished() {
-        
-        let dialog = UIAlertController(title: "SleepBabySleep", message: "Insert name", preferredStyle: UIAlertControllerStyle.Alert)
-   
-        dialog.addTextFieldWithConfigurationHandler(addTextField)
-        dialog.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        dialog.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nameEntered))
-        presentViewController(dialog, animated: true, completion: nil)
-    }
-    
-    func nameEntered(alert: UIAlertAction!){
-        
-        guard let recordingURL = lastRecordedFileURL else { return }
-        
-        do {
-            try RecordedSoundFilesPList().saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
-        } catch let error as NSError {
-            showAlertDialog(error.localizedDescription)
-        }
-        
-        reload()
-    }
-    
-    func addTextField(textField: UITextField!){
-        textField.placeholder = "Definition"
-        self.soundFileName = textField
     }
 }
 
