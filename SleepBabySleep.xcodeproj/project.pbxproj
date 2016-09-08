@@ -19,7 +19,7 @@
 		D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */; };
 		D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE61D72D60100A907D1 /* Playlist.swift */; };
 		D430BAE91D72D86500A907D1 /* SoundFilePlaylistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */; };
-		D46A38D51D81BC7E000205A5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D46A38D41D81BC7E000205A5 /* README.md */; };
+		D46A38D51D81BC7E000205A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D46A38D41D81BC7E000205A5 /* README.md */; };
 		D49B58731D795D3800744CF3 /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B58721D795D3800744CF3 /* PlaylistCollectionViewCell.swift */; };
 		D49B58761D795EBB00744CF3 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B58751D795EBB00744CF3 /* Math.swift */; };
 		D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49B58771D795FEB00744CF3 /* Playlist.xcassets */; };
@@ -354,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46A38D51D81BC7E000205A5 /* README.md in Resources */,
 				D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */,
 				D4DD3DE31D3BF43F00198301 /* LaunchScreen.storyboard in Resources */,
 				D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */,
@@ -387,7 +388,6 @@
 				D4DD3DDB1D3BF43F00198301 /* ViewController.swift in Sources */,
 				D4FB3A171D7CA1CF0050821B /* UIImage+averageColor.swift in Sources */,
 				D423BDA41D7E7255006BD88E /* AssetSoundFilePList.swift in Sources */,
-				D46A38D51D81BC7E000205A5 /* README.md in Sources */,
 				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
 				D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */,
 				D423BDA81D7ED338006BD88E /* RecordedSoundFilePList.swift in Sources */,

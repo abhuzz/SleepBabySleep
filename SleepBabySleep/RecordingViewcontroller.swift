@@ -25,7 +25,7 @@ class RecordingViewcontroller: UIViewController {
     private var audioRecorder: AudioRecorder?
     private var lastRecordedFileURL: NSURL?
     
-    public var recordingDelegate: RecordingDelegate?
+    internal var recordingDelegate: RecordingDelegate?
     
     
     @IBOutlet weak var buttonRecording: UIButton!
