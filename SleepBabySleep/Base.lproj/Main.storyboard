@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="11D-sC-lo9">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -31,7 +31,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaylistCollectionViewCell" id="Fs6-4R-a4n" userLabel="playlistCollectionViewCell" customClass="PlaylistCollectionViewCell" customModule="SleepBabySleep" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="197" height="220"/>
+                                                <rect key="frame" x="0.0" y="64" width="197" height="220"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="197" height="220"/>
@@ -157,16 +157,17 @@
                             <constraint firstAttribute="trailing" secondItem="H45-Fh-J1n" secondAttribute="trailing" id="vug-3d-vDE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Z7y-15-bnY"/>
                     <connections>
                         <outlet property="buttonPlayPause" destination="tCD-db-LV0" id="ajd-ln-q0A"/>
                         <outlet property="playbackDurationSegements" destination="qc4-81-rOs" id="QwP-bV-Z9a"/>
                         <outlet property="playlistCollectionView" destination="2nk-sy-KnJ" id="fUH-cq-buo"/>
-                        <segue destination="05r-Y6-Cp1" kind="show" identifier="ShowSegueToRecordView" id="UUH-ca-Vec"/>
+                        <segue destination="zJy-Gj-pGc" kind="show" identifier="ShowSegueToRecordView" id="bQ3-rV-RcZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="340" y="292"/>
+            <point key="canvasLocation" x="1152" y="292"/>
         </scene>
         <!--Recording Viewcontroller-->
         <scene sceneID="PDY-Ai-jAh">
@@ -250,25 +251,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C51-cb-cCw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1859" y="287"/>
+            <point key="canvasLocation" x="1895" y="292"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="w4H-ay-lhj">
+        <scene sceneID="UE7-HJ-Xg9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="05r-Y6-Cp1" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="11D-sC-lo9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mOI-IE-hAH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ckh-Ec-64Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zJy-Gj-pGc" kind="relationship" relationship="rootViewController" id="fAW-Dd-hMY"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rEG-vS-rOM"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SqY-YR-chv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21G-Rf-hv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="287"/>
+            <point key="canvasLocation" x="340" y="292"/>
         </scene>
     </scenes>
     <resources>

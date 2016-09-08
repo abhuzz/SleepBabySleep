@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol RecordingDelegate {
+    
+    func recordingAdded()
+}
+
 class RecordingViewcontroller: UIViewController {
     
     private let recordingFileExtension = "caf"
@@ -19,6 +24,9 @@ class RecordingViewcontroller: UIViewController {
     
     private var audioRecorder: AudioRecorder?
     private var lastRecordedFileURL: NSURL?
+    
+    public var recordingDelegate: RecordingDelegate?
+    
     
     @IBOutlet weak var buttonRecording: UIButton!
     @IBOutlet weak var soundFileName: UITextField!
@@ -32,7 +40,8 @@ class RecordingViewcontroller: UIViewController {
     
     
     @IBAction func actionNavigationCancelled(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+          
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func actionNavigationSave(sender: AnyObject) {
@@ -41,7 +50,11 @@ class RecordingViewcontroller: UIViewController {
             
             try saveRecording()
             
-            dismissViewControllerAnimated(true, completion: nil)
+            if let delegate = self.recordingDelegate {
+                delegate.recordingAdded()
+            }
+            
+            navigationController?.popViewControllerAnimated(true)
         
         } catch let error as NSError {
             showAlertDialog(error.localizedDescription)

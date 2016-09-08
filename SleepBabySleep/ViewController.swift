@@ -57,6 +57,13 @@ class ViewController: UIViewController, SegueHandlerType {
         updateSoundFileSelectionFromPlaylist()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let viewControllerRecording = segue.destinationViewController as? RecordingViewcontroller {
+            viewControllerRecording.recordingDelegate = self
+        }
+    }
+    
     @IBAction func actionTappedPlayPause(sender: AnyObject) {
         
         backgroundAudioPlayer!.togglePlayState()
@@ -241,6 +248,13 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
         case .Paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
         }
+    }
+}
+
+extension ViewController: RecordingDelegate {
+    
+    func recordingAdded() {
+        reload()
     }
 }
 
