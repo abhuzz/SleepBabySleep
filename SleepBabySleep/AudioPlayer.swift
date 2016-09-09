@@ -21,7 +21,7 @@ protocol AudioPlayerStateDelegate {
     func playbackStopped()
 }
 
-class AVAudioPlayerFacade: AudioPlayer {
+class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegate :-( {
     
     private var player: AVAudioPlayer?
     private var numberOfLoops: Int
@@ -30,8 +30,9 @@ class AVAudioPlayerFacade: AudioPlayer {
     
     internal init(numberOfLoops: Int) {
         
-        
         self.numberOfLoops = numberOfLoops
+        
+        super.init()
         
         let nc = NSNotificationCenter.defaultCenter()
         let session = AVAudioSession.sharedInstance()
@@ -40,7 +41,7 @@ class AVAudioPlayerFacade: AudioPlayer {
         nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived(_:)), name: AVAudioSessionRouteChangeNotification, object: session)
     }
     
-    convenience init() {
+    override convenience init() {
         self.init(numberOfLoops: -1)
     }
     
@@ -51,6 +52,7 @@ class AVAudioPlayerFacade: AudioPlayer {
             
             guard let player = player else { return }
             
+            player.delegate = self
             player.numberOfLoops = numberOfLoops
             player.prepareToPlay()
             player.play()
@@ -70,6 +72,13 @@ class AVAudioPlayerFacade: AudioPlayer {
         delegate.playbackStopped()
     }
     
+    private func triggerDelegatePlaybackStopped() {
+        
+        if let delegate = self.stateDelegate {
+            delegate.playbackCancelled()
+        }
+    }
+    
     @objc private func notificationAudioSessionInterruptedReceived(notification: NSNotification) {
      
         NSLog("notificationAudioSessionInterruptedReceived")
@@ -81,10 +90,7 @@ class AVAudioPlayerFacade: AudioPlayer {
             if type == .Began {
                 
                 stop()
-                
-                if let delegate = self.stateDelegate {
-                    delegate.playbackCancelled()
-                }
+                triggerDelegatePlaybackStopped()
             }
         }
     }
@@ -106,11 +112,18 @@ class AVAudioPlayerFacade: AudioPlayer {
             if previousOutput.portType == AVAudioSessionPortHeadphones {
                 
                 stop()
-                
-                if let delegate = self.stateDelegate {
-                    delegate.playbackCancelled()
-                }
+                triggerDelegatePlaybackStopped()
             }
         }
+    }
+}
+
+extension AVAudioPlayerFacade: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        
+        NSLog("AudioPlayer finished playing -> \(flag)")
+        
+        triggerDelegatePlaybackStopped()
     }
 }

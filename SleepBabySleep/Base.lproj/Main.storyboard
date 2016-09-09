@@ -195,6 +195,10 @@
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af2-mV-7G0">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                 <state key="normal" image="Play"/>
+                                                <connections>
+                                                    <action selector="actionPreviewTapped:" destination="zJy-Gj-pGc" eventType="touchUpInside" id="GiO-UQ-VU2"/>
+                                                    <action selector="recordingTouchUp:" destination="zJy-Gj-pGc" eventType="touchUpInside" id="yBi-nf-0Eh"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -245,6 +249,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonPreview" destination="af2-mV-7G0" id="PYJ-X0-Vts"/>
                         <outlet property="buttonRecording" destination="sfG-lO-My3" id="mb2-qt-tAS"/>
                         <outlet property="soundFileName" destination="25B-Du-QIr" id="1T6-Ol-VMx"/>
                     </connections>

@@ -48,7 +48,7 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
         
         NSLog("stop()")
         
-        audioRecorder!.stop()
+        audioRecorder?.stop()
     }
 }
 

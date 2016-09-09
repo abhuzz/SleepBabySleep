@@ -25,10 +25,12 @@ class RecordingViewcontroller: UIViewController {
     private var audioRecorder: AudioRecorder?
     private var audioPlayer: AudioPlayer?
     private var lastRecordedFileURL: NSURL?
+    private var playingPreview = false
     
     internal var recordingDelegate: RecordingDelegate?
     
     
+    @IBOutlet weak var buttonPreview: UIButton!
     @IBOutlet weak var buttonRecording: UIButton!
     @IBOutlet weak var soundFileName: UITextField!
     
@@ -38,7 +40,7 @@ class RecordingViewcontroller: UIViewController {
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
         
-        audioPlayer = AVAudioPlayerFacade(numberOfLoops: 1)
+        audioPlayer = AVAudioPlayerFacade(numberOfLoops: 0)
         audioPlayer?.stateDelegate = self
         
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -69,6 +71,15 @@ class RecordingViewcontroller: UIViewController {
         }
     }
     
+    @IBAction func actionPreviewTapped(sender: AnyObject) {
+        
+        if playingPreview {
+            stopPlayingPreview()
+        } else {
+            startPlayingPreview()
+        }
+    }
+    
     @IBAction func recordingTouchDown(sender: AnyObject) {
         
         buttonRecording.setImage(UIImage(named: "Record_Active"), forState: .Normal)
@@ -86,6 +97,27 @@ class RecordingViewcontroller: UIViewController {
         buttonRecording.setImage(UIImage(named: "Record_Idle"), forState: .Normal)
         
         audioRecorder?.stop()
+    }
+    
+    private func startPlayingPreview() {
+        
+        guard let previewSoundFile = lastRecordedFileURL else { return }
+        
+        playingPreview = true
+        buttonPreview.setImage(UIImage(named: "Stop"), forState: .Normal)
+        
+        audioPlayer?.play(previewSoundFile)
+    }
+    
+    private func stopPlayingPreview() {
+        
+        audioPlayer?.stop()
+    }
+    
+    private func playPreviewStopped() {
+        
+        playingPreview = false
+        buttonPreview.setImage(UIImage(named: "Play"), forState: .Normal)
     }
     
     private func saveRecording() throws {
@@ -129,7 +161,7 @@ extension RecordingViewcontroller: AudioRecorderDelegate {
     
     func recordingFinished() {
         
-        // Enable previe
+        // Enable preview
     }
 }
 
@@ -137,9 +169,11 @@ extension RecordingViewcontroller: AudioPlayerStateDelegate {
 
     func playbackCancelled() {
         
+        playPreviewStopped()
     }
     
     func playbackStopped() {
         
+        playPreviewStopped()
     }
 }
