@@ -17,7 +17,7 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 	- [ ] AVAudioSessionCategoryPlayback 
 	 -[ ] AVAudioSessionCategoryPlayAndRecord 
 	- [ ] Options: ?AllowBluetooth, MixInWithOthers - https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionBasics/AudioSessionBasics.html
-- [ ] Record into temporary file, preview recorded audio - re-record or approve recording 
+- [ ] Handle AVAudioInterruptions while recording
 - [ ] Delete: RecordedSoundFileDirectory? 
 - [ ] Selected tracks by previous & next controls when not playing 
 - [ ] Delete Recording swipe animation 
