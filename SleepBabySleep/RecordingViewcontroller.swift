@@ -43,6 +43,8 @@ class RecordingViewcontroller: UIViewController {
     
     @IBAction func actionNavigationCancelled(sender: AnyObject) {
         
+        deleteTemporaryRecordingFile()
+        
         navigateToMainView()
     }
     
@@ -67,8 +69,9 @@ class RecordingViewcontroller: UIViewController {
         
         buttonRecording.setImage(UIImage(named: "Record_Active"), forState: .Normal)
         
-        let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
+        deleteTemporaryRecordingFile()
         
+        let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
         lastRecordedFileURL = temporaryDirectory.URLByAppendingPathComponent(newFileName)
          
         audioRecorder?.start(lastRecordedFileURL!)
@@ -81,7 +84,7 @@ class RecordingViewcontroller: UIViewController {
         audioRecorder?.stop()
     }
     
-    func saveRecording() throws {
+    private func saveRecording() throws {
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
@@ -95,7 +98,22 @@ class RecordingViewcontroller: UIViewController {
             .saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
     }
     
-    func navigateToMainView() {
+    private func deleteTemporaryRecordingFile() {
+        
+        guard let fileUrl = lastRecordedFileURL else { return }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(fileUrl)
+                NSLog("Deleted temporary file: \(fileUrl.lastPathComponent!)")
+            } catch let error as NSError {
+                NSLog("Failed to delete a temorary recording: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func navigateToMainView() {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
      
