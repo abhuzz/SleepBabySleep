@@ -46,6 +46,13 @@ class RecordingViewcontroller: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        if lastRecordedFileURL == nil {
+            buttonPreview.enabled = false
+        }
+    }
+    
     
     @IBAction func actionNavigationCancelled(sender: AnyObject) {
         
@@ -161,7 +168,9 @@ extension RecordingViewcontroller: AudioRecorderDelegate {
     
     func recordingFinished() {
         
-        // Enable preview
+        guard lastRecordedFileURL != nil else { return }
+        
+        buttonPreview.enabled = true
     }
 }
 
