@@ -16,7 +16,6 @@
 		D423BDAF1D81B26E006BD88E /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDAE1D81B26E006BD88E /* SegueHandlerType.swift */; };
 		D42FE7451D76075500D99866 /* VacuumCleaner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */; };
 		D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE7461D77223F00D99866 /* AudioRecorder.swift */; };
-		D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */; };
 		D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE61D72D60100A907D1 /* Playlist.swift */; };
 		D430BAE91D72D86500A907D1 /* SoundFilePlaylistTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */; };
 		D46A38D51D81BC7E000205A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D46A38D41D81BC7E000205A5 /* README.md */; };
@@ -63,7 +62,6 @@
 		D423BDAE1D81B26E006BD88E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VacuumCleaner.mp3; sourceTree = "<group>"; };
 		D42FE7461D77223F00D99866 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
-		D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedSoundFileDirectory.swift; sourceTree = "<group>"; };
 		D430BAE61D72D60100A907D1 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFilePlaylistTest.swift; sourceTree = "<group>"; };
 		D46A38D41D81BC7E000205A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 				D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */,
 				D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */,
 				D430BAE61D72D60100A907D1 /* Playlist.swift */,
-				D42FE7481D775BCA00D99866 /* RecordedSoundFileDirectory.swift */,
 				D4DD3DF11D3C01BC00198301 /* SoundFile.swift */,
 			);
 			name = Model;
@@ -391,7 +388,6 @@
 				D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */,
 				D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */,
 				D423BDA81D7ED338006BD88E /* RecordedSoundFilePList.swift in Sources */,
-				D42FE7491D775BCA00D99866 /* RecordedSoundFileDirectory.swift in Sources */,
 				D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
 				D423BDAC1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift in Sources */,
