@@ -18,20 +18,30 @@ protocol AudioPlayer {
 
 protocol AudioPlayerStateDelegate {
     func playbackCancelled()
+    func playbackStopped()
 }
 
 class AVAudioPlayerFacade: AudioPlayer {
     
     private var player: AVAudioPlayer?
+    private var numberOfLoops: Int
+    
     var stateDelegate: AudioPlayerStateDelegate?
     
-    init() {
+    internal init(numberOfLoops: Int) {
+        
+        
+        self.numberOfLoops = numberOfLoops
         
         let nc = NSNotificationCenter.defaultCenter()
         let session = AVAudioSession.sharedInstance()
         
         nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived(_:)), name: AVAudioSessionInterruptionNotification, object: session)
         nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived(_:)), name: AVAudioSessionRouteChangeNotification, object: session)
+    }
+    
+    convenience init() {
+        self.init(numberOfLoops: -1)
     }
     
     func play(withUrl: NSURL) {
@@ -41,7 +51,7 @@ class AVAudioPlayerFacade: AudioPlayer {
             
             guard let player = player else { return }
             
-            player.numberOfLoops = -1
+            player.numberOfLoops = numberOfLoops
             player.prepareToPlay()
             player.play()
         } catch let error as NSError {
@@ -54,6 +64,10 @@ class AVAudioPlayerFacade: AudioPlayer {
         guard let player = self.player else { return }
         
         player.pause()
+        
+        guard let delegate = self.stateDelegate else { return }
+        
+        delegate.playbackStopped()
     }
     
     @objc private func notificationAudioSessionInterruptedReceived(notification: NSNotification) {

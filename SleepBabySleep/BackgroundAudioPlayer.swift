@@ -128,4 +128,6 @@ extension TimedBackgroundAudioPlayer: AudioPlayerStateDelegate {
         
         stopPlayingSound()
     }
+    
+    func playbackStopped() { }
 }

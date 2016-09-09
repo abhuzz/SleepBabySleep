@@ -23,6 +23,7 @@ class RecordingViewcontroller: UIViewController {
     private let temporaryDirectory = NSURL.fileURLWithPath(NSTemporaryDirectory())
     
     private var audioRecorder: AudioRecorder?
+    private var audioPlayer: AudioPlayer?
     private var lastRecordedFileURL: NSURL?
     
     internal var recordingDelegate: RecordingDelegate?
@@ -36,6 +37,9 @@ class RecordingViewcontroller: UIViewController {
         
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
+        
+        audioPlayer = AVAudioPlayerFacade(numberOfLoops: 1)
+        audioPlayer?.stateDelegate = self
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -125,6 +129,17 @@ extension RecordingViewcontroller: AudioRecorderDelegate {
     
     func recordingFinished() {
         
+        // Enable previe
+    }
+}
+
+extension RecordingViewcontroller: AudioPlayerStateDelegate {
+
+    func playbackCancelled() {
+        
+    }
+    
+    func playbackStopped() {
         
     }
 }
