@@ -3,6 +3,8 @@ iOS & Swift side/learning project
 Playous sounds for a given duration until the baby sleeps. Can also record own sounds for repeated playback.
 
 **ToDo**
+- [ ] Crash when quickly hitting the record button - probaply caused by unlocked / unsafe updateLoop
+- [ ] Handle AVAudioInterruptions while recording
 - [X] Recording dialog
 	- [X] Open dialog and add recording button with the same behaviour than currently in the main view. Push and hold to record. 
 	- [X] Record into temporary file 
@@ -16,8 +18,7 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 	- [X] AVAudioSessionCategoryPlayback 
 	 -[X] AVAudioSessionCategoryPlayAndRecord 
 	- [X] Options: ?AllowBluetooth, MixInWithOthers - https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionBasics/AudioSessionBasics.html
-- [ ] Handle AVAudioInterruptions while recording
-- [ ] Delete: RecordedSoundFileDirectory? 
+- [X] Delete: RecordedSoundFileDirectory? 
 - [ ] Selected tracks by previous & next controls when not playing 
 - [ ] Delete Recording swipe animation 
 - [ ] iPhone plus / iPad UiCollectionView Problem 
