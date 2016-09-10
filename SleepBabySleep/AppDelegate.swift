@@ -13,30 +13,9 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var microphoneAvailable = false
     
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        let session = AVAudioSession.sharedInstance()
-        
-        do {
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: [.DefaultToSpeaker, .AllowBluetooth])
-            
-            try session.setActive(true)
-            
-            session.requestRecordPermission({(granted: Bool)-> Void in
-                if granted {
-                    self.microphoneAvailable = true
-                } else{
-                    self.microphoneAvailable = false
-                }
-            })
-            
-        } catch let error as NSError {
-            NSLog("AVAudioSession configuration error: \(error.localizedDescription)")
-        }
         
         return true
     }

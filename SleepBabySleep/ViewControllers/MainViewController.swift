@@ -93,13 +93,6 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     @IBAction func recordTouchUp(sender: AnyObject) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-        
-        guard appDelegate.microphoneAvailable else {
-            showAlertDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
-            return
-        }
-        
         if backgroundAudioPlayer!.playState == .Playing {
             backgroundAudioPlayer!.togglePlayState()
         }
