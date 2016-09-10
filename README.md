@@ -12,7 +12,7 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 	- [ ] Show recording duration 
 	- [X] Change recording button while it is recording 
 	- [ ] After first recording change icon to retry. When recording again delete old file and use a new. 
-	- [ ] Add preview, to listen to the recorded audio before user hits add 
+	- [X] Add preview, to listen to the recorded audio before user hits add 
 - [ ] Change AVAudioSession for recording
 	- [ ] AVAudioSessionCategoryPlayback 
 	 -[ ] AVAudioSessionCategoryPlayAndRecord 
