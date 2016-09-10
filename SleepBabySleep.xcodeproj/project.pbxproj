@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */; };
 		D423BDA41D7E7255006BD88E /* AssetSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */; };
-		D423BDA61D7ED23A006BD88E /* RecordedSoundFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = D423BDA51D7ED23A006BD88E /* RecordedSoundFiles.plist */; };
 		D423BDA81D7ED338006BD88E /* RecordedSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */; };
 		D423BDAA1D807B4F006BD88E /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA91D807B4F006BD88E /* RecordingViewController.swift */; };
 		D423BDAC1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDAB1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AssetSoundFiles.plist; path = Assets/AssetSoundFiles.plist; sourceTree = "<group>"; };
 		D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSoundFilePList.swift; sourceTree = "<group>"; };
-		D423BDA51D7ED23A006BD88E /* RecordedSoundFiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RecordedSoundFiles.plist; path = Assets/RecordedSoundFiles.plist; sourceTree = "<group>"; };
 		D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedSoundFilePList.swift; sourceTree = "<group>"; };
 		D423BDA91D807B4F006BD88E /* RecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		D423BDAB1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlertDialog.swift"; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */,
 				D49B58771D795FEB00744CF3 /* Playlist.xcassets */,
 				D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */,
-				D423BDA51D7ED23A006BD88E /* RecordedSoundFiles.plist */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -360,7 +357,6 @@
 				D42FE7451D76075500D99866 /* VacuumCleaner.mp3 in Resources */,
 				D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */,
 				D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */,
-				D423BDA61D7ED23A006BD88E /* RecordedSoundFiles.plist in Resources */,
 				D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
