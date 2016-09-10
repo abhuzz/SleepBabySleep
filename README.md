@@ -11,7 +11,6 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 	- [X] When user selects add, move file to the documents directory and store the assignment with the name in the plist file. 
 	- [ ] Show recording duration 
 	- [X] Change recording button while it is recording 
-	- [ ] After first recording change icon to retry. When recording again delete old file and use a new. 
 	- [X] Add preview, to listen to the recorded audio before user hits add 
 - [ ] Change AVAudioSession for recording
 	- [ ] AVAudioSessionCategoryPlayback 
