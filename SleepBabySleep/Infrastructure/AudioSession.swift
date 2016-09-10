@@ -26,6 +26,8 @@ class AVAudioSessionFacade: AudioSession {
      
         try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
         try session.setActive(true)
+        
+        NSLog("AVAudioSessionFacade.openForPlayback()")
     }
     
     func openForRecording() throws {
@@ -37,10 +39,13 @@ class AVAudioSessionFacade: AudioSession {
             self.microphoneAvailable = granted
         })
 
+        NSLog("AVAudioSessionFacade.openForRecording() - MicrophoneAccessGranted: \(microphoneAvailable)")
     }
     
     func close() throws {
         
         try session.setActive(false)
+        
+        NSLog("AVAudioSessionFacade.close()")
     }
 }
