@@ -99,8 +99,14 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     
     private func stopPlayingSound() {
         
-        audioPlayer.stop()
         timer.stop()
+        audioPlayer.stop()
+        
+        do {
+            try audioSession.close()
+        } catch let error as NSError {
+            NSLog("Failed closing audioSession: \(error.localizedDescription)")
+        }
         
         changePlayState(.Paused)
     }
