@@ -26,6 +26,9 @@ class RecordingViewcontroller: UIViewController {
     private var audioPlayer: AudioPlayer?
     private var lastRecordedFileURL: NSURL?
     private var playingPreview = false
+    private var soundTimer: CFTimeInterval = 0.0
+    private var updateTimer: CADisplayLink!
+    
     
     internal var recordingDelegate: RecordingDelegate?
     
@@ -34,6 +37,7 @@ class RecordingViewcontroller: UIViewController {
     @IBOutlet weak var buttonPreview: UIButton!
     @IBOutlet weak var buttonRecording: UIButton!
     @IBOutlet weak var soundFileName: UITextField!
+    @IBOutlet weak var durationLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -106,6 +110,7 @@ class RecordingViewcontroller: UIViewController {
         lastRecordedFileURL = temporaryDirectory.URLByAppendingPathComponent(newFileName)
          
         audioRecorder?.start(lastRecordedFileURL!)
+        startUpdateLoop()
     }
 
     @IBAction func recordingTouchUp(sender: AnyObject) {
@@ -180,11 +185,42 @@ class RecordingViewcontroller: UIViewController {
      
         navigationController?.popViewControllerAnimated(true)
     }
+    
+    func startUpdateLoop() {
+        if updateTimer != nil {
+            updateTimer.invalidate()
+        }
+        updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewcontroller.updateLoop))
+        updateTimer.frameInterval = 1
+        updateTimer.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+    }
+    
+    func stopUpdateLoop() {
+        updateTimer.invalidate()
+        updateTimer = nil
+    }
+    
+    func updateLoop() {
+        if CFAbsoluteTimeGetCurrent() - soundTimer > 0.5 {
+            durationLabel.text = formattedCurrentTime(UInt(audioRecorder!.currentTime))
+            soundTimer = CFAbsoluteTimeGetCurrent()
+        }
+    }
+    
+    func formattedCurrentTime(time: UInt) -> String {
+        let hours = time / 3600
+        let minutes = (time / 60) % 60
+        let seconds = time % 60
+        
+        return String(format: "%02i:%02i:%02i", arguments: [hours, minutes, seconds])
+    }
 }
 
 extension RecordingViewcontroller: AudioRecorderDelegate {
     
     func recordingFinished() {
+        
+        stopUpdateLoop()
         
         guard lastRecordedFileURL != nil else { return }
         

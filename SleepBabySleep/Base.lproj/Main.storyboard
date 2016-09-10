@@ -262,6 +262,7 @@
                         <outlet property="buttonPreview" destination="af2-mV-7G0" id="PYJ-X0-Vts"/>
                         <outlet property="buttonRecording" destination="sfG-lO-My3" id="mb2-qt-tAS"/>
                         <outlet property="buttonSave" destination="kMR-Wy-7gy" id="bfK-Mn-EQG"/>
+                        <outlet property="durationLabel" destination="PHa-IV-vxK" id="tJQ-QS-6i5"/>
                         <outlet property="soundFileName" destination="25B-Du-QIr" id="1T6-Ol-VMx"/>
                     </connections>
                 </viewController>

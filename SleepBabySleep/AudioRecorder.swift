@@ -27,6 +27,13 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
     
     var delegate: AudioRecorderDelegate?
     
+    var currentTime: UInt {
+        get {
+            guard let audioRecorder = audioRecorder else { return 0 }
+            
+            return UInt(audioRecorder.currentTime)
+        }
+    }
     
     func start(intoURL: NSURL) {
         
