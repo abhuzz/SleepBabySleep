@@ -61,7 +61,7 @@ class ViewController: UIViewController, SegueHandlerType {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let viewControllerRecording = segue.destinationViewController as? RecordingViewcontroller {
+        if let viewControllerRecording = segue.destinationViewController as? RecordingViewController {
             viewControllerRecording.recordingDelegate = self
         }
     }

@@ -169,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="1152" y="292"/>
         </scene>
-        <!--Recording Viewcontroller-->
+        <!--Recording View Controller-->
         <scene sceneID="PDY-Ai-jAh">
             <objects>
-                <viewController id="zJy-Gj-pGc" customClass="RecordingViewcontroller" customModule="SleepBabySleep" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zJy-Gj-pGc" customClass="RecordingViewController" customModule="SleepBabySleep" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VUe-G5-hlT"/>
                         <viewControllerLayoutGuide type="bottom" id="Sys-3n-2GG"/>

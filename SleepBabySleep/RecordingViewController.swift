@@ -13,7 +13,7 @@ protocol RecordingDelegate {
     func recordingAdded()
 }
 
-class RecordingViewcontroller: UIViewController {
+class RecordingViewController: UIViewController {
     
     private let recordingFileExtension = "caf"
     private let documentsDirectoryUrl =
@@ -189,7 +189,7 @@ class RecordingViewcontroller: UIViewController {
             updateTimer.invalidate()
         }
         
-        updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewcontroller.updateLoop))
+        updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewController.updateLoop))
         updateTimer.frameInterval = 1
         updateTimer.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
@@ -218,7 +218,7 @@ class RecordingViewcontroller: UIViewController {
     }
 }
 
-extension RecordingViewcontroller: AudioRecorderDelegate {
+extension RecordingViewController: AudioRecorderDelegate {
     
     func recordingFinished() {
         
@@ -232,7 +232,7 @@ extension RecordingViewcontroller: AudioRecorderDelegate {
     }
 }
 
-extension RecordingViewcontroller: AudioPlayerStateDelegate {
+extension RecordingViewController: AudioPlayerStateDelegate {
 
     func playbackCancelled() {
         

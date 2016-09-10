@@ -11,7 +11,7 @@
 		D423BDA41D7E7255006BD88E /* AssetSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */; };
 		D423BDA61D7ED23A006BD88E /* RecordedSoundFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = D423BDA51D7ED23A006BD88E /* RecordedSoundFiles.plist */; };
 		D423BDA81D7ED338006BD88E /* RecordedSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */; };
-		D423BDAA1D807B4F006BD88E /* RecordingViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA91D807B4F006BD88E /* RecordingViewcontroller.swift */; };
+		D423BDAA1D807B4F006BD88E /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA91D807B4F006BD88E /* RecordingViewController.swift */; };
 		D423BDAC1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDAB1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift */; };
 		D423BDAF1D81B26E006BD88E /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDAE1D81B26E006BD88E /* SegueHandlerType.swift */; };
 		D42FE7451D76075500D99866 /* VacuumCleaner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */; };
@@ -57,7 +57,7 @@
 		D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSoundFilePList.swift; sourceTree = "<group>"; };
 		D423BDA51D7ED23A006BD88E /* RecordedSoundFiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RecordedSoundFiles.plist; path = Assets/RecordedSoundFiles.plist; sourceTree = "<group>"; };
 		D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedSoundFilePList.swift; sourceTree = "<group>"; };
-		D423BDA91D807B4F006BD88E /* RecordingViewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingViewcontroller.swift; sourceTree = "<group>"; };
+		D423BDA91D807B4F006BD88E /* RecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		D423BDAB1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAlertDialog.swift"; sourceTree = "<group>"; };
 		D423BDAE1D81B26E006BD88E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VacuumCleaner.mp3; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				D4DD3DDA1D3BF43F00198301 /* ViewController.swift */,
-				D423BDA91D807B4F006BD88E /* RecordingViewcontroller.swift */,
+				D423BDA91D807B4F006BD88E /* RecordingViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 				D4C280F11D71BE2C00356ED1 /* PlaybackDuration.swift in Sources */,
 				D4DD3DD91D3BF43F00198301 /* AppDelegate.swift in Sources */,
 				D4FB3A191D7CA33A0050821B /* UIColor+difference.swift in Sources */,
-				D423BDAA1D807B4F006BD88E /* RecordingViewcontroller.swift in Sources */,
+				D423BDAA1D807B4F006BD88E /* RecordingViewController.swift in Sources */,
 				D423BDAF1D81B26E006BD88E /* SegueHandlerType.swift in Sources */,
 				D49B58761D795EBB00744CF3 /* Math.swift in Sources */,
 			);
