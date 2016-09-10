@@ -29,8 +29,7 @@ class RecordingViewcontroller: UIViewController {
     private var soundTimer: CFTimeInterval = 0.0
     private var updateTimer: CADisplayLink!
     
-    
-    internal var recordingDelegate: RecordingDelegate?
+    var recordingDelegate: RecordingDelegate?
     
     
     @IBOutlet weak var buttonSave: UIBarButtonItem!
@@ -71,7 +70,6 @@ class RecordingViewcontroller: UIViewController {
     @IBAction func actionNavigationSave(sender: AnyObject) {
         
         do {
-            
             try saveRecording()
             
             if let delegate = self.recordingDelegate {
@@ -90,7 +88,6 @@ class RecordingViewcontroller: UIViewController {
         updateSaveIsPossibleState()
     }
 
-    
     @IBAction func actionPreviewTapped(sender: AnyObject) {
         
         if playingPreview {
@@ -187,20 +184,24 @@ class RecordingViewcontroller: UIViewController {
     }
     
     func startUpdateLoop() {
+        
         if updateTimer != nil {
             updateTimer.invalidate()
         }
+        
         updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewcontroller.updateLoop))
         updateTimer.frameInterval = 1
         updateTimer.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
     func stopUpdateLoop() {
+        
         updateTimer.invalidate()
         updateTimer = nil
     }
     
     func updateLoop() {
+        
         if CFAbsoluteTimeGetCurrent() - soundTimer > 0.5 {
             durationLabel.text = formattedCurrentTime(UInt(audioRecorder!.currentTime))
             soundTimer = CFAbsoluteTimeGetCurrent()
@@ -208,6 +209,7 @@ class RecordingViewcontroller: UIViewController {
     }
     
     func formattedCurrentTime(time: UInt) -> String {
+        
         let hours = time / 3600
         let minutes = (time / 60) % 60
         let seconds = time % 60
