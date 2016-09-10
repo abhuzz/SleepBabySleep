@@ -28,6 +28,7 @@ protocol BackgroundAudioPlayerStateDelegate {
 
 class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
 
+    private var audioSession: AudioSession
     private var audioPlayer: AudioPlayer
     private var timer: Timer
     
@@ -48,8 +49,9 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     }
     
     
-    init(audioPlayer: AudioPlayer, timer: Timer) {
+    init(audioSession: AudioSession, audioPlayer: AudioPlayer, timer: Timer) {
         
+        self.audioSession = audioSession
         self.audioPlayer = audioPlayer
         self.timer = timer
     }

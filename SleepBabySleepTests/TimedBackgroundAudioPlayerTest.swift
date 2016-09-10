@@ -12,6 +12,7 @@ import XCTest
 
 class TimedBackgroundAudioPlayerTest: XCTestCase {
     
+    var fakeAudioSession: FakeAudioSession?
     var fakeAudioPlayer: FakeAudioPlayer?
     var fakeTimer: FakeTimer?
     var testInstance: TimedBackgroundAudioPlayer?
@@ -25,12 +26,13 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        fakeAudioSession = FakeAudioSession()
         fakeAudioPlayer = FakeAudioPlayer()
         fakeTimer = FakeTimer()
         fakeBackgroundAudioPlayerStateDelegate = FakeBackgroundAudioPlayerStateDelegate()
         
         testInstance =
-            TimedBackgroundAudioPlayer(audioPlayer: fakeAudioPlayer!, timer: fakeTimer!)
+            TimedBackgroundAudioPlayer(audioSession: fakeAudioSession!, audioPlayer: fakeAudioPlayer!, timer: fakeTimer!)
         
         testInstance?.stateDelegate = fakeBackgroundAudioPlayerStateDelegate
     }
