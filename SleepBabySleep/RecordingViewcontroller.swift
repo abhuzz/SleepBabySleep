@@ -30,6 +30,7 @@ class RecordingViewcontroller: UIViewController {
     internal var recordingDelegate: RecordingDelegate?
     
     
+    @IBOutlet weak var buttonSave: UIBarButtonItem!
     @IBOutlet weak var buttonPreview: UIButton!
     @IBOutlet weak var buttonRecording: UIButton!
     @IBOutlet weak var soundFileName: UITextField!
@@ -51,6 +52,8 @@ class RecordingViewcontroller: UIViewController {
         if lastRecordedFileURL == nil {
             buttonPreview.enabled = false
         }
+        
+        updateSaveIsPossibleState()
     }
     
     
@@ -78,6 +81,12 @@ class RecordingViewcontroller: UIViewController {
         }
     }
     
+    @IBAction func actionTextFieldChanged(sender: AnyObject) {
+        
+        updateSaveIsPossibleState()
+    }
+
+    
     @IBAction func actionPreviewTapped(sender: AnyObject) {
         
         if playingPreview {
@@ -104,6 +113,15 @@ class RecordingViewcontroller: UIViewController {
         buttonRecording.setImage(UIImage(named: "Record_Idle"), forState: .Normal)
         
         audioRecorder?.stop()
+    }
+    
+    private func updateSaveIsPossibleState() {
+        
+        if lastRecordedFileURL == nil || soundFileName.text?.characters.count == 0 {
+            buttonSave.enabled = false
+        } else {
+            buttonSave.enabled = true
+        }
     }
     
     private func startPlayingPreview() {
@@ -171,6 +189,8 @@ extension RecordingViewcontroller: AudioRecorderDelegate {
         guard lastRecordedFileURL != nil else { return }
         
         buttonPreview.enabled = true
+        
+        updateSaveIsPossibleState()
     }
 }
 

@@ -197,6 +197,9 @@
                                                 <rect key="frame" x="55" y="0.0" width="505" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="actionTextFieldChanged:" destination="zJy-Gj-pGc" eventType="editingChanged" id="oxy-ov-2Rs"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -258,6 +261,7 @@
                     <connections>
                         <outlet property="buttonPreview" destination="af2-mV-7G0" id="PYJ-X0-Vts"/>
                         <outlet property="buttonRecording" destination="sfG-lO-My3" id="mb2-qt-tAS"/>
+                        <outlet property="buttonSave" destination="kMR-Wy-7gy" id="bfK-Mn-EQG"/>
                         <outlet property="soundFileName" destination="25B-Du-QIr" id="1T6-Ol-VMx"/>
                     </connections>
                 </viewController>
