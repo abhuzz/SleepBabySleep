@@ -22,6 +22,7 @@ class RecordingViewController: UIViewController {
                 .first!
     private let temporaryDirectory = NSURL.fileURLWithPath(NSTemporaryDirectory())
     
+    private var audioSession: AudioSession?
     private var audioRecorder: AudioRecorder?
     private var audioPlayer: AudioPlayer?
     private var lastRecordedFileURL: NSURL?
@@ -41,6 +42,13 @@ class RecordingViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        audioSession = AVAudioSessionFacade()
+        do {
+            try audioSession?.openForRecording()
+        } catch let error as NSError {
+            NSLog("Failed opening audioSession for recording: \(error.localizedDescription)")
+        }
+        
         audioRecorder = AudioRecorder()
         audioRecorder?.delegate = self
         
@@ -57,6 +65,14 @@ class RecordingViewController: UIViewController {
         }
         
         updateSaveIsPossibleState()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        do {
+            try audioSession?.close()
+        } catch let error as NSError {
+            NSLog("Failed to close audioSession: \(error.localizedDescription)")
+        }
     }
     
     
@@ -98,6 +114,13 @@ class RecordingViewController: UIViewController {
     }
     
     @IBAction func recordingTouchDown(sender: AnyObject) {
+        
+        guard let audioSession = self.audioSession else { return }
+    
+        guard audioSession.microphoneAvailble() else {
+            showAlertDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
+            return
+        }
         
         buttonRecording.setImage(UIImage(named: "Record_Active"), forState: .Normal)
         

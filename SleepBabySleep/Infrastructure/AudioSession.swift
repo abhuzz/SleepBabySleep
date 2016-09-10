@@ -13,13 +13,14 @@ protocol AudioSession {
     func openForPlayback() throws
     func openForRecording() throws
     func close() throws
+    func microphoneAvailble() -> Bool
 }
 
 class AVAudioSessionFacade: AudioSession {
     
     private let session = AVAudioSession.sharedInstance()
     
-    private(set) var microphoneAvailable = false
+    private var microphoneAvailable = false
     
     
     func openForPlayback() throws {
@@ -47,5 +48,9 @@ class AVAudioSessionFacade: AudioSession {
         try session.setActive(false)
         
         NSLog("AVAudioSessionFacade.close()")
+    }
+    
+    func microphoneAvailble() -> Bool {
+        return microphoneAvailable
     }
 }

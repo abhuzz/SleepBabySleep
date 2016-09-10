@@ -27,6 +27,10 @@ class FakeAudioSession: AudioSession {
     func close() throws {
         timesCloseCalled += 1
     }
+    
+    func microphoneAvailble() -> Bool {
+        return false
+    }
 }
 
 class FakeAudioPlayer: AudioPlayer {
