@@ -60,21 +60,21 @@
 		D423BDAE1D81B26E006BD88E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = Utilities/SegueHandlerType.swift; sourceTree = "<group>"; };
 		D42FE7441D76075500D99866 /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = VacuumCleaner.mp3; path = Assets/AudioFiles/VacuumCleaner.mp3; sourceTree = "<group>"; };
 		D42FE7461D77223F00D99866 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioRecorder.swift; path = Infrastructure/AudioRecorder.swift; sourceTree = "<group>"; };
-		D430BAE61D72D60100A907D1 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		D430BAE61D72D60100A907D1 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = Model/Playlist.swift; sourceTree = "<group>"; };
 		D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFilePlaylistTest.swift; sourceTree = "<group>"; };
 		D46A38D41D81BC7E000205A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D49B58721D795D3800744CF3 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
+		D49B58721D795D3800744CF3 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaylistCollectionViewCell.swift; path = Views/PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		D49B58751D795EBB00744CF3 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Math.swift; path = Utilities/Math.swift; sourceTree = "<group>"; };
 		D49B58771D795FEB00744CF3 /* Playlist.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Playlist.xcassets; path = Assets/Playlist.xcassets; sourceTree = "<group>"; };
 		D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaylistCollectionViewLayout.swift; path = Layout/PlaylistCollectionViewLayout.swift; sourceTree = "<group>"; };
-		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
+		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundAudioPlayer.swift; path = Model/BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Infrastructure/AudioPlayer.swift; sourceTree = "<group>"; };
 		D4C280DC1D71AB9A00356ED1 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Infrastructure/Timer.swift; sourceTree = "<group>"; };
 		D4C280E21D71AE8600356ED1 /* SleepBabySleepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepBabySleepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedBackgroundAudioPlayerTest.swift; sourceTree = "<group>"; };
 		D4C280E61D71AE8600356ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImplementations.swift; sourceTree = "<group>"; };
-		D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackDuration.swift; sourceTree = "<group>"; };
+		D4C280F01D71BE2C00356ED1 /* PlaybackDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaybackDuration.swift; path = Model/PlaybackDuration.swift; sourceTree = "<group>"; };
 		D4DD3DD51D3BF43F00198301 /* SleepBabySleep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepBabySleep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DD3DDA1D3BF43F00198301 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Shhhh.mp3; path = Audio/Shhhh.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HeiaHeia.mp3; path = Audio/HeiaHeia.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Mhhhh.mp3; path = Audio/Mhhhh.mp3; sourceTree = SOURCE_ROOT; };
-		D4DD3DF11D3C01BC00198301 /* SoundFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFile.swift; sourceTree = "<group>"; };
+		D4DD3DF11D3C01BC00198301 /* SoundFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFile.swift; path = Model/SoundFile.swift; sourceTree = "<group>"; };
 		D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+averageColor.swift"; path = "Extensions/UIImage+averageColor.swift"; sourceTree = "<group>"; };
 		D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+difference.swift"; path = "Extensions/UIColor+difference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
