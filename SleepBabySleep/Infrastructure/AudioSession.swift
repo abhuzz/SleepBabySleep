@@ -25,7 +25,7 @@ class AVAudioSessionFacade: AudioSession {
     
     func openForPlayback() throws {
      
-        try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: [.MixWithOthers])
+        try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
         try session.setActive(true)
         
         NSLog("AVAudioSessionFacade.openForPlayback()")
