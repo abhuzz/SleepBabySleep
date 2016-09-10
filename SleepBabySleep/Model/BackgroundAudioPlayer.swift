@@ -80,15 +80,21 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         
         guard let playbackDuration = self.playbackDuration else { return }
         
-        audioPlayer.stateDelegate = self
+        do {
+            try audioSession.openForPlayback()
+            
+            audioPlayer.stateDelegate = self
+            audioPlayer.play(soundFileToPlay.URL)
+            
+            if !playbackDuration.infinite() {
+                timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
+            }
+            
+            changePlayState(.Playing)
         
-        audioPlayer.play(soundFileToPlay.URL)
-        
-        if !playbackDuration.infinite() {
-            timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
+        } catch let error as NSError {
+            NSLog("Failed to play sound: \(error.localizedDescription)")
         }
-        
-        changePlayState(.Playing)
     }
     
     private func stopPlayingSound() {
