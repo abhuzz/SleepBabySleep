@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController, SegueHandlerType {
+class MainViewController: UIViewController, SegueHandlerType {
     
     private let cellIdentifier = "PlaylistCollectionViewCell"
     
@@ -146,7 +146,7 @@ class ViewController: UIViewController, SegueHandlerType {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -194,7 +194,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
@@ -236,7 +236,7 @@ extension ViewController: UICollectionViewDelegate {
     }
 }
 
-extension ViewController: BackgroundAudioPlayerStateDelegate {
+extension MainViewController: BackgroundAudioPlayerStateDelegate {
     
     func playStateChanged(playState: PlayState) {
         
@@ -253,30 +253,30 @@ extension ViewController: BackgroundAudioPlayerStateDelegate {
     }
 }
 
-extension ViewController: RecordingDelegate {
+extension MainViewController: RecordingDelegate {
     
     func recordingAdded() {
         reload()
     }
 }
 
-extension ViewController { // MPRemoteCommands
+extension MainViewController { // MPRemoteCommands
 
     func initRemoteCommands() {
         
         let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
         
         commandCenter.playCommand.enabled = true
-        commandCenter.playCommand.addTarget(self, action: #selector(ViewController.PlayPauseCommand))
+        commandCenter.playCommand.addTarget(self, action: #selector(MainViewController.PlayPauseCommand))
         
         commandCenter.pauseCommand.enabled = true
-        commandCenter.pauseCommand.addTarget(self, action: #selector(ViewController.PlayPauseCommand))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(MainViewController.PlayPauseCommand))
         
         commandCenter.nextTrackCommand.enabled = true
-        commandCenter.nextTrackCommand.addTarget(self, action: #selector(ViewController.nextTrackCommand))
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(MainViewController.nextTrackCommand))
         
         commandCenter.previousTrackCommand.enabled = true
-        commandCenter.previousTrackCommand.addTarget(self, action: #selector(ViewController.previousTrackCommand))
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(MainViewController.previousTrackCommand))
      
         UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
     }
