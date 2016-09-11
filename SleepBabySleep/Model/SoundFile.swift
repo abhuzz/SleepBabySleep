@@ -29,7 +29,7 @@ struct AssetSoundFile: SoundFile, Equatable {
         self.Name = Name
         self.fileName = File
         self.fileExtension = Extension
-        self.image = randomImage()
+        self.image = imageForSound()
     }
     
     private(set) var Identifier: NSUUID
@@ -64,7 +64,7 @@ struct RecordedAudioFile: SoundFile, Equatable{
         self.Identifier = identifier
         self.URL = url
         self.Name = name
-        self.image = randomImage()
+        self.image = imageForSound()
     }
 
     private(set) var Identifier: NSUUID
@@ -86,10 +86,18 @@ func ==(lhs: RecordedAudioFile, rhs: RecordedAudioFile) -> Bool {
         && lhs.URL  == rhs.URL
 }
 
-func randomImage() -> UIImage {
+var imageCount = 1
+
+func imageForSound() -> UIImage {
     
-    let name = "Tile_\(randomNumber(1, max: 13))"
+    let name = "Tile_\(imageCount)"
     
+    if imageCount <= 12 {
+        imageCount += 1
+    } else {
+        imageCount = 1
+    }
+        
     guard let image = UIImage(named: name) else {
         NSLog("Image not found: \(name)")
         return UIImage()
