@@ -84,7 +84,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     private func setOptimizedTextColor() {
         
         if cellSelected {
-            playlistTitle.textColor = UIColor.redColor()
+            playlistTitle.textColor = UIColor.lightGrayColor()
             return
         }
         
