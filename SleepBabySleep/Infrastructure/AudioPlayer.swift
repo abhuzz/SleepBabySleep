@@ -81,7 +81,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
     
     @objc private func notificationAudioSessionInterruptedReceived(notification: NSNotification) {
      
-        NSLog("notificationAudioSessionInterruptedReceived")
+        NSLog("AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived")
         
         if let info = notification.userInfo {
             
@@ -97,7 +97,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
     
     @objc private func notificationAudioSessionRouteChangedReceived(notification: NSNotification) {
      
-        NSLog("notificationAudioSessionRouteChangedReceived")
+        NSLog("AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived")
         
         guard let info = notification.userInfo else { return }
         
