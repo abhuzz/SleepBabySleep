@@ -88,7 +88,7 @@ func ==(lhs: RecordedAudioFile, rhs: RecordedAudioFile) -> Bool {
 
 func randomImage() -> UIImage {
     
-    let name = "Item_\(randomNumber(1, max: 6))"
+    let name = "Tile_\(randomNumber(1, max: 13))"
     
     guard let image = UIImage(named: name) else {
         NSLog("Image not found: \(name)")
