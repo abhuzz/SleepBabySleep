@@ -28,7 +28,7 @@ class RecordingViewController: UIViewController {
     private var lastRecordedFileURL: NSURL?
     private var playingPreview = false
     private var soundTimer: CFTimeInterval = 0.0
-    private var updateTimer: CADisplayLink!
+    private var updateTimer: CADisplayLink?
     
     var recordingDelegate: RecordingDelegate?
     
@@ -208,18 +208,16 @@ class RecordingViewController: UIViewController {
     
     func startUpdateLoop() {
         
-        if updateTimer != nil {
-            updateTimer.invalidate()
-        }
+        updateTimer?.invalidate()
         
         updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewController.updateLoop))
-        updateTimer.frameInterval = 1
-        updateTimer.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+        updateTimer!.frameInterval = 1
+        updateTimer!.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
     func stopUpdateLoop() {
         
-        updateTimer.invalidate()
+        updateTimer?.invalidate()
         updateTimer = nil
     }
     
