@@ -33,7 +33,6 @@
 		D4DD3DDB1D3BF43F00198301 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DDA1D3BF43F00198301 /* MainViewController.swift */; };
 		D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDC1D3BF43F00198301 /* Main.storyboard */; };
 		D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */; };
-		D4DD3DE31D3BF43F00198301 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */; };
 		D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */; };
 		D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */; };
 		D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */; };
@@ -82,7 +81,6 @@
 		D4DD3DDA1D3BF43F00198301 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
 		D4DD3DDD1D3BF43F00198301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
-		D4DD3DE21D3BF43F00198301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4DD3DE41D3BF43F00198301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Shhhh.mp3; path = Audio/Shhhh.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HeiaHeia.mp3; path = Audio/HeiaHeia.mp3; sourceTree = SOURCE_ROOT; };
@@ -157,7 +155,6 @@
 		D42FE74D1D7959C200D99866 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */,
 				D4DD3DDC1D3BF43F00198301 /* Main.storyboard */,
 			);
 			name = Storyboards;
@@ -355,7 +352,6 @@
 			files = (
 				D46A38D51D81BC7E000205A5 /* README.md in Resources */,
 				D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */,
-				D4DD3DE31D3BF43F00198301 /* LaunchScreen.storyboard in Resources */,
 				D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */,
 				D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */,
 				D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */,
@@ -423,14 +419,6 @@
 				D4DD3DDD1D3BF43F00198301 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D4DD3DE11D3BF43F00198301 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4DD3DE21D3BF43F00198301 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -554,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SleepBabySleep/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -567,6 +556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SleepBabySleep/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
