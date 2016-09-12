@@ -81,7 +81,7 @@ class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate
 class FakeSoundFile: SoundFile, Equatable {
     var Identifier = UUID()
     var Name = String()
-    var URL = Foundation.URL()
+    var URL = Foundation.URL(fileURLWithPath: "")
     var Image = UIImage()
     var Deletable = false
 }
