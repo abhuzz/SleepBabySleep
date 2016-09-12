@@ -188,7 +188,7 @@ class RecordingViewController: UIViewController {
         
         guard let fileUrl = lastRecordedFileURL else { return }
         
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+        DispatchQueue.global().async {
             
             do {
                 try FileManager.default.removeItem(at: fileUrl)
@@ -203,7 +203,7 @@ class RecordingViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
      
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func startUpdateLoop() {

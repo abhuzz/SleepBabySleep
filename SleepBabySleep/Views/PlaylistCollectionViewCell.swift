@@ -30,10 +30,10 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             guard let soundFile = soundFile else { return }
             
             playlistTitle.text = soundFile.Name
-            playlistFile.text = soundFile.URL.lastPathComponent ?? "n/a"
+            playlistFile.text = soundFile.URL.lastPathComponent 
             playlistImage.image = soundFile.Image
             
-            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+            DispatchQueue.global().async {
                 
                 if soundFile.Image.averageColor().getBrightnessDifference(UIColor.black) < 125 {
                     self.optimalTextColor = UIColor.white
