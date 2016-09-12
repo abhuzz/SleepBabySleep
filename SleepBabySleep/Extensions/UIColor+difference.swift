@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
     
-    func getColorDifference(fromColor: UIColor) -> Int {
+    func getColorDifference(_ fromColor: UIColor) -> Int {
       
         // get the current color's red, green, blue and alpha values
         var red:CGFloat = 0
@@ -33,7 +33,7 @@ extension UIColor {
         return Int(redValue + greenValue + blueValue)
     }
     
-    func getBrightnessDifference(fromColor: UIColor) -> Int {
+    func getBrightnessDifference(_ fromColor: UIColor) -> Int {
         
         // get the current color's red, green, blue and alpha values
         var red:CGFloat = 0

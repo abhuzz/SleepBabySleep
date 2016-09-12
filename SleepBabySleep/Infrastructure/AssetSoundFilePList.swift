@@ -10,19 +10,19 @@ import Foundation
 
 class AssetSoundFilePList {
     
-    private let fileManager = NSFileManager.defaultManager()
-    private let plistUrl = NSBundle.mainBundle().URLForResource("AssetSoundFiles", withExtension: "plist")
+    fileprivate let fileManager = FileManager.default
+    fileprivate let plistUrl = Bundle.main.url(forResource: "AssetSoundFiles", withExtension: "plist")
     
     func assetSoundFilesInPList() throws -> [SoundFile] {
         
         var soundFilesInPList = [SoundFile]()
         
-        var format = NSPropertyListFormat.XMLFormat_v1_0
-        let plistData = NSData(contentsOfURL: plistUrl!)
+        var format = PropertyListSerialization.PropertyListFormat.xml
+        let plistData = try? Data(contentsOf: plistUrl!)
 
         do {
             let items =
-                try NSPropertyListSerialization.propertyListWithData(plistData!, options: .Immutable, format: &format) as! [AnyObject]
+                try PropertyListSerialization.propertyList(from: plistData!, options: PropertyListSerialization.MutabilityOptions(), format: &format) as! [AnyObject]
             
             soundFilesInPList =
                 items.map { soundFile in

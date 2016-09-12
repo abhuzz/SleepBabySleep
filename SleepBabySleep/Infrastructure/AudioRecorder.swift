@@ -16,14 +16,14 @@ protocol AudioRecorderDelegate {
 
 class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
     
-    private let recordSettings = [
+    fileprivate let recordSettings = [
                         AVFormatIDKey: Int(kAudioFormatLinearPCM),
                         AVSampleRateKey: 44100.0,
                         AVNumberOfChannelsKey: 1,
-                        AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
-                    ]
+                        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+                    ] as [String : Any]
     
-    private var audioRecorder: AVAudioRecorder?
+    fileprivate var audioRecorder: AVAudioRecorder?
     
     var delegate: AudioRecorderDelegate?
     
@@ -39,20 +39,20 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
         
         super.init()
         
-        let nc = NSNotificationCenter.defaultCenter()
+        let nc = NotificationCenter.default
         let session = AVAudioSession.sharedInstance()
         
-        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionInterruptedReceived(_:)), name: AVAudioSessionInterruptionNotification, object: session)
-        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionRouteChangedReceived(_:)), name: AVAudioSessionRouteChangeNotification, object: session)
+        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionInterruptedReceived(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: session)
+        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionRouteChangedReceived(_:)), name: NSNotification.Name.AVAudioSessionRouteChange, object: session)
     }
     
     
-    func start(intoURL: NSURL) {
+    func start(_ intoURL: URL) {
         
         NSLog("start() with URL: \(intoURL.absoluteString)")
         
         do {
-            audioRecorder = try AVAudioRecorder(URL: intoURL, settings: recordSettings as! [String : AnyObject])
+            audioRecorder = try AVAudioRecorder(url: intoURL, settings: recordSettings as [String : AnyObject])
             audioRecorder!.delegate = self
             audioRecorder!.prepareToRecord()
         } catch {
@@ -70,7 +70,7 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
         audioRecorder?.stop()
     }
     
-    private func triggerDelegateRecordingStopped() {
+    fileprivate func triggerDelegateRecordingStopped() {
 
         guard let delegate = self.delegate else { return }
         
@@ -80,7 +80,7 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
 
 extension AudioRecorder: AVAudioRecorderDelegate {
     
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         
         NSLog("audioRecorderDidFinishRecording() -> \(flag)")
         
@@ -90,15 +90,15 @@ extension AudioRecorder: AVAudioRecorderDelegate {
 
 extension AudioRecorder { // AVAudioSessionInterrution / route changed
 
-    @objc private func notificationAudioSessionInterruptedReceived(notification: NSNotification) {
+    @objc fileprivate func notificationAudioSessionInterruptedReceived(_ notification: Notification) {
         
         NSLog("AudioRecorder.notificationAudioSessionInterruptedReceived")
         
-        if let info = notification.userInfo {
+        if let info = (notification as NSNotification).userInfo {
             
             let type = AVAudioSessionInterruptionType(rawValue: info[AVAudioSessionInterruptionTypeKey] as! UInt)
             
-            if type == .Began {
+            if type == .began {
                 
                 stop()
                 triggerDelegateRecordingStopped()
@@ -106,15 +106,15 @@ extension AudioRecorder { // AVAudioSessionInterrution / route changed
         }
     }
     
-    @objc private func notificationAudioSessionRouteChangedReceived(notification: NSNotification) {
+    @objc fileprivate func notificationAudioSessionRouteChangedReceived(_ notification: Notification) {
         
         NSLog("AudioRecorder.notificationAudioSessionRouteChangedReceived")
         
-        guard let info = notification.userInfo else { return }
+        guard let info = (notification as NSNotification).userInfo else { return }
         
         let reason = AVAudioSessionRouteChangeReason(rawValue: info[AVAudioSessionRouteChangeReasonKey] as! UInt)
         
-        if reason == .OldDeviceUnavailable {
+        if reason == .oldDeviceUnavailable {
             
             stop()
             triggerDelegateRecordingStopped()

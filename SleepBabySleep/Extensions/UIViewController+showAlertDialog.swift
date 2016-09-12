@@ -10,12 +10,12 @@ import UIKit
 
 extension UIViewController {
 
-    func showAlertDialog(alertMessage: String ) {
+    func showAlertDialog(_ alertMessage: String ) {
         
-        let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         
-        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in return } ) )
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in return } ) )
         
-        presentViewController(dialog, animated: false, completion: nil)
+        present(dialog, animated: false, completion: nil)
     }
 }

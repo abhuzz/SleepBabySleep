@@ -15,20 +15,20 @@ protocol RecordingDelegate {
 
 class RecordingViewController: UIViewController {
     
-    private let recordingFileExtension = "caf"
-    private let documentsDirectoryUrl =
-            NSFileManager.defaultManager()
-                .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    fileprivate let recordingFileExtension = "caf"
+    fileprivate let documentsDirectoryUrl =
+            FileManager.default
+                .urls(for: .documentDirectory, in: .userDomainMask)
                 .first!
-    private let temporaryDirectory = NSURL.fileURLWithPath(NSTemporaryDirectory())
+    fileprivate let temporaryDirectory = URL(fileURLWithPath: NSTemporaryDirectory())
     
-    private var audioSession: AudioSession?
-    private var audioRecorder: AudioRecorder?
-    private var audioPlayer: AudioPlayer?
-    private var lastRecordedFileURL: NSURL?
-    private var playingPreview = false
-    private var soundTimer: CFTimeInterval = 0.0
-    private var updateTimer: CADisplayLink?
+    fileprivate var audioSession: AudioSession?
+    fileprivate var audioRecorder: AudioRecorder?
+    fileprivate var audioPlayer: AudioPlayer?
+    fileprivate var lastRecordedFileURL: URL?
+    fileprivate var playingPreview = false
+    fileprivate var soundTimer: CFTimeInterval = 0.0
+    fileprivate var updateTimer: CADisplayLink?
     
     var recordingDelegate: RecordingDelegate?
     
@@ -58,16 +58,16 @@ class RecordingViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         if lastRecordedFileURL == nil {
-            buttonPreview.enabled = false
+            buttonPreview.isEnabled = false
         }
         
         updateSaveIsPossibleState()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         do {
             try audioSession?.close()
         } catch let error as NSError {
@@ -76,14 +76,14 @@ class RecordingViewController: UIViewController {
     }
     
     
-    @IBAction func actionNavigationCancelled(sender: AnyObject) {
+    @IBAction func actionNavigationCancelled(_ sender: AnyObject) {
         
         deleteTemporaryRecordingFile()
         
         navigateToMainView()
     }
     
-    @IBAction func actionNavigationSave(sender: AnyObject) {
+    @IBAction func actionNavigationSave(_ sender: AnyObject) {
         
         do {
             try saveRecording()
@@ -99,12 +99,12 @@ class RecordingViewController: UIViewController {
         }
     }
     
-    @IBAction func actionTextFieldChanged(sender: AnyObject) {
+    @IBAction func actionTextFieldChanged(_ sender: AnyObject) {
         
         updateSaveIsPossibleState()
     }
 
-    @IBAction func actionPreviewTapped(sender: AnyObject) {
+    @IBAction func actionPreviewTapped(_ sender: AnyObject) {
         
         if playingPreview {
             stopPlayingPreview()
@@ -113,7 +113,7 @@ class RecordingViewController: UIViewController {
         }
     }
     
-    @IBAction func recordingTouchDown(sender: AnyObject) {
+    @IBAction func recordingTouchDown(_ sender: AnyObject) {
         
         guard let audioSession = self.audioSession else { return }
     
@@ -122,88 +122,88 @@ class RecordingViewController: UIViewController {
             return
         }
         
-        buttonRecording.setImage(UIImage(named: "Record_Active"), forState: .Normal)
+        buttonRecording.setImage(UIImage(named: "Record_Active"), for: UIControlState())
         
         deleteTemporaryRecordingFile()
         
-        let newFileName = "\(NSUUID().UUIDString).\(recordingFileExtension)"
-        lastRecordedFileURL = temporaryDirectory.URLByAppendingPathComponent(newFileName)
+        let newFileName = "\(UUID().uuidString).\(recordingFileExtension)"
+        lastRecordedFileURL = temporaryDirectory.appendingPathComponent(newFileName)
          
         audioRecorder?.start(lastRecordedFileURL!)
         startUpdateLoop()
     }
 
-    @IBAction func recordingTouchUp(sender: AnyObject) {
+    @IBAction func recordingTouchUp(_ sender: AnyObject) {
         
-        buttonRecording.setImage(UIImage(named: "Record_Idle"), forState: .Normal)
+        buttonRecording.setImage(UIImage(named: "Record_Idle"), for: UIControlState())
         
         audioRecorder?.stop()
     }
     
-    private func updateSaveIsPossibleState() {
+    fileprivate func updateSaveIsPossibleState() {
         
         if lastRecordedFileURL == nil || soundFileName.text?.characters.count == 0 {
-            buttonSave.enabled = false
+            buttonSave.isEnabled = false
         } else {
-            buttonSave.enabled = true
+            buttonSave.isEnabled = true
         }
     }
     
-    private func startPlayingPreview() {
+    fileprivate func startPlayingPreview() {
         
         guard let previewSoundFile = lastRecordedFileURL else { return }
         
         playingPreview = true
-        buttonPreview.setImage(UIImage(named: "Stop"), forState: .Normal)
+        buttonPreview.setImage(UIImage(named: "Stop"), for: UIControlState())
         
         audioPlayer?.play(previewSoundFile)
     }
     
-    private func stopPlayingPreview() {
+    fileprivate func stopPlayingPreview() {
         
         audioPlayer?.stop()
     }
     
-    private func playPreviewStopped() {
+    fileprivate func playPreviewStopped() {
         
         playingPreview = false
-        buttonPreview.setImage(UIImage(named: "Play"), forState: .Normal)
+        buttonPreview.setImage(UIImage(named: "Play"), for: UIControlState())
     }
     
-    private func saveRecording() throws {
+    fileprivate func saveRecording() throws {
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
         let targetURL =
-            documentsDirectoryUrl.URLByAppendingPathComponent(recordingURL.lastPathComponent!)
+            documentsDirectoryUrl.appendingPathComponent(recordingURL.lastPathComponent)
         
-        try NSFileManager.defaultManager()
-            .moveItemAtURL(recordingURL, toURL: targetURL)
+        try FileManager.default
+            .moveItem(at: recordingURL, to: targetURL)
             
         try RecordedSoundFilesPList()
-            .saveRecordedSoundFileToPlist(NSUUID(), name: soundFileName.text!, URL: recordingURL)
+            .saveRecordedSoundFileToPlist(UUID(), name: soundFileName.text!, URL: recordingURL)
     }
     
-    private func deleteTemporaryRecordingFile() {
+    fileprivate func deleteTemporaryRecordingFile() {
         
         guard let fileUrl = lastRecordedFileURL else { return }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             
             do {
-                try NSFileManager.defaultManager().removeItemAtURL(fileUrl)
-                NSLog("Deleted temporary file: \(fileUrl.lastPathComponent!)")
+                try FileManager.default.removeItem(at: fileUrl)
+                NSLog("Deleted temporary file: \(fileUrl.lastPathComponent)")
             } catch let error as NSError {
                 NSLog("Failed to delete a temorary recording: \(error.localizedDescription)")
             }
         }
     }
     
-    private func navigateToMainView() {
+    fileprivate func navigateToMainView() {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
      
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     func startUpdateLoop() {
@@ -212,7 +212,7 @@ class RecordingViewController: UIViewController {
         
         updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewController.updateLoop))
         updateTimer!.frameInterval = 1
-        updateTimer!.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+        updateTimer!.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
     func stopUpdateLoop() {
@@ -229,7 +229,7 @@ class RecordingViewController: UIViewController {
         }
     }
     
-    func formattedCurrentTime(time: UInt) -> String {
+    func formattedCurrentTime(_ time: UInt) -> String {
         
         let hours = time / 3600
         let minutes = (time / 60) % 60
@@ -247,7 +247,7 @@ extension RecordingViewController: AudioRecorderDelegate {
         
         guard lastRecordedFileURL != nil else { return }
         
-        buttonPreview.enabled = true
+        buttonPreview.isEnabled = true
         
         updateSaveIsPossibleState()
     }

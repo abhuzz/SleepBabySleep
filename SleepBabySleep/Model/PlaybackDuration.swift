@@ -16,7 +16,7 @@ protocol PlaybackDuration {
 
 class PlaybackDurationMinutes: PlaybackDuration {
     
-    private var durationInMinutes: Int
+    fileprivate var durationInMinutes: Int
     
     init(durationInMinutes: Int) {
         self.durationInMinutes = durationInMinutes

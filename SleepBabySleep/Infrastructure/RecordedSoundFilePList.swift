@@ -10,35 +10,35 @@ import Foundation
 
 class RecordedSoundFilesPList {
     
-    private let fileManager = NSFileManager.defaultManager()
-    private var format = NSPropertyListFormat.XMLFormat_v1_0
-    private let documentsDirectory: NSURL
-    private let pListUrl: NSURL
+    fileprivate let fileManager = FileManager.default
+    fileprivate var format = PropertyListSerialization.PropertyListFormat.xml
+    fileprivate let documentsDirectory: URL
+    fileprivate let pListUrl: URL
     
     
     init() {
         
         documentsDirectory =
-            NSFileManager.defaultManager()
-                .URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+            FileManager.default
+                .urls(for: .documentDirectory, in: .userDomainMask)
                 .first!
         
         pListUrl =
             documentsDirectory
-                .URLByAppendingPathComponent("RecordedSoundFiles.plist")
+                .appendingPathComponent("RecordedSoundFiles.plist")
     }
     
     
     func recordedSoundFilesInPList() throws -> [SoundFile] {
         
-        guard let plistData = NSData(contentsOfURL: pListUrl) else { return [SoundFile]() }
+        guard let plistData = try? Data(contentsOf: pListUrl) else { return [SoundFile]() }
         
         do {
             let items =
-                try NSPropertyListSerialization.propertyListWithData(plistData, options: .Immutable, format: &format) as! [AnyObject]
+                try PropertyListSerialization.propertyList(from: plistData, options: PropertyListSerialization.MutabilityOptions(), format: &format) as! [AnyObject]
             
             return items.map { soundFile in
-                            return RecordedAudioFile(identifier: NSUUID(UUIDString: soundFile["Identifier"] as! String)!,
+                            return RecordedAudioFile(identifier: UUID(uuidString: soundFile["Identifier"] as! String)!,
                                                         name: soundFile["Name"] as! String,
                                                         url: soundFileUrl(soundFile["URL"] as! String))
                         }
@@ -49,20 +49,20 @@ class RecordedSoundFilesPList {
         }
     }
     
-    func saveRecordedSoundFileToPlist(identifier: NSUUID, name: String, URL: NSURL) throws {
+    func saveRecordedSoundFileToPlist(_ identifier: UUID, name: String, URL: Foundation.URL) throws {
         
         do {
             var soundFilesDictionaries = try existingRecordDictionaries()
             
             soundFilesDictionaries.append(
-                ["Identifier": identifier.UUIDString,
+                ["Identifier": identifier.uuidString,
                     "Name": name,
-                    "URL": URL.lastPathComponent!])
+                    "URL": URL.lastPathComponent])
             
             let serializedData =
-                try NSPropertyListSerialization.dataWithPropertyList(soundFilesDictionaries, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
+                try PropertyListSerialization.data(fromPropertyList: soundFilesDictionaries, format: PropertyListSerialization.PropertyListFormat.xml, options:0)
            
-            serializedData.writeToURL(pListUrl, atomically: true)
+            try? serializedData.write(to: pListUrl, options: [.atomic])
             
         } catch let error as NSError {
             NSLog("Error saving recordedSoundFilePList file: \(error.localizedDescription)")
@@ -70,7 +70,7 @@ class RecordedSoundFilesPList {
         }
     }
     
-    func deleteRecordedSoundFile(identifier: NSUUID) throws {
+    func deleteRecordedSoundFile(_ identifier: UUID) throws {
         
         do {
             
@@ -78,15 +78,15 @@ class RecordedSoundFilesPList {
             let soundFilesDictionaries = try existingRecordDictionaries()
             
             soundFilesDictionaries.forEach{ soundFileDictionary in
-                if soundFileDictionary["Identifier"] != identifier.UUIDString {
+                if soundFileDictionary["Identifier"] != identifier.uuidString {
                     soundFileDictionariesWithoutDeleted.append(soundFileDictionary)
                 }
             }
             
             let serializedData =
-                try NSPropertyListSerialization.dataWithPropertyList(soundFileDictionariesWithoutDeleted, format: NSPropertyListFormat.XMLFormat_v1_0, options:0)
+                try PropertyListSerialization.data(fromPropertyList: soundFileDictionariesWithoutDeleted, format: PropertyListSerialization.PropertyListFormat.xml, options:0)
             
-            serializedData.writeToURL(pListUrl, atomically: true)
+            try? serializedData.write(to: pListUrl, options: [.atomic])
         } catch let error as NSError {
             NSLog("Error deleting a line / save recordedSoundFilePList file: \(error.localizedDescription)")
             throw error
@@ -94,23 +94,23 @@ class RecordedSoundFilesPList {
     }
     
     
-    private func existingRecordDictionaries() throws -> [[String: String]] {
+    fileprivate func existingRecordDictionaries() throws -> [[String: String]] {
         
         var soundFilesDictionaries = [[String: String]]()
         
-        if let plistData = NSData(contentsOfURL: pListUrl) {
+        if let plistData = try? Data(contentsOf: pListUrl) {
             
             let exitingEntries =
-                try NSPropertyListSerialization.propertyListWithData(plistData, options: .Immutable, format: &format)
+                try PropertyListSerialization.propertyList(from: plistData, options: PropertyListSerialization.MutabilityOptions(), format: &format)
             
-            soundFilesDictionaries.appendContentsOf(exitingEntries as! [[String: String]])
+            soundFilesDictionaries.append(contentsOf: exitingEntries as! [[String: String]])
         }
      
         return soundFilesDictionaries
     }
     
-    private func soundFileUrl(fileName: String) -> NSURL {
+    fileprivate func soundFileUrl(_ fileName: String) -> URL {
      
-        return documentsDirectory.URLByAppendingPathComponent(fileName)
+        return documentsDirectory.appendingPathComponent(fileName)
     }
 }

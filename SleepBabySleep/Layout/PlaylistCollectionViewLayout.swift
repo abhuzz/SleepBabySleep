@@ -28,18 +28,18 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
     }
     
     
-    override func prepareLayout() {
+    override func prepare() {
 
         let itemWidth = collectionViewWidthWithoutInsets
         
         self.itemSize = CGSize(width: itemWidth, height: itemWidth/cellAspectRatio)
         
-        super.prepareLayout()
+        super.prepare()
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
-        guard let layoutAttributes = super.layoutAttributesForElementsInRect(rect) else { return nil }
+        guard let layoutAttributes = super.layoutAttributesForElements(in: rect) else { return nil }
         
         let copiedLayoutAttribtes: [UICollectionViewLayoutAttributes] =
             layoutAttributes.map { $0.copy() as! UICollectionViewLayoutAttributes }
@@ -48,8 +48,8 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
             
             let frame = attributes.frame
             
-            attributes.transform = CGAffineTransformMakeRotation(degreesToRadians(-7))
-            attributes.frame = CGRectInset(frame, 0, 0)
+            attributes.transform = CGAffineTransform(rotationAngle: degreesToRadians(-7))
+            attributes.frame = frame.insetBy(dx: 0, dy: 0)
             attributes.size.width = collectionView!.bounds.size.width
         }
         

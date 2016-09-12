@@ -18,14 +18,14 @@ protocol AudioSession {
 
 class AVAudioSessionFacade: AudioSession {
     
-    private let session = AVAudioSession.sharedInstance()
+    fileprivate let session = AVAudioSession.sharedInstance()
     
-    private var microphoneAvailable = false
+    fileprivate var microphoneAvailable = false
     
     
     func openForPlayback() throws {
      
-        try session.setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
+        try session.setCategory(AVAudioSessionCategoryPlayback, with: [])
         try session.setActive(true)
         
         NSLog("AVAudioSessionFacade.openForPlayback()")
@@ -33,7 +33,7 @@ class AVAudioSessionFacade: AudioSession {
     
     func openForRecording() throws {
         
-        try session.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: [.DefaultToSpeaker, .AllowBluetooth])
+        try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: [.defaultToSpeaker, .allowBluetooth])
         try session.setActive(true)
         
         session.requestRecordPermission({(granted: Bool)-> Void in

@@ -11,15 +11,15 @@ import UIKit
 
 class PlaylistCollectionViewCell: UICollectionViewCell {
     
-    private var optimalTextColor = UIColor.blackColor()
-    private var cellSelected = false
+    fileprivate var optimalTextColor = UIColor.black
+    fileprivate var cellSelected = false
     
     @IBOutlet weak var playlistFile: UILabel!
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
     @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
     
-    private var parallaxOffset: CGFloat = 0 {
+    fileprivate var parallaxOffset: CGFloat = 0 {
         didSet {
             playListImageViewYCenterConstraint.constant = parallaxOffset
         }
@@ -33,15 +33,15 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             playlistFile.text = soundFile.URL.lastPathComponent ?? "n/a"
             playlistImage.image = soundFile.Image
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
                 
-                if soundFile.Image.averageColor().getBrightnessDifference(UIColor.blackColor()) < 125 {
-                    self.optimalTextColor = UIColor.whiteColor()
+                if soundFile.Image.averageColor().getBrightnessDifference(UIColor.black) < 125 {
+                    self.optimalTextColor = UIColor.white
                 } else {
-                    self.optimalTextColor = UIColor.blackColor()
+                    self.optimalTextColor = UIColor.black
                 }
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.setOptimizedTextColor()
                 }
             }
@@ -53,15 +53,15 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         clipsToBounds = false
     }
     
-    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.applyLayoutAttributes(layoutAttributes)
-        playlistImage.transform = CGAffineTransformMakeRotation(degreesToRadians(7))
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        super.apply(layoutAttributes)
+        playlistImage.transform = CGAffineTransform(rotationAngle: degreesToRadians(7))
     }
     
     func updateParallaxOffset(collectionViewBounds bounds: CGRect) {
-        let center = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let offsetFromCenter = CGPoint(x: center.x - self.center.x, y: center.y - self.center.y)
-        let maxVerticalOffset = (CGRectGetHeight(bounds) / 2) + (CGRectGetHeight(self.bounds) / 2)
+        let maxVerticalOffset = (bounds.height / 2) + (self.bounds.height / 2)
         let scaleFactor = 40 / maxVerticalOffset
         
         parallaxOffset = -offsetFromCenter.y * scaleFactor
@@ -81,10 +81,10 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         setOptimizedTextColor()
     }
     
-    private func setOptimizedTextColor() {
+    fileprivate func setOptimizedTextColor() {
         
         if cellSelected {
-            playlistTitle.textColor = UIColor.lightGrayColor()
+            playlistTitle.textColor = UIColor.lightGray
             return
         }
         

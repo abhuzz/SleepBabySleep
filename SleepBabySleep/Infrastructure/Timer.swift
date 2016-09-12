@@ -13,16 +13,16 @@ protocol TimerExpiredDelegate {
 }
 
 protocol Timer {
-    func start(durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate)
+    func start(_ durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate)
     func stop()
 }
 
 class SystemTimer: Timer {
     
-    private var timer = NSTimer()
-    private var expiredDelegate: TimerExpiredDelegate?
+    fileprivate var timer = Foundation.Timer()
+    fileprivate var expiredDelegate: TimerExpiredDelegate?
     
-    func start(durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
+    func start(_ durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
         
         expiredDelegate = callDelegateWhenExpired
         
@@ -31,7 +31,7 @@ class SystemTimer: Timer {
         timer.invalidate()
         
         timer =
-            NSTimer.scheduledTimerWithTimeInterval(durationInSeconds, target: self, selector: #selector(SystemTimer.timerExpired), userInfo: nil, repeats: false)
+            Foundation.Timer.scheduledTimer(timeInterval: durationInSeconds, target: self, selector: #selector(SystemTimer.timerExpired), userInfo: nil, repeats: false)
     }
     
     func stop() {

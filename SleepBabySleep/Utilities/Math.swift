@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-func degreesToRadians(degrees: Double) -> CGFloat {
+func degreesToRadians(_ degrees: Double) -> CGFloat {
     return CGFloat(M_PI * (degrees) / 180.0)
 }

@@ -11,13 +11,13 @@ import MediaPlayer
 
 class MainViewController: UIViewController, SegueHandlerType {
     
-    private let cellIdentifier = "PlaylistCollectionViewCell"
+    fileprivate let cellIdentifier = "PlaylistCollectionViewCell"
     
-    private var backgroundAudioPlayer: BackgroundAudioPlayer?
-    private var playList: SoundFilePlaylist?
-    private var lastSelectedItemIndexPath: NSIndexPath?
+    fileprivate var backgroundAudioPlayer: BackgroundAudioPlayer?
+    fileprivate var playList: SoundFilePlaylist?
+    fileprivate var lastSelectedItemIndexPath: IndexPath?
     
-    private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
+    fileprivate var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
          1 : PlaybackDurationMinutes(durationInMinutes: 15),
          2 : PlaybackDurationMinutes(durationInMinutes: 30),
@@ -56,33 +56,33 @@ class MainViewController: UIViewController, SegueHandlerType {
         initRemoteCommands()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         updateSoundFileSelectionFromPlaylist()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let viewControllerRecording = segue.destinationViewController as? RecordingViewController {
+        if let viewControllerRecording = segue.destination as? RecordingViewController {
             viewControllerRecording.recordingDelegate = self
         }
     }
     
-    @IBAction func actionTappedPlayPause(sender: AnyObject) {
+    @IBAction func actionTappedPlayPause(_ sender: AnyObject) {
         
         backgroundAudioPlayer!.togglePlayState()
     }
     
-    @IBAction func actionTappedPrevious(sender: AnyObject) {
+    @IBAction func actionTappedPrevious(_ sender: AnyObject) {
         
         backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
     }
     
-    @IBAction func actionTappedNext(sender: AnyObject) {
+    @IBAction func actionTappedNext(_ sender: AnyObject) {
         
         backgroundAudioPlayer!.selectedSoundFile = playList!.next()
     }
     
-    @IBAction func playbackDurationValueChanged(sender: AnyObject) {
+    @IBAction func playbackDurationValueChanged(_ sender: AnyObject) {
         
         let selectedSegmentIndex = playbackDurationSegements.selectedSegmentIndex
         
@@ -91,9 +91,9 @@ class MainViewController: UIViewController, SegueHandlerType {
         backgroundAudioPlayer!.playbackDuration = selectedPlaybackDuration
     }
     
-    @IBAction func recordTouchUp(sender: AnyObject) {
+    @IBAction func recordTouchUp(_ sender: AnyObject) {
         
-        if backgroundAudioPlayer!.playState == .Playing {
+        if backgroundAudioPlayer!.playState == .playing {
             backgroundAudioPlayer!.togglePlayState()
         }
         
@@ -103,14 +103,14 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     func updateSoundFileSelectionFromPlaylist() {
         
-        scrollToCellAndHightlightIt(NSIndexPath(forRow: playList!.index, inSection: 0))
+        scrollToCellAndHightlightIt(IndexPath(row: playList!.index, section: 0))
     }
     
-    func scrollToCellAndHightlightIt(indexPath: NSIndexPath) {
+    func scrollToCellAndHightlightIt(_ indexPath: IndexPath) {
         
         lastSelectedItemIndexPath = indexPath
         
-        playlistCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredVertically, animated: true)
+        playlistCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         
         updateSelectedCellHighlighting()
     }
@@ -120,8 +120,8 @@ class MainViewController: UIViewController, SegueHandlerType {
         var soundFiles = [SoundFile]()
         
         do {
-            try soundFiles.appendContentsOf(AssetSoundFilePList().assetSoundFilesInPList())
-            try soundFiles.appendContentsOf(RecordedSoundFilesPList().recordedSoundFilesInPList())
+            try soundFiles.append(contentsOf: AssetSoundFilePList().assetSoundFilesInPList())
+            try soundFiles.append(contentsOf: RecordedSoundFilesPList().recordedSoundFilesInPList())
         } catch let error as NSError {
             showAlertDialog(error.localizedDescription)
         }
@@ -136,51 +136,51 @@ class MainViewController: UIViewController, SegueHandlerType {
         playlistCollectionView.reloadData()
         
         backgroundAudioPlayer?.selectedSoundFile = playList?.first()
-        playlistCollectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: .Bottom)
+        playlistCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .bottom)
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return playList!.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath) as! PlaylistCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PlaylistCollectionViewCell
         
-        cell.soundFile = playList!.byRow(indexPath.item)
+        cell.soundFile = playList!.byRow((indexPath as NSIndexPath).item)
         
         let swipeDeleteGesture = UISwipeGestureRecognizer(target: self, action: #selector(collectionViewDeleteCell) )
-        swipeDeleteGesture.direction = UISwipeGestureRecognizerDirection.Right
-        cell.userInteractionEnabled = true
+        swipeDeleteGesture.direction = UISwipeGestureRecognizerDirection.right
+        cell.isUserInteractionEnabled = true
         cell.addGestureRecognizer(swipeDeleteGesture)
         
         return cell
     }
     
-    func collectionViewDeleteCell(sender: UISwipeGestureRecognizer) {
+    func collectionViewDeleteCell(_ sender: UISwipeGestureRecognizer) {
         
         let cell = sender.view as! PlaylistCollectionViewCell
         
         guard let soundFile = cell.soundFile else { return }
         guard soundFile.Deletable else { return }
         
-        let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.Alert)
+        let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.alert)
         
-        dialog.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert: UIAlertAction!) in  self.deleteSoundFile(soundFile) } ) )
-        dialog.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: {(alert: UIAlertAction!) in return } ) )
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in  self.deleteSoundFile(soundFile) } ) )
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {(alert: UIAlertAction!) in return } ) )
         
-        presentViewController(dialog, animated: true, completion: nil)
+        present(dialog, animated: true, completion: nil)
     }
     
-    func deleteSoundFile(soundFile: SoundFile) {
+    func deleteSoundFile(_ soundFile: SoundFile) {
         
         do {
             try RecordedSoundFilesPList().deleteRecordedSoundFile(soundFile.Identifier)
-            try NSFileManager.defaultManager().removeItemAtURL(soundFile.URL)
+            try FileManager.default.removeItem(at: soundFile.URL as URL)
             reload()
         } catch let exception as NSError {
             showAlertDialog(exception.localizedDescription)
@@ -190,18 +190,18 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow(indexPath.row)
+        backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow((indexPath as NSIndexPath).row)
         
         scrollToCellAndHightlightIt(indexPath)
         
-        if backgroundAudioPlayer?.playState == PlayState.Paused {
+        if backgroundAudioPlayer?.playState == PlayState.paused {
             backgroundAudioPlayer?.togglePlayState()
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateParallaxEffect()
         updateSelectedCellHighlighting()
@@ -211,20 +211,20 @@ extension MainViewController: UICollectionViewDelegate {
         
         let bounds = playlistCollectionView!.bounds
         
-        playlistCollectionView.visibleCells().forEach { cell in
+        playlistCollectionView.visibleCells.forEach { cell in
             (cell as! PlaylistCollectionViewCell).updateParallaxOffset(collectionViewBounds: bounds)
         }
     }
     
     func updateSelectedCellHighlighting() {
         
-        playlistCollectionView.visibleCells().forEach { cell in
+        playlistCollectionView.visibleCells.forEach { cell in
             (cell as! PlaylistCollectionViewCell).notSelected()
         }
         
         guard let indexPath = lastSelectedItemIndexPath else { return }
         
-        guard let selectedCell = playlistCollectionView.cellForItemAtIndexPath(indexPath) as? PlaylistCollectionViewCell else { return }
+        guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else { return }
         
         selectedCell.currentlySelected()
     }
@@ -232,17 +232,17 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: BackgroundAudioPlayerStateDelegate {
     
-    func playStateChanged(playState: PlayState) {
+    func playStateChanged(_ playState: PlayState) {
         
         switch playState {
             
-        case .Playing:
+        case .playing:
             updateTrackInfoInRemoteCommandCenter()
-            buttonPlayPause.setImage(UIImage(named: "Stop"), forState: .Normal)
+            buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControlState())
             updateSoundFileSelectionFromPlaylist()
             
-        case .Paused:
-            buttonPlayPause.setImage(UIImage(named: "Play"), forState: .Normal)
+        case .paused:
+            buttonPlayPause.setImage(UIImage(named: "Play"), for: UIControlState())
         }
     }
 }
@@ -258,21 +258,21 @@ extension MainViewController { // MPRemoteCommands
 
     func initRemoteCommands() {
         
-        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+        let commandCenter = MPRemoteCommandCenter.shared()
         
-        commandCenter.playCommand.enabled = true
+        commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget(self, action: #selector(MainViewController.PlayPauseCommand))
         
-        commandCenter.pauseCommand.enabled = true
+        commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget(self, action: #selector(MainViewController.PlayPauseCommand))
         
-        commandCenter.nextTrackCommand.enabled = true
+        commandCenter.nextTrackCommand.isEnabled = true
         commandCenter.nextTrackCommand.addTarget(self, action: #selector(MainViewController.nextTrackCommand))
         
-        commandCenter.previousTrackCommand.enabled = true
+        commandCenter.previousTrackCommand.isEnabled = true
         commandCenter.previousTrackCommand.addTarget(self, action: #selector(MainViewController.previousTrackCommand))
      
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
     }
     
     func updateTrackInfoInRemoteCommandCenter() {
@@ -283,15 +283,15 @@ extension MainViewController { // MPRemoteCommands
             albumArtWorkImage = backgroundAudioPlayer!.selectedSoundFile!.Image
         }
         
-        let nowPlayingCenter = MPNowPlayingInfoCenter.defaultCenter()
+        let nowPlayingCenter = MPNowPlayingInfoCenter.default()
         
         nowPlayingCenter.nowPlayingInfo =
             [MPMediaItemPropertyTitle: backgroundAudioPlayer!.selectedSoundFile!.Name,
              MPMediaItemPropertyAlbumTitle: "Baby sleep",
              MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: albumArtWorkImage),
-             MPMediaItemPropertyAlbumTrackCount: NSNumber(int: Int32(playList!.count)),
-             MPMediaItemPropertyAlbumTrackNumber: NSNumber(int: Int32(playList!.number)),
-             MPMediaItemPropertyPlaybackDuration: NSNumber(float: Float(backgroundAudioPlayer!.playbackDuration!.totalSeconds()))]
+             MPMediaItemPropertyAlbumTrackCount: NSNumber(value: Int32(playList!.count) as Int32),
+             MPMediaItemPropertyAlbumTrackNumber: NSNumber(value: Int32(playList!.number) as Int32),
+             MPMediaItemPropertyPlaybackDuration: NSNumber(value: Float(backgroundAudioPlayer!.playbackDuration!.totalSeconds()) as Float)]
         
     }
     

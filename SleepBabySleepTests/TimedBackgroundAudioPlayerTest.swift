@@ -89,7 +89,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         
         testInstance!.togglePlayState()
         
-        assertLastPlayStateIs(.Playing)
+        assertLastPlayStateIs(.playing)
     }
     
     func testStateChangeDeledageCalledForStop() {
@@ -100,11 +100,11 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         testInstance!.togglePlayState()
         testInstance!.togglePlayState()
         
-        assertLastPlayStateIs(.Paused)
+        assertLastPlayStateIs(.paused)
 
     }
     
-    func assertLastPlayStateIs(expectedPlayState: PlayState) {
+    func assertLastPlayStateIs(_ expectedPlayState: PlayState) {
         
         XCTAssertNotNil(fakeBackgroundAudioPlayerStateDelegate?.lastPlayState)
         

@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 protocol SoundFile {
-    var Identifier: NSUUID { get }
+    var Identifier: UUID { get }
     var Name: String { get }
-    var URL: NSURL { get }
+    var URL: Foundation.URL { get }
     var Image: UIImage { get }
     var Deletable: Bool { get }
 }
@@ -20,26 +20,25 @@ protocol SoundFile {
 
 struct AssetSoundFile: SoundFile, Equatable {
     
-    private var fileName: String
-    private var fileExtension: String
-    private var image: UIImage
+    fileprivate var fileName: String
+    fileprivate var fileExtension: String
+    fileprivate var image: UIImage
     
     init(Name: String, File: String, Extension:String) {
-        self.Identifier = NSUUID()
+        self.Identifier = UUID()
         self.Name = Name
         self.fileName = File
         self.fileExtension = Extension
         self.image = imageForSound()
     }
     
-    private(set) var Identifier: NSUUID
-    private(set) var Name: String
+    fileprivate(set) var Identifier: UUID
+    fileprivate(set) var Name: String
     
-    var URL: NSURL {
+    var URL: Foundation.URL {
         get {
-            return NSBundle
-                    .mainBundle()
-                    .URLForResource(fileName, withExtension: fileExtension)!
+            return Bundle.main
+                    .url(forResource: fileName, withExtension: fileExtension)!
         }
     }
     
@@ -60,17 +59,17 @@ func ==(lhs: AssetSoundFile, rhs: AssetSoundFile) -> Bool {
 
 struct RecordedAudioFile: SoundFile, Equatable{
     
-    init(identifier: NSUUID, name: String, url: NSURL) {
+    init(identifier: UUID, name: String, url: Foundation.URL) {
         self.Identifier = identifier
         self.URL = url
         self.Name = name
         self.image = imageForSound()
     }
 
-    private(set) var Identifier: NSUUID
-    private(set) var Name: String
-    private(set) var URL: NSURL
-    private var image: UIImage
+    fileprivate(set) var Identifier: UUID
+    fileprivate(set) var Name: String
+    fileprivate(set) var URL: Foundation.URL
+    fileprivate var image: UIImage
     
     var Image: UIImage {
         get { return image }

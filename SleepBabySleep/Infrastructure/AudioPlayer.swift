@@ -12,7 +12,7 @@ import AVFoundation
 protocol AudioPlayer {
     var stateDelegate: AudioPlayerStateDelegate? { get set }
     
-    func play(withUrl: NSURL)
+    func play(_ withUrl: URL)
     func stop()
 }
 
@@ -23,8 +23,8 @@ protocol AudioPlayerStateDelegate {
 
 class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegate :-( {
     
-    private var player: AVAudioPlayer?
-    private var numberOfLoops: Int
+    fileprivate var player: AVAudioPlayer?
+    fileprivate var numberOfLoops: Int
     
     var stateDelegate: AudioPlayerStateDelegate?
     
@@ -34,21 +34,21 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         
         super.init()
         
-        let nc = NSNotificationCenter.defaultCenter()
+        let nc = NotificationCenter.default
         let session = AVAudioSession.sharedInstance()
         
-        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived(_:)), name: AVAudioSessionInterruptionNotification, object: session)
-        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived(_:)), name: AVAudioSessionRouteChangeNotification, object: session)
+        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: session)
+        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived(_:)), name: NSNotification.Name.AVAudioSessionRouteChange, object: session)
     }
     
     override convenience init() {
         self.init(numberOfLoops: -1)
     }
     
-    func play(withUrl: NSURL) {
+    func play(_ withUrl: URL) {
         
         do {
-            player = try AVAudioPlayer(contentsOfURL: withUrl)
+            player = try AVAudioPlayer(contentsOf: withUrl)
             
             guard let player = player else { return }
             
@@ -72,22 +72,22 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         delegate.playbackStopped()
     }
     
-    private func triggerDelegatePlaybackStopped() {
+    fileprivate func triggerDelegatePlaybackStopped() {
         
         if let delegate = self.stateDelegate {
             delegate.playbackCancelled()
         }
     }
     
-    @objc private func notificationAudioSessionInterruptedReceived(notification: NSNotification) {
+    @objc fileprivate func notificationAudioSessionInterruptedReceived(_ notification: Notification) {
      
         NSLog("AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived")
         
-        if let info = notification.userInfo {
+        if let info = (notification as NSNotification).userInfo {
             
             let type = AVAudioSessionInterruptionType(rawValue: info[AVAudioSessionInterruptionTypeKey] as! UInt)
             
-            if type == .Began {
+            if type == .began {
                 
                 stop()
                 triggerDelegatePlaybackStopped()
@@ -95,15 +95,15 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         }
     }
     
-    @objc private func notificationAudioSessionRouteChangedReceived(notification: NSNotification) {
+    @objc fileprivate func notificationAudioSessionRouteChangedReceived(_ notification: Notification) {
      
         NSLog("AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived")
         
-        guard let info = notification.userInfo else { return }
+        guard let info = (notification as NSNotification).userInfo else { return }
         
         let reason = AVAudioSessionRouteChangeReason(rawValue: info[AVAudioSessionRouteChangeReasonKey] as! UInt)
         
-        if reason == .OldDeviceUnavailable {
+        if reason == .oldDeviceUnavailable {
             
             let previousRoute = info[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription
             let previousOutput = previousRoute!.outputs.first!
@@ -120,7 +120,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
 
 extension AVAudioPlayerFacade: AVAudioPlayerDelegate {
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         
         NSLog("AudioPlayer finished playing -> \(flag)")
         

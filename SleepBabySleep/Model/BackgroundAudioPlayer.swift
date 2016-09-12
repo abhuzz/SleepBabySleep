@@ -9,8 +9,8 @@
 import Foundation
 
 enum PlayState {
-    case Paused
-    case Playing
+    case paused
+    case playing
 }
 
 protocol BackgroundAudioPlayer {
@@ -23,17 +23,17 @@ protocol BackgroundAudioPlayer {
 }
 
 protocol BackgroundAudioPlayerStateDelegate {
-    func playStateChanged(playState: PlayState)
+    func playStateChanged(_ playState: PlayState)
 }
 
 class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
 
-    private var audioSession: AudioSession
-    private var audioPlayer: AudioPlayer
-    private var timer: Timer
+    fileprivate var audioSession: AudioSession
+    fileprivate var audioPlayer: AudioPlayer
+    fileprivate var timer: Timer
     
     
-    var playState: PlayState = .Paused
+    var playState: PlayState = .paused
     var stateDelegate: BackgroundAudioPlayerStateDelegate?
     
     var selectedSoundFile: SoundFile? {
@@ -58,7 +58,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     
     func togglePlayState() {
         
-        if playState == .Playing {
+        if playState == .playing {
             stopPlayingSound()
         } else {
             startPlayingSound()
@@ -66,15 +66,15 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     }
     
     
-    private func restartAudioIfIsPlayingSound() {
+    fileprivate func restartAudioIfIsPlayingSound() {
         
-        guard playState == .Playing else { return }
+        guard playState == .playing else { return }
         
         stopPlayingSound()
         startPlayingSound()
     }
     
-    private func startPlayingSound() {
+    fileprivate func startPlayingSound() {
     
         guard let soundFileToPlay = self.selectedSoundFile else { return }
         
@@ -90,14 +90,14 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
                 timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
             }
             
-            changePlayState(.Playing)
+            changePlayState(.playing)
         
         } catch let error as NSError {
             NSLog("Failed to play sound: \(error.localizedDescription)")
         }
     }
     
-    private func stopPlayingSound() {
+    fileprivate func stopPlayingSound() {
         
         timer.stop()
         audioPlayer.stop()
@@ -108,17 +108,17 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
             NSLog("Failed closing audioSession: \(error.localizedDescription)")
         }
         
-        changePlayState(.Paused)
+        changePlayState(.paused)
     }
     
-    private func changePlayState(newPlayState: PlayState) {
+    fileprivate func changePlayState(_ newPlayState: PlayState) {
         
         playState = newPlayState
         
         informDelegateOverPlayStateChange()
     }
     
-    private func informDelegateOverPlayStateChange() {
+    fileprivate func informDelegateOverPlayStateChange() {
         
         guard let delegate = stateDelegate else { return }
         

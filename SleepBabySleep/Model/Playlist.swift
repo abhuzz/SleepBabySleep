@@ -10,9 +10,9 @@ import Foundation
 
 class SoundFilePlaylist {
     
-    private var currentRow = 0
+    fileprivate var currentRow = 0
     
-    private(set) var soundFiles: [SoundFile]
+    fileprivate(set) var soundFiles: [SoundFile]
     
     
     init(soundFiles: [SoundFile]) {
@@ -71,7 +71,7 @@ class SoundFilePlaylist {
         return soundFiles[currentRow]
     }
     
-    func jumptoRow(row: Int) -> SoundFile? {
+    func jumptoRow(_ row: Int) -> SoundFile? {
         
         guard let soundFile = byRow(row) else { return nil }
         
@@ -80,7 +80,7 @@ class SoundFilePlaylist {
         return soundFile
     }
     
-    func byRow(row: Int) -> SoundFile? {
+    func byRow(_ row: Int) -> SoundFile? {
         
         guard ( row >= 0 && row < soundFiles.count ) else { return nil }
         

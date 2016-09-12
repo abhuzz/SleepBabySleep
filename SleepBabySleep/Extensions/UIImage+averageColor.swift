@@ -12,11 +12,11 @@ extension UIImage {
     
     func averageColor() -> UIColor {
         
-        var bitmap = [UInt8](count: 4, repeatedValue: 0)
+        var bitmap = [UInt8](repeating: 0, count: 4)
         
         // Get average color.
         let context = CIContext()
-        let inputImage = CIImage ?? CoreImage.CIImage(CGImage: CGImage!)
+        let inputImage = ciImage ?? CoreImage.CIImage(cgImage: cgImage!)
         let extent = inputImage.extent
         let inputExtent = CIVector(x: extent.origin.x, y: extent.origin.y, z: extent.size.width, w: extent.size.height)
         let filter = CIFilter(name: "CIAreaAverage", withInputParameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: inputExtent])!
