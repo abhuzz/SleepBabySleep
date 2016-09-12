@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SleepBabySleep.xcodeproj">
+      location = "self:/Users/stefanmehnert/Documents/dev/SleepBabySleep/SleepBabySleep.xcodeproj">
    </FileRef>
 </Workspace>
