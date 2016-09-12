@@ -6,7 +6,7 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 - [ ] Replace soundFileName label with a description in the textField
 - [ ] Haptic feedback (+sound) when recording starts or stopped
 - [ ] Delete Recording swipe animation 
-- [ ] iOS 10 / Swift 3 Migration
+- [X] iOS 10 / Swift 3 Migration
 - [X] Crash when quickly hitting the record button - probaply caused by unlocked / unsafe updateLoop
 - [X] Handle AVAudioInterruptions while recording
 - [X] Recording dialog
