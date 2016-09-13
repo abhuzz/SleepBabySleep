@@ -3,8 +3,13 @@ iOS & Swift side/learning project
 Playous sounds for a given duration until the baby sleeps. Can also record own sounds for repeated playback.
 
 **ToDo**
-- [ ] Replace soundFileName label with a description in the textField
+- [ ] After recording select latest recording in playlist collectionView
+- [ ] Restore scrollState when app reopens (currently selects the lastSelected - in case played track was changed with mediaControls)
 - [ ] Delete Recording swipe animation 
+- [ ] Selected tracks by previous & next controls when not playing 
+- [ ] iPhone plus / iPad UiCollectionView Problem 
+- [ ] Store recordings in iCloud Account 
+- [X] Replace soundFileName label with a description in the textField
 - [X] iOS 10 / Swift 3 Migration
 - [X] Crash when quickly hitting the record button - probaply caused by unlocked / unsafe updateLoop
 - [X] Handle AVAudioInterruptions while recording
@@ -22,6 +27,3 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 	 -[X] AVAudioSessionCategoryPlayAndRecord 
 	- [X] Options: ?AllowBluetooth, MixInWithOthers - https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionBasics/AudioSessionBasics.html
 - [X] Delete: RecordedSoundFileDirectory? 
-- [ ] Selected tracks by previous & next controls when not playing 
-- [ ] iPhone plus / iPad UiCollectionView Problem 
-- [ ] Store recordings in iCloud Account 
