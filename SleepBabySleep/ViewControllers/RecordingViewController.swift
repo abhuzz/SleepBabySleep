@@ -15,20 +15,20 @@ protocol RecordingDelegate {
 
 class RecordingViewController: UIViewController {
     
-    fileprivate let recordingFileExtension = "caf"
-    fileprivate let documentsDirectoryUrl =
+    private let recordingFileExtension = "caf"
+    private let documentsDirectoryUrl =
             FileManager.default
                 .urls(for: .documentDirectory, in: .userDomainMask)
                 .first!
-    fileprivate let temporaryDirectory = URL(fileURLWithPath: NSTemporaryDirectory())
+    private let temporaryDirectory = URL(fileURLWithPath: NSTemporaryDirectory())
     
-    fileprivate var audioSession: AudioSession?
-    fileprivate var audioRecorder: AudioRecorder?
-    fileprivate var audioPlayer: AudioPlayer?
+    private var audioSession: AudioSession?
+    private var audioRecorder: AudioRecorder?
+    private var audioPlayer: AudioPlayer?
     fileprivate var lastRecordedFileURL: URL?
-    fileprivate var playingPreview = false
-    fileprivate var soundTimer: CFTimeInterval = 0.0
-    fileprivate var updateTimer: CADisplayLink?
+    private var playingPreview = false
+    private var soundTimer: CFTimeInterval = 0.0
+    private var updateTimer: CADisplayLink?
     
     var recordingDelegate: RecordingDelegate?
     
@@ -149,7 +149,7 @@ class RecordingViewController: UIViewController {
         }
     }
     
-    fileprivate func startPlayingPreview() {
+    private func startPlayingPreview() {
         
         guard let previewSoundFile = lastRecordedFileURL else { return }
         
@@ -159,7 +159,7 @@ class RecordingViewController: UIViewController {
         audioPlayer?.play(previewSoundFile)
     }
     
-    fileprivate func stopPlayingPreview() {
+    private func stopPlayingPreview() {
         
         audioPlayer?.stop()
     }
@@ -170,7 +170,7 @@ class RecordingViewController: UIViewController {
         buttonPreview.setImage(UIImage(named: "Play"), for: UIControlState())
     }
     
-    fileprivate func saveRecording() throws {
+    private func saveRecording() throws {
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
@@ -184,7 +184,7 @@ class RecordingViewController: UIViewController {
             .saveRecordedSoundFileToPlist(UUID(), name: soundFileName.text!, URL: recordingURL)
     }
     
-    fileprivate func deleteTemporaryRecordingFile() {
+    private func deleteTemporaryRecordingFile() {
         
         guard let fileUrl = lastRecordedFileURL else { return }
         
@@ -199,7 +199,7 @@ class RecordingViewController: UIViewController {
         }
     }
     
-    fileprivate func navigateToMainView() {
+    private func navigateToMainView() {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
      

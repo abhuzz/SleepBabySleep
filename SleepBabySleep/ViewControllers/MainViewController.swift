@@ -17,7 +17,7 @@ class MainViewController: UIViewController, SegueHandlerType {
     fileprivate var playList: SoundFilePlaylist?
     fileprivate var lastSelectedItemIndexPath: IndexPath?
     
-    fileprivate var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
+    private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
          1 : PlaybackDurationMinutes(durationInMinutes: 15),
          2 : PlaybackDurationMinutes(durationInMinutes: 30),

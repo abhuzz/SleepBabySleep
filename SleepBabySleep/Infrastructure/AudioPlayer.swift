@@ -23,8 +23,8 @@ protocol AudioPlayerStateDelegate {
 
 class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegate :-( {
     
-    fileprivate var player: AVAudioPlayer?
-    fileprivate var numberOfLoops: Int
+    private var player: AVAudioPlayer?
+    private var numberOfLoops: Int
     
     var stateDelegate: AudioPlayerStateDelegate?
     
@@ -79,7 +79,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         }
     }
     
-    @objc fileprivate func notificationAudioSessionInterruptedReceived(_ notification: Notification) {
+    @objc private func notificationAudioSessionInterruptedReceived(_ notification: Notification) {
      
         NSLog("AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived")
         
@@ -95,7 +95,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         }
     }
     
-    @objc fileprivate func notificationAudioSessionRouteChangedReceived(_ notification: Notification) {
+    @objc private func notificationAudioSessionRouteChangedReceived(_ notification: Notification) {
      
         NSLog("AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived")
         

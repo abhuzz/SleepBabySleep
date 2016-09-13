@@ -12,9 +12,9 @@ import UIKit
 
 class FakeAudioSession: AudioSession {
     
-    fileprivate(set) var calledOpenForPlayback = false
-    fileprivate(set) var calledOpenForRecording = false
-    fileprivate(set) var timesCloseCalled = 0
+    private(set) var calledOpenForPlayback = false
+    private(set) var calledOpenForRecording = false
+    private(set) var timesCloseCalled = 0
     
     func openForPlayback() throws {
         calledOpenForPlayback = true
@@ -37,9 +37,9 @@ class FakeAudioPlayer: AudioPlayer {
     
     var stateDelegate: AudioPlayerStateDelegate?
     
-    fileprivate(set) var playCalled = false
-    fileprivate(set) var stopCalled = false
-    fileprivate(set) var timesPlayCalled = 0
+    private(set) var playCalled = false
+    private(set) var stopCalled = false
+    private(set) var timesPlayCalled = 0
     
     func play(_ withUrl: URL) {
         playCalled = true
@@ -53,9 +53,9 @@ class FakeAudioPlayer: AudioPlayer {
 
 class FakeTimer: SleepBabySleep.Timer {
     
-    fileprivate(set) var calledStart = false
-    fileprivate(set) var calledStop = false
-    fileprivate(set) var calledWithDurationInSeconds = 0.0
+    private(set) var calledStart = false
+    private(set) var calledStop = false
+    private(set) var calledWithDurationInSeconds = 0.0
     
     func start(_ durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
         
@@ -71,7 +71,7 @@ class FakeTimer: SleepBabySleep.Timer {
 
 class FakeBackgroundAudioPlayerStateDelegate: BackgroundAudioPlayerStateDelegate {
     
-    fileprivate(set) var lastPlayState: PlayState?
+    private(set) var lastPlayState: PlayState?
     
     func playStateChanged(_ playState: PlayState) {
         lastPlayState = playState

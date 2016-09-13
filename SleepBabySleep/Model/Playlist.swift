@@ -10,9 +10,9 @@ import Foundation
 
 class SoundFilePlaylist {
     
-    fileprivate var currentRow = 0
+    private var currentRow = 0
     
-    fileprivate(set) var soundFiles: [SoundFile]
+    private(set) var soundFiles: [SoundFile]
     
     
     init(soundFiles: [SoundFile]) {

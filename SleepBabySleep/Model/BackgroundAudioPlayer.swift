@@ -28,9 +28,9 @@ protocol BackgroundAudioPlayerStateDelegate {
 
 class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
 
-    fileprivate var audioSession: AudioSession
-    fileprivate var audioPlayer: AudioPlayer
-    fileprivate var timer: Timer
+    private var audioSession: AudioSession
+    private var audioPlayer: AudioPlayer
+    private var timer: Timer
     
     
     var playState: PlayState = .paused
@@ -66,7 +66,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     }
     
     
-    fileprivate func restartAudioIfIsPlayingSound() {
+    private func restartAudioIfIsPlayingSound() {
         
         guard playState == .playing else { return }
         
@@ -74,7 +74,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         startPlayingSound()
     }
     
-    fileprivate func startPlayingSound() {
+    private func startPlayingSound() {
     
         guard let soundFileToPlay = self.selectedSoundFile else { return }
         
@@ -111,14 +111,14 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         changePlayState(.paused)
     }
     
-    fileprivate func changePlayState(_ newPlayState: PlayState) {
+    private func changePlayState(_ newPlayState: PlayState) {
         
         playState = newPlayState
         
         informDelegateOverPlayStateChange()
     }
     
-    fileprivate func informDelegateOverPlayStateChange() {
+    private func informDelegateOverPlayStateChange() {
         
         guard let delegate = stateDelegate else { return }
         

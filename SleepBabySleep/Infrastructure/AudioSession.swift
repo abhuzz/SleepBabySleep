@@ -18,9 +18,9 @@ protocol AudioSession {
 
 class AVAudioSessionFacade: AudioSession {
     
-    fileprivate let session = AVAudioSession.sharedInstance()
+    private let session = AVAudioSession.sharedInstance()
     
-    fileprivate var microphoneAvailable = false
+    private var microphoneAvailable = false
     
     
     func openForPlayback() throws {

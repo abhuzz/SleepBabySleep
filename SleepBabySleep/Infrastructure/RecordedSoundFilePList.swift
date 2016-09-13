@@ -10,10 +10,10 @@ import Foundation
 
 class RecordedSoundFilesPList {
     
-    fileprivate let fileManager = FileManager.default
-    fileprivate var format = PropertyListSerialization.PropertyListFormat.xml
-    fileprivate let documentsDirectory: URL
-    fileprivate let pListUrl: URL
+    private let fileManager = FileManager.default
+    private var format = PropertyListSerialization.PropertyListFormat.xml
+    private let documentsDirectory: URL
+    private let pListUrl: URL
     
     
     init() {
@@ -94,7 +94,7 @@ class RecordedSoundFilesPList {
     }
     
     
-    fileprivate func existingRecordDictionaries() throws -> [[String: String]] {
+    private func existingRecordDictionaries() throws -> [[String: String]] {
         
         var soundFilesDictionaries = [[String: String]]()
         
@@ -109,7 +109,7 @@ class RecordedSoundFilesPList {
         return soundFilesDictionaries
     }
     
-    fileprivate func soundFileUrl(_ fileName: String) -> URL {
+    private func soundFileUrl(_ fileName: String) -> URL {
      
         return documentsDirectory.appendingPathComponent(fileName)
     }

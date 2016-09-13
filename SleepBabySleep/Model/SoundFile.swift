@@ -20,9 +20,9 @@ protocol SoundFile {
 
 struct AssetSoundFile: SoundFile, Equatable {
     
-    fileprivate var fileName: String
-    fileprivate var fileExtension: String
-    fileprivate var image: UIImage
+    private var fileName: String
+    private var fileExtension: String
+    private var image: UIImage
     
     init(Name: String, File: String, Extension:String) {
         self.Identifier = UUID()
@@ -32,8 +32,8 @@ struct AssetSoundFile: SoundFile, Equatable {
         self.image = imageForSound()
     }
     
-    fileprivate(set) var Identifier: UUID
-    fileprivate(set) var Name: String
+    private(set) var Identifier: UUID
+    private(set) var Name: String
     
     var URL: Foundation.URL {
         get {
@@ -66,10 +66,10 @@ struct RecordedAudioFile: SoundFile, Equatable{
         self.image = imageForSound()
     }
 
-    fileprivate(set) var Identifier: UUID
-    fileprivate(set) var Name: String
-    fileprivate(set) var URL: Foundation.URL
-    fileprivate var image: UIImage
+    private(set) var Identifier: UUID
+    private(set) var Name: String
+    private(set) var URL: Foundation.URL
+    private var image: UIImage
     
     var Image: UIImage {
         get { return image }

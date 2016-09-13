@@ -19,8 +19,8 @@ protocol Timer {
 
 class SystemTimer: Timer {
     
-    fileprivate var timer = Foundation.Timer()
-    fileprivate var expiredDelegate: TimerExpiredDelegate?
+    private var timer = Foundation.Timer()
+    private var expiredDelegate: TimerExpiredDelegate?
     
     func start(_ durationInSeconds: Double, callDelegateWhenExpired: TimerExpiredDelegate) {
         

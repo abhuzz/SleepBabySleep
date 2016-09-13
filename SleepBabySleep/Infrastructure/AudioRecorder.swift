@@ -16,14 +16,14 @@ protocol AudioRecorderDelegate {
 
 class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
     
-    fileprivate let recordSettings = [
+    private let recordSettings = [
                         AVFormatIDKey: Int(kAudioFormatLinearPCM),
                         AVSampleRateKey: 44100.0,
                         AVNumberOfChannelsKey: 1,
                         AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
                     ] as [String : Any]
     
-    fileprivate var audioRecorder: AVAudioRecorder?
+    private var audioRecorder: AVAudioRecorder?
     
     var delegate: AudioRecorderDelegate?
     

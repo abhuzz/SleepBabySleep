@@ -11,15 +11,15 @@ import UIKit
 
 class PlaylistCollectionViewCell: UICollectionViewCell {
     
-    fileprivate var optimalTextColor = UIColor.black
-    fileprivate var cellSelected = false
+    private var optimalTextColor = UIColor.black
+    private var cellSelected = false
     
     @IBOutlet weak var playlistFile: UILabel!
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
     @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
     
-    fileprivate var parallaxOffset: CGFloat = 0 {
+    private var parallaxOffset: CGFloat = 0 {
         didSet {
             playListImageViewYCenterConstraint.constant = parallaxOffset
         }
@@ -81,7 +81,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         setOptimizedTextColor()
     }
     
-    fileprivate func setOptimizedTextColor() {
+    private func setOptimizedTextColor() {
         
         if cellSelected {
             playlistTitle.textColor = UIColor.lightGray

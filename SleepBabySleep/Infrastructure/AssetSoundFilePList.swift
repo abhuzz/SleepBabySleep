@@ -10,8 +10,8 @@ import Foundation
 
 class AssetSoundFilePList {
     
-    fileprivate let fileManager = FileManager.default
-    fileprivate let plistUrl = Bundle.main.url(forResource: "AssetSoundFiles", withExtension: "plist")
+    private let fileManager = FileManager.default
+    private let plistUrl = Bundle.main.url(forResource: "AssetSoundFiles", withExtension: "plist")
     
     func assetSoundFilesInPList() throws -> [SoundFile] {
         
