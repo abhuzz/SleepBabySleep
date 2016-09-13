@@ -211,7 +211,7 @@ class RecordingViewController: UIViewController {
         updateTimer?.invalidate()
         
         updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewController.updateLoop))
-        updateTimer!.frameInterval = 1
+        updateTimer!.preferredFramesPerSecond = 1
         updateTimer!.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     
