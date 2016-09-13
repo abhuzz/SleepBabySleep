@@ -121,7 +121,7 @@ class RecordingViewController: UIViewController {
             showAlertDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
             return
         }
-        
+    
         buttonRecording.setImage(UIImage(named: "Record_Active"), for: UIControlState())
         
         deleteTemporaryRecordingFile()
