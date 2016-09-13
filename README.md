@@ -6,9 +6,11 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 - [ ] After recording select latest recording in playlist collectionView
 - [ ] Restore scrollState when app reopens (currently selects the lastSelected - in case played track was changed with mediaControls)
 - [ ] Delete Recording swipe animation 
+- [ ] Better highlighting of currently selected track
 - [ ] Selected tracks by previous & next controls when not playing 
 - [ ] iPhone plus / iPad UiCollectionView Problem 
 - [ ] Store recordings in iCloud Account 
+- [X] When user hits cancel or save in recording view - stop playback if running
 - [X] Replace soundFileName label with a description in the textField
 - [X] iOS 10 / Swift 3 Migration
 - [X] Crash when quickly hitting the record button - probaply caused by unlocked / unsafe updateLoop

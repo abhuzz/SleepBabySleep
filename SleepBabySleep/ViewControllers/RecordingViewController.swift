@@ -78,6 +78,7 @@ class RecordingViewController: UIViewController {
     
     @IBAction func actionNavigationCancelled(_ sender: AnyObject) {
         
+        stopPlayingPreview()
         deleteTemporaryRecordingFile()
         
         navigateToMainView()
@@ -86,6 +87,7 @@ class RecordingViewController: UIViewController {
     @IBAction func actionNavigationSave(_ sender: AnyObject) {
         
         do {
+            stopPlayingPreview()
             try saveRecording()
             
             if let delegate = self.recordingDelegate {
