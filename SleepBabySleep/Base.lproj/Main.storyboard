@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="11D-sC-lo9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="11D-sC-lo9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -14,15 +15,13 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="H45-Fh-J1n">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2nk-sy-KnJ" userLabel="playlistCollectionView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="513"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ll-tO-uJd" customClass="PlaylistCollectionViewLayout" customModule="SleepBabySleep" customModuleProvider="target">
                                             <size key="itemSize" width="197" height="220"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,23 +30,21 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlaylistCollectionViewCell" id="Fs6-4R-a4n" userLabel="playlistCollectionViewCell" customClass="PlaylistCollectionViewCell" customModule="SleepBabySleep" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="64" width="197" height="220"/>
+                                                <rect key="frame" x="89" y="0.0" width="197" height="220"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="197" height="220"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoS-pu-7dd" userLabel="Container">
-                                                            <rect key="frame" x="-40" y="0.0" width="277" height="220"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uPQ-Fr-UfX" userLabel="playlistImage">
-                                                                    <rect key="frame" x="0.0" y="10" width="237" height="200"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="200" id="30g-xq-EYC"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="uPQ-Fr-UfX" secondAttribute="trailing" constant="40" id="4IW-Mg-tFZ"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="centerY" secondItem="UoS-pu-7dd" secondAttribute="centerY" id="YI7-QQ-Nzv"/>
@@ -55,22 +52,19 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playlistTitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1v-xQ-sZD">
-                                                            <rect key="frame" x="10" y="10" width="177" height="33"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                                            <color key="textColor" red="0.1510885417" green="0.7177435083" blue="0.97804214020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.1510885417" green="0.7177435083" blue="0.97804214020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playlistFile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkU-3m-0sB">
-                                                            <rect key="frame" x="10" y="189" width="177" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="sua-GR-WG0"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                            <color key="textColor" red="0.12549019610000001" green="0.58039215690000001" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.12549019610000001" green="0.58039215690000001" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="EkU-3m-0sB" secondAttribute="trailing" constant="10" id="7CV-w7-kdb"/>
@@ -94,10 +88,8 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IFs-Bx-VRf">
-                                        <rect key="frame" x="0.0" y="517" width="600" height="83"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-81-rOs" userLabel="segmentedDuration">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="29"/>
                                                 <segments>
                                                     <segment title="5"/>
                                                     <segment title="15"/>
@@ -112,31 +104,26 @@
                                                 </connections>
                                             </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TaY-SP-gLm">
-                                                <rect key="frame" x="0.0" y="33" width="600" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubl-WS-MKp" userLabel="buttonPrevious">
-                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                                         <state key="normal" image="Previous"/>
                                                         <connections>
                                                             <action selector="actionTappedPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VAL-DN-tKY"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCD-db-LV0" userLabel="buttonPlayPause">
-                                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
                                                         <state key="normal" image="Play"/>
                                                         <connections>
                                                             <action selector="actionTappedPlayPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wI-xH-iAF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-IN-LZS" userLabel="buttonNext">
-                                                        <rect key="frame" x="300" y="0.0" width="150" height="50"/>
                                                         <state key="normal" image="Next"/>
                                                         <connections>
                                                             <action selector="actionTappedNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J1i-eM-M2C"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znv-Xd-RQp">
-                                                        <rect key="frame" x="450" y="0.0" width="150" height="50"/>
                                                         <state key="normal" image="Microphone"/>
                                                         <connections>
                                                             <action selector="recordTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qej-qo-yQf"/>
@@ -149,7 +136,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="H45-Fh-J1n" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5F0-hK-7p8"/>
                             <constraint firstItem="H45-Fh-J1n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YH9-Ae-Y4I"/>
@@ -178,45 +165,29 @@
                         <viewControllerLayoutGuide type="bottom" id="Sys-3n-2GG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vqx-Uj-ZmS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="R6F-tF-SSM">
-                                <rect key="frame" x="20" y="84" width="560" height="191"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LAK-98-qUG">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odz-ra-JQX">
-                                                <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25B-Du-QIr" userLabel="soundFileName">
-                                                <rect key="frame" x="55" y="0.0" width="505" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="actionTextFieldChanged:" destination="zJy-Gj-pGc" eventType="editingChanged" id="oxy-ov-2Rs"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25B-Du-QIr" userLabel="soundFileName">
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="actionTextFieldChanged:" destination="zJy-Gj-pGc" eventType="editingChanged" id="oxy-ov-2Rs"/>
+                                        </connections>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="260" verticalCompressionResistancePriority="751" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHa-IV-vxK">
-                                        <rect key="frame" x="0.0" y="50" width="560" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="WPk-qc-Yma"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="jY0-Hq-co0">
-                                        <rect key="frame" x="0.0" y="91" width="560" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af2-mV-7G0">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="100"/>
                                                 <state key="normal" image="Play_Large"/>
                                                 <connections>
                                                     <action selector="actionPreviewTapped:" destination="zJy-Gj-pGc" eventType="touchUpInside" id="GiO-UQ-VU2"/>
@@ -224,7 +195,6 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfG-lO-My3">
-                                                <rect key="frame" x="280" y="0.0" width="280" height="100"/>
                                                 <state key="normal" image="Record_Idle"/>
                                                 <connections>
                                                     <action selector="recordingTouchDown:" destination="zJy-Gj-pGc" eventType="touchDown" id="a3s-44-qpQ"/>
@@ -239,7 +209,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="R6F-tF-SSM" secondAttribute="trailing" constant="20" id="NWn-bc-4O6"/>
                             <constraint firstItem="R6F-tF-SSM" firstAttribute="leading" secondItem="vqx-Uj-ZmS" secondAttribute="leading" constant="20" id="QGJ-wu-7cr"/>
