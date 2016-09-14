@@ -86,4 +86,9 @@ class SoundFilePlaylist {
         
         return soundFiles[row]
     }
+    
+    func indexForUuid(uuid: UUID) -> Array<SoundFile>.Index? {
+        
+        return soundFiles.index(where: { $0.Identifier == uuid })
+    }
 }

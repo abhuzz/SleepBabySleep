@@ -10,7 +10,7 @@ import UIKit
 
 protocol RecordingDelegate {
     
-    func recordingAdded()
+    func recordingAdded(uuid: UUID)
 }
 
 class RecordingViewController: UIViewController {
@@ -42,8 +42,8 @@ class RecordingViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        audioSession = AVAudioSessionFacade()
         do {
+            audioSession = AVAudioSessionFacade()
             try audioSession?.openForRecording()
         } catch let error as NSError {
             NSLog("Failed opening audioSession for recording: \(error.localizedDescription)")
@@ -87,11 +87,15 @@ class RecordingViewController: UIViewController {
     @IBAction func actionNavigationSave(_ sender: AnyObject) {
         
         do {
+            
+            let newRecordingUUID = UUID()
+            
             stopPlayingPreview()
-            try saveRecording()
+            
+            try saveRecording(uuid: newRecordingUUID)
             
             if let delegate = self.recordingDelegate {
-                delegate.recordingAdded()
+                delegate.recordingAdded(uuid: newRecordingUUID)
             }
             
             navigateToMainView()
@@ -172,7 +176,7 @@ class RecordingViewController: UIViewController {
         buttonPreview.setImage(UIImage(named: "Play"), for: UIControlState())
     }
     
-    private func saveRecording() throws {
+    private func saveRecording(uuid: UUID) throws {
         
         guard let recordingURL = lastRecordedFileURL else { return }
         
@@ -183,7 +187,7 @@ class RecordingViewController: UIViewController {
             .moveItem(at: recordingURL, to: targetURL)
             
         try RecordedSoundFilesPList()
-            .saveRecordedSoundFileToPlist(UUID(), name: soundFileName.text!, URL: recordingURL)
+            .saveRecordedSoundFileToPlist(uuid, name: soundFileName.text!, URL: recordingURL)
     }
     
     private func deleteTemporaryRecordingFile() {

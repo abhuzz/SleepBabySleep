@@ -57,7 +57,7 @@ class MainViewController: UIViewController, SegueHandlerType {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateSoundFileSelectionFromPlaylist()
+        //updateSoundFileSelectionFromPlaylist()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -136,7 +136,6 @@ class MainViewController: UIViewController, SegueHandlerType {
         playlistCollectionView.reloadData()
         
         backgroundAudioPlayer?.selectedSoundFile = playList?.first()
-        playlistCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .bottom)
     }
 }
 
@@ -249,8 +248,17 @@ extension MainViewController: BackgroundAudioPlayerStateDelegate {
 
 extension MainViewController: RecordingDelegate {
     
-    func recordingAdded() {
+    func recordingAdded(uuid: UUID) {
         reload()
+        
+        selectPlaylistItemWithUUID(uuid: uuid)
+    }
+    
+    func selectPlaylistItemWithUUID(uuid: UUID) {
+        
+        guard let newItemIndex = playList?.indexForUuid(uuid: uuid) else { return }
+        
+        scrollToCellAndHightlightIt(IndexPath(row: newItemIndex, section: 0))
     }
 }
 
