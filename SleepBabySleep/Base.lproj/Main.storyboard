@@ -84,6 +84,8 @@
                                                     <outlet property="playlistFile" destination="EkU-3m-0sB" id="Sha-RT-NkZ"/>
                                                     <outlet property="playlistImage" destination="uPQ-Fr-UfX" id="RcF-ey-wvS"/>
                                                     <outlet property="playlistTitle" destination="L1v-xQ-sZD" id="T9I-2U-eRa"/>
+                                                    <outlet property="titleLeadingConstraint" destination="mEE-na-igg" id="myn-i6-RsZ"/>
+                                                    <outlet property="titleTrailingConstraint" destination="t9E-k6-d7w" id="Cdd-Ay-tvF"/>
                                                     <outlet property="trailingConstraint" destination="4IW-Mg-tFZ" id="PRQ-je-liJ"/>
                                                 </connections>
                                             </collectionViewCell>
