@@ -55,17 +55,4 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
         
         return copiedLayoutAttribtes
     }
-    
-    override func finalLayoutAttributesForDisappearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        
-        guard let attributes = layoutAttributesForItem(at: itemIndexPath) else { return nil }
-        
-        attributes.alpha = 0.0
-        
-        let center = CGPoint(x: attributes.size.width / 2.0, y: attributes.size.height / 2.0)
-        attributes.center = CGPoint(x:center.x, y:center.y);
-        attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
-        
-        return attributes
-    }
 }

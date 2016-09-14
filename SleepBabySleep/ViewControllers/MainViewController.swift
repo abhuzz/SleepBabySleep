@@ -178,12 +178,14 @@ extension MainViewController: UICollectionViewDataSource {
         dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             (alert: UIAlertAction!) in
             
-            cell.undoSwipe()
-            self.deleteSoundFile(soundFile)
             
-            UIView.animate(withDuration: 3, delay: 0, options: .curveEaseOut, animations: {
-                self.view.layoutIfNeeded()
-                }, completion: nil)
+            UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+                    cell.alpha = 0.0
+                    cell.undoSwipe()
+                }, completion: {
+                    (bool: Bool) in
+                    self.deleteSoundFile(soundFile)
+                })
         } ) )
         
         dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
