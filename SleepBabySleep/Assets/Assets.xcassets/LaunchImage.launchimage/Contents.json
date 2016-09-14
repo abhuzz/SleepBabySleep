@@ -4,7 +4,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "736h",
-      "filename" : "Launchscreen_RetinaHD_5_5.png",
+      "filename" : "baby_splashscreen_1242x2208-2.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
       "scale" : "3x"
@@ -13,7 +13,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "667h",
-      "filename" : "Launchscreen_Retina_HD_4_7.png",
+      "filename" : "baby_splashscreen_750X1334.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -21,7 +21,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "Launchscreen_2x.png",
+      "filename" : "baby_splashscreen_640X960.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
@@ -30,7 +30,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "Launchscreen_Retina.png",
+      "filename" : "baby_splashscreen_640X1136.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
