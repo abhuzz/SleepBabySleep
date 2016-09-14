@@ -79,10 +79,12 @@
                                                     <constraint firstAttribute="trailing" secondItem="UoS-pu-7dd" secondAttribute="trailing" constant="-40" id="xdq-fG-b0Q"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="leadingConstraint" destination="uAm-GP-ASX" id="rN5-xt-wHP"/>
                                                     <outlet property="playListImageViewYCenterConstraint" destination="YI7-QQ-Nzv" id="3ym-EM-Glo"/>
                                                     <outlet property="playlistFile" destination="EkU-3m-0sB" id="Sha-RT-NkZ"/>
                                                     <outlet property="playlistImage" destination="uPQ-Fr-UfX" id="RcF-ey-wvS"/>
                                                     <outlet property="playlistTitle" destination="L1v-xQ-sZD" id="T9I-2U-eRa"/>
+                                                    <outlet property="trailingConstraint" destination="4IW-Mg-tFZ" id="PRQ-je-liJ"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

@@ -167,10 +167,23 @@ extension MainViewController: UICollectionViewDataSource {
         guard let soundFile = cell.soundFile else { return }
         guard soundFile.Deletable else { return }
         
+        cell.swipeRight()
+        
+        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        
         let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.alert)
         
         dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in  self.deleteSoundFile(soundFile) } ) )
-        dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {(alert: UIAlertAction!) in return } ) )
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
+            (alert: UIAlertAction!) in
+            cell.undoSwipe()
+            
+            UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        } ) )
         
         present(dialog, animated: true, completion: nil)
     }

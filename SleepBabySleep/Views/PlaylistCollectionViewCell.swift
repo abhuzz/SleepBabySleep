@@ -18,6 +18,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
     @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
     
     private var parallaxOffset: CGFloat = 0 {
         didSet {
@@ -79,6 +82,26 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         cellSelected = false
         
         setOptimizedTextColor()
+    }
+    
+    private var swipeOffset: CGFloat {
+        get {
+            let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
+            let scaleFactor = 40 / maxHorizontalOffset
+            return 1500.0 * scaleFactor
+        }
+    }
+    
+    func swipeRight() {
+        
+        leadingConstraint.constant += swipeOffset
+        trailingConstraint.constant -= swipeOffset
+    }
+    
+    func undoSwipe() {
+        
+        leadingConstraint.constant -= swipeOffset
+        trailingConstraint.constant += swipeOffset
     }
     
     private func setOptimizedTextColor() {
