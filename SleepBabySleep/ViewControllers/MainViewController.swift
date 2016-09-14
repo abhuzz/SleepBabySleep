@@ -180,6 +180,10 @@ extension MainViewController: UICollectionViewDataSource {
             
             cell.undoSwipe()
             self.deleteSoundFile(soundFile)
+            
+            UIView.animate(withDuration: 3, delay: 0, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+                }, completion: nil)
         } ) )
         
         dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
