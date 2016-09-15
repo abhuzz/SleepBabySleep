@@ -162,36 +162,24 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionViewDeleteCell(_ sender: UISwipeGestureRecognizer) {
         
-        let cell = sender.view as! PlaylistCollectionViewCell
-        
+        guard let cell = sender.view as? PlaylistCollectionViewCell else { return }
         guard let soundFile = cell.soundFile else { return }
         guard soundFile.Deletable else { return }
         
-        cell.swipeRight()
-        
-        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
-                self.view.layoutIfNeeded()
-            }, completion: nil)
+        cell.swipeRight(animateInView: self.view)
         
         let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.alert)
         
         dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             (alert: UIAlertAction!) in
             
-            
-            UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
-                    cell.alpha = 0.0
-                    cell.undoSwipe()
-                }, completion: {
-                    (bool: Bool) in
-                    self.deleteSoundFile(soundFile)
-                })
+            cell.disappear(animateInView: self.view, animationCompleted: { self.deleteSoundFile(soundFile) })
         } ) )
         
         dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
             (alert: UIAlertAction!) in
             
-            cell.undoSwipe()
+            cell.undoSwipe(animateInView: self.view)
             
             UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()

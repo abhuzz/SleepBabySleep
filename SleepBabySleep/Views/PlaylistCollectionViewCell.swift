@@ -94,20 +94,46 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func swipeRight() {
+    func swipeRight(animateInView: UIView?) {
         
-        leadingConstraint.constant += swipeOffset
-        trailingConstraint.constant -= swipeOffset
-        titleLeadingConstraint.constant += swipeOffset
-        titleTrailingConstraint.constant -= swipeOffset
+        let offset = swipeOffset
+        
+        leadingConstraint.constant += offset
+        trailingConstraint.constant -= offset
+        titleLeadingConstraint.constant += offset
+        titleTrailingConstraint.constant -= offset
+        
+        guard let view = animateInView else { return }
+        
+        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+                view.layoutIfNeeded()
+            }, completion: nil)
     }
     
-    func undoSwipe() {
+    func undoSwipe(animateInView: UIView?) {
         
-        leadingConstraint.constant -= swipeOffset
-        trailingConstraint.constant += swipeOffset
-        titleLeadingConstraint.constant -= swipeOffset
-        titleTrailingConstraint.constant += swipeOffset
+        let offset = self.swipeOffset
+        
+        leadingConstraint.constant -= offset
+        trailingConstraint.constant += offset
+        titleLeadingConstraint.constant -= offset
+        titleTrailingConstraint.constant += offset
+        
+        guard let view = animateInView else { return }
+        
+        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+            view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    func disappear(animateInView: UIView, animationCompleted: @escaping () -> ()) {
+        
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+                self.alpha = 0.0
+                self.undoSwipe(animateInView: nil)
+            }, completion: {
+                (bool: Bool) in animationCompleted()
+        })
     }
     
     private func setOptimizedTextColor() {
