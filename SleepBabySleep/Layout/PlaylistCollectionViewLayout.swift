@@ -48,7 +48,7 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
             
             let frame = attributes.frame
             
-            attributes.transform = CGAffineTransform(rotationAngle: degreesToRadians(-7))
+            //attributes.transform = CGAffineTransform(rotationAngle: degreesToRadians(-7))
             attributes.frame = frame.insetBy(dx: 0, dy: 0)
             attributes.size.width = collectionView!.bounds.size.width
         }

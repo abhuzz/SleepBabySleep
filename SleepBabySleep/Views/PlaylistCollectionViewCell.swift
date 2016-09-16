@@ -60,7 +60,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
-        playlistImage.transform = CGAffineTransform(rotationAngle: degreesToRadians(7))
+        //playlistImage.transform = CGAffineTransform(rotationAngle: degreesToRadians(7))
     }
     
     func updateParallaxOffset(collectionViewBounds bounds: CGRect) {

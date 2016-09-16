@@ -56,9 +56,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         initRemoteCommands()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        //updateSoundFileSelectionFromPlaylist()
-    }
+    override func viewDidAppear(_ animated: Bool) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -74,12 +72,12 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     @IBAction func actionTappedPrevious(_ sender: AnyObject) {
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
+        previousTrackInPlaylist()
     }
     
     @IBAction func actionTappedNext(_ sender: AnyObject) {
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.next()
+        nextTrackInPlaylist()
     }
     
     @IBAction func playbackDurationValueChanged(_ sender: AnyObject) {
@@ -100,6 +98,17 @@ class MainViewController: UIViewController, SegueHandlerType {
         performSegueWithIdentifier(.ShowSegueToRecordView, sender: self)
     }
     
+    func nextTrackInPlaylist() {
+        
+        backgroundAudioPlayer!.selectedSoundFile = playList!.next()
+        updateSoundFileSelectionFromPlaylist()
+    }
+    
+    func previousTrackInPlaylist() {
+        
+        backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
+        updateSoundFileSelectionFromPlaylist()
+    }
     
     func updateSoundFileSelectionFromPlaylist() {
         
@@ -272,6 +281,8 @@ extension MainViewController: RecordingDelegate {
         
         guard let newItemIndex = playList?.indexForUuid(uuid: uuid) else { return }
         
+        playList?.jumptoRow(newItemIndex)
+        
         scrollToCellAndHightlightIt(IndexPath(row: newItemIndex, section: 0))
     }
 }
@@ -324,12 +335,12 @@ extension MainViewController { // MPRemoteCommands
     
     func nextTrackCommand() {
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.next()
+        nextTrackInPlaylist()
     }
     
     func previousTrackCommand() {
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
+        previousTrackInPlaylist()
     }
 }
 
