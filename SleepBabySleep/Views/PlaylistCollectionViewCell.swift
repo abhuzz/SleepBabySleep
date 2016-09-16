@@ -22,7 +22,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var cellHeightConstraint: NSLayoutConstraint!
     
     private var parallaxOffset: CGFloat = 0 {
         didSet {
@@ -112,12 +112,14 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func animateIsPlaying(animateInView: UIView?) {
         
-        let offset = trackPlayingOffset
+        /*let offset = trackPlayingOffset
         
         leadingConstraint.constant += offset
         trailingConstraint.constant -= offset
         titleLeadingConstraint.constant += offset
-        titleTrailingConstraint.constant -= offset
+        titleTrailingConstraint.constant -= offset*/
+        
+        cellHeightConstraint.constant = 300
         
         guard let view = animateInView else { return }
         
@@ -130,7 +132,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         let offset = trackPlayingOffset
         
-        leadingConstraint.constant -= offset
+        /*leadingConstraint.constant -= offset
         trailingConstraint.constant += offset
         titleLeadingConstraint.constant -= offset
         titleTrailingConstraint.constant += offset
@@ -139,7 +141,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
             view.layoutIfNeeded()
-            }, completion: nil)
+            }, completion: nil)*/
     }
     
     func swipeRight(animateInView: UIView?) {
