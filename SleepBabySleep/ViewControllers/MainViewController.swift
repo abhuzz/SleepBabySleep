@@ -232,14 +232,14 @@ extension MainViewController: UICollectionViewDelegate {
     func updateSelectedCellHighlighting() {
         
         playlistCollectionView.visibleCells.forEach { cell in
-            (cell as! PlaylistCollectionViewCell).notSelected()
+            (cell as! PlaylistCollectionViewCell).notSelected(view: self.view)
         }
         
         guard let indexPath = lastSelectedItemIndexPath else { return }
         
         guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else { return }
         
-        selectedCell.currentlySelected()
+        selectedCell.currentlySelected(view: self.view)
     }
 }
 

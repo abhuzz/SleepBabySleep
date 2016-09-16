@@ -72,18 +72,26 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         parallaxOffset = -offsetFromCenter.y * scaleFactor
     }
     
-    func currentlySelected() {
+    func currentlySelected(view: UIView) {
+        
+        guard cellSelected == false else { return }
         
         cellSelected = true
         
         setOptimizedTextColor()
+        
+        animateIsPlaying(animateInView: view)
     }
     
-    func notSelected() {
+    func notSelected(view: UIView) {
+        
+        guard cellSelected == true else { return }
         
         cellSelected = false
         
         setOptimizedTextColor()
+        
+        animateIsNotPlaying(animateInView: view)
     }
     
     private var swipeOffset: CGFloat {
@@ -92,6 +100,46 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             let scaleFactor = 40 / maxHorizontalOffset
             return 1500.0 * scaleFactor
         }
+    }
+    
+    private var trackPlayingOffset: CGFloat {
+        get {
+            let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
+            let scaleFactor = 40 / maxHorizontalOffset
+            return 500.0 * scaleFactor
+        }
+    }
+    
+    func animateIsPlaying(animateInView: UIView?) {
+        
+        let offset = trackPlayingOffset
+        
+        leadingConstraint.constant += offset
+        trailingConstraint.constant -= offset
+        titleLeadingConstraint.constant += offset
+        titleTrailingConstraint.constant -= offset
+        
+        guard let view = animateInView else { return }
+        
+        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+            view.layoutIfNeeded()
+            }, completion: nil)
+    }
+    
+    func animateIsNotPlaying(animateInView: UIView?) {
+        
+        let offset = trackPlayingOffset
+        
+        leadingConstraint.constant -= offset
+        trailingConstraint.constant += offset
+        titleLeadingConstraint.constant -= offset
+        titleTrailingConstraint.constant += offset
+        
+        guard let view = animateInView else { return }
+        
+        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+            view.layoutIfNeeded()
+            }, completion: nil)
     }
     
     func swipeRight(animateInView: UIView?) {
