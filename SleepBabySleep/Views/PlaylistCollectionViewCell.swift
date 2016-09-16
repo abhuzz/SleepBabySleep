@@ -22,7 +22,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cellHeightConstraint: NSLayoutConstraint!
     
     private var parallaxOffset: CGFloat = 0 {
         didSet {
@@ -119,12 +118,18 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         titleLeadingConstraint.constant += offset
         titleTrailingConstraint.constant -= offset*/
         
-        cellHeightConstraint.constant = 300
+        
         
         guard let view = animateInView else { return }
         
         UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
-            view.layoutIfNeeded()
+            
+            self.bounds = CGRect(origin: CGPoint(x:0, y: 0), size: CGSize(width: self.bounds.width, height: 200))
+                self.contentView.bounds = self.bounds
+            
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
+            
             }, completion: nil)
     }
     
@@ -142,6 +147,16 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
             view.layoutIfNeeded()
             }, completion: nil)*/
+        
+        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.bounds = CGRect(origin: CGPoint(x:0, y: 0), size: CGSize(width: self.bounds.width, height: 150))
+            self.contentView.bounds = self.bounds
+            
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+            
+            }, completion: nil)
     }
     
     func swipeRight(animateInView: UIView?) {

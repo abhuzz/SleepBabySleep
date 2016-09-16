@@ -50,6 +50,7 @@ class PlaylistCollectionViewLayout : UICollectionViewFlowLayout {
             
             //attributes.transform = CGAffineTransform(rotationAngle: degreesToRadians(-7))
             attributes.frame = frame.insetBy(dx: 0, dy: 0)
+            attributes.size.height = 150
             attributes.size.width = collectionView!.bounds.size.width
         }
         
