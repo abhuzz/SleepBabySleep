@@ -50,15 +50,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        clipsToBounds = false
-    }
-    
-    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.apply(layoutAttributes)
-        //playlistImage.transform = CGAffineTransform(rotationAngle: degreesToRadians(7))
-    }
     
     func updateParallaxOffset(collectionViewBounds bounds: CGRect) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -77,7 +68,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         setOptimizedTextColor()
         
-        animateIsPlaying(animateInView: view)
+        animateIsPlaying()
     }
     
     func notSelected(view: UIView) {
@@ -88,7 +79,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         setOptimizedTextColor()
         
-        animateIsNotPlaying(animateInView: view)
+        animateIsNotPlaying()
     }
     
     private var swipeOffset: CGFloat {
@@ -111,7 +102,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
-                self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.15)
                 self.contentView.bounds = self.bounds
             
                 self.setNeedsLayout()
@@ -124,7 +115,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
-                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
             
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
