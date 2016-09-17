@@ -4,7 +4,6 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 
 **ToDo**
 - [ ] Better highlighting of currently selected track
-- [ ] Store recordings in iCloud Account 
 - [X] Selected tracks by previous & next controls when not playing 
 - [X] iPhone plus / iPad UiCollectionView Problem 
 - [X] Delete Recording swipe animation 
@@ -29,3 +28,6 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 	 -[X] AVAudioSessionCategoryPlayAndRecord 
 	- [X] Options: ?AllowBluetooth, MixInWithOthers - https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionBasics/AudioSessionBasics.html
 - [X] Delete: RecordedSoundFileDirectory? 
+
+*** Backlog ***
+- [ ] Store recordings in iCloud Account 
