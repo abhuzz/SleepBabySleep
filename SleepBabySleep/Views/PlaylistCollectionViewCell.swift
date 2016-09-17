@@ -107,56 +107,29 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func animateIsPlaying(animateInView: UIView?) {
-        
-        /*let offset = trackPlayingOffset
-        
-        leadingConstraint.constant += offset
-        trailingConstraint.constant -= offset
-        titleLeadingConstraint.constant += offset
-        titleTrailingConstraint.constant -= offset
-        
-        self.layer.zPosition += 1
-        
-        guard let view = animateInView else { return }
+    func animateIsPlaying() {
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
-            self.bounds = CGRect(origin: CGPoint(x:0, y: 0), size: CGSize(width: self.bounds.width, height: 200))
+                self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                 self.contentView.bounds = self.bounds
             
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
             
-            }, completion: nil)*/
+            }, completion: nil)
     }
     
-    func animateIsNotPlaying(animateInView: UIView?) {
-        
-        let offset = trackPlayingOffset
-        
-        /*leadingConstraint.constant -= offset
-        trailingConstraint.constant += offset
-        titleLeadingConstraint.constant -= offset
-        titleTrailingConstraint.constant += offset
-        
-        guard let view = animateInView else { return }
-        
-        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
-            view.layoutIfNeeded()
-            }, completion: nil)
-        
-        self.layer.zPosition -= 1
+    func animateIsNotPlaying() {
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
-            self.bounds = CGRect(origin: CGPoint(x:0, y: 0), size: CGSize(width: self.bounds.width, height: 150))
-            self.contentView.bounds = self.bounds
+                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
             
-            }, completion: nil)*/
+            }, completion: nil)
     }
     
     func swipeRight(animateInView: UIView?) {
