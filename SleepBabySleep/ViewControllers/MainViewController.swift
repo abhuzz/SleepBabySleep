@@ -100,11 +100,15 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     func nextTrackInPlaylist() {
         
+        NSLog("MainViewController.nextTrackInPlaylist()")
+        
         backgroundAudioPlayer!.selectedSoundFile = playList!.next()
         updateSoundFileSelectionFromPlaylist()
     }
     
     func previousTrackInPlaylist() {
+        
+        NSLog("MainViewController.previousTrackInPlaylist()")
         
         backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
         updateSoundFileSelectionFromPlaylist()
@@ -112,10 +116,14 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     func updateSoundFileSelectionFromPlaylist() {
         
+        NSLog("MainViewController.updateSoundFileSelectionFromPlaylist()")
+        
         scrollToCellAndHightlightIt(IndexPath(row: playList!.index, section: 0))
     }
     
     func scrollToCellAndHightlightIt(_ indexPath: IndexPath) {
+        
+        NSLog("MainViewController.scrollToCellAndHightlightIt()")
         
         lastSelectedItemIndexPath = indexPath
         
@@ -125,6 +133,8 @@ class MainViewController: UIViewController, SegueHandlerType {
     }
     
     func availableSoundFiles() -> [SoundFile] {
+        
+        NSLog("MainViewController.availableSoundFiles()")
         
         var soundFiles = [SoundFile]()
         
@@ -140,11 +150,41 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     func reload() {
         
+        NSLog("MainViewController.reload()")
+        
         playList = SoundFilePlaylist(soundFiles: availableSoundFiles())
         
         playlistCollectionView.reloadData()
         
         backgroundAudioPlayer?.selectedSoundFile = playList?.first()
+    }
+    
+    func deleteSoundFile(_ soundFile: SoundFile) {
+        
+        NSLog("MainViewController.deleteSoundFile()")
+        
+        do {
+            try RecordedSoundFilesPList().deleteRecordedSoundFile(soundFile.Identifier)
+            try FileManager.default.removeItem(at: soundFile.URL as URL)
+            reload()
+        } catch let exception as NSError {
+            showAlertDialog(exception.localizedDescription)
+        }
+    }
+    
+    func updateSelectedCellHighlighting() {
+        
+        NSLog("MainViewController.upateSelectedCellHighlighting()")
+        
+        playlistCollectionView.visibleCells.forEach { cell in
+            (cell as! PlaylistCollectionViewCell).notSelected(view: self.view)
+        }
+        
+        guard let indexPath = lastSelectedItemIndexPath else { return }
+        
+        guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else { return }
+        
+        selectedCell.currentlySelected(view: self.view)
     }
 }
 
@@ -197,17 +237,6 @@ extension MainViewController: UICollectionViewDataSource {
         
         present(dialog, animated: true, completion: nil)
     }
-    
-    func deleteSoundFile(_ soundFile: SoundFile) {
-        
-        do {
-            try RecordedSoundFilesPList().deleteRecordedSoundFile(soundFile.Identifier)
-            try FileManager.default.removeItem(at: soundFile.URL as URL)
-            reload()
-        } catch let exception as NSError {
-            showAlertDialog(exception.localizedDescription)
-        }
-    }
 }
 
 extension MainViewController: UICollectionViewDelegate {
@@ -236,24 +265,13 @@ extension MainViewController: UICollectionViewDelegate {
             (cell as! PlaylistCollectionViewCell).updateParallaxOffset(collectionViewBounds: bounds)
         }
     }
-    
-    func updateSelectedCellHighlighting() {
-        
-        playlistCollectionView.visibleCells.forEach { cell in
-            (cell as! PlaylistCollectionViewCell).notSelected(view: self.view)
-        }
-        
-        guard let indexPath = lastSelectedItemIndexPath else { return }
-        
-        guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else { return }
-        
-        selectedCell.currentlySelected(view: self.view)
-    }
 }
 
 extension MainViewController: BackgroundAudioPlayerStateDelegate {
     
     func playStateChanged(_ playState: PlayState) {
+        
+        NSLog("MainViewController.playStateChanged(\(playState))")
         
         switch playState {
             
