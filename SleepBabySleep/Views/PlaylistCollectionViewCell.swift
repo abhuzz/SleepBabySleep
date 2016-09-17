@@ -105,7 +105,8 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
                 self.transform = CGAffineTransform(scaleX: 1.0, y: 1.15)
-                self.contentView.bounds = self.bounds
+            
+                self.playlistTitle.transform = CGAffineTransform(rotationAngle: -0.05).scaledBy(x: 1.05, y: 1.05)
             
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
@@ -120,6 +121,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
                 self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+            
+            
+                self.playlistTitle.transform = CGAffineTransform(rotationAngle: 0)
             
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
