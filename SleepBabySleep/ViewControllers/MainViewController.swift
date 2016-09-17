@@ -51,7 +51,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         
         playlistCollectionView.dataSource = self
         playlistCollectionView.delegate = self
-        playlistCollectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 50, right: 0)
+        playlistCollectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         
         initRemoteCommands()
     }

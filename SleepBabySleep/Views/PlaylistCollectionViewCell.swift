@@ -20,8 +20,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
     
     private var parallaxOffset: CGFloat = 0 {
         didSet {
@@ -97,7 +95,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         get {
             let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
             let scaleFactor = 40 / maxHorizontalOffset
-            return 1500.0 * scaleFactor
+            return 500.0 * scaleFactor
         }
     }
     
@@ -116,13 +114,13 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         leadingConstraint.constant += offset
         trailingConstraint.constant -= offset
         titleLeadingConstraint.constant += offset
-        titleTrailingConstraint.constant -= offset*/
+        titleTrailingConstraint.constant -= offset
         
-        
+        self.layer.zPosition += 1
         
         guard let view = animateInView else { return }
         
-        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
             self.bounds = CGRect(origin: CGPoint(x:0, y: 0), size: CGSize(width: self.bounds.width, height: 200))
                 self.contentView.bounds = self.bounds
@@ -130,7 +128,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
             
-            }, completion: nil)
+            }, completion: nil)*/
     }
     
     func animateIsNotPlaying(animateInView: UIView?) {
@@ -146,9 +144,11 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
             view.layoutIfNeeded()
-            }, completion: nil)*/
+            }, completion: nil)
         
-        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+        self.layer.zPosition -= 1
+        
+        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
             self.bounds = CGRect(origin: CGPoint(x:0, y: 0), size: CGSize(width: self.bounds.width, height: 150))
             self.contentView.bounds = self.bounds
@@ -156,7 +156,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             self.setNeedsLayout()
             self.layoutIfNeeded()
             
-            }, completion: nil)
+            }, completion: nil)*/
     }
     
     func swipeRight(animateInView: UIView?) {
@@ -165,8 +165,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         leadingConstraint.constant += offset
         trailingConstraint.constant -= offset
-        titleLeadingConstraint.constant += offset
-        titleTrailingConstraint.constant -= offset
         
         guard let view = animateInView else { return }
         
@@ -181,8 +179,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         leadingConstraint.constant -= offset
         trailingConstraint.constant += offset
-        titleLeadingConstraint.constant -= offset
-        titleTrailingConstraint.constant += offset
         
         guard let view = animateInView else { return }
         
