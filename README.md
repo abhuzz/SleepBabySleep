@@ -1,9 +1,12 @@
 # SleepBabySleep
 iOS & Swift side/learning project
-Playous sounds for a given duration until the baby sleeps. Can also record own sounds for repeated playback.
+Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
 
 **ToDo**
-- [ ] Better highlighting of currently selected track
+- [ ] Add / replace static sounds
+- [ ] Assign static sound images in plist file
+- [ ] Assign recorded file images in plist file
+- [X] Better highlighting of currently selected track
 - [X] Selected tracks by previous & next controls when not playing 
 - [X] iPhone plus / iPad UiCollectionView Problem 
 - [X] Delete Recording swipe animation 
