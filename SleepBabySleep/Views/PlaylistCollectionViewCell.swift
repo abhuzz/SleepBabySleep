@@ -68,7 +68,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         setOptimizedTextColor()
         
-        animateIsPlaying()
+        animateIsSelected()
     }
     
     func notSelected(view: UIView) {
@@ -79,7 +79,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         setOptimizedTextColor()
         
-        animateIsNotPlaying()
+        animateIsNotSelected()
     }
     
     private var swipeOffset: CGFloat {
@@ -98,7 +98,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func animateIsPlaying() {
+    private func animateIsSelected() {
         
         NSLog("PlaylistCollectionViewCell.animateIsPlaying")
         
@@ -114,7 +114,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             }, completion: nil)
     }
     
-    private func animateIsNotPlaying() {
+    private func animateIsNotSelected() {
         
         NSLog("PlaylistCollectionViewCell.animateIsNotPlaying")
         
