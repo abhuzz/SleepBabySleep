@@ -11,8 +11,9 @@ import MediaPlayer
 
 class MainViewController: UIViewController, SegueHandlerType {
     
-    fileprivate let cellIdentifier = "PlaylistCollectionViewCell"
+    private var initialTrackSelected = false
     
+    fileprivate let cellIdentifier = "PlaylistCollectionViewCell"
     fileprivate var backgroundAudioPlayer: BackgroundAudioPlayer?
     fileprivate var playList: SoundFilePlaylist?
     fileprivate var lastSelectedItemIndexPath: IndexPath?
@@ -56,7 +57,15 @@ class MainViewController: UIViewController, SegueHandlerType {
         initRemoteCommands()
     }
     
-    override func viewDidAppear(_ animated: Bool) { }
+    
+    override func viewDidAppear(_ animated: Bool) {
+    
+        if !initialTrackSelected {
+            scrollToCellAndHightlightIt(IndexPath(row: 0, section: 0))
+    
+            initialTrackSelected = true
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -194,6 +203,7 @@ extension MainViewController: UICollectionViewDataSource {
         
         return playList!.count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
