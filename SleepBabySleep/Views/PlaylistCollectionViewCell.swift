@@ -37,7 +37,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             
             DispatchQueue.global().async {
                 
-                if soundFile.Image.averageColor().getBrightnessDifference(UIColor.black) < 125 {
+                if soundFile.Image.averageColor().getBrightnessDifference(UIColor.black) < 140 {
                     self.optimalTextColor = UIColor.white
                 } else {
                     self.optimalTextColor = UIColor.black
