@@ -142,7 +142,9 @@ class MainViewController: UIViewController, SegueHandlerType {
         DispatchQueue.main.async{
             self.playlistCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
         
-            self.updateSelectedCellHighlighting()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                    self.updateSelectedCellHighlighting()
+                }
         }
     }
     
@@ -199,7 +201,7 @@ class MainViewController: UIViewController, SegueHandlerType {
             return
         }
         
-        guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else {
+        guard let selectedCell = playlistCollectionView.cellForItem(at: IndexPath(row: indexPath.row, section: 0)) as? PlaylistCollectionViewCell else {
             NSLog("No cell found for indexPath \(indexPath) - aborting")
             return
         }
