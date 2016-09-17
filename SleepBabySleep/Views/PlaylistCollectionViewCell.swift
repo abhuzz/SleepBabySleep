@@ -169,11 +169,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     private func setOptimizedTextColor() {
         
-        if cellSelected {
-            playlistTitle.textColor = UIColor.lightGray
-            return
-        }
-        
         playlistTitle.textColor = optimalTextColor
         playlistFile.textColor = optimalTextColor
     }
