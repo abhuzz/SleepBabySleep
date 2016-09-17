@@ -4,8 +4,8 @@ Playous sounds for a given duration until the baby sleeps. Can also record own s
 
 **ToDo**
 - [ ] Better highlighting of currently selected track
-- [ ] Selected tracks by previous & next controls when not playing 
 - [ ] Store recordings in iCloud Account 
+- [X] Selected tracks by previous & next controls when not playing 
 - [X] iPhone plus / iPad UiCollectionView Problem 
 - [X] Delete Recording swipe animation 
 - [X] After recording select latest recording in playlist collectionView
