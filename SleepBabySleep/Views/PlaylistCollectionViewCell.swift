@@ -21,6 +21,24 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
+    override var isSelected: Bool {
+        get {
+            return super.isSelected;
+        }
+        
+        set {
+            guard (super.isSelected != newValue) else { return }
+            
+            super.isSelected = newValue
+            
+            if super.isSelected {
+                animateIsSelected()
+            } else {
+                animateIsNotSelected()
+            }
+        }
+    }
+    
     private var parallaxOffset: CGFloat = 0 {
         didSet {
             playListImageViewYCenterConstraint.constant = parallaxOffset
@@ -59,29 +77,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         parallaxOffset = -offsetFromCenter.y * scaleFactor
     }
-    
-    func currentlySelected(view: UIView) {
-        
-        if cellSelected { return }
-        
-        cellSelected = true
-        
-        setOptimizedTextColor()
-        
-        animateIsSelected()
-    }
-    
-    func notSelected(view: UIView) {
-        
-        if !cellSelected { return }
-        
-        cellSelected = false
-        
-        setOptimizedTextColor()
-        
-        animateIsNotSelected()
-    }
-    
+
     private var swipeOffset: CGFloat {
         get {
             let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)

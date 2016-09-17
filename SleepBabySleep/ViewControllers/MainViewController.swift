@@ -17,6 +17,7 @@ class MainViewController: UIViewController, SegueHandlerType {
     fileprivate var backgroundAudioPlayer: BackgroundAudioPlayer?
     fileprivate var playList: SoundFilePlaylist?
     fileprivate var lastSelectedItemIndexPath: IndexPath?
+    fileprivate var collectionViewUpdatePending = false
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -132,13 +133,17 @@ class MainViewController: UIViewController, SegueHandlerType {
     
     func scrollToCellAndHightlightIt(_ indexPath: IndexPath) {
         
-        NSLog("MainViewController.scrollToCellAndHightlightIt()")
+        NSLog("MainViewController.scrollToCellAndHightlightIt(\(indexPath))")
         
         lastSelectedItemIndexPath = indexPath
         
-        playlistCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        collectionViewUpdatePending = true
         
-        updateSelectedCellHighlighting()
+        DispatchQueue.main.async{
+            self.playlistCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        
+            self.updateSelectedCellHighlighting()
+        }
     }
     
     func availableSoundFiles() -> [SoundFile] {
@@ -186,14 +191,20 @@ class MainViewController: UIViewController, SegueHandlerType {
         NSLog("MainViewController.upateSelectedCellHighlighting()")
         
         playlistCollectionView.visibleCells.forEach { cell in
-            (cell as! PlaylistCollectionViewCell).notSelected(view: self.view)
+            (cell as! PlaylistCollectionViewCell).isSelected = false
         }
         
-        guard let indexPath = lastSelectedItemIndexPath else { return }
+        guard let indexPath = lastSelectedItemIndexPath else {
+            NSLog("lastSelectedItemIndexPath is initial - aborting")
+            return
+        }
         
-        guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else { return }
+        guard let selectedCell = playlistCollectionView.cellForItem(at: indexPath) as? PlaylistCollectionViewCell else {
+            NSLog("No cell found for indexPath \(indexPath) - aborting")
+            return
+        }
         
-        selectedCell.currentlySelected(view: self.view)
+        selectedCell.isSelected = true
     }
 }
 
@@ -253,6 +264,8 @@ extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        NSLog("MainViewController.collectionView.didSelectItemAt(\(indexPath))")
+        
         backgroundAudioPlayer!.selectedSoundFile = playList!.jumptoRow((indexPath as NSIndexPath).row)
         
         scrollToCellAndHightlightIt(indexPath)
@@ -265,6 +278,14 @@ extension MainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateParallaxEffect()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        if collectionViewUpdatePending {
+            updateSelectedCellHighlighting()
+            collectionViewUpdatePending = false
+        }
     }
     
     func updateParallaxEffect() {
