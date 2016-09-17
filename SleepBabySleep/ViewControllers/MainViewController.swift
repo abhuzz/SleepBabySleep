@@ -226,7 +226,6 @@ extension MainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateParallaxEffect()
-        updateSelectedCellHighlighting()
     }
     
     func updateParallaxEffect() {

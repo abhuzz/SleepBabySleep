@@ -62,7 +62,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func currentlySelected(view: UIView) {
         
-        guard cellSelected == false else { return }
+        if cellSelected { return }
         
         cellSelected = true
         
@@ -73,7 +73,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func notSelected(view: UIView) {
         
-        guard cellSelected == true else { return }
+        if !cellSelected { return }
         
         cellSelected = false
         
@@ -98,7 +98,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func animateIsPlaying() {
+    private func animateIsPlaying() {
+        
+        NSLog("PlaylistCollectionViewCell.animateIsPlaying")
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
@@ -111,7 +113,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             }, completion: nil)
     }
     
-    func animateIsNotPlaying() {
+    private func animateIsNotPlaying() {
+        
+        NSLog("PlaylistCollectionViewCell.animateIsNotPlaying")
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
@@ -152,6 +156,8 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     }
     
     func disappear(animateInView: UIView, animationCompleted: @escaping () -> ()) {
+        
+        NSLog("PlaylistCollectionViewCell.disappear()")
         
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
                 self.alpha = 0.0
