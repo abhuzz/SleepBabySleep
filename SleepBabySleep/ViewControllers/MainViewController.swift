@@ -49,7 +49,7 @@ class MainViewController: UIViewController, SegueHandlerType {
             TimedBackgroundAudioPlayer(audioSession: AVAudioSessionFacade(), audioPlayer: AVAudioPlayerFacade(), timer: SystemTimer())
         backgroundAudioPlayer!.stateDelegate = self
         backgroundAudioPlayer!.selectedSoundFile = playList!.first()
-        backgroundAudioPlayer!.playbackDuration = playbackDurationsBySegementIndex[0]
+        backgroundAudioPlayer!.playbackDuration = playbackDurationsBySegementIndex[1]
         
         playlistCollectionView.dataSource = self
         playlistCollectionView.delegate = self
