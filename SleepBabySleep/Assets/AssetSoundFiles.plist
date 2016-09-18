@@ -18,19 +18,9 @@
 		<key>Extension</key>
 		<string>mp3</string>
 		<key>File</key>
-		<string>HeiaHeia</string>
+		<string>HairDryer</string>
 		<key>Name</key>
-		<string>Heia Heia</string>
-	</dict>
-	<dict>
-		<key>ImageName</key>
-		<string></string>
-		<key>Extension</key>
-		<string>mp3</string>
-		<key>File</key>
-		<string>HeiaHeia</string>
-		<key>Name</key>
-		<string>Heia Heia</string>
+		<string>Hairdryer</string>
 	</dict>
 	<dict>
 		<key>ImageName</key>
