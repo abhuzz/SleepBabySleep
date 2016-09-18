@@ -37,6 +37,7 @@
 		D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */; };
 		D4DD3DF01D3BF9C400198301 /* Mhhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */; };
 		D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DF11D3C01BC00198301 /* SoundFile.swift */; };
+		D4FAE4C71D8E5A2400ADFAAA /* Combine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4FAE4C61D8E5A2400ADFAAA /* Combine.mp3 */; };
 		D4FB3A171D7CA1CF0050821B /* UIImage+averageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */; };
 		D4FB3A191D7CA33A0050821B /* UIColor+difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HeiaHeia.mp3; path = Audio/HeiaHeia.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Mhhhh.mp3; path = Audio/Mhhhh.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DF11D3C01BC00198301 /* SoundFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFile.swift; path = Model/SoundFile.swift; sourceTree = "<group>"; };
+		D4FAE4C61D8E5A2400ADFAAA /* Combine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Combine.mp3; path = Audio/Combine.mp3; sourceTree = SOURCE_ROOT; };
 		D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+averageColor.swift"; path = "Extensions/UIImage+averageColor.swift"; sourceTree = "<group>"; };
 		D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+difference.swift"; path = "Extensions/UIColor+difference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -236,6 +238,7 @@
 		D4DD3DEA1D3BF77900198301 /* AudioFiles */ = {
 			isa = PBXGroup;
 			children = (
+				D4FAE4C61D8E5A2400ADFAAA /* Combine.mp3 */,
 				D4DD3DED1D3BF9C400198301 /* HeiaHeia.mp3 */,
 				D4DD3DEE1D3BF9C400198301 /* Mhhhh.mp3 */,
 				D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */,
@@ -358,6 +361,7 @@
 				D42FE7451D76075500D99866 /* VacuumCleaner.mp3 in Resources */,
 				D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */,
 				D4DD3DEF1D3BF9C400198301 /* HeiaHeia.mp3 in Resources */,
+				D4FAE4C71D8E5A2400ADFAAA /* Combine.mp3 in Resources */,
 				D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

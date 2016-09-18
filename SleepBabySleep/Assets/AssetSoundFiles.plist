@@ -22,6 +22,14 @@
 		<key>Extension</key>
 		<string>mp3</string>
 		<key>File</key>
+		<string>HeiaHeia</string>
+		<key>Name</key>
+		<string>Heia Heia</string>
+	</dict>
+	<dict>
+		<key>Extension</key>
+		<string>mp3</string>
+		<key>File</key>
 		<string>VacuumCleaner</string>
 		<key>Name</key>
 		<string>Vacuum cleaner</string>
@@ -30,9 +38,9 @@
 		<key>Extension</key>
 		<string>mp3</string>
 		<key>File</key>
-		<string>Mhhhh</string>
+		<string>Combine</string>
 		<key>Name</key>
-		<string>Mhhhh</string>
+		<string>Combine</string>
 	</dict>
 </array>
 </plist>
