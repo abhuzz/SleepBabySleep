@@ -24,12 +24,16 @@ struct AssetSoundFile: SoundFile, Equatable {
     private var fileExtension: String
     private var image: UIImage
     
-    init(Name: String, File: String, Extension:String) {
+    init(Name: String, File: String, Extension:String, Image: UIImage) {
         self.Identifier = UUID()
         self.Name = Name
         self.fileName = File
         self.fileExtension = Extension
-        self.image = imageForSound()
+        self.image = Image
+    }
+    
+    init(Name: String, File: String, Extension:String) {
+        self.init(Name: Name, File: File, Extension: Extension, Image: imageForSound())
     }
     
     private(set) var Identifier: UUID

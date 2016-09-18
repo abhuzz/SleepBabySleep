@@ -6,7 +6,7 @@
 //  Copyright © 2016 Stefan Mehnert. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class AssetSoundFilePList {
     
@@ -26,7 +26,16 @@ class AssetSoundFilePList {
             
             soundFilesInPList =
                 items.map { soundFile in
-                    return AssetSoundFile(Name: soundFile["Name"]!! as! String, File: soundFile["File"]!! as! String, Extension: soundFile["Extension"] as! String)
+                    if let image = UIImage(named: soundFile["ImageName"] as! String) {
+                        return AssetSoundFile(Name: soundFile["Name"]!! as! String,
+                                              File: soundFile["File"]!! as! String,
+                                              Extension: soundFile["Extension"] as! String,
+                                              Image: image)
+                    }
+                    
+                    return AssetSoundFile(Name: soundFile["Name"]!! as! String,
+                                          File: soundFile["File"]!! as! String,
+                                          Extension: soundFile["Extension"] as! String)
                 }
             
         } catch let error as NSError {
