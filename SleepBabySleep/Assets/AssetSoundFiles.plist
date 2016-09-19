@@ -14,7 +14,7 @@
 	</dict>
 	<dict>
 		<key>ImageName</key>
-		<string></string>
+		<string>Static_Hairdryer</string>
 		<key>Extension</key>
 		<string>mp3</string>
 		<key>File</key>
@@ -24,7 +24,7 @@
 	</dict>
 	<dict>
 		<key>ImageName</key>
-		<string></string>
+		<string>Static_VacuumCleaner</string>
 		<key>Extension</key>
 		<string>mp3</string>
 		<key>File</key>
