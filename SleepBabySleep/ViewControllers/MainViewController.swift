@@ -66,6 +66,8 @@ class MainViewController: UIViewController, SegueHandlerType {
     
             initialTrackSelected = true
         }
+        
+        updateParallaxEffect()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

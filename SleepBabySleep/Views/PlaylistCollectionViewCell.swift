@@ -102,7 +102,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             
                 self.transform = CGAffineTransform(scaleX: 1.0, y: 1.15)
             
-                self.playlistTitle.transform = CGAffineTransform(rotationAngle: -0.05).scaledBy(x: 1.05, y: 1.05)
+                self.playlistTitle.transform = CGAffineTransform(scaleX: 1.03, y: 1.03)
             
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
@@ -118,8 +118,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             
                 self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
             
-            
-                self.playlistTitle.transform = CGAffineTransform(rotationAngle: 0)
+                self.playlistTitle.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             
                 self.setNeedsLayout()
                 self.layoutIfNeeded()
