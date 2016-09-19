@@ -333,7 +333,7 @@ extension MainViewController: RecordingDelegate {
         
         guard let newItemIndex = playList?.indexForUuid(uuid: uuid) else { return }
         
-        playList?.jumptoRow(newItemIndex)
+        _ = playList?.jumptoRow(newItemIndex)
         
         scrollToCellAndHightlightIt(IndexPath(row: newItemIndex, section: 0))
     }
