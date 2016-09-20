@@ -3,10 +3,10 @@ iOS & Swift side/learning project
 Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
 
 **ToDo**
-- [ ] Add / replace static sounds
-- [ ] Assign static sound images in plist file
 - [ ] Assign recorded file images in plist file
 - [ ] Display remaning time and progess bar for running playback
+- [X] Add / replace static sounds
+- [X] Assign static sound images in plist file
 - [X] Better highlighting of currently selected track
 - [X] Selected tracks by previous & next controls when not playing 
 - [X] iPhone plus / iPad UiCollectionView Problem 
