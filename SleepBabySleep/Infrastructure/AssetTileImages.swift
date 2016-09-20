@@ -14,19 +14,11 @@ protocol TileImages {
 
 class AssetTileImages: TileImages {
     
-    private let fileManager = FileManager.default
-    private let stateFilePath: URL
-    
-    init() {
-        let documentsDirectory =
-            fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        stateFilePath =
-            documentsDirectory.appendingPathComponent("imageState.txt")
-    }
+    private var imageNumberState = ImageNumberState()
     
     func nextImage() throws -> UIImage {
         
-        let nextNumber = try nextImageNumber()
+        let nextNumber = try imageNumberState.nextImageNumber()
         let name = "Tile_\(nextNumber)"
         
         guard let image = UIImage(named: name) else {
@@ -37,13 +29,23 @@ class AssetTileImages: TileImages {
         return image
     }
 
-    private func nextImageNumber() throws -> String {
+}
+
+class ImageNumberState {
+    
+    private var imageNumberStateFile: ImageNumberStateFile
+    
+    init(imageNumberStateFile: ImageNumberStateFile = TextImageNumberStateFile()) {
+        self.imageNumberStateFile = imageNumberStateFile
+    }
+    
+    func nextImageNumber() throws -> String {
         
         var nextNumber: String
         
         do {
-            let currentNumber = try String(contentsOf: stateFilePath)
-           
+            let currentNumber = try imageNumberStateFile.read()
+            
             if let currentNumberAsInt = Int(currentNumber) {
                 nextNumber = String(currentNumberAsInt + 1)
             } else {
@@ -51,12 +53,12 @@ class AssetTileImages: TileImages {
                 nextNumber = "1"
             }
         } catch let error as NSError {
-            NSLog("Reading nextNumberState from \(stateFilePath) -> using 1. Error: \(error.localizedDescription)")
+            NSLog("Reading nextNumberState -> using 1. Error: \(error.localizedDescription)")
             nextNumber = "1"
         }
         
         do {
-            try nextNumber.write(to: stateFilePath, atomically: true, encoding: .utf8)
+            try imageNumberStateFile.write(content: nextNumber)
         } catch let error as NSError {
             NSLog("Error saving nextNumberState: \(error.localizedDescription)")
             throw error
@@ -65,3 +67,30 @@ class AssetTileImages: TileImages {
         return nextNumber
     }
 }
+
+protocol ImageNumberStateFile {
+    func read() throws -> String
+    func write(content: String) throws
+}
+
+class TextImageNumberStateFile: ImageNumberStateFile {
+    
+    private let fileManager = FileManager.default
+    private let stateFilePath: URL
+    
+    init() {
+        let documentsDirectory =
+            fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        stateFilePath =
+            documentsDirectory.appendingPathComponent("imageState.txt")
+    }
+
+    func read() throws -> String {
+        return try String(contentsOf: stateFilePath)
+    }
+    
+    func write(content: String) {
+        
+    }
+}
+

@@ -7,29 +7,51 @@
 //
 
 import XCTest
+@testable import SleepBabySleep
 
-class AssetTileImages: XCTestCase {
+class FakeImageNumberStateFile: ImageNumberStateFile {
+    
+    private var numberToReturn: String?
+    private(set) var WrittenContent: String?
+    
+    init(startValue: String) {
+        numberToReturn = startValue
+    }
+    
+    
+    func read() throws -> String {
+        return numberToReturn ?? "-1"
+    }
+    
+    func write(content: String) throws {
+        WrittenContent = content
+    }
+}
+
+class AssetTileImagesTest: XCTestCase {
+    
+    private var testInstance: ImageNumberState?
+    private var fakeImageNumberStateFile: FakeImageNumberStateFile?
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        fakeImageNumberStateFile = FakeImageNumberStateFile(startValue: "0")
+        testInstance = ImageNumberState(imageNumberStateFile: fakeImageNumberStateFile!)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testFirstCallReturns1() {
+        
+        XCTAssertEqual("1", nextImageNumber())
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFirstCallWritesState() {
+        
+        _ = nextImageNumber()
+        XCTAssertEqual("1", fakeImageNumberStateFile?.WrittenContent)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func nextImageNumber() -> String {
+        return try! testInstance?.nextImageNumber() ?? String()
     }
-    
 }
