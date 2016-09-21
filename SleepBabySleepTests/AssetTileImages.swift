@@ -42,7 +42,7 @@ class AssetTileImagesTest: XCTestCase {
     
     func testFirstCallReturns1() {
         
-        XCTAssertEqual("1", nextImageNumber())
+        XCTAssertEqual("1", nextImageNumber().imageNumber())
     }
     
     func testFirstCallWritesState() {
@@ -51,7 +51,7 @@ class AssetTileImagesTest: XCTestCase {
         XCTAssertEqual("1", fakeImageNumberStateFile?.WrittenContent)
     }
     
-    func nextImageNumber() -> String {
-        return try! testInstance?.nextImageNumber() ?? String()
+    func nextImageNumber() -> AssetImageState {
+        return try! testInstance!.nextImageNumber()
     }
 }

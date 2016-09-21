@@ -46,7 +46,7 @@ class ImageNumberState {
         
         let newState = incrementCurrentState(currentState: currentState)
         
-        try saveModifiedState(state: newState)
+        try saveModifiedState(state: String(newState))
         
         return AssetImageState(currentState: newState)
     }
@@ -61,13 +61,13 @@ class ImageNumberState {
         }
     }
     
-    func incrementCurrentState(currentState: String) -> String {
+    func incrementCurrentState(currentState: String) -> Int {
         
         if let currentNumberAsInt = Int(currentState) {
-            return String(currentNumberAsInt + 1)
+            return currentNumberAsInt + 1
         } else {
             NSLog("NextNumber from imageStateFile was not numeric: \(currentState) -> using 1")
-            return "1"
+            return 1
         }
     }
     
@@ -114,12 +114,16 @@ protocol ImageState {
 
 class AssetImageState: ImageState {
     
-    init(currentState: String, ImageCount: Int = 13) {
-        
+    private var currentState: Int
+    private var imageCount: Int
+    
+    init(currentState: Int, imageCount: Int = 13) {
+        self.currentState = currentState
+        self.imageCount = imageCount
     }
     
     func imageNumber() -> String {
         
-        return ""
+        return String(currentState)
     }
 }

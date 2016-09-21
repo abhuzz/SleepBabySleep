@@ -22,6 +22,7 @@
 		D49B58761D795EBB00744CF3 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B58751D795EBB00744CF3 /* Math.swift */; };
 		D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49B58771D795FEB00744CF3 /* Playlist.xcassets */; };
 		D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */; };
+		D4C0FED21D93125D0004ED5A /* AssetImageStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */; };
 		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
 		D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */; };
 		D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DC1D71AB9A00356ED1 /* Timer.swift */; };
@@ -69,6 +70,7 @@
 		D49B58751D795EBB00744CF3 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Math.swift; path = Utilities/Math.swift; sourceTree = "<group>"; };
 		D49B58771D795FEB00744CF3 /* Playlist.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Playlist.xcassets; path = Assets/Playlist.xcassets; sourceTree = "<group>"; };
 		D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaylistCollectionViewLayout.swift; path = Layout/PlaylistCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetImageStateTest.swift; sourceTree = "<group>"; };
 		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BackgroundAudioPlayer.swift; path = Model/BackgroundAudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AudioPlayer.swift; path = Infrastructure/AudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D4C280DC1D71AB9A00356ED1 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = Infrastructure/Timer.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */,
 				D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */,
 				D4C280E61D71AE8600356ED1 /* Info.plist */,
+				D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */,
 			);
 			path = SleepBabySleepTests;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4C0FED21D93125D0004ED5A /* AssetImageStateTest.swift in Sources */,
 				D4D019C71D91AB6C004CAC80 /* AssetTileImages.swift in Sources */,
 				D4C280EF1D71B97F00356ED1 /* FakeImplementations.swift in Sources */,
 				D430BAE91D72D86500A907D1 /* SoundFilePlaylistTest.swift in Sources */,
