@@ -35,7 +35,7 @@ class ImageNumberState {
     
     private var imageNumberStateFile: ImageNumberStateFile
     
-    init(imageNumberStateFile: ImageNumberStateFile = TextImageNumberStateFile()) {
+    init(imageNumberStateFile: ImageNumberStateFile = ImageNumberStateTextFile()) {
         self.imageNumberStateFile = imageNumberStateFile
     }
     
@@ -86,7 +86,7 @@ protocol ImageNumberStateFile {
     func write(content: String) throws
 }
 
-class TextImageNumberStateFile: ImageNumberStateFile {
+class ImageNumberStateTextFile: ImageNumberStateFile {
     
     private let fileManager = FileManager.default
     private let stateFilePath: URL
@@ -102,8 +102,8 @@ class TextImageNumberStateFile: ImageNumberStateFile {
         return try String(contentsOf: stateFilePath)
     }
     
-    func write(content: String) {
-        
+    func write(content: String) throws {
+        try content.write(to: stateFilePath, atomically: true, encoding: .utf8)
     }
 }
 
