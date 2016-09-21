@@ -13,7 +13,15 @@ class AssetImageStateTest: XCTestCase {
     
     
     func testState1Of4Returns1() {
-        XCTAssertEqual("1", AssetImageState(currentState: 1,imageCount: 4).imageNumber())
+        XCTAssertEqual("1", assetImageStateOf4Images(1).imageNumber())
+    }
+
+    func testState4Of4Returns1() {
+        XCTAssertEqual("4", assetImageStateOf4Images(4).imageNumber())
     }
     
+    
+    private func assetImageStateOf4Images(_ state: Int) -> AssetImageState {
+        return AssetImageState(currentState: state,imageCount: 4)
+    }
 }

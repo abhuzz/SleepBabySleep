@@ -195,12 +195,12 @@
 		D4C280E31D71AE8600356ED1 /* SleepBabySleepTests */ = {
 			isa = PBXGroup;
 			children = (
+				D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */,
 				D4D019C61D91AB6C004CAC80 /* AssetTileImages.swift */,
 				D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */,
 				D430BAE81D72D86500A907D1 /* SoundFilePlaylistTest.swift */,
 				D4C280E41D71AE8600356ED1 /* TimedBackgroundAudioPlayerTest.swift */,
 				D4C280E61D71AE8600356ED1 /* Info.plist */,
-				D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */,
 			);
 			path = SleepBabySleepTests;
 			sourceTree = "<group>";
