@@ -40,7 +40,7 @@ class ImageNumberState {
         self.imageNumberStateFile = imageNumberStateFile
     }
     
-    func nextImageNumber() throws -> String {
+    func nextImageNumber() throws -> AssetImageState {
         
         let currentState = loadCurrentState()
         
@@ -48,7 +48,7 @@ class ImageNumberState {
         
         try saveModifiedState(state: newState)
         
-        return newState
+        return AssetImageState(currentState: newState)
     }
     
     func loadCurrentState() -> String {
@@ -82,6 +82,7 @@ class ImageNumberState {
     }
 }
 
+
 protocol ImageNumberStateFile {
     func read() throws -> String
     func write(content: String) throws
@@ -106,3 +107,19 @@ internal class ImageNumberStateTextFile: ImageNumberStateFile {
     }
 }
 
+
+protocol ImageState {
+    func imageNumber() -> String
+}
+
+class AssetImageState: ImageState {
+    
+    init(currentState: String, ImageCount: Int = 13) {
+        
+    }
+    
+    func imageNumber() -> String {
+        
+        return ""
+    }
+}
