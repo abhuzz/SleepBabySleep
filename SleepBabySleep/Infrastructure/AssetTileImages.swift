@@ -41,30 +41,43 @@ class ImageNumberState {
     
     func nextImageNumber() throws -> String {
         
-        var nextNumber: String
+        let currentState = loadCurrentState()
         
+        let newState = incrementCurrentState(currentState: currentState)
+        
+        try saveModifiedState(state: newState)
+        
+        return newState
+    }
+    
+    func loadCurrentState() -> String {
+     
         do {
-            let currentNumber = try imageNumberStateFile.read()
-            
-            if let currentNumberAsInt = Int(currentNumber) {
-                nextNumber = String(currentNumberAsInt + 1)
-            } else {
-                NSLog("NextNumber from imageStateFile was not numeric: \(currentNumber) -> using 1")
-                nextNumber = "1"
-            }
+            return try imageNumberStateFile.read()
         } catch let error as NSError {
             NSLog("Reading nextNumberState -> using 1. Error: \(error.localizedDescription)")
-            nextNumber = "1"
+            return "1"
         }
+    }
+    
+    func incrementCurrentState(currentState: String) -> String {
+        
+        if let currentNumberAsInt = Int(currentState) {
+            return String(currentNumberAsInt + 1)
+        } else {
+            NSLog("NextNumber from imageStateFile was not numeric: \(currentState) -> using 1")
+            return "1"
+        }
+    }
+    
+    func saveModifiedState(state: String) throws {
         
         do {
-            try imageNumberStateFile.write(content: nextNumber)
+            try imageNumberStateFile.write(content: state)
         } catch let error as NSError {
             NSLog("Error saving nextNumberState: \(error.localizedDescription)")
             throw error
         }
-        
-        return nextNumber
     }
 }
 
