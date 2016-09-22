@@ -124,6 +124,20 @@ class AssetImageState: ImageState {
     
     func imageNumber() -> String {
         
-        return String(currentState)
+        var result: Int
+        
+        if currentState < imageCount {
+            result = currentState
+        }
+        else if currentState % imageCount == 0 {
+            result = imageCount
+        }
+        else {
+            let value = currentState / imageCount
+            let ignored = value * imageCount
+            result = currentState - ignored
+        }
+
+        return String(result)
     }
 }
