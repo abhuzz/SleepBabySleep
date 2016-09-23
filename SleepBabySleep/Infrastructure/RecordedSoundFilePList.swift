@@ -6,7 +6,7 @@
 //  Copyright © 2016 Stefan Mehnert. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class RecordedSoundFilesPList {
     
@@ -38,10 +38,17 @@ class RecordedSoundFilesPList {
                 try PropertyListSerialization.propertyList(from: plistData, options: PropertyListSerialization.MutabilityOptions(), format: &format) as! [AnyObject]
             
             return items.map { soundFile in
-                            return RecordedAudioFile(identifier: UUID(uuidString: soundFile["Identifier"] as! String)!,
-                                                        name: soundFile["Name"] as! String,
-                                                        url: soundFileUrl(soundFile["URL"] as! String))
-                        }
+                    if let image = UIImage(named: soundFile["ImageName"] as! String) {
+                        return RecordedAudioFile(identifier: UUID(uuidString: soundFile["Identifier"] as! String)!,
+                                                 name: soundFile["Name"]!! as! String,
+                                                 url:soundFileUrl(soundFile["URL"] as! String),
+                                                 image: image)
+                    }
+                
+                    return RecordedAudioFile(identifier: UUID(uuidString: soundFile["Identifier"] as! String)!,
+                                             name: soundFile["Name"] as! String,
+                                             url:soundFileUrl(soundFile["URL"] as! String))
+                }
             
         } catch let error as NSError {
             NSLog("Error loading recordedSoundFilePList file: \(error.localizedDescription)")
@@ -49,7 +56,7 @@ class RecordedSoundFilesPList {
         }
     }
     
-    func saveRecordedSoundFileToPlist(_ identifier: UUID, name: String, URL: Foundation.URL) throws {
+    func saveRecordedSoundFileToPlist(_ identifier: UUID, name: String, URL: URL, imageName: String) throws {
         
         do {
             var soundFilesDictionaries = try existingRecordDictionaries()
@@ -57,7 +64,8 @@ class RecordedSoundFilesPList {
             soundFilesDictionaries.append(
                 ["Identifier": identifier.uuidString,
                     "Name": name,
-                    "URL": URL.lastPathComponent])
+                    "URL": URL.lastPathComponent,
+                    "ImageName": imageName])
             
             let serializedData =
                 try PropertyListSerialization.data(fromPropertyList: soundFilesDictionaries, format: PropertyListSerialization.PropertyListFormat.xml, options:0)

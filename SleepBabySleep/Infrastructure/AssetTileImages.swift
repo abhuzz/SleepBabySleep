@@ -8,28 +8,6 @@
 
 import UIKit
 
-protocol TileImages {
-    func nextImage() throws -> UIImage
-}
-
-class AssetTileImages: TileImages {
-    
-    private var imageNumberState = ImageNumberState()
-    
-    func nextImage() throws -> UIImage {
-        
-        let nextNumber = try imageNumberState.nextImageNumber()
-        let name = "Tile_\(nextNumber)"
-        
-        guard let image = UIImage(named: name) else {
-            NSLog("Image not found: \(name)")
-            return UIImage()
-        }
-        
-        return image
-    }
-
-}
 
 class ImageNumberState {
     

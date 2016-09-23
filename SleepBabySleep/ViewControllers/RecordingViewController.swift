@@ -25,6 +25,7 @@ class RecordingViewController: UIViewController {
     private var audioSession: AudioSession?
     private var audioRecorder: AudioRecorder?
     private var audioPlayer: AudioPlayer?
+    private var imageNumberState = ImageNumberState()
     fileprivate var lastRecordedFileURL: URL?
     private var playingPreview = false
     private var soundTimer: CFTimeInterval = 0.0
@@ -187,7 +188,7 @@ class RecordingViewController: UIViewController {
             .moveItem(at: recordingURL, to: targetURL)
             
         try RecordedSoundFilesPList()
-            .saveRecordedSoundFileToPlist(uuid, name: soundFileName.text!, URL: recordingURL)
+            .saveRecordedSoundFileToPlist(uuid, name: soundFileName.text!, URL: recordingURL, imageName: "Tile_\(imageNumberState.nextImageNumber().imageNumber())")
     }
     
     private func deleteTemporaryRecordingFile() {
