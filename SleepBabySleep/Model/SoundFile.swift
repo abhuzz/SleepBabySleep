@@ -63,11 +63,15 @@ func ==(lhs: AssetSoundFile, rhs: AssetSoundFile) -> Bool {
 
 struct RecordedAudioFile: SoundFile, Equatable{
     
-    init(identifier: UUID, name: String, url: Foundation.URL) {
+    init(identifier: UUID, name: String, url: URL, image: UIImage) {
         self.Identifier = identifier
         self.URL = url
         self.Name = name
-        self.image = imageForSound()
+        self.image = image
+    }
+    
+    init(identifier: UUID, name: String, url: URL) {
+        self.init(identifier: identifier, name: name, url: url, image: UIImage())
     }
 
     private(set) var Identifier: UUID
