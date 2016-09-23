@@ -92,24 +92,3 @@ func ==(lhs: RecordedAudioFile, rhs: RecordedAudioFile) -> Bool {
     return lhs.Name == rhs.Name
         && lhs.URL  == rhs.URL
 }
-
-var imageCount = 1
-
-func imageForSound() -> UIImage {
-    
-    let name = "Tile_\(imageCount)"
-    
-    if imageCount <= 12 {
-        imageCount += 1
-    } else {
-        imageCount = 1
-    }
-        
-    guard let image = UIImage(named: name) else {
-        NSLog("Image not found: \(name)")
-        return UIImage()
-    }
-    
-    return image
-
-}
