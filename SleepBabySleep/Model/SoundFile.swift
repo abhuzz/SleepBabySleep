@@ -33,7 +33,7 @@ struct AssetSoundFile: SoundFile, Equatable {
     }
     
     init(Name: String, File: String, Extension:String) {
-        self.init(Name: Name, File: File, Extension: Extension, Image: imageForSound())
+        self.init(Name: Name, File: File, Extension: Extension, Image: UIImage())
     }
     
     private(set) var Identifier: UUID

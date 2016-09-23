@@ -151,10 +151,10 @@
 				D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */,
 				D42FE7461D77223F00D99866 /* AudioRecorder.swift */,
 				D46A38D71D840452000205A5 /* AudioSession.swift */,
-				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
 				D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */,
-				D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */,
 				D4D019C41D9183DC004CAC80 /* AssetTileImages.swift */,
+				D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */,
+				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
 			);
 			name = Infrastructure;
 			sourceTree = "<group>";
