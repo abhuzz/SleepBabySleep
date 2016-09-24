@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4150B621D966C8100DAC80E /* ImageNumberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4150B611D966C8100DAC80E /* ImageNumberState.swift */; };
 		D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */; };
 		D423BDA41D7E7255006BD88E /* AssetSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */; };
 		D423BDA81D7ED338006BD88E /* RecordedSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D4150B611D966C8100DAC80E /* ImageNumberState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageNumberState.swift; path = Infrastructure/ImageNumberState.swift; sourceTree = "<group>"; };
 		D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AssetSoundFiles.plist; path = Assets/AssetSoundFiles.plist; sourceTree = "<group>"; };
 		D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AssetSoundFilePList.swift; path = Infrastructure/AssetSoundFilePList.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordedSoundFilePList.swift; path = Infrastructure/RecordedSoundFilePList.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				D46A38D71D840452000205A5 /* AudioSession.swift */,
 				D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */,
 				D4D019C41D9183DC004CAC80 /* AssetTileImages.swift */,
+				D4150B611D966C8100DAC80E /* ImageNumberState.swift */,
 				D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */,
 				D4C280DC1D71AB9A00356ED1 /* Timer.swift */,
 			);
@@ -400,6 +403,7 @@
 				D430BAE71D72D60100A907D1 /* Playlist.swift in Sources */,
 				D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */,
 				D423BDAC1D81AEB2006BD88E /* UIViewController+showAlertDialog.swift in Sources */,
+				D4150B621D966C8100DAC80E /* ImageNumberState.swift in Sources */,
 				D42FE7471D77223F00D99866 /* AudioRecorder.swift in Sources */,
 				D4C280DD1D71AB9A00356ED1 /* Timer.swift in Sources */,
 				D46A38D81D840452000205A5 /* AudioSession.swift in Sources */,
