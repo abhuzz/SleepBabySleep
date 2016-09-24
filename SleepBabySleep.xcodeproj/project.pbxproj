@@ -90,8 +90,8 @@
 		D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Shhhh.mp3; path = Audio/Shhhh.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DF11D3C01BC00198301 /* SoundFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFile.swift; path = Model/SoundFile.swift; sourceTree = "<group>"; };
 		D4FAE4C61D8E5A2400ADFAAA /* Combine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Combine.mp3; path = Audio/Combine.mp3; sourceTree = SOURCE_ROOT; };
-		D4FAE4C81D8E8DE400ADFAAA /* HairDryer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HairDryer.mp3; sourceTree = "<group>"; };
-		D4FAE4CA1D8E8E3A00ADFAAA /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VacuumCleaner.mp3; sourceTree = "<group>"; };
+		D4FAE4C81D8E8DE400ADFAAA /* HairDryer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HairDryer.mp3; path = ../Audio/HairDryer.mp3; sourceTree = "<group>"; };
+		D4FAE4CA1D8E8E3A00ADFAAA /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = VacuumCleaner.mp3; path = ../Audio/VacuumCleaner.mp3; sourceTree = "<group>"; };
 		D4FB3A161D7CA1CF0050821B /* UIImage+averageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+averageColor.swift"; path = "Extensions/UIImage+averageColor.swift"; sourceTree = "<group>"; };
 		D4FB3A181D7CA33A0050821B /* UIColor+difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+difference.swift"; path = "Extensions/UIColor+difference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
