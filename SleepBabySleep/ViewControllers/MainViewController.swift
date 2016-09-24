@@ -320,11 +320,21 @@ extension MainViewController: RecordingDelegate {
     
     func selectPlaylistItemWithUUID(uuid: UUID) {
         
-        guard let newItemIndex = playList?.indexForUuid(uuid: uuid) else { return }
+        guard let newItemIndex = playList?.indexForUuid(uuid: uuid) else {
+            NSLog("MainViewController.selectPlaylistItemWithUUID(\(uuid)) --> Error, not found!")
+            return
+        }
         
-        _ = playList?.jumptoRow(newItemIndex)
+        guard let newSoundFile = playList?.jumptoRow(newItemIndex) else {
+            NSLog("MainViewController.selectPlaylistItemWithUUID(\(uuid)) --> Playlist.jumoToRow(\(newItemIndex)) failed()")
+            return
+        }
+        
+        backgroundAudioPlayer?.selectedSoundFile = newSoundFile
         
         scrollToCellAndHightlightIt(IndexPath(row: newItemIndex, section: 0))
+        
+        NSLog("MainViewController.selectPlaylistItemWithUUID - uuid: \(uuid), index: \(newItemIndex)")
     }
 }
 
