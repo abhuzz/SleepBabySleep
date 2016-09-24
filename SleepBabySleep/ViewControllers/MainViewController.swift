@@ -17,7 +17,6 @@ class MainViewController: UIViewController, SegueHandlerType {
     fileprivate var backgroundAudioPlayer: BackgroundAudioPlayer?
     fileprivate var playList: SoundFilePlaylist?
     fileprivate var lastSelectedItemIndexPath: IndexPath?
-    fileprivate var collectionViewUpdatePending = false
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -138,8 +137,6 @@ class MainViewController: UIViewController, SegueHandlerType {
         NSLog("MainViewController.scrollToCellAndHightlightIt(\(indexPath))")
         
         lastSelectedItemIndexPath = indexPath
-        
-        collectionViewUpdatePending = true
         
         DispatchQueue.main.async{
             self.playlistCollectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
@@ -282,14 +279,6 @@ extension MainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateParallaxEffect()
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        if collectionViewUpdatePending {
-            updateSelectedCellHighlighting()
-            collectionViewUpdatePending = false
-        }
     }
     
     func updateParallaxEffect() {
