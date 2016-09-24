@@ -18,7 +18,7 @@ class ImageNumberState {
         self.imageNumberStateFile = imageNumberStateFile
     }
     
-    func nextImageNumber() throws -> AssetImageState {
+    func nextImageNumber() throws -> ImageState {
         
         let currentState = loadCurrentState()
         

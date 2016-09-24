@@ -51,7 +51,7 @@ class AssetTileImagesTest: XCTestCase {
         XCTAssertEqual("1", fakeImageNumberStateFile?.WrittenContent)
     }
     
-    func nextImageNumber() -> AssetImageState {
+    func nextImageNumber() -> ImageState {
         return try! testInstance!.nextImageNumber()
     }
 }
