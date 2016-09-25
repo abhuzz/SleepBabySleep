@@ -18,6 +18,8 @@ protocol BackgroundAudioPlayer {
     var playbackDuration: PlaybackDuration? { get set }
     var selectedSoundFile: SoundFile? { get set }
     var playState: PlayState { get }
+    var currentTimePlayed: Double { get }
+    var currentRemainingTime: Double { get }
     
     func togglePlayState()
 }
@@ -48,6 +50,23 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
         }
     }
     
+    var currentTimePlayed: Double {
+        get {
+            return audioPlayer.currentTime
+        }
+    }
+    
+    var currentRemainingTime: Double {
+        get {
+            guard let playbackDuration = self.playbackDuration else { return 0.0 }
+            
+            if playbackDuration.infinite() {
+               return 0.0
+            } else {
+                return playbackDuration.totalSeconds() - audioPlayer.currentTime
+            }
+        }
+    }
     
     init(audioSession: AudioSession, audioPlayer: AudioPlayer, timer: Timer) {
         
