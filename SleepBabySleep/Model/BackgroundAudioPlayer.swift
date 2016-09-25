@@ -18,8 +18,10 @@ protocol BackgroundAudioPlayer {
     var playbackDuration: PlaybackDuration? { get set }
     var selectedSoundFile: SoundFile? { get set }
     var playState: PlayState { get }
+    
     var currentTimePlayed: Double { get }
     var currentRemainingTime: Double { get }
+    var currentPercentagePlayed: Double { get }
     
     func togglePlayState()
 }
@@ -33,6 +35,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     private var audioSession: AudioSession
     private var audioPlayer: AudioPlayer
     private var timer: Timer
+    private var timerStarted: Date?
     
     
     var playState: PlayState = .paused
@@ -52,7 +55,21 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
     
     var currentTimePlayed: Double {
         get {
-            return audioPlayer.currentTime
+            guard let started = timerStarted else { return 0.0 }
+            let playedInterval = DateInterval(start: started, end: Date())
+            return playedInterval.duration
+        }
+    }
+    
+    var currentPercentagePlayed: Double {
+        get {
+            guard let playbackDuration = self.playbackDuration else { return 0.0 }
+            
+            if playbackDuration.infinite() {
+                return 0.0
+            } else {
+                return currentTimePlayed / ( playbackDuration.totalSeconds() / 100.0 )
+            }
         }
     }
     
@@ -63,7 +80,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
             if playbackDuration.infinite() {
                return 0.0
             } else {
-                return playbackDuration.totalSeconds() - audioPlayer.currentTime
+                return playbackDuration.totalSeconds() - currentTimePlayed
             }
         }
     }
@@ -107,6 +124,7 @@ class TimedBackgroundAudioPlayer: BackgroundAudioPlayer {
             
             if !playbackDuration.infinite() {
                 timer.start(playbackDuration.totalSeconds(), callDelegateWhenExpired: self)
+                timerStarted = Date()
             }
             
             changePlayState(.playing)

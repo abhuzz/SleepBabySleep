@@ -38,6 +38,9 @@ class MainViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var playbackDurationSegements: UISegmentedControl!
     @IBOutlet weak var buttonPlayPause: UIButton!
     @IBOutlet weak var soundFileName: UITextField!
+    @IBOutlet weak var playbackDuration: UILabel!
+    @IBOutlet weak var playbackRemaining: UILabel!
+    @IBOutlet weak var playbackProgress: UIProgressView!
     
 
     override func viewDidLoad() {
@@ -363,9 +366,14 @@ extension MainViewController { // TimedUpdateLoop
     func updateLoop() {
         
         if CFAbsoluteTimeGetCurrent() - soundTimer > 0.5 {
-            //durationLabel.text = formattedCurrentTime(UInt(audioRecorder!.currentTime))
             
-            NSLog("MainViewController.updateLoop() - \(backgroundAudioPlayer?.currentTimePlayed) - \(backgroundAudioPlayer?.currentRemainingTime)")
+            let percentage = Float( backgroundAudioPlayer?.currentPercentagePlayed ?? 0 ) / 100.0
+            
+            NSLog("MainViewController.updateLoop() - \(percentage) - \(backgroundAudioPlayer?.currentTimePlayed) - \(backgroundAudioPlayer?.currentRemainingTime)")
+            
+            playbackDuration.text = String(format: "%.2f", (backgroundAudioPlayer?.currentTimePlayed  ?? 0) / 60.0)
+            playbackRemaining.text = String(format: "%.2f", (backgroundAudioPlayer?.currentRemainingTime ?? 0) / 60.0)
+            playbackProgress.progress = percentage
             
             soundTimer = CFAbsoluteTimeGetCurrent()
         }
