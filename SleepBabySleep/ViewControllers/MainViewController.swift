@@ -17,6 +17,9 @@ class MainViewController: UIViewController, SegueHandlerType {
     fileprivate var backgroundAudioPlayer: BackgroundAudioPlayer?
     fileprivate var playList: SoundFilePlaylist?
     fileprivate var lastSelectedItemIndexPath: IndexPath?
+    fileprivate var soundTimer: CFTimeInterval = 0.0
+    fileprivate var updateTimer: CADisplayLink?
+    
     
     private var playbackDurationsBySegementIndex : [Int : PlaybackDuration] =
         [0 : PlaybackDurationMinutes(durationInMinutes: 5),
@@ -303,9 +306,11 @@ extension MainViewController: BackgroundAudioPlayerStateDelegate {
             updateTrackInfoInRemoteCommandCenter()
             buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControlState())
             updateSoundFileSelectionFromPlaylist()
+            startUpdateLoop()
             
         case .paused:
             buttonPlayPause.setImage(UIImage(named: "Play"), for: UIControlState())
+            stopUpdateLoop()
         }
     }
 }
@@ -335,6 +340,35 @@ extension MainViewController: RecordingDelegate {
         scrollToCellAndHightlightIt(IndexPath(row: newItemIndex, section: 0))
         
         NSLog("MainViewController.selectPlaylistItemWithUUID - uuid: \(uuid), index: \(newItemIndex)")
+    }
+}
+
+extension MainViewController { // TimedUpdateLoop
+    
+    func startUpdateLoop() {
+        
+        updateTimer?.invalidate()
+        
+        updateTimer = CADisplayLink(target: self, selector: #selector(MainViewController.updateLoop))
+        updateTimer!.preferredFramesPerSecond = 1
+        updateTimer!.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+    }
+    
+    func stopUpdateLoop() {
+        
+        updateTimer?.invalidate()
+        updateTimer = nil
+    }
+    
+    func updateLoop() {
+        
+        if CFAbsoluteTimeGetCurrent() - soundTimer > 0.5 {
+            //durationLabel.text = formattedCurrentTime(UInt(audioRecorder!.currentTime))
+            
+            NSLog("MainViewController.updateLoop() - \(backgroundAudioPlayer?.currentTimePlayed) - \(backgroundAudioPlayer?.currentRemainingTime)")
+            
+            soundTimer = CFAbsoluteTimeGetCurrent()
+        }
     }
 }
 
