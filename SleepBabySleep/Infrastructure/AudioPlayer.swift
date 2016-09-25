@@ -11,6 +11,7 @@ import AVFoundation
 
 protocol AudioPlayer {
     var stateDelegate: AudioPlayerStateDelegate? { get set }
+    var currentTime: TimeInterval { get }
     
     func play(_ withUrl: URL)
     func stop()
@@ -27,6 +28,14 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
     private var numberOfLoops: Int
     
     var stateDelegate: AudioPlayerStateDelegate?
+    
+    var currentTime: TimeInterval {
+        get {
+            guard let player = self.player else { return 0 }
+            
+            return player.currentTime
+        }
+    }
     
     internal init(numberOfLoops: Int) {
         
