@@ -371,12 +371,20 @@ extension MainViewController { // TimedUpdateLoop
             
             NSLog("MainViewController.updateLoop() - \(percentage) - \(backgroundAudioPlayer?.currentTimePlayed) - \(backgroundAudioPlayer?.currentRemainingTime)")
             
-            playbackDuration.text = String(format: "%.2f", (backgroundAudioPlayer?.currentTimePlayed  ?? 0) / 60.0)
-            playbackRemaining.text = String(format: "%.2f", (backgroundAudioPlayer?.currentRemainingTime ?? 0) / 60.0)
+            playbackDuration.text = durationToTimeString(backgroundAudioPlayer?.currentTimePlayed  ?? 0)
+            playbackRemaining.text = durationToTimeString(backgroundAudioPlayer?.currentRemainingTime ?? 0)
             playbackProgress.progress = percentage
             
             soundTimer = CFAbsoluteTimeGetCurrent()
         }
+    }
+    
+    private func durationToTimeString(_ duration: Int) -> String {
+    
+        let minutes = ( duration / 60 )
+        let seconds = duration % 60
+
+        return String(format: "%02i:%02i", arguments: [minutes, seconds])
     }
 }
 

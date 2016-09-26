@@ -10,7 +10,7 @@ import Foundation
 
 protocol PlaybackDuration {
     func infinite() -> Bool
-    func totalSeconds() -> Double
+    func totalSeconds() -> Int
 
 }
 
@@ -26,8 +26,8 @@ class PlaybackDurationMinutes: PlaybackDuration {
         return false
     }
     
-    func totalSeconds() -> Double {
-        return Double(durationInMinutes * 60)
+    func totalSeconds() -> Int {
+        return durationInMinutes * 60
     }
 }
 
@@ -37,7 +37,7 @@ class PlaybackDurationInifinite: PlaybackDuration {
         return true
     }
     
-    func totalSeconds() -> Double {
-        return 0.0
+    func totalSeconds() -> Int {
+        return 0
     }
 }
