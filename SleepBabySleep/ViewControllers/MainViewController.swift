@@ -361,6 +361,10 @@ extension MainViewController { // TimedUpdateLoop
         
         updateTimer?.invalidate()
         updateTimer = nil
+        
+        playbackDuration.text = "00:00"
+        playbackRemaining.text = "00:00"
+        playbackProgress.progress = 0.0
     }
     
     func updateLoop() {
