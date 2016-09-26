@@ -47,8 +47,7 @@
                                                                     <frame key="frameInset" minX="10" minY="10" width="127" height="34"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="playlistTitle" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1v-xQ-sZD">
-                                                                            <frame key="frameInset" width="127" height="34"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playlistTitle" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1v-xQ-sZD">
                                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
                                                                             <color key="textColor" red="0.1510885417" green="0.7177435083" blue="0.97804214020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -69,10 +68,12 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="uPQ-Fr-UfX" secondAttribute="trailing" id="4IW-Mg-tFZ"/>
                                                                 <constraint firstItem="EkU-3m-0sB" firstAttribute="leading" secondItem="UoS-pu-7dd" secondAttribute="leading" constant="10" id="9Iw-6X-OVa"/>
+                                                                <constraint firstAttribute="trailing" secondItem="L1v-xQ-sZD" secondAttribute="trailing" constant="10" id="FKz-bb-Lql"/>
                                                                 <constraint firstAttribute="bottom" secondItem="EkU-3m-0sB" secondAttribute="bottom" constant="10" id="Moo-Cd-Psb"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="centerY" secondItem="UoS-pu-7dd" secondAttribute="centerY" id="YI7-QQ-Nzv"/>
                                                                 <constraint firstAttribute="trailing" secondItem="EkU-3m-0sB" secondAttribute="trailing" constant="10" id="cAp-1n-Jey"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="leading" secondItem="UoS-pu-7dd" secondAttribute="leading" id="uAm-GP-ASX"/>
+                                                                <constraint firstItem="L1v-xQ-sZD" firstAttribute="top" secondItem="UoS-pu-7dd" secondAttribute="top" constant="10" id="xkR-2V-Bi7"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
