@@ -3,6 +3,7 @@ iOS & Swift side/learning project
 Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
 
 **ToDo**
+- [ ] Bottom controls stackView spacing
 - [ ] German Translation
 - [X] Display remaning time and progess bar for running playback
 - [X] Bug: When a new track is recorded it's selected in the collectionView, bit not in the playList. When play is clicked it plays the first track in the playlist
