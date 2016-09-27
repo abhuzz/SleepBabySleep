@@ -79,6 +79,7 @@
 		D4B0BA0C1D9A221E0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4B0BA111D9A221F0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4B0BA161D9A221F0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B0BA1A1D9A238F0007E59F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetImageStateTest.swift; sourceTree = "<group>"; };
 		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BackgroundAudioPlayer.swift; path = Model/BackgroundAudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AudioPlayer.swift; path = Infrastructure/AudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -446,6 +447,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D4B0BA0C1D9A221E0007E59F /* de */,
+				D4B0BA1A1D9A238F0007E59F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
