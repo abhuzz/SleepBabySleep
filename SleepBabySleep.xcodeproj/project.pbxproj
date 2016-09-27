@@ -23,6 +23,9 @@
 		D49B58761D795EBB00744CF3 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B58751D795EBB00744CF3 /* Math.swift */; };
 		D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49B58771D795FEB00744CF3 /* Playlist.xcassets */; };
 		D49B587B1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */; };
+		D4B0BA0B1D9A221E0007E59F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B0BA0D1D9A221E0007E59F /* InfoPlist.strings */; };
+		D4B0BA101D9A221F0007E59F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B0BA121D9A221F0007E59F /* Localizable.strings */; };
+		D4B0BA151D9A221F0007E59F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B0BA171D9A221F0007E59F /* InfoPlist.strings */; };
 		D4C0FED21D93125D0004ED5A /* AssetImageStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */; };
 		D4C280D91D7183ED00356ED1 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */; };
 		D4C280DB1D71A51700356ED1 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */; };
@@ -72,6 +75,10 @@
 		D49B58751D795EBB00744CF3 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Math.swift; path = Utilities/Math.swift; sourceTree = "<group>"; };
 		D49B58771D795FEB00744CF3 /* Playlist.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Playlist.xcassets; path = Assets/Playlist.xcassets; sourceTree = "<group>"; };
 		D49B587A1D79BB2600744CF3 /* PlaylistCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaylistCollectionViewLayout.swift; path = Layout/PlaylistCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D4B0BA081D9A221E0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		D4B0BA0C1D9A221E0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B0BA111D9A221F0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B0BA161D9A221F0007E59F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetImageStateTest.swift; sourceTree = "<group>"; };
 		D4C280D81D7183ED00356ED1 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BackgroundAudioPlayer.swift; path = Model/BackgroundAudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D4C280DA1D71A51700356ED1 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AudioPlayer.swift; path = Infrastructure/AudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -198,6 +205,7 @@
 		D4C280E31D71AE8600356ED1 /* SleepBabySleepTests */ = {
 			isa = PBXGroup;
 			children = (
+				D4B0BA171D9A221F0007E59F /* InfoPlist.strings */,
 				D4C0FED11D93125D0004ED5A /* AssetImageStateTest.swift */,
 				D4D019C61D91AB6C004CAC80 /* AssetTileImages.swift */,
 				D4C280EE1D71B97F00356ED1 /* FakeImplementations.swift */,
@@ -230,6 +238,8 @@
 		D4DD3DD71D3BF43F00198301 /* SleepBabySleep */ = {
 			isa = PBXGroup;
 			children = (
+				D4B0BA121D9A221F0007E59F /* Localizable.strings */,
+				D4B0BA0D1D9A221E0007E59F /* InfoPlist.strings */,
 				D423BDA01D7E6FAB006BD88E /* Assets */,
 				D4DD3DD81D3BF43F00198301 /* AppDelegate.swift */,
 				D4FB3A151D7CA1B70050821B /* Extensions */,
@@ -355,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B0BA151D9A221F0007E59F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +375,7 @@
 			files = (
 				D46A38D51D81BC7E000205A5 /* README.md in Resources */,
 				D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */,
+				D4B0BA101D9A221F0007E59F /* Localizable.strings in Resources */,
 				D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */,
 				D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */,
 				D4DD3DDE1D3BF43F00198301 /* Main.storyboard in Resources */,
@@ -371,6 +383,7 @@
 				D4FAE4C71D8E5A2400ADFAAA /* Combine.mp3 in Resources */,
 				D49B58781D795FEB00744CF3 /* Playlist.xcassets in Resources */,
 				D4FAE4CB1D8E8E3A00ADFAAA /* VacuumCleaner.mp3 in Resources */,
+				D4B0BA0B1D9A221E0007E59F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,10 +442,35 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D4B0BA0D1D9A221E0007E59F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4B0BA0C1D9A221E0007E59F /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D4B0BA121D9A221F0007E59F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4B0BA111D9A221F0007E59F /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D4B0BA171D9A221F0007E59F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4B0BA161D9A221F0007E59F /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D4DD3DDC1D3BF43F00198301 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D4DD3DDD1D3BF43F00198301 /* Base */,
+				D4B0BA081D9A221E0007E59F /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

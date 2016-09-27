@@ -1,0 +1,36 @@
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "25B-Du-QIr"; */
+"25B-Du-QIr.placeholder" = "Name";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "HWA-0v-Emf"; */
+"HWA-0v-Emf.text" = "00:00";
+
+/* Class = "UILabel"; text = "playlistTitle"; ObjectID = "L1v-xQ-sZD"; */
+"L1v-xQ-sZD.text" = "playlistTitle";
+
+/* Class = "UILabel"; text = "00:00:00"; ObjectID = "PHa-IV-vxK"; */
+"PHa-IV-vxK.text" = "00:00:00";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[0] = "5"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[0]" = "5";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[1] = "15"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[1]" = "15";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[2] = "30"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[2]" = "30";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[3] = "60"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[3]" = "60";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[4] = "90"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[4]" = "90";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[5] = "120"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[5]" = "120";
+
+/* Class = "UISegmentedControl"; qc4-81-rOs.segmentTitles[6] = "∞"; ObjectID = "qc4-81-rOs"; */
+"qc4-81-rOs.segmentTitles[6]" = "∞";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "x4G-PW-eCP"; */
+"x4G-PW-eCP.text" = "00:00";
+

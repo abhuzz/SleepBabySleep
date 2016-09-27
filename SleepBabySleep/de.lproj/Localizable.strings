@@ -1,0 +1,15 @@
+/* App name */
+"Baby Shhh..." = "Baby Shhh...";
+
+/* Cancel */
+"Cancel" = "Abbrechen";
+
+/* Delete */
+"Delete" = "Löschen";
+
+/* OK */
+"OK" = "OK";
+
+/* Error - mircophone access not possible */
+"The microphone access for this app is disabled. Please enable it in the settings to record your sounds" = "Der Zugriff auf das Mikrophon ist nicht möglich. Bitte in den Einstellungen aktivieren (Einstellungen App / Baby Shhh...)";
+
