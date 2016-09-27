@@ -399,10 +399,10 @@ extension MainViewController { // MPRemoteCommands
         let commandCenter = MPRemoteCommandCenter.shared()
         
         commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget(self, action: #selector(MainViewController.PlayPauseCommand))
+        commandCenter.playCommand.addTarget(self, action: #selector(MainViewController.playPauseCommand))
         
         commandCenter.pauseCommand.isEnabled = true
-        commandCenter.pauseCommand.addTarget(self, action: #selector(MainViewController.PlayPauseCommand))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(MainViewController.playPauseCommand))
         
         commandCenter.nextTrackCommand.isEnabled = true
         commandCenter.nextTrackCommand.addTarget(self, action: #selector(MainViewController.nextTrackCommand))
@@ -433,7 +433,7 @@ extension MainViewController { // MPRemoteCommands
         
     }
     
-    func PlayPauseCommand() {
+    func playPauseCommand() {
         
         backgroundAudioPlayer!.togglePlayState()
     }
