@@ -245,15 +245,21 @@ extension MainViewController: UICollectionViewDataSource {
         
         cell.swipeRight(animateInView: self.view)
         
-        let dialog = UIAlertController(title: "SleepBabySleep", message: "Delete \(soundFile.Name)?", preferredStyle: UIAlertControllerStyle.alert)
+        let dialog = UIAlertController(
+            title: NSLocalizedString("Baby Shhh...", comment: "App name"),
+            message: "\(NSLocalizedString("Delete", comment: "Delete")) \(soundFile.Name)?",
+            preferredStyle: UIAlertControllerStyle.alert)
         
-        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-            (alert: UIAlertAction!) in
+        dialog.addAction(UIAlertAction(
+            title: NSLocalizedString("OK", comment: "OK"),
+            style: .default,
+            handler: {
+                (alert: UIAlertAction!) in
             
-            cell.disappear(animateInView: self.view, animationCompleted: { self.deleteSoundFile(soundFile) })
+                cell.disappear(animateInView: self.view, animationCompleted: { self.deleteSoundFile(soundFile) })
         } ) )
         
-        dialog.addAction(UIAlertAction(title: "Cancel", style: .default, handler: {
+        dialog.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .default, handler: {
             (alert: UIAlertAction!) in
             
             cell.undoSwipe(animateInView: self.view)
@@ -425,7 +431,7 @@ extension MainViewController { // MPRemoteCommands
         
         nowPlayingCenter.nowPlayingInfo =
             [MPMediaItemPropertyTitle: backgroundAudioPlayer!.selectedSoundFile!.Name,
-             MPMediaItemPropertyAlbumTitle: "Baby sleep",
+             MPMediaItemPropertyAlbumTitle: NSLocalizedString("Baby Shhh...", comment: "App name"),
              MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: albumArtWorkImage),
              MPMediaItemPropertyAlbumTrackCount: NSNumber(value: Int32(playList!.count) as Int32),
              MPMediaItemPropertyAlbumTrackNumber: NSNumber(value: Int32(playList!.number) as Int32),

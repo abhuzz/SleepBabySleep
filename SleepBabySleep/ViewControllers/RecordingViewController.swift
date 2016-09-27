@@ -125,7 +125,9 @@ class RecordingViewController: UIViewController {
         guard let audioSession = self.audioSession else { return }
     
         guard audioSession.microphoneAvailble() else {
-            showAlertDialog("The microphone access for this app is disabled. Please enable it in the settings to record your sounds")
+            showAlertDialog(
+                    NSLocalizedString("The microphone access for this app is disabled. Please enable it in the settings to record your sounds", comment: "Error - mircophone access not possible")
+                )
             return
         }
     
