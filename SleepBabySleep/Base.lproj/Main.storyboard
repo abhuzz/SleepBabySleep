@@ -55,23 +55,12 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playlistFile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkU-3m-0sB">
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="21" id="sua-GR-WG0"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                                    <color key="textColor" red="0.12549019610000001" green="0.58039215690000001" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="uPQ-Fr-UfX" secondAttribute="trailing" id="4IW-Mg-tFZ"/>
-                                                                <constraint firstItem="EkU-3m-0sB" firstAttribute="leading" secondItem="UoS-pu-7dd" secondAttribute="leading" constant="10" id="9Iw-6X-OVa"/>
                                                                 <constraint firstAttribute="trailing" secondItem="L1v-xQ-sZD" secondAttribute="trailing" constant="10" id="FKz-bb-Lql"/>
-                                                                <constraint firstAttribute="bottom" secondItem="EkU-3m-0sB" secondAttribute="bottom" constant="10" id="Moo-Cd-Psb"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="centerY" secondItem="UoS-pu-7dd" secondAttribute="centerY" id="YI7-QQ-Nzv"/>
-                                                                <constraint firstAttribute="trailing" secondItem="EkU-3m-0sB" secondAttribute="trailing" constant="10" id="cAp-1n-Jey"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="leading" secondItem="UoS-pu-7dd" secondAttribute="leading" id="uAm-GP-ASX"/>
                                                                 <constraint firstItem="L1v-xQ-sZD" firstAttribute="top" secondItem="UoS-pu-7dd" secondAttribute="top" constant="10" id="xkR-2V-Bi7"/>
                                                             </constraints>
@@ -87,7 +76,6 @@
                                                 <connections>
                                                     <outlet property="leadingConstraint" destination="QRZ-jJ-gsq" id="SG1-2N-QMv"/>
                                                     <outlet property="playListImageViewYCenterConstraint" destination="YI7-QQ-Nzv" id="3ym-EM-Glo"/>
-                                                    <outlet property="playlistFile" destination="EkU-3m-0sB" id="Sha-RT-NkZ"/>
                                                     <outlet property="playlistImage" destination="uPQ-Fr-UfX" id="RcF-ey-wvS"/>
                                                     <outlet property="playlistTitle" destination="L1v-xQ-sZD" id="T9I-2U-eRa"/>
                                                     <outlet property="trailingConstraint" destination="AiK-sg-IoF" id="G0d-9l-AuN"/>
@@ -99,7 +87,7 @@
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="naZ-tO-mps">
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWA-0v-Emf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWA-0v-Emf">
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="yIs-Mb-Vjn"/>
                                                         </constraints>
@@ -108,7 +96,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="4C9-Zd-KOn"/>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4G-PW-eCP">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4G-PW-eCP">
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="35" id="Nex-RN-OrI"/>
                                                         </constraints>

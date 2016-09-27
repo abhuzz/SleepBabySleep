@@ -14,7 +14,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     private var optimalTextColor = UIColor.black
     private var cellSelected = false
     
-    @IBOutlet weak var playlistFile: UILabel!
     @IBOutlet weak var playlistImage: UIImageView!
     @IBOutlet weak var playlistTitle: UILabel!
     @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
@@ -50,7 +49,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             guard let soundFile = soundFile else { return }
             
             playlistTitle.text = soundFile.Name
-            playlistFile.text = soundFile.URL.lastPathComponent 
             playlistImage.image = soundFile.Image
             
             DispatchQueue.global().async {
@@ -169,6 +167,5 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     private func setOptimizedTextColor() {
         
         playlistTitle.textColor = optimalTextColor
-        playlistFile.textColor = optimalTextColor
     }
 }
