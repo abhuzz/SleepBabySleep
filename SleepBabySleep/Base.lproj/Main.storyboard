@@ -43,26 +43,21 @@
                                                                         <constraint firstAttribute="height" constant="207" id="30g-xq-EYC"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ETl-vg-pA9">
-                                                                    <frame key="frameInset" minX="10" minY="10" width="127" height="34"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playlistTitle" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1v-xQ-sZD">
-                                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                                                            <color key="textColor" red="0.1510885417" green="0.7177435083" blue="0.97804214020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="playlistTitle" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1v-xQ-sZD">
+                                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                                                    <color key="textColor" red="0.1510885417" green="0.7177435083" blue="0.97804214020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="L1v-xQ-sZD" secondAttribute="trailing" constant="10" id="1cg-8e-3nW"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uPQ-Fr-UfX" secondAttribute="trailing" id="4IW-Mg-tFZ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="L1v-xQ-sZD" secondAttribute="trailing" constant="10" id="FKz-bb-Lql"/>
+                                                                <constraint firstItem="L1v-xQ-sZD" firstAttribute="top" secondItem="UoS-pu-7dd" secondAttribute="top" constant="10" id="LNo-Fs-ak8"/>
+                                                                <constraint firstItem="L1v-xQ-sZD" firstAttribute="leading" secondItem="UoS-pu-7dd" secondAttribute="leading" constant="10" id="Mwl-FA-h3Y"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="centerY" secondItem="UoS-pu-7dd" secondAttribute="centerY" id="YI7-QQ-Nzv"/>
                                                                 <constraint firstItem="uPQ-Fr-UfX" firstAttribute="leading" secondItem="UoS-pu-7dd" secondAttribute="leading" id="uAm-GP-ASX"/>
-                                                                <constraint firstItem="L1v-xQ-sZD" firstAttribute="top" secondItem="UoS-pu-7dd" secondAttribute="top" constant="10" id="xkR-2V-Bi7"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
