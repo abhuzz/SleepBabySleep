@@ -4,7 +4,7 @@ Playos sounds for a given duration until the baby sleeps. Can also record sounds
 
 **ToDo**
 - [ ] German Translation
-- [ ] Display remaning time and progess bar for running playback
+- [X] Display remaning time and progess bar for running playback
 - [X] Bug: When a new track is recorded it's selected in the collectionView, bit not in the playList. When play is clicked it plays the first track in the playlist
 - [X] Assign recorded file images in plist file
 - [X] Add / replace static sounds
