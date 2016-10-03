@@ -252,21 +252,24 @@ extension MainViewController: UICollectionViewDataSource {
         
         dialog.addAction(UIAlertAction(
             title: NSLocalizedString("OK", comment: "OK"),
-            style: .default,
+            style: .destructive,
             handler: {
                 (alert: UIAlertAction!) in
             
                 cell.disappear(animateInView: self.view, animationCompleted: { self.deleteSoundFile(soundFile) })
         } ) )
         
-        dialog.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .default, handler: {
-            (alert: UIAlertAction!) in
+        dialog.addAction(UIAlertAction(
+            title: NSLocalizedString("Cancel", comment: "Cancel"),
+            style: .cancel,
+            handler: {
+                (alert: UIAlertAction!) in
             
-            cell.undoSwipe(animateInView: self.view)
+                cell.undoSwipe(animateInView: self.view)
             
-            UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
-                self.view.layoutIfNeeded()
-                }, completion: nil)
+                UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
+                    self.view.layoutIfNeeded()
+                    }, completion: nil)
         } ) )
         
         present(dialog, animated: true, completion: nil)
