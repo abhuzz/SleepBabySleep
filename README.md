@@ -4,7 +4,7 @@ Playos sounds for a given duration until the baby sleeps. Can also record sounds
 
 **ToDo**
 - [ ] In recording dialog image with higher resolution
-- [ ] Delete confirmation popup - red delete button
+- [X] Delete confirmation popup - red delete button
 - [ ] German Translation (static sounds)
 - [ ] Bottom controls stackView spacing
 - [X] Display remaning time and progess bar for running playback
