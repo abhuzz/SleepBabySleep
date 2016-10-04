@@ -138,7 +138,7 @@
 		D42FE74A1D79594F00D99866 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D4DD3DDA1D3BF43F00198301 /* MainViewController.swift */,
+				D4FA2A051DA35A000044F9F2 /* MainViewController */,
 				D423BDA91D807B4F006BD88E /* RecordingViewController.swift */,
 			);
 			name = ViewControllers;
@@ -265,6 +265,14 @@
 				D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */,
 			);
 			name = AudioFiles;
+			sourceTree = "<group>";
+		};
+		D4FA2A051DA35A000044F9F2 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D4DD3DDA1D3BF43F00198301 /* MainViewController.swift */,
+			);
+			name = MainViewController;
 			sourceTree = "<group>";
 		};
 		D4FB3A151D7CA1B70050821B /* Extensions */ = {

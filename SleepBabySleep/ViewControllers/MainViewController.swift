@@ -115,7 +115,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         performSegueWithIdentifier(.ShowSegueToRecordView, sender: self)
     }
     
-    func nextTrackInPlaylist() {
+    fileprivate func nextTrackInPlaylist() {
         
         NSLog("MainViewController.nextTrackInPlaylist()")
         
@@ -123,7 +123,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         updateSoundFileSelectionFromPlaylist()
     }
     
-    func previousTrackInPlaylist() {
+    fileprivate func previousTrackInPlaylist() {
         
         NSLog("MainViewController.previousTrackInPlaylist()")
         
@@ -131,14 +131,14 @@ class MainViewController: UIViewController, SegueHandlerType {
         updateSoundFileSelectionFromPlaylist()
     }
     
-    func updateSoundFileSelectionFromPlaylist() {
+    fileprivate func updateSoundFileSelectionFromPlaylist() {
         
         NSLog("MainViewController.updateSoundFileSelectionFromPlaylist()")
         
         scrollToCellAndHightlightIt(IndexPath(row: playList!.index, section: 0))
     }
     
-    func scrollToCellAndHightlightIt(_ indexPath: IndexPath) {
+    fileprivate func scrollToCellAndHightlightIt(_ indexPath: IndexPath) {
         
         NSLog("MainViewController.scrollToCellAndHightlightIt(\(indexPath))")
         
@@ -153,7 +153,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         }
     }
     
-    func availableSoundFiles() -> [SoundFile] {
+    private func availableSoundFiles() -> [SoundFile] {
         
         NSLog("MainViewController.availableSoundFiles()")
         
@@ -169,7 +169,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         return soundFiles
     }
     
-    func reload() {
+    fileprivate func reload() {
         
         NSLog("MainViewController.reload()")
         
@@ -180,7 +180,7 @@ class MainViewController: UIViewController, SegueHandlerType {
         backgroundAudioPlayer?.selectedSoundFile = playList?.first()
     }
     
-    func deleteSoundFile(_ soundFile: SoundFile) {
+    fileprivate func deleteSoundFile(_ soundFile: SoundFile) {
         
         NSLog("MainViewController.deleteSoundFile()")
         
@@ -193,7 +193,16 @@ class MainViewController: UIViewController, SegueHandlerType {
         }
     }
     
-    func updateSelectedCellHighlighting() {
+    fileprivate func updateParallaxEffect() {
+        
+        let bounds = playlistCollectionView!.bounds
+        
+        playlistCollectionView.visibleCells.forEach { cell in
+            (cell as! PlaylistCollectionViewCell).updateParallaxOffset(collectionViewBounds: bounds)
+        }
+    }
+    
+    private func updateSelectedCellHighlighting() {
         
         NSLog("MainViewController.upateSelectedCellHighlighting()")
         
@@ -294,15 +303,6 @@ extension MainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateParallaxEffect()
-    }
-    
-    func updateParallaxEffect() {
-        
-        let bounds = playlistCollectionView!.bounds
-        
-        playlistCollectionView.visibleCells.forEach { cell in
-            (cell as! PlaylistCollectionViewCell).updateParallaxOffset(collectionViewBounds: bounds)
-        }
     }
 }
 
