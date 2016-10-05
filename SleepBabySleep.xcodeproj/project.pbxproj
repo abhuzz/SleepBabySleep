@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D4150B621D966C8100DAC80E /* ImageNumberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4150B611D966C8100DAC80E /* ImageNumberState.swift */; };
-		D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */; };
 		D423BDA41D7E7255006BD88E /* AssetSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */; };
 		D423BDA81D7ED338006BD88E /* RecordedSoundFilePList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */; };
 		D423BDAA1D807B4F006BD88E /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423BDA91D807B4F006BD88E /* RecordingViewController.swift */; };
@@ -41,6 +40,7 @@
 		D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */; };
 		D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */; };
 		D4DD3DF21D3C01BC00198301 /* SoundFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD3DF11D3C01BC00198301 /* SoundFile.swift */; };
+		D4FA2A091DA551130044F9F2 /* AssetSoundFiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4FA2A0B1DA551130044F9F2 /* AssetSoundFiles.plist */; };
 		D4FAE4C71D8E5A2400ADFAAA /* Combine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4FAE4C61D8E5A2400ADFAAA /* Combine.mp3 */; };
 		D4FAE4C91D8E8DE400ADFAAA /* HairDryer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4FAE4C81D8E8DE400ADFAAA /* HairDryer.mp3 */; };
 		D4FAE4CB1D8E8E3A00ADFAAA /* VacuumCleaner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4FAE4CA1D8E8E3A00ADFAAA /* VacuumCleaner.mp3 */; };
@@ -60,7 +60,6 @@
 
 /* Begin PBXFileReference section */
 		D4150B611D966C8100DAC80E /* ImageNumberState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageNumberState.swift; path = Infrastructure/ImageNumberState.swift; sourceTree = "<group>"; };
-		D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AssetSoundFiles.plist; path = Assets/AssetSoundFiles.plist; sourceTree = "<group>"; };
 		D423BDA31D7E7255006BD88E /* AssetSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AssetSoundFilePList.swift; path = Infrastructure/AssetSoundFilePList.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D423BDA71D7ED338006BD88E /* RecordedSoundFilePList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordedSoundFilePList.swift; path = Infrastructure/RecordedSoundFilePList.swift; sourceTree = "<group>"; };
 		D423BDA91D807B4F006BD88E /* RecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordingViewController.swift; path = ViewControllers/RecordingViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +98,8 @@
 		D4DD3DE41D3BF43F00198301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DD3DEB1D3BF78A00198301 /* Shhhh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Shhhh.mp3; path = Audio/Shhhh.mp3; sourceTree = SOURCE_ROOT; };
 		D4DD3DF11D3C01BC00198301 /* SoundFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFile.swift; path = Model/SoundFile.swift; sourceTree = "<group>"; };
+		D4FA2A0A1DA551130044F9F2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = de; path = de.lproj/AssetSoundFiles.plist; sourceTree = "<group>"; };
+		D4FA2A0C1DA551240044F9F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/AssetSoundFiles.plist; sourceTree = "<group>"; };
 		D4FAE4C61D8E5A2400ADFAAA /* Combine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Combine.mp3; path = Audio/Combine.mp3; sourceTree = SOURCE_ROOT; };
 		D4FAE4C81D8E8DE400ADFAAA /* HairDryer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = HairDryer.mp3; path = ../Audio/HairDryer.mp3; sourceTree = "<group>"; };
 		D4FAE4CA1D8E8E3A00ADFAAA /* VacuumCleaner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = VacuumCleaner.mp3; path = ../Audio/VacuumCleaner.mp3; sourceTree = "<group>"; };
@@ -130,7 +131,7 @@
 				D4DD3DEA1D3BF77900198301 /* AudioFiles */,
 				D4DD3DDF1D3BF43F00198301 /* Assets.xcassets */,
 				D49B58771D795FEB00744CF3 /* Playlist.xcassets */,
-				D423BDA11D7E7004006BD88E /* AssetSoundFiles.plist */,
+				D4FA2A0B1DA551130044F9F2 /* AssetSoundFiles.plist */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -383,7 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D46A38D51D81BC7E000205A5 /* README.md in Resources */,
-				D423BDA21D7E7004006BD88E /* AssetSoundFiles.plist in Resources */,
+				D4FA2A091DA551130044F9F2 /* AssetSoundFiles.plist in Resources */,
 				D4B0BA101D9A221F0007E59F /* Localizable.strings in Resources */,
 				D4DD3DE01D3BF43F00198301 /* Assets.xcassets in Resources */,
 				D4DD3DEC1D3BF78A00198301 /* Shhhh.mp3 in Resources */,
@@ -483,6 +484,16 @@
 				D4B0BA081D9A221E0007E59F /* de */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D4FA2A0B1DA551130044F9F2 /* AssetSoundFiles.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4FA2A0A1DA551130044F9F2 /* de */,
+				D4FA2A0C1DA551240044F9F2 /* Base */,
+			);
+			name = AssetSoundFiles.plist;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
