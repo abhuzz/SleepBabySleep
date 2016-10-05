@@ -185,6 +185,9 @@ class MainViewController: UIViewController, SegueHandlerType {
         NSLog("MainViewController.deleteSoundFile()")
         
         do {
+            if backgroundAudioPlayer?.playState == .playing {
+                backgroundAudioPlayer?.togglePlayState()
+            }
             try RecordedSoundFilesPList().deleteRecordedSoundFile(soundFile.Identifier)
             try FileManager.default.removeItem(at: soundFile.URL as URL)
             reload()
