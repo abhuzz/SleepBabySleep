@@ -32,6 +32,8 @@
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
