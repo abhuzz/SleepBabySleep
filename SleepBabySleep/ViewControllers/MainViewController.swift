@@ -120,6 +120,8 @@ class MainViewController: UIViewController, SegueHandlerType {
         NSLog("MainViewController.nextTrackInPlaylist()")
         
         DispatchQueue.global().async {
+            [unowned self] in
+            
             self.backgroundAudioPlayer!.selectedSoundFile = self.playList!.next()
         }
         
@@ -131,6 +133,8 @@ class MainViewController: UIViewController, SegueHandlerType {
         NSLog("MainViewController.previousTrackInPlaylist()")
         
         DispatchQueue.global().async {
+            [unowned self] in
+            
             self.backgroundAudioPlayer!.selectedSoundFile = self.playList!.previous()
         }
         
@@ -321,17 +325,20 @@ extension MainViewController: BackgroundAudioPlayerStateDelegate {
         
         NSLog("MainViewController.playStateChanged(\(playState))")
         
-        switch playState {
-            
-        case .playing:
-            updateTrackInfoInRemoteCommandCenter()
-            buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControlState())
-            updateSoundFileSelectionFromPlaylist()
-            startUpdateLoop()
-            
-        case .paused:
-            buttonPlayPause.setImage(UIImage(named: "Play"), for: UIControlState())
-            stopUpdateLoop()
+        DispatchQueue.main.async {
+            [unowned self] in
+            switch playState {
+                
+            case .playing:
+                self.updateTrackInfoInRemoteCommandCenter()
+                self.buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControlState())
+                self.updateSoundFileSelectionFromPlaylist()
+                self.startUpdateLoop()
+                
+            case .paused:
+                self.buttonPlayPause.setImage(UIImage(named: "Play"), for: UIControlState())
+                self.stopUpdateLoop()
+            }
         }
     }
 }
