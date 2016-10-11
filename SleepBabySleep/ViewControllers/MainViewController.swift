@@ -119,7 +119,10 @@ class MainViewController: UIViewController, SegueHandlerType {
         
         NSLog("MainViewController.nextTrackInPlaylist()")
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.next()
+        DispatchQueue.global().async {
+            self.backgroundAudioPlayer!.selectedSoundFile = self.playList!.next()
+        }
+        
         updateSoundFileSelectionFromPlaylist()
     }
     
@@ -127,7 +130,10 @@ class MainViewController: UIViewController, SegueHandlerType {
         
         NSLog("MainViewController.previousTrackInPlaylist()")
         
-        backgroundAudioPlayer!.selectedSoundFile = playList!.previous()
+        DispatchQueue.global().async {
+            self.backgroundAudioPlayer!.selectedSoundFile = self.playList!.previous()
+        }
+        
         updateSoundFileSelectionFromPlaylist()
     }
     
