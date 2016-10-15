@@ -119,33 +119,33 @@ class MainViewController: UIViewController, SegueHandlerType {
         
         NSLog("MainViewController.nextTrackInPlaylist()")
         
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             [unowned self] in
             
             self.backgroundAudioPlayer!.selectedSoundFile = self.playList!.next()
+            
+            self.updateSoundFileSelection(playListIndex: self.playList!.index)
         }
-        
-        updateSoundFileSelectionFromPlaylist()
     }
     
     fileprivate func previousTrackInPlaylist() {
         
         NSLog("MainViewController.previousTrackInPlaylist()")
         
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             [unowned self] in
             
             self.backgroundAudioPlayer!.selectedSoundFile = self.playList!.previous()
+            
+            self.updateSoundFileSelection(playListIndex: self.playList!.index)
         }
-        
-        updateSoundFileSelectionFromPlaylist()
     }
     
-    fileprivate func updateSoundFileSelectionFromPlaylist() {
+    fileprivate func updateSoundFileSelection(playListIndex: Int) {
         
         NSLog("MainViewController.updateSoundFileSelectionFromPlaylist()")
         
-        scrollToCellAndHightlightIt(IndexPath(row: playList!.index, section: 0))
+        scrollToCellAndHightlightIt(IndexPath(row: playListIndex, section: 0))
     }
     
     fileprivate func scrollToCellAndHightlightIt(_ indexPath: IndexPath) {
@@ -332,7 +332,7 @@ extension MainViewController: BackgroundAudioPlayerStateDelegate {
             case .playing:
                 self.updateTrackInfoInRemoteCommandCenter()
                 self.buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControlState())
-                self.updateSoundFileSelectionFromPlaylist()
+                self.updateSoundFileSelection(playListIndex: self.playList!.index)
                 self.startUpdateLoop()
                 
             case .paused:
