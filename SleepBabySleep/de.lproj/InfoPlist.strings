@@ -1,11 +1,2 @@
-/* (No Commment) */
-"CFBundleDisplayName" = "Baby Shhh...";
-
-/* (No Commment) */
-"CFBundleName" = "$(PRODUCT_NAME)";
-
-/* (No Commment) */
-"CFBundleShortVersionString" = "1.0";
-
 /* (No Comment) */
 "NSMicrophoneUsageDescription" = "Aufzeichen eigener Einschlaf-Sounds.";
