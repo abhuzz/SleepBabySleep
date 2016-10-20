@@ -3,6 +3,7 @@ iOS & Swift side/learning project
 Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
 
 ![Screenshot main view][screenshot_main.jpg]
+
 ![Screenshot recording view][Screenshot_recording.jpg]
 
 ** Backlog **
