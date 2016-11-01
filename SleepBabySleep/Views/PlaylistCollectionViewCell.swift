@@ -132,25 +132,21 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         NSLog("PlaylistCollectionViewCell.animateIsPlaying()")
         
-        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
-            
-            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.15)
-            
-            self.playlistTitle.transform = CGAffineTransform(scaleX: 1.03, y: 1.03)
-            
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
-            
-            }, completion: nil)
+        animateScaleCell(scaleX: 1.0, scaleY: 1.15)
     }
     
     private func animateIsNotSelected() {
         
         NSLog("PlaylistCollectionViewCell.animateIsNotPlaying()")
         
+        animateScaleCell(scaleX: 0.97, scaleY: 0.97)
+    }
+    
+    private func animateScaleCell(scaleX: CGFloat, scaleY: CGFloat) {
+        
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
-            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+            self.transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
             
             self.setNeedsLayout()
             self.layoutIfNeeded()
