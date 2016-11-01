@@ -2,9 +2,18 @@
 iOS & Swift side/learning project
 Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
 
-**ToDo**
+Listed in the [apple app store](https://itunes.apple.com/us/app/baby-shhh...-play-record-sleep/id1155116600?ls=1&mt=8).
+
+![Screenshot main view](screenshot_main.jpg)
+
+![Screenshot recording view](Screenshot_recording.jpg)
+
+** Backlog **
+- [ ] Store recordings in iCloud Account 
 - [ ] In recording dialog image with higher resolution
 - [ ] Bottom controls stackView spacing
+
+** Done **
 - [X] Stop playback when a file should be deleted
 - [X] German Translation (static sounds)
 - [X] Delete confirmation popup - red delete button
@@ -38,6 +47,3 @@ Playos sounds for a given duration until the baby sleeps. Can also record sounds
 	 -[X] AVAudioSessionCategoryPlayAndRecord 
 	- [X] Options: ?AllowBluetooth, MixInWithOthers - https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionBasics/AudioSessionBasics.html
 - [X] Delete: RecordedSoundFileDirectory? 
-
-*** Backlog ***
-- [ ] Store recordings in iCloud Account 
