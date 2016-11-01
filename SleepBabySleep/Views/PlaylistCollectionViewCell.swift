@@ -11,7 +11,6 @@ import UIKit
 
 class PlaylistCollectionViewCell: UICollectionViewCell {
     
-    private var optimalTextColor = UIColor.black
     private var cellSelected = false
     
     @IBOutlet weak var playlistImage: UIImageView!
@@ -53,14 +52,14 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             
             DispatchQueue.global().async {
                 
+                var optimalTextColor = UIColor.black
+                
                 if soundFile.Image.averageColor().getBrightnessDifference(UIColor.black) < 140 {
-                    self.optimalTextColor = UIColor.white
-                } else {
-                    self.optimalTextColor = UIColor.black
+                    optimalTextColor = UIColor.white
                 }
                 
                 DispatchQueue.main.async {
-                    self.setOptimizedTextColor()
+                    self.playlistTitle.textColor = optimalTextColor
                 }
             }
         }
@@ -172,8 +171,4 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         })
     }
     
-    private func setOptimizedTextColor() {
-        
-        playlistTitle.textColor = optimalTextColor
-    }
 }
