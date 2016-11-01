@@ -13,33 +13,27 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     private var cellSelected = false
     
-    @IBOutlet weak var playlistImage: UIImageView!
-    @IBOutlet weak var playlistTitle: UILabel!
-    @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
-    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    
-    override var isSelected: Bool {
-        get {
-            return super.isSelected;
-        }
-        
-        set {
-            guard (super.isSelected != newValue) else { return }
-            
-            super.isSelected = newValue
-            
-            if super.isSelected {
-                animateIsSelected()
-            } else {
-                animateIsNotSelected()
-            }
-        }
-    }
+    private var lastSwipeOffset: CGFloat = 0
     
     private var parallaxOffset: CGFloat = 0 {
         didSet {
             playListImageViewYCenterConstraint.constant = parallaxOffset
+        }
+    }
+    
+    private var swipeOffset: CGFloat {
+        get {
+            let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
+            let scaleFactor = 40 / maxHorizontalOffset
+            return 500.0 * scaleFactor
+        }
+    }
+    
+    private var trackPlayingOffset: CGFloat {
+        get {
+            let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
+            let scaleFactor = 40 / maxHorizontalOffset
+            return 500.0 * scaleFactor
         }
     }
     
@@ -65,6 +59,31 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override var isSelected: Bool {
+        get {
+            return super.isSelected;
+        }
+        
+        set {
+            guard (super.isSelected != newValue) else { return }
+            
+            super.isSelected = newValue
+            
+            if super.isSelected {
+                animateIsSelected()
+            } else {
+                animateIsNotSelected()
+            }
+        }
+    }
+    
+    
+    @IBOutlet weak var playlistImage: UIImageView!
+    @IBOutlet weak var playlistTitle: UILabel!
+    @IBOutlet weak var playListImageViewYCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
     
     func updateParallaxOffset(collectionViewBounds bounds: CGRect) {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -74,58 +93,12 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         parallaxOffset = -offsetFromCenter.y * scaleFactor
     }
-
-    private var swipeOffset: CGFloat {
-        get {
-            let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
-            let scaleFactor = 40 / maxHorizontalOffset
-            return 500.0 * scaleFactor
-        }
-    }
-    
-    private var trackPlayingOffset: CGFloat {
-        get {
-            let maxHorizontalOffset = (bounds.width / 2) + (self.bounds.width / 2)
-            let scaleFactor = 40 / maxHorizontalOffset
-            return 500.0 * scaleFactor
-        }
-    }
-    
-    private func animateIsSelected() {
-        
-        NSLog("PlaylistCollectionViewCell.animateIsPlaying()")
-        
-        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
-            
-                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.15)
-            
-                self.playlistTitle.transform = CGAffineTransform(scaleX: 1.03, y: 1.03)
-            
-                self.setNeedsLayout()
-                self.layoutIfNeeded()
-            
-            }, completion: nil)
-    }
-    
-    private func animateIsNotSelected() {
-        
-        NSLog("PlaylistCollectionViewCell.animateIsNotPlaying()")
-        
-        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
-            
-                self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
-            
-                self.setNeedsLayout()
-                self.layoutIfNeeded()
-            
-            }, completion: nil)
-    }
     
     func swipeRight(animateInView: UIView?) {
         
         NSLog("PlayListCollectionViewCell.swipeRight()")
         
-       swipeHorizontally(animateInView: animateInView, offset: swipeOffset)
+        swipeHorizontally(animateInView: animateInView, offset: swipeOffset)
     }
     
     func swipeLeft(animateInView: UIView?) {
@@ -142,8 +115,48 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         swipeHorizontally(animateInView: animateInView, offset: lastSwipeOffset * -1)
     }
     
-    private var lastSwipeOffset: CGFloat = 0
+    func disappear(animateInView: UIView, animationCompleted: @escaping () -> ()) {
+        
+        NSLog("PlaylistCollectionViewCell.disappear()")
+        
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
+            self.alpha = 0.0
+            self.undoSwipe(animateInView: animateInView)
+            }, completion: {
+                (bool: Bool) in animationCompleted()
+        })
+    }
     
+    
+    private func animateIsSelected() {
+        
+        NSLog("PlaylistCollectionViewCell.animateIsPlaying()")
+        
+        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.15)
+            
+            self.playlistTitle.transform = CGAffineTransform(scaleX: 1.03, y: 1.03)
+            
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+            
+            }, completion: nil)
+    }
+    
+    private func animateIsNotSelected() {
+        
+        NSLog("PlaylistCollectionViewCell.animateIsNotPlaying()")
+        
+        UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+            
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+            
+            }, completion: nil)
+    }
     
     private func swipeHorizontally(animateInView: UIView?, offset: CGFloat) {
         
@@ -158,17 +171,4 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             view.layoutIfNeeded()
             }, completion: nil)
     }
-    
-    func disappear(animateInView: UIView, animationCompleted: @escaping () -> ()) {
-        
-        NSLog("PlaylistCollectionViewCell.disappear()")
-        
-        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
-                self.alpha = 0.0
-                self.undoSwipe(animateInView: animateInView)
-            }, completion: {
-                (bool: Bool) in animationCompleted()
-        })
-    }
-    
 }
