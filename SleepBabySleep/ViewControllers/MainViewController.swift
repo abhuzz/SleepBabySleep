@@ -251,10 +251,15 @@ extension MainViewController: UICollectionViewDataSource {
         
         cell.soundFile = playList!.byRow((indexPath as NSIndexPath).item)
         
-        let swipeDeleteGesture = UISwipeGestureRecognizer(target: self, action: #selector(collectionViewDeleteCell) )
-        swipeDeleteGesture.direction = UISwipeGestureRecognizerDirection.right
         cell.isUserInteractionEnabled = true
-        cell.addGestureRecognizer(swipeDeleteGesture)
+        
+        let swipeDeleteGestureLeft = UISwipeGestureRecognizer(target: self, action: #selector(collectionViewDeleteCell) )
+        swipeDeleteGestureLeft.direction = .left
+        cell.addGestureRecognizer(swipeDeleteGestureLeft)
+        
+        let swipeDeleteGestureRight = UISwipeGestureRecognizer(target: self, action: #selector(collectionViewDeleteCell) )
+        swipeDeleteGestureRight.direction = .right
+        cell.addGestureRecognizer(swipeDeleteGestureRight)
         
         return cell
     }
@@ -265,7 +270,11 @@ extension MainViewController: UICollectionViewDataSource {
         guard let soundFile = cell.soundFile else { return }
         guard soundFile.Deletable else { return }
         
-        cell.swipeRight(animateInView: self.view)
+        if sender.direction == .right {
+            cell.swipeRight(animateInView: self.view)
+        } else {
+            cell.swipeLeft(animateInView: self.view)
+        }
         
         let dialog = UIAlertController(
             title: NSLocalizedString("Baby Shhh...", comment: "App name"),

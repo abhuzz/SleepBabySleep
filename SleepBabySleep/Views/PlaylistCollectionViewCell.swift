@@ -94,7 +94,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     private func animateIsSelected() {
         
-        NSLog("PlaylistCollectionViewCell.animateIsPlaying")
+        NSLog("PlaylistCollectionViewCell.animateIsPlaying()")
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
@@ -110,7 +110,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     private func animateIsNotSelected() {
         
-        NSLog("PlaylistCollectionViewCell.animateIsNotPlaying")
+        NSLog("PlaylistCollectionViewCell.animateIsNotPlaying()")
         
         UIView.animate(withDuration: 0.44, delay: 0, options: .curveEaseOut, animations: {
             
@@ -124,26 +124,36 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     func swipeRight(animateInView: UIView?) {
         
-        let offset = swipeOffset
+        NSLog("PlayListCollectionViewCell.swipeRight()")
         
-        leadingConstraint.constant += offset
-        trailingConstraint.constant -= offset
+       swipeHorizontally(animateInView: animateInView, offset: swipeOffset)
+    }
+    
+    func swipeLeft(animateInView: UIView?) {
         
-        guard let view = animateInView else { return }
+        NSLog("PlayListCollectionViewCell.swipeLeft()")
         
-        UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
-                view.layoutIfNeeded()
-            }, completion: nil)
+        swipeHorizontally(animateInView: animateInView, offset: swipeOffset * -1)
     }
     
     func undoSwipe(animateInView: UIView?) {
         
-        let offset = self.swipeOffset
+        NSLog("PlayListCollectionViewCell.undoSwipe()")
         
-        leadingConstraint.constant -= offset
-        trailingConstraint.constant += offset
+        swipeHorizontally(animateInView: animateInView, offset: lastSwipeOffset * -1)
+    }
+    
+    private var lastSwipeOffset: CGFloat = 0
+    
+    
+    private func swipeHorizontally(animateInView: UIView?, offset: CGFloat) {
         
-        guard let view = animateInView else { return }
+        guard  let view = animateInView else { return }
+        
+        leadingConstraint.constant += offset
+        trailingConstraint.constant -= offset
+        
+        lastSwipeOffset = offset
         
         UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseOut, animations: {
             view.layoutIfNeeded()
@@ -156,7 +166,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
                 self.alpha = 0.0
-                self.undoSwipe(animateInView: nil)
+                self.undoSwipe(animateInView: animateInView)
             }, completion: {
                 (bool: Bool) in animationCompleted()
         })
