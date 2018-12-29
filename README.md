@@ -1,3 +1,4 @@
+<script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#46b798', 'L3L1NX60');kofiwidget2.draw();</script> 
 # SleepBabySleep
 iOS & Swift side/learning project
 Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
