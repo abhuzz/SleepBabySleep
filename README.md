@@ -1,5 +1,6 @@
 [![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/L3L1NX60)
 # SleepBabySleep
+[![Language](https://img.shields.io/badge/swift-4.2.0-orange.svg)](https://swift.org/)
 iOS & Swift side/learning project
 Playos sounds for a given duration until the baby sleeps. Can also record sounds for repeated playback.
 
