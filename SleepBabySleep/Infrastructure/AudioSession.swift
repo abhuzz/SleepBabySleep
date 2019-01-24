@@ -25,17 +25,17 @@ class AVAudioSessionFacade: AudioSession {
     
     func openForPlayback() throws {
      
-        try session.setCategory(AVAudioSessionCategoryPlayback, with: [])
+        try session.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: AVAudioSession.Mode.default)
         try session.setActive(true)
-        
+//        try session.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: [AVAudioSession.Mode.default,AVAudioSession.Mode.spokenAudio])
         NSLog("AVAudioSessionFacade.openForPlayback()")
     }
     
     func openForRecording() throws {
         
-        try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: [.defaultToSpeaker, .allowBluetooth])
+        try session.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playAndRecord)), mode: AVAudioSession.Mode.default)
         try session.setActive(true)
-        
+//        try session.setCategory(convertFromAVAudioSessionCategory(AVAudioSession.Category.playAndRecord), with: [.defaultToSpeaker, .allowBluetooth])
         session.requestRecordPermission({(granted: Bool)-> Void in
             self.microphoneAvailable = granted
         })
@@ -53,4 +53,9 @@ class AVAudioSessionFacade: AudioSession {
     func microphoneAvailble() -> Bool {
         return microphoneAvailable
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

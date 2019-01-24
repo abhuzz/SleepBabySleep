@@ -264,7 +264,7 @@ extension MainViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionViewDeleteCell(_ sender: UISwipeGestureRecognizer) {
+    @objc func collectionViewDeleteCell(_ sender: UISwipeGestureRecognizer) {
         
         guard let cell = sender.view as? PlaylistCollectionViewCell else { return }
         guard let soundFile = cell.soundFile else { return }
@@ -279,7 +279,7 @@ extension MainViewController: UICollectionViewDataSource {
         let dialog = UIAlertController(
             title: NSLocalizedString("Baby Shhh...", comment: "App name"),
             message: "\(NSLocalizedString("Delete", comment: "Delete")) \(soundFile.Name)?",
-            preferredStyle: UIAlertControllerStyle.alert)
+            preferredStyle: UIAlertController.Style.alert)
         
         dialog.addAction(UIAlertAction(
             title: NSLocalizedString("OK", comment: "OK"),
@@ -340,12 +340,12 @@ extension MainViewController: BackgroundAudioPlayerStateDelegate {
                 
             case .playing:
                 self.updateTrackInfoInRemoteCommandCenter()
-                self.buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControlState())
+                self.buttonPlayPause.setImage(UIImage(named: "Stop"), for: UIControl.State())
                 self.updateSoundFileSelection(playListIndex: self.playList!.index)
                 self.startUpdateLoop()
                 
             case .paused:
-                self.buttonPlayPause.setImage(UIImage(named: "Play"), for: UIControlState())
+                self.buttonPlayPause.setImage(UIImage(named: "Play"), for: UIControl.State())
                 self.stopUpdateLoop()
             }
         }
@@ -388,7 +388,7 @@ extension MainViewController { // TimedUpdateLoop
         
         updateTimer = CADisplayLink(target: self, selector: #selector(MainViewController.updateLoop))
         updateTimer!.preferredFramesPerSecond = 2
-        updateTimer!.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        updateTimer!.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
     }
     
     func stopUpdateLoop() {
@@ -401,14 +401,14 @@ extension MainViewController { // TimedUpdateLoop
         playbackProgress.progress = 0.0
     }
     
-    func updateLoop() {
+    @objc func updateLoop() {
         
         if CFAbsoluteTimeGetCurrent() - soundTimer > 0.5 {
             
             let percentage = Float( backgroundAudioPlayer?.currentPercentagePlayed ?? 0 ) / 100.0
             
-            NSLog("MainViewController.updateLoop() - \(percentage) - \(backgroundAudioPlayer?.currentTimePlayed) - \(backgroundAudioPlayer?.currentRemainingTime)")
-            
+            NSLog("MainViewController.updateLoop() - \(percentage) - \(String(describing: backgroundAudioPlayer?.currentTimePlayed)) - \(String(describing: backgroundAudioPlayer?.currentRemainingTime))")
+        
             playbackDuration.text = durationToTimeString(backgroundAudioPlayer?.currentTimePlayed  ?? 0)
             playbackRemaining.text = durationToTimeString(backgroundAudioPlayer?.currentRemainingTime ?? 0)
             playbackProgress.progress = percentage
@@ -467,17 +467,17 @@ extension MainViewController { // MPRemoteCommands
         
     }
     
-    func playPauseCommand() {
+    @objc func playPauseCommand() {
         
         backgroundAudioPlayer!.togglePlayState()
     }
     
-    func nextTrackCommand() {
+    @objc func nextTrackCommand() {
         
         nextTrackInPlaylist()
     }
     
-    func previousTrackCommand() {
+    @objc func previousTrackCommand() {
         
         previousTrackInPlaylist()
     }

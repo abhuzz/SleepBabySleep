@@ -12,7 +12,7 @@ extension UIViewController {
 
     func showAlertDialog(_ alertMessage: String ) {
         
-        let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let dialog = UIAlertController(title: "SleepBabySleep", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         
         dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in return } ) )
         

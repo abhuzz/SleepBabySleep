@@ -37,8 +37,8 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         let nc = NotificationCenter.default
         let session = AVAudioSession.sharedInstance()
         
-        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: session)
-        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived(_:)), name: NSNotification.Name.AVAudioSessionRouteChange, object: session)
+        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionInterruptedReceived(_:)), name: AVAudioSession.interruptionNotification, object: session)
+        nc.addObserver(self, selector: #selector(AVAudioPlayerFacade.notificationAudioSessionRouteChangedReceived(_:)), name: AVAudioSession.routeChangeNotification, object: session)
     }
     
     override convenience init() {
@@ -85,7 +85,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         
         if let info = (notification as NSNotification).userInfo {
             
-            let type = AVAudioSessionInterruptionType(rawValue: info[AVAudioSessionInterruptionTypeKey] as! UInt)
+            let type = AVAudioSession.InterruptionType(rawValue: info[AVAudioSessionInterruptionTypeKey] as! UInt)
             
             if type == .began {
                 
@@ -101,7 +101,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
         
         guard let info = (notification as NSNotification).userInfo else { return }
         
-        let reason = AVAudioSessionRouteChangeReason(rawValue: info[AVAudioSessionRouteChangeReasonKey] as! UInt)
+        let reason = AVAudioSession.RouteChangeReason(rawValue: info[AVAudioSessionRouteChangeReasonKey] as! UInt)
         
         if reason == .oldDeviceUnavailable {
             
@@ -109,7 +109,7 @@ class AVAudioPlayerFacade: NSObject, AudioPlayer { // for AVAudioRecorderDelegat
             let previousOutput = previousRoute!.outputs.first!
             
             // Disable playback when previously headphones were connceted
-            if previousOutput.portType == AVAudioSessionPortHeadphones {
+            if convertFromAVAudioSessionPort(previousOutput.portType) == convertFromAVAudioSessionPort(AVAudioSession.Port.headphones) {
                 
                 stop()
                 triggerDelegatePlaybackStopped()
@@ -126,4 +126,9 @@ extension AVAudioPlayerFacade: AVAudioPlayerDelegate {
         
         triggerDelegatePlaybackStopped()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionPort(_ input: AVAudioSession.Port) -> String {
+	return input.rawValue
 }

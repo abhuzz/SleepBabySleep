@@ -178,7 +178,7 @@ class TimedBackgroundAudioPlayerTest: XCTestCase {
         
         testInstance!.playbackDuration = defaultPlaybackDuration
         
-        XCTAssertEqual(defaultPlaybackDuration.totalSeconds(), fakeTimer?.calledWithDurationInSeconds)
+        XCTAssertEqual(defaultPlaybackDuration.totalSeconds(), Int((fakeTimer?.calledWithDurationInSeconds)!))
     }
     
     

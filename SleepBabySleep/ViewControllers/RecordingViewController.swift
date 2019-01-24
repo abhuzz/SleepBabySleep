@@ -131,7 +131,7 @@ class RecordingViewController: UIViewController {
             return
         }
     
-        buttonRecording.setImage(UIImage(named: "Record_Active"), for: UIControlState())
+        buttonRecording.setImage(UIImage(named: "Record_Active"), for: UIControl.State())
         
         deleteTemporaryRecordingFile()
         
@@ -144,14 +144,14 @@ class RecordingViewController: UIViewController {
 
     @IBAction func recordingTouchUp(_ sender: AnyObject) {
         
-        buttonRecording.setImage(UIImage(named: "Record_Idle"), for: UIControlState())
+        buttonRecording.setImage(UIImage(named: "Record_Idle"), for: UIControl.State())
         
         audioRecorder?.stop()
     }
     
     fileprivate func updateSaveIsPossibleState() {
         
-        if lastRecordedFileURL == nil || soundFileName.text?.characters.count == 0 {
+        if lastRecordedFileURL == nil || soundFileName.text?.count == 0 {
             buttonSave.isEnabled = false
         } else {
             buttonSave.isEnabled = true
@@ -163,7 +163,7 @@ class RecordingViewController: UIViewController {
         guard let previewSoundFile = lastRecordedFileURL else { return }
         
         playingPreview = true
-        buttonPreview.setImage(UIImage(named: "Stop"), for: UIControlState())
+        buttonPreview.setImage(UIImage(named: "Stop"), for: UIControl.State())
         
         audioPlayer?.play(previewSoundFile)
     }
@@ -176,7 +176,7 @@ class RecordingViewController: UIViewController {
     fileprivate func playPreviewStopped() {
         
         playingPreview = false
-        buttonPreview.setImage(UIImage(named: "Play"), for: UIControlState())
+        buttonPreview.setImage(UIImage(named: "Play"), for: UIControl.State())
     }
     
     private func saveRecording(uuid: UUID) throws {
@@ -221,7 +221,7 @@ class RecordingViewController: UIViewController {
         
         updateTimer = CADisplayLink(target: self, selector: #selector(RecordingViewController.updateLoop))
         updateTimer!.preferredFramesPerSecond = 2
-        updateTimer!.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        updateTimer!.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
     }
     
     func stopUpdateLoop() {
@@ -230,7 +230,7 @@ class RecordingViewController: UIViewController {
         updateTimer = nil
     }
     
-    func updateLoop() {
+    @objc func updateLoop() {
         
         if CFAbsoluteTimeGetCurrent() - soundTimer > 0.5 {
             durationLabel.text = formattedCurrentTime(UInt(audioRecorder!.currentTime))

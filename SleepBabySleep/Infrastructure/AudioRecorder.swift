@@ -42,8 +42,8 @@ class AudioRecorder: NSObject { // for AVAudioRecorderDelegate :-(
         let nc = NotificationCenter.default
         let session = AVAudioSession.sharedInstance()
         
-        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionInterruptedReceived(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: session)
-        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionRouteChangedReceived(_:)), name: NSNotification.Name.AVAudioSessionRouteChange, object: session)
+        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionInterruptedReceived(_:)), name: AVAudioSession.interruptionNotification, object: session)
+        nc.addObserver(self, selector: #selector(AudioRecorder.notificationAudioSessionRouteChangedReceived(_:)), name: AVAudioSession.routeChangeNotification, object: session)
     }
     
     
@@ -96,7 +96,7 @@ extension AudioRecorder { // AVAudioSessionInterrution / route changed
         
         if let info = (notification as NSNotification).userInfo {
             
-            let type = AVAudioSessionInterruptionType(rawValue: info[AVAudioSessionInterruptionTypeKey] as! UInt)
+            let type = AVAudioSession.InterruptionType(rawValue: info[AVAudioSessionInterruptionTypeKey] as! UInt)
             
             if type == .began {
                 
@@ -112,7 +112,7 @@ extension AudioRecorder { // AVAudioSessionInterrution / route changed
         
         guard let info = (notification as NSNotification).userInfo else { return }
         
-        let reason = AVAudioSessionRouteChangeReason(rawValue: info[AVAudioSessionRouteChangeReasonKey] as! UInt)
+        let reason = AVAudioSession.RouteChangeReason(rawValue: info[AVAudioSessionRouteChangeReasonKey] as! UInt)
         
         if reason == .oldDeviceUnavailable {
             
